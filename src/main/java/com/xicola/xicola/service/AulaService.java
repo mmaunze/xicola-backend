@@ -33,7 +33,7 @@ public class AulaService {
     private final EstadoRepository estadoRepository;
 
     @Transactional(readOnly = true)
-    public Aula findById(Long id) {
+    public Aula findById(Integer id) {
         return aulaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(AULA_NOT_FOUND_MESSAGE + id));
     }
@@ -69,7 +69,7 @@ public class AulaService {
     }
 
     @Transactional
-    public Aula update(Long id, Aula aulaAtualizada) {
+    public Aula update(Integer id, Aula aulaAtualizada) {
         var aulaOptional = aulaRepository.findById(id);
         if (aulaOptional.isEmpty()) {
             throw new ResourceNotFoundException(AULA_NOT_FOUND_MESSAGE + id);
@@ -99,7 +99,7 @@ public class AulaService {
     }
 
     @Transactional
-    public void delete(Long id) {
+    public void delete(Integer id) {
         if (!aulaRepository.existsById(id)) {
             throw new ResourceNotFoundException(AULA_NOT_FOUND_MESSAGE + id);
         }

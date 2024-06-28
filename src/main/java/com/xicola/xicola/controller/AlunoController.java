@@ -28,7 +28,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @Data
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/utilizadores/alunos")
+@RequestMapping("/academico/alunos")
 @Slf4j
 public class AlunoController {
 

@@ -5,6 +5,9 @@ import com.xicola.xicola.repository.DisciplinaRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -68,5 +71,10 @@ public class DisciplinaService {
     private void mapearDisciplinaAtualizada(Disciplina disciplinaExistente, Disciplina disciplinaAtualizada) {
         disciplinaExistente.setNomeDisciplina(disciplinaAtualizada.getNomeDisciplina());
         // Outros mapeamentos de atributos podem ser adicionados conforme necessário
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Disciplina> findDisciplina(String disciplina) {
+        return disciplinaRepository.findDisciplina(disciplina);
     }
 }

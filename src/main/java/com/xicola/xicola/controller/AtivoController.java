@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/ativos")
+@RequestMapping("/aquisicao/ativos")
 @Slf4j
 public class AtivoController {
 

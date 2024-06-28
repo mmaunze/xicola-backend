@@ -1,16 +1,17 @@
 package com.xicola.xicola.service;
 
-import com.xicola.xicola.model.Estado;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.xicola.xicola.model.Utilizador;
 import com.xicola.xicola.repository.EstadoRepository;
 import com.xicola.xicola.repository.UtilizadorRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-import java.util.List;
-import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +23,6 @@ public class UtilizadorService {
     private static final String SENHA_VAZIA_MESSAGE = "A senha não pode estar vazia";
     private static final String SENHA_CURTA_MESSAGE = "Senha curta demais";
     private static final String ESTADO_NOT_FOUND_MESSAGE = "Estado não encontrado com o nome: ";
-
 
     private final UtilizadorRepository utilizadorRepository;
     private final EstadoRepository estadoRepository;
@@ -79,7 +79,6 @@ public class UtilizadorService {
         }
         utilizadorRepository.deleteById(id);
     }
-
 
     private void validarDadosObrigatorios(Utilizador utilizador) {
         if (utilizador.getUsername() == null || utilizador.getUsername().isBlank()) {

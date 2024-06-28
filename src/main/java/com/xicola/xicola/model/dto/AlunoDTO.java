@@ -1,9 +1,11 @@
 package com.xicola.xicola.model.dto;
 
-import com.xicola.xicola.model.Aluno;
-import com.xicola.xicola.model.Distrito;
 import java.time.Instant;
 import java.time.LocalDate;
+
+import com.xicola.xicola.model.Aluno;
+import com.xicola.xicola.model.Distrito;
+
 import lombok.Data;
 
 @Data
@@ -37,7 +39,7 @@ public class AlunoDTO {
         this.grupoSanguineo = aluno.getGrupoSanguineo();
         this.endereco = aluno.getEndereco();
         this.dataRegisto = aluno.getDataRegisto();
-        this.estado = aluno.getEstado().getDescricao(); 
+        this.estado = aluno.getEstado().getDescricao();
         this.escolaAnterior = aluno.getEscolaAnterior();
         this.nomeDoPai = aluno.getNomeDoPai();
         this.nomeDaMae = aluno.getNomeDaMae();
