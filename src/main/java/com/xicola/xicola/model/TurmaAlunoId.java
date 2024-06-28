@@ -7,12 +7,14 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 
+import java.io.Serial;
 import java.util.Objects;
 
 @Getter
 @Setter
 @Embeddable
 public class TurmaAlunoId implements java.io.Serializable {
+    @Serial
     private static final long serialVersionUID = -1638347453636836111L;
     @NotNull
     @Column(name = "aluno", nullable = false)

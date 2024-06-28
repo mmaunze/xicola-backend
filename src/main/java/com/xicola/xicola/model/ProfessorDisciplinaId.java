@@ -7,12 +7,14 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 
+import java.io.Serial;
 import java.util.Objects;
 
 @Getter
 @Setter
 @Embeddable
 public class ProfessorDisciplinaId implements java.io.Serializable {
+    @Serial
     private static final long serialVersionUID = -8221839168642199837L;
     @NotNull
     @Column(name = "professor", nullable = false)
