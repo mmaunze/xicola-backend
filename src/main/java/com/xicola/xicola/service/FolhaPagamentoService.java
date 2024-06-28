@@ -1,17 +1,14 @@
 package com.xicola.xicola.service;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.FolhaPagamento;
 import com.xicola.xicola.repository.FolhaPagamentoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.math.BigDecimal;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -44,7 +41,7 @@ public class FolhaPagamentoService {
 
     @Transactional
     public FolhaPagamento update(Long id, FolhaPagamento folhaPagamentoAtualizado) {
-        FolhaPagamento folhaPagamentoExistente = folhaPagamentoRepository.findById(id)
+        var folhaPagamentoExistente = folhaPagamentoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(FOLHA_PAGAMENTO_NOT_FOUND_MESSAGE + id));
 
         validarFolhaPagamento(folhaPagamentoAtualizado);

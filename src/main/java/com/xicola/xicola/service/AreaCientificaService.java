@@ -1,16 +1,13 @@
 package com.xicola.xicola.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.AreaCientifica;
 import com.xicola.xicola.repository.AreaCientificaRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -41,7 +38,7 @@ public class AreaCientificaService {
 
     @Transactional
     public AreaCientifica update(Integer id, AreaCientifica areaCientificaAtualizada) {
-        AreaCientifica areaCientificaExistente = areaCientificaRepository.findById(id)
+        var areaCientificaExistente = areaCientificaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(AREA_CIENTIFICA_NOT_FOUND_MESSAGE + id));
 
         validarDadosObrigatorios(areaCientificaAtualizada);

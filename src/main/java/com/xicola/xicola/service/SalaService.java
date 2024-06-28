@@ -4,11 +4,10 @@ import com.xicola.xicola.model.Sala;
 import com.xicola.xicola.repository.SalaRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +37,7 @@ public class SalaService {
 
     @Transactional
     public Sala update(Integer id, Sala salaAtualizada) {
-        Sala salaExistente = salaRepository.findById(id)
+        var salaExistente = salaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(SALA_NOT_FOUND_MESSAGE + id));
 
         validarSala(salaAtualizada);
@@ -51,7 +50,7 @@ public class SalaService {
 
     @Transactional
     public void delete(Integer id) {
-        Sala sala = salaRepository.findById(id)
+        var sala = salaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(SALA_NOT_FOUND_MESSAGE + id));
 
         salaRepository.delete(sala);

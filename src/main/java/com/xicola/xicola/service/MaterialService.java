@@ -1,10 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Material;
 import com.xicola.xicola.model.TipoMaterial;
@@ -13,8 +8,10 @@ import com.xicola.xicola.repository.MaterialRepository;
 import com.xicola.xicola.repository.TipoMaterialRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -45,7 +42,7 @@ public class MaterialService {
     public Material create(Material material) {
         validarMaterial(material);
 
-        Estado estado = obterEstadoAtivo();
+        var estado = obterEstadoAtivo();
         material.setEstado(estado);
 
         return materialRepository.save(material);
@@ -53,7 +50,7 @@ public class MaterialService {
 
     @Transactional
     public Material update(Integer id, Material materialAtualizado) {
-        Material materialExistente = materialRepository.findById(id)
+        var materialExistente = materialRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(MATERIAL_NOT_FOUND_MESSAGE + id));
 
         validarMaterial(materialAtualizado);

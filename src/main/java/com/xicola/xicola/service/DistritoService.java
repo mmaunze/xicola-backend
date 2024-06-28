@@ -1,14 +1,12 @@
 package com.xicola.xicola.service;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Distrito;
 import com.xicola.xicola.repository.DistritoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +34,7 @@ public class DistritoService {
         validarDistritoExistente(id);
         validarCamposObrigatorios(distritoAtualizado);
 
-        Distrito distritoExistente = findById(id);
+        var distritoExistente = findById(id);
         mapearDistritoAtualizado(distritoExistente, distritoAtualizado);
 
         return distritoRepository.save(distritoExistente);

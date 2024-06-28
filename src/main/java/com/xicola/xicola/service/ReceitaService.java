@@ -4,13 +4,12 @@ import com.xicola.xicola.model.Receita;
 import com.xicola.xicola.repository.ReceitaRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +39,7 @@ public class ReceitaService {
 
     @Transactional
     public Receita update(Integer id, Receita receitaAtualizada) {
-        Receita receitaExistente = receitaRepository.findById(id)
+        var receitaExistente = receitaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(RECEITA_NOT_FOUND_MESSAGE + id));
 
         validarReceita(receitaAtualizada);
@@ -56,7 +55,7 @@ public class ReceitaService {
 
     @Transactional
     public void delete(Integer id) {
-        Receita receita = receitaRepository.findById(id)
+        var receita = receitaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(RECEITA_NOT_FOUND_MESSAGE + id));
 
         receitaRepository.delete(receita);

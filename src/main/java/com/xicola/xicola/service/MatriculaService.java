@@ -1,10 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Aluno;
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Matricula;
@@ -12,8 +7,10 @@ import com.xicola.xicola.repository.AlunoRepository;
 import com.xicola.xicola.repository.EstadoRepository;
 import com.xicola.xicola.repository.MatriculaRepository;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -47,7 +44,7 @@ public class MatriculaService {
 
     @Transactional
     public Matricula update(Integer id, Matricula matriculaAtualizada) {
-        Matricula matriculaExistente = matriculaRepository.findById(id)
+        var matriculaExistente = matriculaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(MATRICULA_NOT_FOUND_MESSAGE + id));
 
         validarMatricula(matriculaAtualizada);

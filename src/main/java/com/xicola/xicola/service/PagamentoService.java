@@ -1,13 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Aluno;
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Funcionario;
@@ -20,8 +12,12 @@ import com.xicola.xicola.repository.PagamentoRepository;
 import com.xicola.xicola.repository.TipoPagamentoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -59,7 +55,7 @@ public class PagamentoService {
 
     @Transactional
     public Pagamento update(Integer id, Pagamento pagamentoAtualizado) {
-        Pagamento pagamentoExistente = pagamentoRepository.findById(id)
+        var pagamentoExistente = pagamentoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(PAGAMENTO_NOT_FOUND_MESSAGE + id));
 
         validarPagamento(pagamentoAtualizado);

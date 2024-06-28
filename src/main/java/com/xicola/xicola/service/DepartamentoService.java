@@ -1,16 +1,13 @@
 package com.xicola.xicola.service;
 
-import java.util.Optional;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Departamento;
 import com.xicola.xicola.repository.DepartamentoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -44,7 +41,7 @@ public class DepartamentoService {
         validarDepartamentoExistente(id);
         validarDepartamentoUnico(id, departamentoAtualizado.getDescricao(), departamentoAtualizado.getSigla());
 
-        Departamento departamentoExistente = departamentoRepository.findById(id)
+        var departamentoExistente = departamentoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(DEPARTAMENTO_NOT_FOUND_MESSAGE + id));
 
         mapearDepartamentoAtualizado(departamentoExistente, departamentoAtualizado);
@@ -75,14 +72,14 @@ public class DepartamentoService {
     }
 
     private void validarDepartamentoUnico(Long id, String descricao, String sigla) {
-        Optional<Departamento> departamentoByDescricao = departamentoRepository.findByDescricao(descricao);
+        var departamentoByDescricao = departamentoRepository.findByDescricao(descricao);
         departamentoByDescricao.ifPresent(dept -> {
             if (!dept.getId().equals(id)) {
                 throw new BadRequestException(DESCRICAO_UNICA_MESSAGE + descricao);
             }
         });
 
-        Optional<Departamento> departamentoBySigla = departamentoRepository.findBySigla(sigla);
+        var departamentoBySigla = departamentoRepository.findBySigla(sigla);
         departamentoBySigla.ifPresent(dept -> {
             if (!dept.getId().equals(id)) {
                 throw new BadRequestException(SIGLA_UNICA_MESSAGE + sigla);

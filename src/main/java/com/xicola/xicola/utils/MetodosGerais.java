@@ -1,20 +1,17 @@
 package com.xicola.xicola.utils;
 
 import jakarta.validation.constraints.NotNull;
-
-import static java.util.Calendar.*;
-
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import static java.util.Calendar.*;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
-
 import javax.swing.JTextField;
 
 public interface MetodosGerais {
@@ -108,13 +105,13 @@ public interface MetodosGerais {
             throw new IllegalArgumentException("Nome completo não pode estar vazio");
         }
 
-        String[] partesNome = nomeCompleto.trim().toLowerCase().split("\\s+");
-        int numPalavras = partesNome.length;
+        var partesNome = nomeCompleto.trim().toLowerCase().split("\\s+");
+        var numPalavras = partesNome.length;
         List<String> usernames = new ArrayList<>();
 
         // Combinações com iniciais e nome completo
-        StringBuilder sb = new StringBuilder();
-        for (String parte : partesNome) {
+        var sb = new StringBuilder();
+        for (var parte : partesNome) {
             sb.append(parte.charAt(0));
         }
         usernames.add(sb.toString() + partesNome[numPalavras - 1]);
@@ -123,8 +120,8 @@ public interface MetodosGerais {
         // Combinando até 5 palavras do nome
         if (numPalavras >= 2) {
             // Combinações com duas palavras
-            for (int i = 0; i < numPalavras - 1; i++) {
-                for (int j = i + 1; j < numPalavras; j++) {
+            for (var i = 0; i < numPalavras - 1; i++) {
+                for (var j = i + 1; j < numPalavras; j++) {
                     usernames.add(partesNome[i] + partesNome[j]);
                     usernames.add(partesNome[j] + "." + partesNome[i]);
                 }
@@ -133,9 +130,9 @@ public interface MetodosGerais {
 
         if (numPalavras >= 3) {
             // Combinações com três palavras
-            for (int i = 0; i < numPalavras - 2; i++) {
-                for (int j = i + 1; j < numPalavras - 1; j++) {
-                    for (int k = j + 1; k < numPalavras; k++) {
+            for (var i = 0; i < numPalavras - 2; i++) {
+                for (var j = i + 1; j < numPalavras - 1; j++) {
+                    for (var k = j + 1; k < numPalavras; k++) {
                         usernames.add(partesNome[i] + partesNome[j] + partesNome[k]);
                         usernames.add(partesNome[k] + "." + partesNome[i] + "." + partesNome[j]);
                     }
@@ -145,10 +142,10 @@ public interface MetodosGerais {
 
         if (numPalavras >= 4) {
             // Combinações com quatro palavras
-            for (int i = 0; i < numPalavras - 3; i++) {
-                for (int j = i + 1; j < numPalavras - 2; j++) {
-                    for (int k = j + 1; k < numPalavras - 1; k++) {
-                        for (int l = k + 1; l < numPalavras; l++) {
+            for (var i = 0; i < numPalavras - 3; i++) {
+                for (var j = i + 1; j < numPalavras - 2; j++) {
+                    for (var k = j + 1; k < numPalavras - 1; k++) {
+                        for (var l = k + 1; l < numPalavras; l++) {
                             usernames.add(partesNome[i] + partesNome[j] + partesNome[k] + partesNome[l]);
                             usernames.add(
                                     partesNome[l] + "." + partesNome[i] + "." + partesNome[j] + "." + partesNome[k]);
@@ -160,11 +157,11 @@ public interface MetodosGerais {
 
         if (numPalavras >= 5) {
             // Combinações com cinco palavras
-            for (int i = 0; i < numPalavras - 4; i++) {
-                for (int j = i + 1; j < numPalavras - 3; j++) {
-                    for (int k = j + 1; k < numPalavras - 2; k++) {
-                        for (int l = k + 1; l < numPalavras - 1; l++) {
-                            for (int m = l + 1; m < numPalavras; m++) {
+            for (var i = 0; i < numPalavras - 4; i++) {
+                for (var j = i + 1; j < numPalavras - 3; j++) {
+                    for (var k = j + 1; k < numPalavras - 2; k++) {
+                        for (var l = k + 1; l < numPalavras - 1; l++) {
+                            for (var m = l + 1; m < numPalavras; m++) {
                                 usernames.add(
                                         partesNome[i] + partesNome[j] + partesNome[k] + partesNome[l] + partesNome[m]);
                                 usernames.add(partesNome[m] + "." + partesNome[i] + "." + partesNome[j] + "."
@@ -180,9 +177,9 @@ public interface MetodosGerais {
     }
 
     default String gerarId() {
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyyMMddHHmmss");
-        String dataHora = sdf.format(new java.util.Date());
-        int randomNumber = new java.util.Random().nextInt(1000); // Número aleatório de 3 dígitos
+        var sdf = new java.text.SimpleDateFormat("yyyyMMddHHmmss");
+        var dataHora = sdf.format(new java.util.Date());
+        var randomNumber = new java.util.Random().nextInt(1000); // Número aleatório de 3 dígitos
         return dataHora + String.format("%03d", randomNumber);
     }
 

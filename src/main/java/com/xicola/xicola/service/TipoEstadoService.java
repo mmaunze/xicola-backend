@@ -4,11 +4,10 @@ import com.xicola.xicola.model.TipoEstado;
 import com.xicola.xicola.repository.TipoEstadoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +37,7 @@ public class TipoEstadoService {
 
     @Transactional
     public TipoEstado update(Long id, TipoEstado tipoEstadoAtualizado) {
-        TipoEstado tipoEstadoExistente = tipoEstadoRepository.findById(id)
+        var tipoEstadoExistente = tipoEstadoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_ESTADO_NOT_FOUND_MESSAGE + id));
 
         validarTipoEstado(tipoEstadoAtualizado);
@@ -50,7 +49,7 @@ public class TipoEstadoService {
 
     @Transactional
     public void delete(Long id) {
-        TipoEstado tipoEstado = tipoEstadoRepository.findById(id)
+        var tipoEstado = tipoEstadoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_ESTADO_NOT_FOUND_MESSAGE + id));
 
         tipoEstadoRepository.delete(tipoEstado);

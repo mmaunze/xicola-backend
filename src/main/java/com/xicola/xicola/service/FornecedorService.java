@@ -4,12 +4,11 @@ import com.xicola.xicola.model.Fornecedor;
 import com.xicola.xicola.repository.FornecedorRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.List;
+import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -43,7 +42,7 @@ public class FornecedorService {
 
     @Transactional
     public Fornecedor update(Integer id, Fornecedor fornecedorAtualizado) {
-        Fornecedor fornecedorExistente = fornecedorRepository.findById(id)
+        var fornecedorExistente = fornecedorRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(FORNECEDOR_NOT_FOUND_MESSAGE + id));
 
         validarFornecedorParaAtualizacao(fornecedorAtualizado);

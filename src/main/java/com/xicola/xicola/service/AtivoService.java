@@ -1,20 +1,17 @@
 package com.xicola.xicola.service;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Ativo;
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.repository.AtivoRepository;
 import com.xicola.xicola.repository.EstadoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -44,10 +41,9 @@ public class AtivoService {
     @Transactional
     public Ativo create(Ativo ativo) {
         // Obtém o estado "Activo" da base de dados
-        Optional<Estado> estadoOptional = estadoRepository.findEstado("Activo");
-
+        var estadoOptional = estadoRepository.findEstado("Activo");
         // Verifica se o estado foi encontrado
-        Estado estado = estadoOptional
+        var estado = estadoOptional
                 .orElseThrow(() -> new ResourceNotFoundException(ESTADO_NOT_FOUND_MESSAGE));
 
         validarDadosObrigatorios(ativo);
@@ -58,7 +54,7 @@ public class AtivoService {
 
     @Transactional
     public Ativo update(Integer id, Ativo ativoAtualizado) {
-        Ativo ativoExistente = ativoRepository.findById(id)
+        var ativoExistente = ativoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ATIVO_NOT_FOUND_MESSAGE + id));
 
         validarDadosObrigatorios(ativoAtualizado);

@@ -1,17 +1,14 @@
 package com.xicola.xicola.service;
 
-import java.math.BigDecimal;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.DetalheRelatorioFinanceiro;
 import com.xicola.xicola.repository.DetalheRelatorioFinanceiroRepository;
 import com.xicola.xicola.repository.RelatorioFinanceiroRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -47,7 +44,7 @@ public class DetalheRelatorioFinanceiroService {
         validarDetalheRelatorioExistente(id);
         validarDetalheRelatorio(detalheRelatorioAtualizado);
 
-        DetalheRelatorioFinanceiro detalheRelatorioExistente = detalheRelatorioFinanceiroRepository.findById(id)
+        var detalheRelatorioExistente = detalheRelatorioFinanceiroRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(DETALHE_RELATORIO_NOT_FOUND_MESSAGE + id));
 
         mapearDetalheRelatorioAtualizado(detalheRelatorioExistente, detalheRelatorioAtualizado);

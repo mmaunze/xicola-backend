@@ -1,12 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Funcionario;
 import com.xicola.xicola.model.Veiculo;
@@ -16,9 +9,12 @@ import com.xicola.xicola.repository.VeiculoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
 import com.xicola.xicola.utils.MetodosGerais;
-
+import java.util.List;
+import java.util.Random;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -48,11 +44,11 @@ public class VeiculoService implements MetodosGerais {
 
     @Transactional
     public Veiculo create(Veiculo veiculo) {
-        Estado estado = obterEstadoActivo();
+        var estado = obterEstadoActivo();
 
         validarVeiculo(veiculo);
 
-        Funcionario motorista = obterMotoristaAleatorio();
+        var motorista = obterMotoristaAleatorio();
 
         veiculo.setEstado(estado);
         veiculo.setMotorista(motorista);
@@ -62,7 +58,7 @@ public class VeiculoService implements MetodosGerais {
 
     @Transactional
     public Veiculo update(Long id, Veiculo veiculoAtualizado) {
-        Veiculo veiculoExistente = veiculoRepository.findById(id)
+        var veiculoExistente = veiculoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(VEICULO_NOT_FOUND_MESSAGE + id));
 
         validarVeiculo(veiculoAtualizado);
@@ -106,7 +102,7 @@ public class VeiculoService implements MetodosGerais {
     }
 
     private Funcionario obterMotoristaAleatorio() {
-        List<Funcionario> motoristas = funcionarioRepository.findAll();
+        var motoristas = funcionarioRepository.findAll();
         if (motoristas.isEmpty()) {
             throw new ResourceNotFoundException("Não há motoristas disponíveis.");
         }

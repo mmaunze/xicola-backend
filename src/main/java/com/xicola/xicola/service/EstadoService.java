@@ -4,11 +4,11 @@ import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.repository.EstadoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +30,11 @@ public class EstadoService {
         return estadoRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
+    public Optional<Estado> findEstado(String estado) {
+        return estadoRepository.findEstado(estado);
+    }
+
     @Transactional
     public Estado create(Estado estado) {
         validarEstado(estado);
@@ -38,7 +43,7 @@ public class EstadoService {
 
     @Transactional
     public Estado update(Integer id, Estado estadoAtualizado) {
-        Estado estadoExistente = estadoRepository.findById(id)
+        var estadoExistente = estadoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ESTADO_NOT_FOUND_MESSAGE + id));
 
         validarEstado(estadoAtualizado);

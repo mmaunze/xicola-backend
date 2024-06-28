@@ -4,13 +4,12 @@ import com.xicola.xicola.model.Transacao;
 import com.xicola.xicola.repository.TransacaoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +39,7 @@ public class TransacaoService {
 
     @Transactional
     public Transacao update(Long id, Transacao transacaoAtualizada) {
-        Transacao transacaoExistente = transacaoRepository.findById(id)
+        var transacaoExistente = transacaoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TRANSACAO_NOT_FOUND_MESSAGE + id));
 
         validarTransacao(transacaoAtualizada);
@@ -58,7 +57,7 @@ public class TransacaoService {
 
     @Transactional
     public void delete(Long id) {
-        Transacao transacao = transacaoRepository.findById(id)
+        var transacao = transacaoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TRANSACAO_NOT_FOUND_MESSAGE + id));
 
         transacaoRepository.delete(transacao);

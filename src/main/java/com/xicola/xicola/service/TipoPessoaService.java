@@ -4,11 +4,10 @@ import com.xicola.xicola.model.TipoPessoa;
 import com.xicola.xicola.repository.TipoPessoaRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +37,7 @@ public class TipoPessoaService {
 
     @Transactional
     public TipoPessoa update(Long id, TipoPessoa tipoPessoaAtualizado) {
-        TipoPessoa tipoPessoaExistente = tipoPessoaRepository.findById(id)
+        var tipoPessoaExistente = tipoPessoaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_PESSOA_NOT_FOUND_MESSAGE + id));
 
         validarTipoPessoa(tipoPessoaAtualizado);
@@ -50,7 +49,7 @@ public class TipoPessoaService {
 
     @Transactional
     public void delete(Long id) {
-        TipoPessoa tipoPessoa = tipoPessoaRepository.findById(id)
+        var tipoPessoa = tipoPessoaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_PESSOA_NOT_FOUND_MESSAGE + id));
 
         tipoPessoaRepository.delete(tipoPessoa);

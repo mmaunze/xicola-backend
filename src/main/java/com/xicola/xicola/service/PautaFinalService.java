@@ -1,10 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Aluno;
 import com.xicola.xicola.model.Disciplina;
 import com.xicola.xicola.model.Estado;
@@ -17,8 +12,10 @@ import com.xicola.xicola.repository.PautaFinalRepository;
 import com.xicola.xicola.repository.ProfessorRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -56,7 +53,7 @@ public class PautaFinalService {
 
     @Transactional
     public PautaFinal update(Long id, PautaFinal pautaFinalAtualizada) {
-        PautaFinal pautaFinalExistente = pautaFinalRepository.findById(id)
+        var pautaFinalExistente = pautaFinalRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(PAUTA_FINAL_NOT_FOUND_MESSAGE + id));
 
         validarPautaFinal(pautaFinalAtualizada);

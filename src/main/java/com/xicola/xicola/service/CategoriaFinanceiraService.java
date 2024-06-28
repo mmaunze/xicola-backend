@@ -3,11 +3,10 @@ package com.xicola.xicola.service;
 import com.xicola.xicola.model.CategoriaFinanceira;
 import com.xicola.xicola.repository.CategoriaFinanceiraRepository;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -37,12 +36,12 @@ public class CategoriaFinanceiraService {
 
     @Transactional
     public CategoriaFinanceira update(Integer id, CategoriaFinanceira categoriaFinanceiraAtualizada) {
-        Optional<CategoriaFinanceira> categoriaFinanceiraOptional = categoriaFinanceiraRepository.findById(id);
+        var categoriaFinanceiraOptional = categoriaFinanceiraRepository.findById(id);
         if (categoriaFinanceiraOptional.isEmpty()) {
             throw new ResourceNotFoundException(CATEGORIA_FINANCEIRA_NOT_FOUND_MESSAGE + id);
         }
 
-        CategoriaFinanceira categoriaFinanceiraExistente = categoriaFinanceiraOptional.get();
+        var categoriaFinanceiraExistente = categoriaFinanceiraOptional.get();
         validarDadosObrigatorios(categoriaFinanceiraAtualizada);
         categoriaFinanceiraExistente.setDescricao(categoriaFinanceiraAtualizada.getDescricao());
 

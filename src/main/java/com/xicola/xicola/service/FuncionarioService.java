@@ -1,15 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Funcionario;
 import com.xicola.xicola.model.Utilizador;
@@ -19,9 +9,15 @@ import com.xicola.xicola.repository.UtilizadorRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
 import com.xicola.xicola.utils.MetodosGerais;
-
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -54,10 +50,9 @@ public class FuncionarioService implements MetodosGerais {
     @Transactional
     public Funcionario create(Funcionario funcionario) {
         // Obtém o estado "Activo" da base de dados
-        Optional<Estado> estadoOptional = estadoRepository.findEstado("Activo");
-
+        var estadoOptional = estadoRepository.findEstado("Activo");
         // Verifica se o estado foi encontrado
-        Estado estado = estadoOptional
+        var estado = estadoOptional
                 .orElseThrow(() -> new ResourceNotFoundException(ESTADO_NOT_FOUND_MESSAGE));
 
         // Realiza as validações necessárias
@@ -75,13 +70,13 @@ public class FuncionarioService implements MetodosGerais {
         funcionario.setEstado(estado);
 
         // Gerar e definir o username único para o utilizador
-        Utilizador utilizador = new Utilizador();
+        var utilizador = new Utilizador();
         utilizador.setId(Long.parseLong(gerarId()));
 
         // Gera a lista de usernames possíveis a partir do nome completo do professor
         List<String> usernames = gerarUsernames(funcionario.getNomeCompleto());
 
-        String usernameFinal = gerarUsernameUnico(usernames);
+        var usernameFinal = gerarUsernameUnico(usernames);
 
         utilizador.setUsername(usernameFinal);
 
@@ -102,7 +97,7 @@ public class FuncionarioService implements MetodosGerais {
     @Transactional
     public Funcionario update(Long id, Funcionario funcionarioAtualizado) {
 
-        Optional<Funcionario> funcionarioOptional = funcionarioRepository.findById(id);
+        var funcionarioOptional = funcionarioRepository.findById(id);
         if (funcionarioOptional.isEmpty()) {
             throw new ResourceNotFoundException(FUNCIONARIO_NOT_FOUND_MESSAGE + id);
         }
@@ -119,7 +114,7 @@ public class FuncionarioService implements MetodosGerais {
 
         // Outras validações específicas de atualização, se necessário
 
-        Funcionario funcionarioExistente = funcionarioOptional.get();
+        var funcionarioExistente = funcionarioOptional.get();
 
         // Atualize outras propriedades conforme necessário
 
@@ -242,7 +237,7 @@ public class FuncionarioService implements MetodosGerais {
 
     private String gerarUsernameUnico(List<String> usernames) {
         // Verifica a disponibilidade dos usernames e escolhe um único username único
-        for (String username : usernames) {
+        for (var username : usernames) {
             if (utilizadorRepository.findByUsername(username).isEmpty()) {
                 return username;
             }

@@ -1,8 +1,5 @@
 package com.xicola.xicola.service;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Aluno;
 import com.xicola.xicola.model.Disciplina;
 import com.xicola.xicola.model.Estado;
@@ -15,11 +12,11 @@ import com.xicola.xicola.repository.PresencasAlunoRepository;
 import com.xicola.xicola.repository.TurmaRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
-import lombok.RequiredArgsConstructor;
-
 import java.util.Date;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -57,7 +54,7 @@ public class PresencasAlunoService {
 
     @Transactional
     public PresencasAluno update(Integer id, PresencasAluno presencasAlunoAtualizada) {
-        PresencasAluno presencasAlunoExistente = presencasAlunoRepository.findById(id)
+        var presencasAlunoExistente = presencasAlunoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(PRESENCAS_ALUNO_NOT_FOUND_MESSAGE + id));
 
         validarPresencasAluno(presencasAlunoAtualizada);

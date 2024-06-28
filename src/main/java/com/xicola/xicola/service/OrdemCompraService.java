@@ -1,15 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-
-import jakarta.validation.constraints.NotNull;
-import org.springframework.cglib.core.Local;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Fornecedor;
 import com.xicola.xicola.model.Funcionario;
@@ -22,8 +12,13 @@ import com.xicola.xicola.repository.ItemOrdemCompraRepository;
 import com.xicola.xicola.repository.OrdemCompraRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import jakarta.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -60,7 +55,7 @@ public class OrdemCompraService {
 
     @Transactional
     public OrdemCompra update(Integer id, OrdemCompra ordemCompraAtualizada) {
-        OrdemCompra ordemCompraExistente = ordemCompraRepository.findById(id)
+        var ordemCompraExistente = ordemCompraRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ORDEM_COMPRA_NOT_FOUND_MESSAGE + id));
 
         validarOrdemCompra(ordemCompraAtualizada);
@@ -85,7 +80,7 @@ public class OrdemCompraService {
 
     @Transactional
     public void adicionarItem(Integer idOrdemCompra, ItemOrdemCompra itemOrdemCompra) {
-        OrdemCompra ordemCompra = findById(idOrdemCompra);
+        var ordemCompra = findById(idOrdemCompra);
         itemOrdemCompra.setOrdemCompra(ordemCompra);
 
         validarItemOrdemCompra(itemOrdemCompra);

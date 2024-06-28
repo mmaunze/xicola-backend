@@ -1,13 +1,12 @@
 package com.xicola.xicola.service;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import com.xicola.xicola.model.Cargo;
 import com.xicola.xicola.repository.CargoRepository;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-import lombok.RequiredArgsConstructor;
-
 import java.util.Optional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -37,12 +36,12 @@ public class CargoService {
 
     @Transactional
     public Cargo update(Long id, Cargo cargoAtualizado) {
-        Optional<Cargo> cargoOptional = cargoRepository.findById(id);
+        var cargoOptional = cargoRepository.findById(id);
         if (cargoOptional.isEmpty()) {
             throw new ResourceNotFoundException(CARGO_NOT_FOUND_MESSAGE + id);
         }
 
-        Cargo cargoExistente = cargoOptional.get();
+        var cargoExistente = cargoOptional.get();
         validarDadosObrigatorios(cargoAtualizado);
         cargoExistente.setDescricao(cargoAtualizado.getDescricao());
 

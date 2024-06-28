@@ -4,12 +4,10 @@ import com.xicola.xicola.model.Evento;
 import com.xicola.xicola.repository.EventoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -43,7 +41,7 @@ public class EventoService {
 
     @Transactional
     public Evento update(Integer id, Evento eventoAtualizado) {
-        Evento eventoExistente = eventoRepository.findById(id)
+        var eventoExistente = eventoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(EVENTO_NOT_FOUND_MESSAGE + id));
 
         validarEvento(eventoAtualizado);

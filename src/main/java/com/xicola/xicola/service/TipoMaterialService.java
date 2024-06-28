@@ -4,11 +4,10 @@ import com.xicola.xicola.model.TipoMaterial;
 import com.xicola.xicola.repository.TipoMaterialRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +37,7 @@ public class TipoMaterialService {
 
     @Transactional
     public TipoMaterial update(Integer id, TipoMaterial tipoMaterialAtualizado) {
-        TipoMaterial tipoMaterialExistente = tipoMaterialRepository.findById(id)
+        var tipoMaterialExistente = tipoMaterialRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_MATERIAL_NOT_FOUND_MESSAGE + id));
 
         validarTipoMaterial(tipoMaterialAtualizado);
@@ -50,7 +49,7 @@ public class TipoMaterialService {
 
     @Transactional
     public void delete(Integer id) {
-        TipoMaterial tipoMaterial = tipoMaterialRepository.findById(id)
+        var tipoMaterial = tipoMaterialRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_MATERIAL_NOT_FOUND_MESSAGE + id));
 
         tipoMaterialRepository.delete(tipoMaterial);

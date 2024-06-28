@@ -1,17 +1,13 @@
 package com.xicola.xicola.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Provincia;
-
 import com.xicola.xicola.repository.ProvinciaRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -41,7 +37,7 @@ public class ProvinciaService {
 
     @Transactional
     public Provincia update(Integer id, Provincia provinciaAtualizada) {
-        Provincia provinciaExistente = provinciaRepository.findById(id)
+        var provinciaExistente = provinciaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(PROVINCIA_NOT_FOUND_MESSAGE + id));
 
         validarNomeProvincia(provinciaAtualizada.getNomeProvincia());

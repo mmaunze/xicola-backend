@@ -4,11 +4,10 @@ import com.xicola.xicola.model.SectorTrabalho;
 import com.xicola.xicola.repository.SectorTrabalhoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +37,7 @@ public class SectorTrabalhoService {
 
     @Transactional
     public SectorTrabalho update(Long id, SectorTrabalho sectorTrabalhoAtualizado) {
-        SectorTrabalho sectorTrabalhoExistente = sectorTrabalhoRepository.findById(id)
+        var sectorTrabalhoExistente = sectorTrabalhoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(SECTOR_TRABALHO_NOT_FOUND_MESSAGE + id));
 
         validarSectorTrabalho(sectorTrabalhoAtualizado);
@@ -50,7 +49,7 @@ public class SectorTrabalhoService {
 
     @Transactional
     public void delete(Long id) {
-        SectorTrabalho sectorTrabalho = sectorTrabalhoRepository.findById(id)
+        var sectorTrabalho = sectorTrabalhoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(SECTOR_TRABALHO_NOT_FOUND_MESSAGE + id));
 
         sectorTrabalhoRepository.delete(sectorTrabalho);

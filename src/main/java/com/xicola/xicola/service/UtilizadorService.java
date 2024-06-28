@@ -1,19 +1,16 @@
 package com.xicola.xicola.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Utilizador;
 import com.xicola.xicola.repository.EstadoRepository;
 import com.xicola.xicola.repository.UtilizadorRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -43,8 +40,8 @@ public class UtilizadorService {
 
     @Transactional
     public Utilizador create(Utilizador utilizador) {
-        Optional<Estado> estadoOptional = estadoRepository.findEstado("Activo");
-        Estado estado = estadoOptional
+        var estadoOptional = estadoRepository.findEstado("Activo");
+        var estado = estadoOptional
                 .orElseThrow(() -> new ResourceNotFoundException(ESTADO_NOT_FOUND_MESSAGE));
 
         validarDadosObrigatorios(utilizador);
@@ -57,7 +54,7 @@ public class UtilizadorService {
 
     @Transactional
     public Utilizador update(Long id, Utilizador utilizadorAtualizado) {
-        Optional<Utilizador> utilizadorOptional = utilizadorRepository.findById(id);
+        var utilizadorOptional = utilizadorRepository.findById(id);
         if (utilizadorOptional.isEmpty()) {
             throw new ResourceNotFoundException(UTILIZADOR_NOT_FOUND_MESSAGE + id);
         }
@@ -65,7 +62,7 @@ public class UtilizadorService {
         validarDadosObrigatorios(utilizadorAtualizado);
         validarComprimentoMinimo(utilizadorAtualizado);
 
-        Utilizador utilizadorExistente = utilizadorOptional.get();
+        var utilizadorExistente = utilizadorOptional.get();
 
         utilizadorExistente.setUsername(utilizadorAtualizado.getUsername());
         utilizadorExistente.setSenha(utilizadorAtualizado.getSenha());

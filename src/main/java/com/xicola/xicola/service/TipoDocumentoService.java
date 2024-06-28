@@ -4,11 +4,10 @@ import com.xicola.xicola.model.TipoDocumento;
 import com.xicola.xicola.repository.TipoDocumentoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +37,7 @@ public class TipoDocumentoService {
 
     @Transactional
     public TipoDocumento update(Long id, TipoDocumento tipoDocumentoAtualizado) {
-        TipoDocumento tipoDocumentoExistente = tipoDocumentoRepository.findById(id)
+        var tipoDocumentoExistente = tipoDocumentoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_DOCUMENTO_NOT_FOUND_MESSAGE + id));
 
         validarTipoDocumento(tipoDocumentoAtualizado);
@@ -50,7 +49,7 @@ public class TipoDocumentoService {
 
     @Transactional
     public void delete(Long id) {
-        TipoDocumento tipoDocumento = tipoDocumentoRepository.findById(id)
+        var tipoDocumento = tipoDocumentoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_DOCUMENTO_NOT_FOUND_MESSAGE + id));
 
         tipoDocumentoRepository.delete(tipoDocumento);

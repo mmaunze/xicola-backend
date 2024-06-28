@@ -1,10 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Disciplina;
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Horario;
@@ -20,8 +15,10 @@ import com.xicola.xicola.repository.TurmaRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
 import com.xicola.xicola.utils.MetodosGerais;
-
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -58,7 +55,7 @@ public class HorarioService implements MetodosGerais {
     public Horario create(Horario horario) {
         validarHorario(horario);
 
-        Estado estado = obterEstadoActivo();
+        var estado = obterEstadoActivo();
         horario.setEstado(estado);
 
         return horarioRepository.save(horario);
@@ -66,7 +63,7 @@ public class HorarioService implements MetodosGerais {
 
     @Transactional
     public Horario update(Integer id, Horario horarioAtualizado) {
-        Horario horarioExistente = horarioRepository.findById(id)
+        var horarioExistente = horarioRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(HORARIO_NOT_FOUND_MESSAGE + id));
 
         validarHorario(horarioAtualizado);

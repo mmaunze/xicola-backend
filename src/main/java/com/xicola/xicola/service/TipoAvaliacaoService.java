@@ -4,11 +4,10 @@ import com.xicola.xicola.model.TipoAvaliacao;
 import com.xicola.xicola.repository.TipoAvaliacaoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +37,7 @@ public class TipoAvaliacaoService {
 
     @Transactional
     public TipoAvaliacao update(Integer id, TipoAvaliacao tipoAvaliacaoAtualizado) {
-        TipoAvaliacao tipoAvaliacaoExistente = tipoAvaliacaoRepository.findById(id)
+        var tipoAvaliacaoExistente = tipoAvaliacaoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_AVALIACAO_NOT_FOUND_MESSAGE + id));
 
         validarTipoAvaliacao(tipoAvaliacaoAtualizado);
@@ -50,7 +49,7 @@ public class TipoAvaliacaoService {
 
     @Transactional
     public void delete(Integer id) {
-        TipoAvaliacao tipoAvaliacao = tipoAvaliacaoRepository.findById(id)
+        var tipoAvaliacao = tipoAvaliacaoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_AVALIACAO_NOT_FOUND_MESSAGE + id));
 
         tipoAvaliacaoRepository.delete(tipoAvaliacao);

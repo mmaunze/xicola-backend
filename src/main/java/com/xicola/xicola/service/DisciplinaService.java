@@ -1,14 +1,12 @@
 package com.xicola.xicola.service;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Disciplina;
 import com.xicola.xicola.repository.DisciplinaRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -41,7 +39,7 @@ public class DisciplinaService {
         validarDisciplinaExistente(id);
         validarNomeDisciplina(disciplinaAtualizada.getNomeDisciplina());
 
-        Disciplina disciplinaExistente = disciplinaRepository.findById(id)
+        var disciplinaExistente = disciplinaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(DISCIPLINA_NOT_FOUND_MESSAGE + id));
 
         mapearDisciplinaAtualizada(disciplinaExistente, disciplinaAtualizada);

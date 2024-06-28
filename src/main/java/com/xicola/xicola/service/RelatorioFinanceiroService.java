@@ -1,19 +1,15 @@
 package com.xicola.xicola.service;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.RelatorioFinanceiro;
 import com.xicola.xicola.repository.RelatorioFinanceiroRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -43,7 +39,7 @@ public class RelatorioFinanceiroService {
 
     @Transactional
     public RelatorioFinanceiro update(Integer id, RelatorioFinanceiro relatorioFinanceiroAtualizado) {
-        RelatorioFinanceiro relatorioFinanceiroExistente = relatorioFinanceiroRepository.findById(id)
+        var relatorioFinanceiroExistente = relatorioFinanceiroRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(RELATORIO_FINANCEIRO_NOT_FOUND_MESSAGE + id));
 
         validarRelatorioFinanceiro(relatorioFinanceiroAtualizado);
@@ -60,7 +56,7 @@ public class RelatorioFinanceiroService {
 
     @Transactional
     public void delete(Integer id) {
-        RelatorioFinanceiro relatorioFinanceiro = relatorioFinanceiroRepository.findById(id)
+        var relatorioFinanceiro = relatorioFinanceiroRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(RELATORIO_FINANCEIRO_NOT_FOUND_MESSAGE + id));
 
         relatorioFinanceiroRepository.delete(relatorioFinanceiro);

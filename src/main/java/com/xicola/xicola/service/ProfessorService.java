@@ -1,13 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Professor;
 import com.xicola.xicola.model.Utilizador;
@@ -17,9 +9,14 @@ import com.xicola.xicola.repository.UtilizadorRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
 import com.xicola.xicola.utils.MetodosGerais;
-
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -52,11 +49,11 @@ public class ProfessorService implements MetodosGerais {
 
     @Transactional
     public Professor create(Professor professor) {
-        Estado estado = obterEstadoActivo();
+        var estado = obterEstadoActivo();
 
         validarProfessor(professor);
 
-        Utilizador utilizador = criarUtilizadorParaProfessor(professor, estado);
+        var utilizador = criarUtilizadorParaProfessor(professor, estado);
 
         professor.setUtilizador(utilizador);
         professor.setId(utilizador.getId());
@@ -67,7 +64,7 @@ public class ProfessorService implements MetodosGerais {
 
     @Transactional
     public Professor update(Long id, Professor professorAtualizado) {
-        Professor professorExistente = professorRepository.findById(id)
+        var professorExistente = professorRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(PROFESSOR_NOT_FOUND_MESSAGE + id));
 
         validarProfessor(professorAtualizado);
@@ -103,7 +100,7 @@ public class ProfessorService implements MetodosGerais {
     }
 
     private Utilizador criarUtilizadorParaProfessor(Professor professor, Estado estado) {
-        Utilizador utilizador = new Utilizador();
+        var utilizador = new Utilizador();
         utilizador.setId(Long.parseLong(gerarId()));
 
         List<String> usernames = gerarUsernames(professor.getNomeCompleto());
@@ -220,7 +217,7 @@ public class ProfessorService implements MetodosGerais {
     }
 
     private String gerarUsernameUnico(List<String> usernames) {
-        for (String username : usernames) {
+        for (var username : usernames) {
             if (utilizadorRepository.findByUsername(username).isEmpty()) {
                 return username;
             }

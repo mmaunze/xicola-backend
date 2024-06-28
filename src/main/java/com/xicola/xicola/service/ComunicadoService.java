@@ -3,12 +3,11 @@ package com.xicola.xicola.service;
 import com.xicola.xicola.model.Comunicado;
 import com.xicola.xicola.repository.ComunicadoRepository;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.Date;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -40,12 +39,12 @@ public class ComunicadoService {
 
     @Transactional
     public Comunicado update(Long id, Comunicado comunicadoAtualizado) {
-        Optional<Comunicado> comunicadoOptional = comunicadoRepository.findById(id);
+        var comunicadoOptional = comunicadoRepository.findById(id);
         if (comunicadoOptional.isEmpty()) {
             throw new ResourceNotFoundException(COMUNICADO_NOT_FOUND_MESSAGE + id);
         }
 
-        Comunicado comunicadoExistente = comunicadoOptional.get();
+        var comunicadoExistente = comunicadoOptional.get();
         validarDadosObrigatorios(comunicadoAtualizado);
         comunicadoExistente.setTitulo(comunicadoAtualizado.getTitulo());
         comunicadoExistente.setConteudo(comunicadoAtualizado.getConteudo());

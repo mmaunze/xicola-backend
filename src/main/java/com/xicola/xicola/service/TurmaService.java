@@ -1,11 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Professor;
 import com.xicola.xicola.model.Turma;
@@ -14,8 +8,11 @@ import com.xicola.xicola.repository.ProfessorRepository;
 import com.xicola.xicola.repository.TurmaRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -43,14 +40,14 @@ public class TurmaService {
     @Transactional
     public Turma create(Turma turma) {
         validarTurma(turma);
-        Estado estado = obterEstadoAtivo();
+        var estado = obterEstadoAtivo();
         turma.setEstado(estado);
         return turmaRepository.save(turma);
     }
 
     @Transactional
     public Turma update(Integer id, Turma turmaAtualizada) {
-        Turma turmaExistente = turmaRepository.findById(id)
+        var turmaExistente = turmaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TURMA_NOT_FOUND_MESSAGE + id));
         validarTurma(turmaAtualizada);
         turmaExistente.setNomeTurma(turmaAtualizada.getNomeTurma());

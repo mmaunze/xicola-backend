@@ -1,19 +1,16 @@
 package com.xicola.xicola.service;
 
-import java.math.BigDecimal;
-import java.util.Optional;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Contrato;
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.repository.ContratoRepository;
 import com.xicola.xicola.repository.EstadoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.math.BigDecimal;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -46,12 +43,12 @@ public class ContratoService {
     public Contrato update(Long id, Contrato contratoAtualizado) {
         validarContrato(contratoAtualizado);
 
-        Optional<Contrato> contratoOptional = contratoRepository.findById(id);
+        var contratoOptional = contratoRepository.findById(id);
         if (contratoOptional.isEmpty()) {
             throw new ResourceNotFoundException(CONTRATO_NOT_FOUND_MESSAGE + id);
         }
 
-        Contrato contratoExistente = contratoOptional.get();
+        var contratoExistente = contratoOptional.get();
         mapearContratoAtualizado(contratoExistente, contratoAtualizado);
 
         return contratoRepository.save(contratoExistente);
@@ -73,8 +70,8 @@ public class ContratoService {
         validarValorTotal(contrato.getValorTotal());
         validarCampoObrigatorio(contrato.getFornecedor(), "Fornecedor");
 
-        Optional<Estado> estadoOptional = estadoRepository.findEstado("Ativo");
-        Estado estado = estadoOptional.orElseThrow(() -> new ResourceNotFoundException(ESTADO_NOT_FOUND_MESSAGE));
+        var estadoOptional = estadoRepository.findEstado("Ativo");
+        var estado = estadoOptional.orElseThrow(() -> new ResourceNotFoundException(ESTADO_NOT_FOUND_MESSAGE));
         contrato.setEstado(estado);
     }
 

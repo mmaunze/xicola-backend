@@ -1,11 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.ItemOrdemCompra;
 import com.xicola.xicola.model.Material;
@@ -17,8 +11,11 @@ import com.xicola.xicola.repository.OrdemCompraRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
 import com.xicola.xicola.utils.MetodosGerais;
-
+import java.math.BigDecimal;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -52,7 +49,7 @@ public class ItemOrdemCompraService implements MetodosGerais {
     public ItemOrdemCompra create(ItemOrdemCompra itemOrdemCompra) {
         validarItemOrdemCompra(itemOrdemCompra);
 
-        Estado estado = obterEstadoActivo();
+        var estado = obterEstadoActivo();
         itemOrdemCompra.setEstado(estado);
 
         return itemOrdemCompraRepository.save(itemOrdemCompra);
@@ -60,7 +57,7 @@ public class ItemOrdemCompraService implements MetodosGerais {
 
     @Transactional
     public ItemOrdemCompra update(Integer id, ItemOrdemCompra itemOrdemCompraAtualizado) {
-        ItemOrdemCompra itemOrdemCompraExistente = itemOrdemCompraRepository.findById(id)
+        var itemOrdemCompraExistente = itemOrdemCompraRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ITEM_ORDEM_COMPRA_NOT_FOUND_MESSAGE + id));
 
         validarItemOrdemCompra(itemOrdemCompraAtualizado);

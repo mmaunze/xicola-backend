@@ -1,21 +1,17 @@
 package com.xicola.xicola.service;
 
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.EncarregadoEducacao;
 import com.xicola.xicola.model.Utilizador;
 import com.xicola.xicola.repository.EncarregadoEducacaoRepository;
 import com.xicola.xicola.repository.UtilizadorRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Random;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -51,7 +47,7 @@ public class EncarregadoEducacaoService {
         validarEncarregadoEducacao(encarregadoEducacao);
 
         encarregadoEducacao.setId(Long.parseLong(gerarId()));
-        Utilizador utilizador = criarUtilizadorParaEncarregado(encarregadoEducacao);
+        var utilizador = criarUtilizadorParaEncarregado(encarregadoEducacao);
         encarregadoEducacao.setUtilizador(utilizador);
 
         return encarregadoEducacaoRepository.save(encarregadoEducacao);
@@ -59,7 +55,7 @@ public class EncarregadoEducacaoService {
 
     @Transactional
     public EncarregadoEducacao update(Long id, EncarregadoEducacao encarregadoAtualizado) {
-        EncarregadoEducacao encarregadoExistente = encarregadoEducacaoRepository.findById(id)
+        var encarregadoExistente = encarregadoEducacaoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ENC_EDU_NOT_FOUND_MESSAGE + id));
 
         validarEncarregadoEducacao(encarregadoAtualizado);
@@ -145,7 +141,7 @@ public class EncarregadoEducacaoService {
     }
 
     private Utilizador criarUtilizadorParaEncarregado(EncarregadoEducacao encarregadoEducacao) {
-        Utilizador utilizador = new Utilizador();
+        var utilizador = new Utilizador();
         utilizador.setId(encarregadoEducacao.getId()); // Utilizando o mesmo ID do encarregado
 
         List<String> usernames = gerarUsernames(encarregadoEducacao.getNomeCompleto());
@@ -159,7 +155,7 @@ public class EncarregadoEducacaoService {
     }
 
     private String gerarUsernameUnico(List<String> usernames) {
-        for (String username : usernames) {
+        for (var username : usernames) {
             if (!utilizadorRepository.findByUsername(username).isPresent()) {
                 return username;
             }

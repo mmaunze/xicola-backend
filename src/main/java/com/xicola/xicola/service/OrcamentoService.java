@@ -1,11 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Funcionario;
 import com.xicola.xicola.model.Orcamento;
@@ -14,8 +8,11 @@ import com.xicola.xicola.repository.FuncionarioRepository;
 import com.xicola.xicola.repository.OrcamentoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.math.BigDecimal;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -49,7 +46,7 @@ public class OrcamentoService {
 
     @Transactional
     public Orcamento update(Integer id, Orcamento orcamentoAtualizado) {
-        Orcamento orcamentoExistente = orcamentoRepository.findById(id)
+        var orcamentoExistente = orcamentoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ORCAMENTO_NOT_FOUND_MESSAGE + id));
 
         validarOrcamento(orcamentoAtualizado);

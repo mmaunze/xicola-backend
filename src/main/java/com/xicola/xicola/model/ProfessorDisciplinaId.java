@@ -3,12 +3,11 @@ package com.xicola.xicola.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
+import java.io.Serial;
+import java.util.Objects;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Hibernate;
-
-import java.io.Serial;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -32,7 +31,7 @@ public class ProfessorDisciplinaId implements java.io.Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        ProfessorDisciplinaId entity = (ProfessorDisciplinaId) o;
+        var entity = (ProfessorDisciplinaId) o;
         return Objects.equals(this.professor, entity.professor) &&
                 Objects.equals(this.classe, entity.classe) &&
                 Objects.equals(this.disciplina, entity.disciplina);

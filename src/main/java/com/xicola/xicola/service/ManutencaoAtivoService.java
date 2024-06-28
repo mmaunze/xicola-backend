@@ -1,13 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Ativo;
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Funcionario;
@@ -18,8 +10,12 @@ import com.xicola.xicola.repository.FuncionarioRepository;
 import com.xicola.xicola.repository.ManutencaoAtivoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -53,7 +49,7 @@ public class ManutencaoAtivoService {
     public ManutencaoAtivo create(ManutencaoAtivo manutencaoAtivo) {
         validarManutencaoAtivo(manutencaoAtivo);
 
-        Estado estado = obterEstadoActivo();
+        var estado = obterEstadoActivo();
         manutencaoAtivo.setEstado(estado);
 
         return manutencaoAtivoRepository.save(manutencaoAtivo);
@@ -61,7 +57,7 @@ public class ManutencaoAtivoService {
 
     @Transactional
     public ManutencaoAtivo update(Integer id, ManutencaoAtivo manutencaoAtivoAtualizado) {
-        ManutencaoAtivo manutencaoAtivoExistente = manutencaoAtivoRepository.findById(id)
+        var manutencaoAtivoExistente = manutencaoAtivoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(MANUTENCAO_ATIVO_NOT_FOUND_MESSAGE + id));
 
         validarManutencaoAtivo(manutencaoAtivoAtualizado);

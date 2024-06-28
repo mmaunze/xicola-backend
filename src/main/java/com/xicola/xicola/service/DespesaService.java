@@ -1,10 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.math.BigDecimal;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Despesa;
 import com.xicola.xicola.repository.CategoriaFinanceiraRepository;
 import com.xicola.xicola.repository.DespesaRepository;
@@ -12,8 +7,10 @@ import com.xicola.xicola.repository.EstadoRepository;
 import com.xicola.xicola.repository.FuncionarioRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -54,7 +51,7 @@ public class DespesaService {
         validarDespesaExistente(id);
         validarDespesa(despesaAtualizada);
 
-        Despesa despesaExistente = despesaRepository.findById(id)
+        var despesaExistente = despesaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(DESPESA_NOT_FOUND_MESSAGE + id));
 
         mapearDespesaAtualizada(despesaExistente, despesaAtualizada);

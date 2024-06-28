@@ -1,10 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Evento;
 import com.xicola.xicola.model.ParticipanteEvento;
 import com.xicola.xicola.model.TipoPessoa;
@@ -13,8 +8,10 @@ import com.xicola.xicola.repository.ParticipanteEventoRepository;
 import com.xicola.xicola.repository.TipoPessoaRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -48,7 +45,7 @@ public class ParticipanteEventoService {
 
     @Transactional
     public ParticipanteEvento update(Integer id, ParticipanteEvento participanteEventoAtualizado) {
-        ParticipanteEvento participanteEventoExistente = participanteEventoRepository.findById(id)
+        var participanteEventoExistente = participanteEventoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(PARTICIPANTE_EVENTO_NOT_FOUND_MESSAGE + id));
 
         validarParticipanteEvento(participanteEventoAtualizado);

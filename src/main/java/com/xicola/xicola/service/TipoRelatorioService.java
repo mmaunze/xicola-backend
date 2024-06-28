@@ -4,11 +4,10 @@ import com.xicola.xicola.model.TipoRelatorio;
 import com.xicola.xicola.repository.TipoRelatorioRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +37,7 @@ public class TipoRelatorioService {
 
     @Transactional
     public TipoRelatorio update(Long id, TipoRelatorio tipoRelatorioAtualizado) {
-        TipoRelatorio tipoRelatorioExistente = tipoRelatorioRepository.findById(id)
+        var tipoRelatorioExistente = tipoRelatorioRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_RELATORIO_NOT_FOUND_MESSAGE + id));
 
         validarTipoRelatorio(tipoRelatorioAtualizado);
@@ -50,7 +49,7 @@ public class TipoRelatorioService {
 
     @Transactional
     public void delete(Long id) {
-        TipoRelatorio tipoRelatorio = tipoRelatorioRepository.findById(id)
+        var tipoRelatorio = tipoRelatorioRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_RELATORIO_NOT_FOUND_MESSAGE + id));
 
         tipoRelatorioRepository.delete(tipoRelatorio);

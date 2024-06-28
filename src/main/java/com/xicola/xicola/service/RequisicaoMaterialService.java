@@ -4,12 +4,11 @@ import com.xicola.xicola.model.RequisicaoMaterial;
 import com.xicola.xicola.repository.RequisicaoMaterialRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.Date;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +38,7 @@ public class RequisicaoMaterialService {
 
     @Transactional
     public RequisicaoMaterial update(Long id, RequisicaoMaterial requisicaoMaterialAtualizada) {
-        RequisicaoMaterial requisicaoMaterialExistente = requisicaoMaterialRepository.findById(id)
+        var requisicaoMaterialExistente = requisicaoMaterialRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(REQUISICAO_MATERIAL_NOT_FOUND_MESSAGE + id));
 
         validarRequisicaoMaterial(requisicaoMaterialAtualizada);
@@ -56,7 +55,7 @@ public class RequisicaoMaterialService {
 
     @Transactional
     public void delete(Long id) {
-        RequisicaoMaterial requisicaoMaterial = requisicaoMaterialRepository.findById(id)
+        var requisicaoMaterial = requisicaoMaterialRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(REQUISICAO_MATERIAL_NOT_FOUND_MESSAGE + id));
 
         requisicaoMaterialRepository.delete(requisicaoMaterial);

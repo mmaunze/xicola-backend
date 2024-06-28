@@ -4,11 +4,10 @@ import com.xicola.xicola.model.Documento;
 import com.xicola.xicola.repository.DocumentoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.Date;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +38,7 @@ public class DocumentoService {
         validarDocumentoExistente(id);
         validarCamposObrigatorios(documentoAtualizado);
 
-        Documento documentoExistente = findById(id);
+        var documentoExistente = findById(id);
         mapearDocumentoAtualizado(documentoExistente, documentoAtualizado);
 
         return documentoRepository.save(documentoExistente);

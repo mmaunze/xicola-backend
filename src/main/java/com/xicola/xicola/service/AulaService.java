@@ -1,12 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Aula;
 import com.xicola.xicola.model.Disciplina;
 import com.xicola.xicola.model.Estado;
@@ -15,8 +8,11 @@ import com.xicola.xicola.repository.DisciplinaRepository;
 import com.xicola.xicola.repository.EstadoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
+import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -48,15 +44,14 @@ public class AulaService {
     @Transactional
     public Aula create(Aula aula) {
         // Obtém o estado "Activo" da base de dados
-        Optional<Estado> estadoOptional = estadoRepository.findEstado("Activo");
-
+        var estadoOptional = estadoRepository.findEstado("Activo");
         // Verifica se o estado foi encontrado
-        Estado estado = estadoOptional
+        var estado = estadoOptional
                 .orElseThrow(() -> new ResourceNotFoundException(ESTADO_NOT_FOUND_MESSAGE));
 
         // Verifica se a disciplina foi encontrada
         Optional<Disciplina> disciplinaOptional = disciplinaRepository.findById(aula.getDisciplina().getId());
-        Disciplina disciplina = disciplinaOptional
+        var disciplina = disciplinaOptional
                 .orElseThrow(() -> new ResourceNotFoundException(
                         DISCIPLINA_NOT_FOUND_MESSAGE + aula.getDisciplina().getId()));
 
@@ -73,12 +68,12 @@ public class AulaService {
 
     @Transactional
     public Aula update(Long id, Aula aulaAtualizada) {
-        Optional<Aula> aulaOptional = aulaRepository.findById(id);
+        var aulaOptional = aulaRepository.findById(id);
         if (aulaOptional.isEmpty()) {
             throw new ResourceNotFoundException(AULA_NOT_FOUND_MESSAGE + id);
         }
 
-        Aula aulaExistente = aulaOptional.get();
+        var aulaExistente = aulaOptional.get();
 
         validarDadosObrigatorios(aulaAtualizada);
 
@@ -92,7 +87,7 @@ public class AulaService {
 
         // Verifica se a disciplina foi encontrada
         Optional<Disciplina> disciplinaOptional = disciplinaRepository.findById(aulaAtualizada.getDisciplina().getId());
-        Disciplina disciplina = disciplinaOptional
+        var disciplina = disciplinaOptional
                 .orElseThrow(() -> new ResourceNotFoundException(
                         DISCIPLINA_NOT_FOUND_MESSAGE + aulaAtualizada.getDisciplina().getId()));
 

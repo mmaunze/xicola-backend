@@ -4,11 +4,10 @@ import com.xicola.xicola.model.TipoPagamento;
 import com.xicola.xicola.repository.TipoPagamentoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +37,7 @@ public class TipoPagamentoService {
 
     @Transactional
     public TipoPagamento update(Integer id, TipoPagamento tipoPagamentoAtualizado) {
-        TipoPagamento tipoPagamentoExistente = tipoPagamentoRepository.findById(id)
+        var tipoPagamentoExistente = tipoPagamentoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_PAGAMENTO_NOT_FOUND_MESSAGE + id));
 
         validarTipoPagamento(tipoPagamentoAtualizado);
@@ -50,7 +49,7 @@ public class TipoPagamentoService {
 
     @Transactional
     public void delete(Integer id) {
-        TipoPagamento tipoPagamento = tipoPagamentoRepository.findById(id)
+        var tipoPagamento = tipoPagamentoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_PAGAMENTO_NOT_FOUND_MESSAGE + id));
 
         tipoPagamentoRepository.delete(tipoPagamento);
