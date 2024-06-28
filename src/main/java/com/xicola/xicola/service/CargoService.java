@@ -18,7 +18,7 @@ public class CargoService {
     private final CargoRepository cargoRepository;
 
     @Transactional(readOnly = true)
-    public Cargo findById(Long id) {
+    public Cargo findById(Integer id) {
         return cargoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(CARGO_NOT_FOUND_MESSAGE + id));
     }
@@ -35,7 +35,7 @@ public class CargoService {
     }
 
     @Transactional
-    public Cargo update(Long id, Cargo cargoAtualizado) {
+    public Cargo update(Integer id, Cargo cargoAtualizado) {
         var cargoOptional = cargoRepository.findById(id);
         if (cargoOptional.isEmpty()) {
             throw new ResourceNotFoundException(CARGO_NOT_FOUND_MESSAGE + id);
@@ -49,7 +49,7 @@ public class CargoService {
     }
 
     @Transactional
-    public void delete(Long id) {
+    public void delete(Integer id) {
         if (!cargoRepository.existsById(id)) {
             throw new ResourceNotFoundException(CARGO_NOT_FOUND_MESSAGE + id);
         }
