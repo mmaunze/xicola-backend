@@ -1,0 +1,61 @@
+package com.xicola.xicola.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import java.time.LocalTime;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "horario", schema = "public")
+public class Horario {
+    @Id
+    @ColumnDefault("nextval('horario_id_seq'::regclass)")
+    @Column(name = "id", nullable = false)
+    private Integer id;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "sala", nullable = false)
+    private Sala sala;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "turma", nullable = false)
+    private Turma turma;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "disciplina", nullable = false)
+    private Disciplina disciplina;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "professor", nullable = false)
+    private Professor professor;
+
+    @Size(max = 10)
+    @NotNull
+    @Column(name = "dia_semana", nullable = false, length = 10)
+    private String diaSemana;
+
+    @NotNull
+    @Column(name = "hora_inicio", nullable = false)
+    private LocalTime horaInicio;
+
+    @NotNull
+    @Column(name = "hora_termino", nullable = false)
+    private LocalTime horaTermino;
+
+}
