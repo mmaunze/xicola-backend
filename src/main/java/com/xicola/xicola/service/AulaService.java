@@ -1,18 +1,20 @@
 package com.xicola.xicola.service;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.xicola.xicola.model.Aula;
 import com.xicola.xicola.model.Disciplina;
-import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.repository.AulaRepository;
 import com.xicola.xicola.repository.DisciplinaRepository;
 import com.xicola.xicola.repository.EstadoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-import java.util.List;
-import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor

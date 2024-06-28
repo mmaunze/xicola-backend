@@ -1,7 +1,14 @@
 package com.xicola.xicola.service;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Random;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.xicola.xicola.model.Aluno;
-import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Utilizador;
 import com.xicola.xicola.repository.AlunoRepository;
 import com.xicola.xicola.repository.EstadoRepository;
@@ -9,15 +16,9 @@ import com.xicola.xicola.repository.UtilizadorRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
 import com.xicola.xicola.utils.MetodosGerais;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +32,6 @@ public class AlunoService implements MetodosGerais {
     private static final String DATA_NASCIMENTO_VAZIA_MESSAGE = "A data de nascimento do aluno não pode estar vazia";
     private static final String DATA_INVALIDA_MESSAGE = "Data Inválida";
     private static final String ESTADO_NOT_FOUND_MESSAGE = "Estado não encontrado com o nome: ";
-
 
     private final AlunoRepository alunoRepository;
     private final EstadoRepository estadoRepository;
@@ -68,7 +68,7 @@ public class AlunoService implements MetodosGerais {
         // Define o estado no aluno
         aluno.setEstado(estado);
 
-         // Gerar e definir o username único para o utilizador
+        // Gerar e definir o username único para o utilizador
         var utilizador = new Utilizador();
         utilizador.setId(Long.parseLong(gerarId()));
 
@@ -88,8 +88,6 @@ public class AlunoService implements MetodosGerais {
 
         aluno.setUtilizador(utilizador);
         aluno.setId(utilizador.getId());
-
-
 
         // Salva o aluno no banco de dados
         return alunoRepository.save(aluno);
