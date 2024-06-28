@@ -10,18 +10,18 @@ import org.hibernate.annotations.ColumnDefault;
 @Getter
 @Setter
 @Entity
-@Table(name = "tipo_transacao", schema = "public", uniqueConstraints = {
-        @UniqueConstraint(name = "tipo_transacao_descricao_key", columnNames = {"descricao"})
+@Table(name = "tipo_funcionario", schema = "public", uniqueConstraints = {
+        @UniqueConstraint(name = "tipo_funcionario_descricao_key", columnNames = {"descricao"})
 })
-public class TipoTransacao {
+public class TipoFuncionario {
     @Id
 
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Size(max = 100)
+    @Size(max = 70)
     @NotNull
-    @Column(name = "descricao", nullable = false, length = 100)
+    @Column(name = "descricao", nullable = false, length = 70)
     private String descricao;
 
 }

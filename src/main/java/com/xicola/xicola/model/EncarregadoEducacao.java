@@ -17,9 +17,9 @@ import java.time.LocalDate;
 @Table(name = "encarregado_educacao", schema = "public")
 public class EncarregadoEducacao {
     @Id
-    @ColumnDefault("nextval('encarregado_educacao_id_seq'::regclass)")
+
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false)
@@ -41,10 +41,14 @@ public class EncarregadoEducacao {
     @JoinColumn(name = "distrito_nascimento")
     private Distrito distritoNascimento;
 
-    @Size(max = 1)
+    @Size(max = 10, min = 8)
     @NotNull
     @Column(name = "sexo", nullable = false, length = 1)
     private String sexo;
+
+    @Size(max = 78)
+    @Column(name = "religiao", length = 78)
+    private String religiao;
 
     @Size(max = 255)
     @Column(name = "local_trabalho")
@@ -71,5 +75,11 @@ public class EncarregadoEducacao {
 
     @Column(name = "numero_telefone_alternativo")
     private Long numeroTelefoneAlternativo;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "estado", nullable = false)
+    private Estado estado;
 
 }

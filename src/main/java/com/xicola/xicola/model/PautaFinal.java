@@ -17,7 +17,7 @@ import java.time.Instant;
 @Table(name = "pauta_final", schema = "public")
 public class PautaFinal {
     @Id
-    @ColumnDefault("nextval('pauta_final_id_seq'::regclass)")
+
     @Column(name = "id", nullable = false)
     private Integer id;
 

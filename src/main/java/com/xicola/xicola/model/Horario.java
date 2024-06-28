@@ -17,7 +17,7 @@ import java.time.LocalTime;
 @Table(name = "horario", schema = "public")
 public class Horario {
     @Id
-    @ColumnDefault("nextval('horario_id_seq'::regclass)")
+
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -57,5 +57,11 @@ public class Horario {
     @NotNull
     @Column(name = "hora_termino", nullable = false)
     private LocalTime horaTermino;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "estado", nullable = false)
+    private Estado estado;
 
 }

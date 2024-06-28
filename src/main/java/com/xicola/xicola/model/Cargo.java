@@ -15,7 +15,7 @@ import org.hibernate.annotations.ColumnDefault;
 })
 public class Cargo {
     @Id
-    @ColumnDefault("nextval('cargo_id_seq'::regclass)")
+
     @Column(name = "id", nullable = false)
     private Integer id;
 

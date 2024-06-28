@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Table(name = "ordem_compra", schema = "public")
 public class OrdemCompra {
     @Id
-    @ColumnDefault("nextval('ordem_compra_id_seq'::regclass)")
+
     @Column(name = "id", nullable = false)
     private Integer id;
 

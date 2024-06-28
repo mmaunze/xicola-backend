@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Table(name = "folha_pagamento", schema = "public")
 public class FolhaPagamento {
     @Id
-    @ColumnDefault("nextval('folha_pagamento_id_seq'::regclass)")
+
     @Column(name = "id", nullable = false)
     private Integer id;
 

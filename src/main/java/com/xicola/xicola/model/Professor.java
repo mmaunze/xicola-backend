@@ -18,9 +18,9 @@ import java.time.LocalDate;
 @Table(name = "professor", schema = "public")
 public class Professor {
     @Id
-    @ColumnDefault("nextval('professor_id_seq'::regclass)")
+
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false)

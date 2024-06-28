@@ -14,7 +14,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "estado", schema = "public")
 public class Estado {
     @Id
-    @ColumnDefault("nextval('estado_id_seq'::regclass)")
+
     @Column(name = "id", nullable = false)
     private Integer id;
 

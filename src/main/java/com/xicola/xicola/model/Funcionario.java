@@ -18,9 +18,9 @@ import java.time.LocalDate;
 @Table(name = "funcionario", schema = "public")
 public class Funcionario {
     @Id
-    @ColumnDefault("nextval('funcionario_id_seq'::regclass)")
+
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false)
@@ -108,5 +108,11 @@ public class Funcionario {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "area_formacao", nullable = false)
     private AreaCientifica areaFormacao;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "tipo_funcionario", nullable = false)
+    private TipoFuncionario tipoFuncionario;
 
 }

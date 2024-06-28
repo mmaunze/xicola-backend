@@ -15,7 +15,7 @@ import org.hibernate.annotations.ColumnDefault;
 @Table(name = "tipo_estado", schema = "public")
 public class TipoEstado {
     @Id
-    @ColumnDefault("nextval('tipo_estado_id_seq'::regclass)")
+
     @Column(name = "id", nullable = false)
     private Integer id;
 

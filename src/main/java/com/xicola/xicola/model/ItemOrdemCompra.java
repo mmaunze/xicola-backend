@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @Table(name = "item_ordem_compra", schema = "public")
 public class ItemOrdemCompra {
     @Id
-    @ColumnDefault("nextval('item_ordem_compra_id_seq'::regclass)")
+
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -45,5 +45,11 @@ public class ItemOrdemCompra {
     @NotNull
     @Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
     private BigDecimal valorUnitario;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "estado", nullable = false)
+    private Estado estado;
 
 }

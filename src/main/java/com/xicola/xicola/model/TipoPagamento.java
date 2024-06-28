@@ -14,7 +14,7 @@ import org.hibernate.annotations.ColumnDefault;
 })
 public class TipoPagamento {
     @Id
-    @ColumnDefault("nextval('tipo_pagamento_id_seq'::regclass)")
+
     @Column(name = "id", nullable = false)
     private Integer id;
 

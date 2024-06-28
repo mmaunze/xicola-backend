@@ -15,7 +15,7 @@ import org.hibernate.annotations.ColumnDefault;
 })
 public class CategoriaFinanceira {
     @Id
-    @ColumnDefault("nextval('categoria_financeira_id_seq'::regclass)")
+
     @Column(name = "id", nullable = false)
     private Integer id;
 

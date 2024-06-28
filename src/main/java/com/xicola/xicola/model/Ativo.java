@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Table(name = "ativo", schema = "public")
 public class Ativo {
     @Id
-    @ColumnDefault("nextval('ativo_id_seq'::regclass)")
+
     @Column(name = "id", nullable = false)
     private Integer id;
 

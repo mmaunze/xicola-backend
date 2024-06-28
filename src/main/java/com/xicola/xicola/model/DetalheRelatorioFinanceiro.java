@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @Table(name = "detalhe_relatorio_financeiro", schema = "public")
 public class DetalheRelatorioFinanceiro {
     @Id
-    @ColumnDefault("nextval('detalhe_relatorio_financeiro_id_seq'::regclass)")
+
     @Column(name = "id", nullable = false)
     private Integer id;
 
