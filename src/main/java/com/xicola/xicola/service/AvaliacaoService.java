@@ -1,9 +1,13 @@
 package com.xicola.xicola.service;
 
-import com.xicola.xicola.model.Aluno;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.xicola.xicola.model.Avaliacao;
 import com.xicola.xicola.model.Disciplina;
-import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.TipoAvaliacao;
 import com.xicola.xicola.repository.AvaliacaoRepository;
 import com.xicola.xicola.repository.DisciplinaRepository;
@@ -11,11 +15,8 @@ import com.xicola.xicola.repository.EstadoRepository;
 import com.xicola.xicola.repository.TipoAvaliacaoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-import java.util.List;
-import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +29,7 @@ public class AvaliacaoService {
     private static final String ESTADO_NOT_FOUND_MESSAGE = "Estado não encontrado com o nome: ";
 
     private final AvaliacaoRepository avaliacaoRepository;
-    private final AlunoService alunoService;
+
     private final DisciplinaRepository disciplinaRepository;
     private final EstadoRepository estadoRepository;
     private final TipoAvaliacaoRepository tipoAvaliacaoRepository;
@@ -52,9 +53,6 @@ public class AvaliacaoService {
         var estado = estadoOptional
                 .orElseThrow(() -> new ResourceNotFoundException(ESTADO_NOT_FOUND_MESSAGE));
 
-        // Verifica se o aluno foi encontrado
-        Aluno aluno = alunoService.findById(avaliacao.getAluno().getId());
-
         // Verifica se a disciplina foi encontrada
         Optional<Disciplina> disciplinaOptional = disciplinaRepository.findById(avaliacao.getDisciplina().getId());
         var disciplina = disciplinaOptional
@@ -73,7 +71,7 @@ public class AvaliacaoService {
 
         // Define o estado, aluno, disciplina e tipo de avaliação na avaliação
         avaliacao.setEstado(estado);
-        avaliacao.setAluno(aluno);
+
         avaliacao.setDisciplina(disciplina);
         avaliacao.setTipoAvaliacao(tipoAvaliacao);
 
@@ -95,10 +93,6 @@ public class AvaliacaoService {
         // Atualize outras propriedades conforme necessário
         avaliacaoExistente.setTrimestre(avaliacaoAtualizada.getTrimestre());
         avaliacaoExistente.setObservacao(avaliacaoAtualizada.getObservacao());
-
-        // Verifica se o aluno foi encontrado
-        Aluno aluno = alunoService.findById(avaliacaoAtualizada.getAluno().getId());
-        avaliacaoExistente.setAluno(aluno);
 
         // Verifica se a disciplina foi encontrada
         Optional<Disciplina> disciplinaOptional = disciplinaRepository

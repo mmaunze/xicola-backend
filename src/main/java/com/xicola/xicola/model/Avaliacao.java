@@ -1,11 +1,18 @@
 package com.xicola.xicola.model;
 
-import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
 @Setter
@@ -15,13 +22,7 @@ public class Avaliacao {
     @Id
 
     @Column(name = "id", nullable = false)
-    private Integer id;
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "aluno", nullable = false)
-    private Aluno aluno;
+    private Long id;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -38,6 +39,7 @@ public class Avaliacao {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "disciplina", nullable = false)
     private Disciplina disciplina;
+
 
     @NotNull
     @Column(name = "observacao", nullable = false, length = Integer.MAX_VALUE)

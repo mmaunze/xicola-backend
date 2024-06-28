@@ -52,4 +52,11 @@ public class AvaliacaoAluno {
     @JoinColumn(name = "estado", nullable = false)
     private Estado estado;
 
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "avaliacao", nullable = false)
+    private Avaliacao avaliacao;
+
+
 }

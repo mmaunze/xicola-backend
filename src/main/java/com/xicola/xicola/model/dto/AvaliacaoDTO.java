@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 public class AvaliacaoDTO implements Serializable {
-    private Integer id;
+    private Long id;
     private Long aluno;
     private Integer tipoAvaliacao;
     private Integer trimestre;
@@ -21,7 +21,6 @@ public class AvaliacaoDTO implements Serializable {
 
     public AvaliacaoDTO(Avaliacao avaliacao) {
         this.id = avaliacao.getId();
-        this.aluno = avaliacao.getAluno().getId();
         this.tipoAvaliacao = avaliacao.getTipoAvaliacao().getId();
         this.trimestre = avaliacao.getTrimestre();
         this.disciplina = avaliacao.getDisciplina().getId();

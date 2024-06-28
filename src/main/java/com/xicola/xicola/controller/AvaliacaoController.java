@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.xicola.xicola.model.Avaliacao;
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.dto.AvaliacaoDTO;
-import com.xicola.xicola.service.AlunoService;
 import com.xicola.xicola.service.AvaliacaoService;
 import com.xicola.xicola.service.DisciplinaService;
 import com.xicola.xicola.service.EstadoService;
@@ -39,7 +38,6 @@ public class AvaliacaoController {
 
     private final AvaliacaoService avaliacaoService;
     private final DisciplinaService disciplinaService;
-    private final AlunoService alunoService;
     private final TipoAvaliacaoService tipoAvaliacaoService;
     private final EstadoService estadoService;
 
@@ -115,7 +113,7 @@ public class AvaliacaoController {
         Avaliacao avaliacao = new Avaliacao();
         avaliacao.setId(avaliacaoDTO.getId());
         avaliacao.setDisciplina(disciplinaService.findById(avaliacaoDTO.getDisciplina()));
-        avaliacao.setAluno(alunoService.findById(avaliacaoDTO.getAluno()));
+
         avaliacao.setTipoAvaliacao(tipoAvaliacaoService.findById(avaliacaoDTO.getTipoAvaliacao()));
         avaliacao.setTrimestre(avaliacaoDTO.getTrimestre());
         avaliacao.setObservacao(avaliacaoDTO.getObservacao());
