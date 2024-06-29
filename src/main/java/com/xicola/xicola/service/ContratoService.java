@@ -24,7 +24,7 @@ public class ContratoService {
     private final EstadoRepository estadoRepository;
 
     @Transactional(readOnly = true)
-    public Contrato findById(Long id) {
+    public Contrato findById(Integer id) {
         return contratoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(CONTRATO_NOT_FOUND_MESSAGE + id));
     }
@@ -41,7 +41,7 @@ public class ContratoService {
     }
 
     @Transactional
-    public Contrato update(Long id, Contrato contratoAtualizado) {
+    public Contrato update(Integer id, Contrato contratoAtualizado) {
         validarContrato(contratoAtualizado);
 
         var contratoOptional = contratoRepository.findById(id);
@@ -56,7 +56,7 @@ public class ContratoService {
     }
 
     @Transactional
-    public void delete(Long id) {
+    public void delete(Integer id) {
         if (!contratoRepository.existsById(id)) {
             throw new ResourceNotFoundException(CONTRATO_NOT_FOUND_MESSAGE + id);
         }
