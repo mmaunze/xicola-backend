@@ -87,7 +87,7 @@ public class ParticipanteEventoService {
     }
 
     private void validarTipoParticipante(ParticipanteEvento participanteEvento) {
-        TipoPessoa tipoPessoa = tipoPessoaRepository.findById(Long.valueOf(participanteEvento.getTipoParticipante().getId()))
+        TipoPessoa tipoPessoa = tipoPessoaRepository.findById(participanteEvento.getTipoParticipante().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
                         TIPO_PESSOA_NOT_FOUND_MESSAGE + participanteEvento.getTipoParticipante().getId()));
         participanteEvento.setTipoParticipante(tipoPessoa);

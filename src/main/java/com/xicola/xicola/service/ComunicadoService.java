@@ -22,7 +22,7 @@ public class ComunicadoService {
     private final ComunicadoRepository comunicadoRepository;
 
     @Transactional(readOnly = true)
-    public Comunicado findById(Long id) {
+    public Comunicado findById(Integer id) {
         return comunicadoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(COMUNICADO_NOT_FOUND_MESSAGE + id));
     }
@@ -40,7 +40,7 @@ public class ComunicadoService {
     }
 
     @Transactional
-    public Comunicado update(Long id, Comunicado comunicadoAtualizado) {
+    public Comunicado update(Integer id, Comunicado comunicadoAtualizado) {
         var comunicadoOptional = comunicadoRepository.findById(id);
         if (comunicadoOptional.isEmpty()) {
             throw new ResourceNotFoundException(COMUNICADO_NOT_FOUND_MESSAGE + id);
@@ -55,7 +55,7 @@ public class ComunicadoService {
     }
 
     @Transactional
-    public void delete(Long id) {
+    public void delete(Integer id) {
         if (!comunicadoRepository.existsById(id)) {
             throw new ResourceNotFoundException(COMUNICADO_NOT_FOUND_MESSAGE + id);
         }

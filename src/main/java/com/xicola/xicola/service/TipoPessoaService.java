@@ -18,7 +18,7 @@ public class TipoPessoaService {
     private final TipoPessoaRepository tipoPessoaRepository;
 
     @Transactional(readOnly = true)
-    public TipoPessoa findById(Long id) {
+    public TipoPessoa findById(Integer id) {
         return tipoPessoaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_PESSOA_NOT_FOUND_MESSAGE + id));
     }
@@ -36,7 +36,7 @@ public class TipoPessoaService {
     }
 
     @Transactional
-    public TipoPessoa update(Long id, TipoPessoa tipoPessoaAtualizado) {
+    public TipoPessoa update(Integer id, TipoPessoa tipoPessoaAtualizado) {
         var tipoPessoaExistente = tipoPessoaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_PESSOA_NOT_FOUND_MESSAGE + id));
 
@@ -48,7 +48,7 @@ public class TipoPessoaService {
     }
 
     @Transactional
-    public void delete(Long id) {
+    public void delete(Integer id) {
         var tipoPessoa = tipoPessoaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_PESSOA_NOT_FOUND_MESSAGE + id));
 
