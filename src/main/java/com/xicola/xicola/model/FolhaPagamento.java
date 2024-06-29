@@ -17,6 +17,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "folha_pagamento", schema = "public")
 public class FolhaPagamento {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id", nullable = false)
     private Integer id;

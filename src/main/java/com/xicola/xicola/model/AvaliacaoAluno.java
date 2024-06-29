@@ -2,6 +2,8 @@ package com.xicola.xicola.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import java.time.Instant;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +17,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "avaliacao_aluno", schema = "public")
 public class AvaliacaoAluno {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id", nullable = false)
     private Integer id;
@@ -57,6 +60,5 @@ public class AvaliacaoAluno {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "avaliacao", nullable = false)
     private Avaliacao avaliacao;
-
 
 }

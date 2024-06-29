@@ -12,10 +12,11 @@ import org.hibernate.annotations.OnDeleteAction;
 @Setter
 @Entity
 @Table(name = "utilizador", schema = "public", uniqueConstraints = {
-        @UniqueConstraint(name = "utilizador_username_key", columnNames = {"username"})
+        @UniqueConstraint(name = "utilizador_username_key", columnNames = { "username" })
 })
 public class Utilizador {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 

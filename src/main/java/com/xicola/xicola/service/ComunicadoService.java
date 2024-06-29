@@ -1,13 +1,15 @@
 package com.xicola.xicola.service;
 
+import java.util.Date;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.xicola.xicola.model.Comunicado;
 import com.xicola.xicola.repository.ComunicadoRepository;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-import java.util.Date;
-import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor

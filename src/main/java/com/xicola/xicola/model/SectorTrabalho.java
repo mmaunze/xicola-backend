@@ -10,10 +10,11 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "sector_trabalho", schema = "public", uniqueConstraints = {
-        @UniqueConstraint(name = "sector_trabalho_descricao_key", columnNames = {"descricao"})
+        @UniqueConstraint(name = "sector_trabalho_descricao_key", columnNames = { "descricao" })
 })
 public class SectorTrabalho {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id", nullable = false)
     private Integer id;

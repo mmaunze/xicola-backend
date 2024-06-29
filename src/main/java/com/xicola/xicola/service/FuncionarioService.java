@@ -1,6 +1,5 @@
 package com.xicola.xicola.service;
 
-import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Funcionario;
 import com.xicola.xicola.model.Utilizador;
 import com.xicola.xicola.repository.EstadoRepository;
@@ -12,7 +11,6 @@ import com.xicola.xicola.utils.MetodosGerais;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

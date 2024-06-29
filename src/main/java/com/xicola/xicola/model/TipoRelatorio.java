@@ -11,10 +11,11 @@ import org.hibernate.annotations.ColumnDefault;
 @Setter
 @Entity
 @Table(name = "tipo_relatorio", schema = "public", uniqueConstraints = {
-        @UniqueConstraint(name = "tipo_relatorio_descricao_key", columnNames = {"descricao"})
+        @UniqueConstraint(name = "tipo_relatorio_descricao_key", columnNames = { "descricao" })
 })
 public class TipoRelatorio {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ColumnDefault("nextval('tipo_relatorio_id_seq'::regclass)")
     @Column(name = "id", nullable = false)
     private Integer id;

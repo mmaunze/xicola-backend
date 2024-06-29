@@ -5,6 +5,8 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -20,6 +22,7 @@ import lombok.Setter;
 @Table(name = "avaliacao", schema = "public")
 public class Avaliacao {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id", nullable = false)
     private Long id;
@@ -39,7 +42,6 @@ public class Avaliacao {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "disciplina", nullable = false)
     private Disciplina disciplina;
-
 
     @NotNull
     @Column(name = "observacao", nullable = false, length = Integer.MAX_VALUE)

@@ -1,12 +1,13 @@
 package com.xicola.xicola.service;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.xicola.xicola.model.CategoriaFinanceira;
 import com.xicola.xicola.repository.CategoriaFinanceiraRepository;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
