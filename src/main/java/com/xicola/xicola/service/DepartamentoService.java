@@ -4,23 +4,25 @@ import com.xicola.xicola.model.Departamento;
 import com.xicola.xicola.repository.DepartamentoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class DepartamentoService {
 
     private static final String DEPARTAMENTO_NOT_FOUND_MESSAGE = "Departamento não encontrado com o ID: ";
+    private static final String DEPARTAMENTO_NOT_FOUND_BY_SIGLA_MESSAGE = "Departamento não encontrado com a sigla: ";
     private static final String DESCRICAO_UNICA_MESSAGE = "Já existe um departamento com esta descrição: ";
     private static final String SIGLA_UNICA_MESSAGE = "Já existe um departamento com esta sigla: ";
 
     private final DepartamentoRepository departamentoRepository;
 
     @Transactional(readOnly = true)
-    public Departamento findById(Long id) {
+    public Departamento findById(Integer id) {
         return departamentoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(DEPARTAMENTO_NOT_FOUND_MESSAGE + id));
     }
@@ -30,6 +32,12 @@ public class DepartamentoService {
         return departamentoRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
+    public Departamento findDepartamento(String departamento) {
+        return departamentoRepository.findByDescricao(departamento)
+                .orElseThrow(() -> new ResourceNotFoundException(DEPARTAMENTO_NOT_FOUND_MESSAGE));
+    }
+
     @Transactional
     public Departamento create(Departamento departamento) {
         validarDepartamentoUnico(null, departamento.getDescricao(), departamento.getSigla());
@@ -37,7 +45,7 @@ public class DepartamentoService {
     }
 
     @Transactional
-    public Departamento update(Long id, Departamento departamentoAtualizado) {
+    public Departamento update(Integer id, Departamento departamentoAtualizado) {
         validarDepartamentoExistente(id);
         validarDepartamentoUnico(id, departamentoAtualizado.getDescricao(), departamentoAtualizado.getSigla());
 
@@ -50,7 +58,7 @@ public class DepartamentoService {
     }
 
     @Transactional
-    public void delete(Long id) {
+    public void delete(Integer id) {
         validarDepartamentoExistente(id);
         departamentoRepository.deleteById(id);
     }
@@ -61,17 +69,18 @@ public class DepartamentoService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<Departamento> findBySigla(String sigla) {
-        return departamentoRepository.findBySigla(sigla);
+    public Departamento findBySigla(String sigla) {
+        return departamentoRepository.findBySigla(sigla)
+                .orElseThrow(() -> new ResourceNotFoundException(DEPARTAMENTO_NOT_FOUND_BY_SIGLA_MESSAGE + sigla));
     }
 
-    private void validarDepartamentoExistente(Long id) {
+    private void validarDepartamentoExistente(Integer id) {
         if (!departamentoRepository.existsById(id)) {
             throw new ResourceNotFoundException(DEPARTAMENTO_NOT_FOUND_MESSAGE + id);
         }
     }
 
-    private void validarDepartamentoUnico(Long id, String descricao, String sigla) {
+    private void validarDepartamentoUnico(Integer id, String descricao, String sigla) {
         var departamentoByDescricao = departamentoRepository.findByDescricao(descricao);
         departamentoByDescricao.ifPresent(dept -> {
             if (!dept.getId().equals(id)) {

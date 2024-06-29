@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DepartamentoRepository extends JpaRepository<Departamento, Long> {
+public interface DepartamentoRepository extends JpaRepository<Departamento, Integer> {
 
     @Query("SELECT d FROM Departamento d WHERE d.descricao = :descricao")
     Optional<Departamento> findByDescricao(@Param("descricao") String descricao);
