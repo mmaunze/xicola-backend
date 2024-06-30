@@ -55,10 +55,10 @@ public class AlunoController {
             var aluno = alunoService.findById(id);
             return ResponseEntity.ok(new AlunoDTO(aluno));
         } catch (EntityNotFoundException e) {
-            log.error("Aluno não encontrado com o ID: " + id, e);
+            log.error("Aluno não encontrado com o ID: {}", id, e);
             return new ResponseEntity<>(NOT_FOUND);
         } catch (Exception e) {
-            log.error("Erro ao buscar aluno com o ID: " + id, e);
+            log.error("Erro ao buscar aluno com o ID: {}", id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
     }
@@ -104,10 +104,10 @@ public class AlunoController {
             alunoService.delete(id);
             return ok().build();
         } catch (EntityNotFoundException e) {
-            log.error("Aluno não encontrado para remoção com o ID: " + id, e);
+            log.error("Aluno não encontrado para remoção com o ID: {}", id, e);
             return new ResponseEntity<>(NOT_FOUND);
         } catch (Exception e) {
-            log.error("Erro ao remover aluno com o ID: " + id, e);
+            log.error("Erro ao remover aluno com o ID: {}", id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
     }

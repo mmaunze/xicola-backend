@@ -1,13 +1,5 @@
 package com.xicola.xicola.service;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Random;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.xicola.xicola.model.Aluno;
 import com.xicola.xicola.model.Utilizador;
 import com.xicola.xicola.repository.AlunoRepository;
@@ -16,9 +8,14 @@ import com.xicola.xicola.repository.UtilizadorRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
 import com.xicola.xicola.utils.MetodosGerais;
-
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Random;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor

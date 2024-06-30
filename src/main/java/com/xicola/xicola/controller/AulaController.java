@@ -1,14 +1,20 @@
 package com.xicola.xicola.controller;
 
-import static java.util.stream.Collectors.*;
-import static org.springframework.http.HttpStatus.*;
-import static org.springframework.http.ResponseEntity.*;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
-
+import com.xicola.xicola.model.Aula;
+import com.xicola.xicola.model.dto.AulaDTO;
+import com.xicola.xicola.service.AulaService;
+import com.xicola.xicola.service.DisciplinaService;
+import com.xicola.xicola.service.EstadoService;
+import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.util.List;
-
+import static java.util.stream.Collectors.*;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;
+import static org.springframework.http.ResponseEntity.*;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,17 +23,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.xicola.xicola.model.Aula;
-import com.xicola.xicola.model.dto.AulaDTO;
-import com.xicola.xicola.service.AulaService;
-import com.xicola.xicola.service.DisciplinaService;
-import com.xicola.xicola.service.EstadoService;
-
-import jakarta.persistence.EntityNotFoundException;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
 
 @Data
 @RestController

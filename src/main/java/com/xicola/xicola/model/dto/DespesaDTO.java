@@ -1,10 +1,9 @@
 package com.xicola.xicola.model.dto;
 
 import com.xicola.xicola.model.Despesa;
-import lombok.Data;
-
 import java.math.BigDecimal;
 import java.time.Instant;
+import lombok.Data;
 
 @Data
 public class DespesaDTO {

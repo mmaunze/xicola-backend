@@ -1,9 +1,7 @@
 package com.xicola.xicola.model.dto;
 
-import java.io.Serializable;
-
 import com.xicola.xicola.model.Avaliacao;
-
+import java.io.Serializable;
 import lombok.Data;
 
 @Data

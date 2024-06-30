@@ -4,18 +4,16 @@ import com.xicola.xicola.model.Cargo;
 import com.xicola.xicola.model.dto.CargoDTO;
 import com.xicola.xicola.service.CargoService;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 import java.util.List;
-import java.util.stream.StreamSupport;
-
 import static java.util.stream.Collectors.toList;
+import java.util.stream.StreamSupport;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import static org.springframework.http.HttpStatus.*;
+import org.springframework.http.ResponseEntity;
 import static org.springframework.http.ResponseEntity.created;
+import org.springframework.web.bind.annotation.*;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController

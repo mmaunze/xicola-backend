@@ -1,10 +1,8 @@
 package com.xicola.xicola.model.dto;
 
+import com.xicola.xicola.model.AvaliacaoAluno;
 import java.io.Serializable;
 import java.time.Instant;
-
-import com.xicola.xicola.model.AvaliacaoAluno;
-
 import lombok.Data;
 
 @Data

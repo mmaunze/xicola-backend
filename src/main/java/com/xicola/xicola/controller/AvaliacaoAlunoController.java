@@ -1,15 +1,21 @@
 package com.xicola.xicola.controller;
 
-import static org.springframework.http.HttpStatus.*;
-import static org.springframework.http.ResponseEntity.*;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
-
+import com.xicola.xicola.model.AvaliacaoAluno;
+import com.xicola.xicola.model.dto.AvaliacaoAlunoDTO;
+import com.xicola.xicola.service.AlunoService;
+import com.xicola.xicola.service.AvaliacaoAlunoService;
+import com.xicola.xicola.service.AvaliacaoService;
+import com.xicola.xicola.service.EstadoService;
+import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;
+import static org.springframework.http.ResponseEntity.*;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,17 +24,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.xicola.xicola.model.AvaliacaoAluno;
-import com.xicola.xicola.model.dto.AvaliacaoAlunoDTO;
-import com.xicola.xicola.service.AlunoService;
-import com.xicola.xicola.service.AvaliacaoAlunoService;
-import com.xicola.xicola.service.AvaliacaoService;
-import com.xicola.xicola.service.EstadoService;
-
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
 
 @RestController
 @RequestMapping("/academico/avalicoes-alunos")

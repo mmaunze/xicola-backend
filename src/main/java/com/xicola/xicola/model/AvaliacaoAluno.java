@@ -2,8 +2,6 @@ package com.xicola.xicola.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import java.time.Instant;
 import lombok.Getter;
 import lombok.Setter;

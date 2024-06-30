@@ -1,11 +1,9 @@
 package com.xicola.xicola.model.dto;
 
-import java.time.Instant;
-import java.time.LocalDate;
-
 import com.xicola.xicola.model.Aluno;
 import com.xicola.xicola.model.Distrito;
-
+import java.time.Instant;
+import java.time.LocalDate;
 import lombok.Data;
 
 @Data

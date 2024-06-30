@@ -4,13 +4,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotNull;
 import java.io.Serial;
-import java.util.Objects;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.Hibernate;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 @Embeddable
 public class ProfessorDisciplinaId implements java.io.Serializable {
     @Serial
@@ -26,20 +22,4 @@ public class ProfessorDisciplinaId implements java.io.Serializable {
     @NotNull
     @Column(name = "classe", nullable = false)
     private Integer classe;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        var entity = (ProfessorDisciplinaId) o;
-        return Objects.equals(this.professor, entity.professor) &&
-                Objects.equals(this.classe, entity.classe) &&
-                Objects.equals(this.disciplina, entity.disciplina);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(professor, classe, disciplina);
-    }
-
 }

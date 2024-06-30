@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import static java.util.Calendar.*;
 import java.util.Date;
+import java.util.Random;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
@@ -104,89 +105,87 @@ public interface MetodosGerais {
         if (nomeCompleto == null || nomeCompleto.isBlank()) {
             throw new IllegalArgumentException("Nome completo não pode estar vazio");
         }
-
+    
         var partesNome = nomeCompleto.trim().toLowerCase().split("\\s+");
         var numPalavras = partesNome.length;
         List<String> usernames = new ArrayList<>();
-
-        // Combinações com iniciais e nome completo
+    
+        // Adiciona combinações iniciais
         var sb = new StringBuilder();
         for (var parte : partesNome) {
             sb.append(parte.charAt(0));
         }
         usernames.add(sb.toString() + partesNome[numPalavras - 1]);
         usernames.add(sb.toString() + "." + partesNome[numPalavras - 1]);
-
-        // Combinando até 5 palavras do nome
-        if (numPalavras >= 2) {
-            // Combinações com duas palavras
-            for (var i = 0; i < numPalavras - 1; i++) {
-                for (var j = i + 1; j < numPalavras; j++) {
-                    usernames.add(partesNome[i] + partesNome[j]);
-                    usernames.add(partesNome[j] + "." + partesNome[i]);
-                }
-            }
-        }
-
-        if (numPalavras >= 3) {
-            // Combinações com três palavras
-            for (var i = 0; i < numPalavras - 2; i++) {
-                for (var j = i + 1; j < numPalavras - 1; j++) {
-                    for (var k = j + 1; k < numPalavras; k++) {
-                        usernames.add(partesNome[i] + partesNome[j] + partesNome[k]);
-                        usernames.add(partesNome[k] + "." + partesNome[i] + "." + partesNome[j]);
-                    }
-                }
-            }
-        }
-
-        if (numPalavras >= 4) {
-            // Combinações com quatro palavras
-            for (var i = 0; i < numPalavras - 3; i++) {
-                for (var j = i + 1; j < numPalavras - 2; j++) {
-                    for (var k = j + 1; k < numPalavras - 1; k++) {
-                        for (var l = k + 1; l < numPalavras; l++) {
-                            usernames.add(partesNome[i] + partesNome[j] + partesNome[k] + partesNome[l]);
-                            usernames.add(
-                                    partesNome[l] + "." + partesNome[i] + "." + partesNome[j] + "." + partesNome[k]);
-                        }
-                    }
-                }
-            }
-        }
-
-        if (numPalavras >= 5) {
-            // Combinações com cinco palavras
-            for (var i = 0; i < numPalavras - 4; i++) {
-                for (var j = i + 1; j < numPalavras - 3; j++) {
-                    for (var k = j + 1; k < numPalavras - 2; k++) {
-                        for (var l = k + 1; l < numPalavras - 1; l++) {
-                            for (var m = l + 1; m < numPalavras; m++) {
-                                usernames.add(
-                                        partesNome[i] + partesNome[j] + partesNome[k] + partesNome[l] + partesNome[m]);
-                                usernames.add(partesNome[m] + "." + partesNome[i] + "." + partesNome[j] + "."
-                                        + partesNome[k] + "." + partesNome[l]);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
+    
+        // Método auxiliar para gerar combinações
+        generateCombinations(partesNome, numPalavras, usernames, 2);
+        generateCombinations(partesNome, numPalavras, usernames, 3);
+        generateCombinations(partesNome, numPalavras, usernames, 4);
+        generateCombinations(partesNome, numPalavras, usernames, 5);
+    
         return usernames;
     }
-
+    
+    private void generateCombinations(String[] partesNome, int numPalavras, List<String> usernames, int combinationSize) {
+        if (numPalavras >= combinationSize) {
+            int[] indices = new int[combinationSize];
+            combine(partesNome, usernames, indices, 0, numPalavras - 1, 0, combinationSize);
+        }
+    }
+    
+    private void combine(String[] partesNome, List<String> usernames, int[] indices, int start, int end, int index, int combinationSize) {
+        if (index == combinationSize) {
+            addCombination(partesNome, usernames, indices, combinationSize);
+            return;
+        }
+        for (int i = start; i <= end && end - i + 1 >= combinationSize - index; i++) {
+            indices[index] = i;
+            combine(partesNome, usernames, indices, i + 1, end, index + 1, combinationSize);
+        }
+    }
+    
+    private void addCombination(String[] partesNome, List<String> usernames, int[] indices, int combinationSize) {
+        var sb = new StringBuilder();
+        var sbWithDots = new StringBuilder();
+        for (int i = 0; i < combinationSize; i++) {
+            sb.append(partesNome[indices[i]]);
+            sbWithDots.append(partesNome[indices[i]]);
+            if (i < combinationSize - 1) {
+                sbWithDots.append(".");
+            }
+        }
+        usernames.add(sb.toString());
+        usernames.add(sbWithDots.toString());
+    }
+    
     default String gerarId() {
-        var sdf = new java.text.SimpleDateFormat("yyyyMMddHHmmss");
-        var dataHora = sdf.format(new java.util.Date());
-        var randomNumber = new java.util.Random().nextInt(1000); // Número aleatório de 3 dígitos
-        return dataHora + String.format("%03d", randomNumber);
+        String dataHora = getCurrentTimestamp();
+        String randomNumber = generateRandomNumber(3); 
+        return String.format("%s%s", dataHora, randomNumber);
+    }
+    
+    private String getCurrentTimestamp() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        return sdf.format(new Date());
+    }
+    
+    public static final Random random = new Random();
+
+    private String generateRandomNumber(int digits) {
+        int upperBound = (int) Math.pow(10, digits);
+        int randomNumber = random.nextInt(upperBound);
+    
+        StringBuilder formatBuilder = new StringBuilder();
+        formatBuilder.append("%0").append(digits).append("d");
+    
+        return String.format(formatBuilder.toString(), randomNumber);
     }
 
     public default Date converterParaData(int ano, int mes, int dia) {
         var calendar = getInstance();
         calendar.set(YEAR, ano);
-        calendar.set(MONTH, mes - 1); // Mês em Java é baseado em zero (janeiro = 0, fevereiro = 1, ...)
+        calendar.set(MONTH, mes - 1); 
         calendar.set(DAY_OF_MONTH, dia);
         return calendar.getTime();
     }

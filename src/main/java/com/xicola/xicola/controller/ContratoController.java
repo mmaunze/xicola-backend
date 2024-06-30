@@ -8,7 +8,6 @@ import com.xicola.xicola.service.ContratoService;
 import com.xicola.xicola.service.EstadoService;
 import com.xicola.xicola.service.FuncionarioService;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-
 import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.util.ArrayList;
@@ -16,10 +15,9 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
