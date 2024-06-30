@@ -105,7 +105,7 @@ public class DetalheRelatorioFinanceiroController {
         detalhe.setDescricao(detalheDTO.getDescricao());
         detalhe.setValor(detalheDTO.getValor());
 
-        detalhe.setRelatorio(fetchRelatorio(detalheDTO.getRelatorioId()));
+        detalhe.setRelatorio(fetchRelatorio(detalheDTO.getRelatorio()));
 
         return detalhe;
     }

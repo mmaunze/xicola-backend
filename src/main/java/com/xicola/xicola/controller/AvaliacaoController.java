@@ -1,21 +1,14 @@
 package com.xicola.xicola.controller;
 
-import com.xicola.xicola.model.Avaliacao;
-import com.xicola.xicola.model.Estado;
-import com.xicola.xicola.model.dto.AvaliacaoDTO;
-import com.xicola.xicola.service.AvaliacaoService;
-import com.xicola.xicola.service.DisciplinaService;
-import com.xicola.xicola.service.EstadoService;
-import com.xicola.xicola.service.TipoAvaliacaoService;
-import jakarta.persistence.EntityNotFoundException;
+import static java.util.stream.Collectors.*;
+import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.ResponseEntity.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
+
 import java.net.URI;
 import java.util.List;
-import static java.util.stream.Collectors.*;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import static org.springframework.http.HttpStatus.*;
+
 import org.springframework.http.ResponseEntity;
-import static org.springframework.http.ResponseEntity.*;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +17,18 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
+
+import com.xicola.xicola.model.Avaliacao;
+import com.xicola.xicola.model.Estado;
+import com.xicola.xicola.model.dto.AvaliacaoDTO;
+import com.xicola.xicola.service.AvaliacaoService;
+import com.xicola.xicola.service.DisciplinaService;
+import com.xicola.xicola.service.EstadoService;
+import com.xicola.xicola.service.TipoAvaliacaoService;
+
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/academico/avaliacoes")
@@ -110,7 +114,7 @@ public class AvaliacaoController {
         avaliacao.setId(avaliacaoDTO.getId());
         avaliacao.setDisciplina(disciplinaService.findById(avaliacaoDTO.getDisciplina()));
 
-        avaliacao.setTipoAvaliacao(tipoAvaliacaoService.findById(avaliacaoDTO.getTipoAvaliacao()));
+        avaliacao.setTipoAvaliacao(tipoAvaliacaoService.findById(avaliacaoDTO.getTipo()));
         avaliacao.setTrimestre(avaliacaoDTO.getTrimestre());
         avaliacao.setObservacao(avaliacaoDTO.getObservacao());
 

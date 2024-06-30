@@ -65,6 +65,7 @@ public class ComunicadoController {
     }
 
     @PostMapping
+    
     public ResponseEntity<Void> create(@RequestBody ComunicadoDTO comunicadoDTO) {
         try {
             var newComunicado = comunicadoService.create(convertToEntity(comunicadoDTO));

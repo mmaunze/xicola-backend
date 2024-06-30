@@ -1,5 +1,23 @@
 package com.xicola.xicola.controller;
 
+import static java.util.stream.Collectors.*;
+import static org.springframework.http.HttpStatus.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
+
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.xicola.xicola.model.Contrato;
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Funcionario;
@@ -8,17 +26,10 @@ import com.xicola.xicola.service.ContratoService;
 import com.xicola.xicola.service.EstadoService;
 import com.xicola.xicola.service.FuncionarioService;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+
 import jakarta.persistence.EntityNotFoundException;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import static java.util.stream.Collectors.toList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import static org.springframework.http.HttpStatus.*;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
 @RequiredArgsConstructor
@@ -108,7 +119,7 @@ public class ContratoController {
     private Contrato convertToEntity(ContratoDTO contratoDTO) {
         var contrato = new Contrato();
         contrato.setId(contratoDTO.getId());
-        contrato.setDescricao(contratoDTO.getDescricao());
+        contrato.setDescricao(contratoDTO.getNome());
         contrato.setTipo(contratoDTO.getTipo());
         contrato.setDataInicio(contratoDTO.getDataInicio());
         contrato.setDataFim(contratoDTO.getDataFim());

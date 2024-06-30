@@ -1,5 +1,21 @@
 package com.xicola.xicola.controller;
 
+import static org.springframework.http.HttpStatus.*;
+
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.xicola.xicola.model.Despesa;
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Funcionario;
@@ -9,14 +25,9 @@ import com.xicola.xicola.service.DespesaService;
 import com.xicola.xicola.service.EstadoService;
 import com.xicola.xicola.service.FuncionarioService;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import static org.springframework.http.HttpStatus.*;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -97,16 +108,16 @@ public class DespesaController {
     }
 
     private DespesaDTO convertToDTO(Despesa despesa) {
-     
+
         return new DespesaDTO(despesa);
     }
 
     private Despesa convertToEntity(DespesaDTO despesaDTO) {
         Despesa despesa = new Despesa();
         despesa.setId(despesaDTO.getId());
-        despesa.setDescricao(despesaDTO.getDescricao());
+        despesa.setDescricao(despesaDTO.getNome());
         despesa.setValor(despesaDTO.getValor());
-        despesa.setDataDespesa(despesaDTO.getDataDespesa());
+        despesa.setDataDespesa(despesaDTO.getData());
         despesa.setCategoria(categoriaFinanceiraService.findById(despesaDTO.getCategoria()));
         despesa.setResponsavel(fetchResponsavel(despesaDTO.getResponsavel()));
         despesa.setEstado(fetchEstado(despesaDTO.getEstado()));
