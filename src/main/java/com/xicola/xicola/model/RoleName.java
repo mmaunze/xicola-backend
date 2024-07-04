@@ -2,9 +2,12 @@ package com.xicola.xicola.model;
 
 public enum RoleName {
     ADMINISTRATOR,
-    ESTUDANTE,
+    ALUNO,
     PROFESSOR,
     FINANCEIRO,
     PEDAGOGICO,
-    AQUISICOES
+    AQUISICOES,
+    DIRECTOR,
+    GERAL
+
 }

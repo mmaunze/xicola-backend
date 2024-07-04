@@ -14,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+
 import static org.springframework.http.ResponseEntity.*;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +30,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @Data
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/academico/alunos")
+@RequestMapping("/utilizadores/alunos")
 @Slf4j
 public class AlunoController {
 
@@ -50,6 +52,7 @@ public class AlunoController {
     }
 
     @GetMapping("/aluno/{id}")
+    @PreAuthorize("#id == principal.id or hasRole('ADMINISTRATOR')")
     public ResponseEntity<AlunoDTO> findAlunoById(@PathVariable Long id) {
         try {
             var aluno = alunoService.findById(id);
@@ -63,6 +66,7 @@ public class AlunoController {
         }
     }
 
+    
     @PostMapping
     public ResponseEntity<Void> create(@RequestBody AlunoDTO alunoDTO) {
         try {
