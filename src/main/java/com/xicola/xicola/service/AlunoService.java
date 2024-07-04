@@ -11,7 +11,6 @@ import com.xicola.xicola.utils.MetodosGerais;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Random;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -221,6 +220,6 @@ public class AlunoService implements MetodosGerais {
             }
         }
         // Se nenhum username estiver disponível, gera um aleatório
-        return usernames.get(0) + new Random().nextInt(1000);
+        return usernames.get(0) ;
     }
 }

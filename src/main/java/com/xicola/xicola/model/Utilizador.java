@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import java.util.List;
 
 @Getter
 @Setter
@@ -40,5 +41,16 @@ public class Utilizador {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "estado", nullable = false)
     private Estado estado;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(name="users_roles",
+            joinColumns = @JoinColumn(name = "user"),
+            inverseJoinColumns = @JoinColumn(name="role"))
+    private List<Role> roles;
+
+    private boolean enabled;
+
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
 
 }

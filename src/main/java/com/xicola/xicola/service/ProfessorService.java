@@ -12,7 +12,6 @@ import com.xicola.xicola.utils.MetodosGerais;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -222,7 +221,7 @@ public class ProfessorService implements MetodosGerais {
                 return username;
             }
         }
-        return usernames.get(0) + new Random().nextInt(1000);
+        return usernames.get(0);
     }
 }
 
