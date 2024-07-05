@@ -124,12 +124,8 @@ public class AulaController {
         aula.setDataAula(aulaDTO.getDataAula());
         aula.setConteudo(aulaDTO.getConteudo());
 
-        aula.setDisciplina(disciplinaService.findDisciplina(aulaDTO.getDisciplina())
-                .orElseThrow(
-                        () -> new EntityNotFoundException("Disciplina não encontrada: " + aulaDTO.getDisciplina())));
-        aula.setEstado(estadoService.findEstado(aulaDTO.getEstado())
-                .orElseThrow(() -> new EntityNotFoundException("Estado não encontrado: " + aulaDTO.getEstado())));
-
+        aula.setDisciplina(disciplinaService.findDisciplina(aulaDTO.getDisciplina()));
+                        aula.setEstado(estadoService.findEstado(aulaDTO.getEstado()));
         return aula;
     }
 

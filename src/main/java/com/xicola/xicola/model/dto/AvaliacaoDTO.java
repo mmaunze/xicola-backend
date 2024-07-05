@@ -10,9 +10,9 @@ import lombok.Data;
 public class AvaliacaoDTO implements Serializable {
     private Long id;
     private Long aluno;
-    private Integer tipo;
+    private String tipo;
     private Integer trimestre;
-    private Integer disciplina;
+    private String disciplina;
     private String observacao;
     private String estado;
 
@@ -21,9 +21,9 @@ public class AvaliacaoDTO implements Serializable {
 
     public AvaliacaoDTO(Avaliacao avaliacao) {
         this.id = avaliacao.getId();
-        this.tipo = avaliacao.getTipoAvaliacao().getId();
+        this.tipo = avaliacao.getTipoAvaliacao().getDescricao();
         this.trimestre = avaliacao.getTrimestre();
-        this.disciplina = avaliacao.getDisciplina().getId();
+        this.disciplina = avaliacao.getDisciplina().getNomeDisciplina();
         this.observacao = avaliacao.getObservacao();
         this.estado = avaliacao.getEstado().getDescricao();
     }

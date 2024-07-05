@@ -4,8 +4,10 @@ import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.repository.EstadoRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
+
+import jakarta.persistence.EntityNotFoundException;
+
 import java.util.List;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,8 +33,9 @@ public class EstadoService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<Estado> findEstado(String estado) {
-        return estadoRepository.findEstado(estado);
+    public Estado findEstado(String estado) {
+        return estadoRepository.findEstado(estado)
+        .orElseThrow(() -> new EntityNotFoundException(ESTADO_NOT_FOUND_MESSAGE));
     }
 
     @Transactional

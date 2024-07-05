@@ -13,7 +13,7 @@ public class DespesaDTO {
     private String nome;
     private BigDecimal valor;
     private Instant data;
-    private Integer categoria;
+    private String categoria;
     private Long responsavel;
     private String estado;
 
@@ -22,7 +22,7 @@ public class DespesaDTO {
         this.nome = despesa.getDescricao();
         this.valor = despesa.getValor();
         this.data = despesa.getDataDespesa();
-        this.categoria = despesa.getCategoria().getId();
+        this.categoria = despesa.getCategoria().getDescricao();
         this.responsavel = despesa.getResponsavel().getId();
         this.estado = despesa.getEstado().getDescricao();
     }

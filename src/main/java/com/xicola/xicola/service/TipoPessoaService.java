@@ -62,4 +62,9 @@ public class TipoPessoaService {
 
         // Adicione outras validações conforme necessário
     }
+
+    public TipoPessoa findDestinatario(String destinatario) {
+        return tipoPessoaRepository.findTipoPessoa(destinatario)
+        .orElseThrow(() -> new ResourceNotFoundException(TIPO_PESSOA_NOT_FOUND_MESSAGE + destinatario));
+    }
 }

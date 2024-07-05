@@ -112,14 +112,11 @@ public class AvaliacaoController {
     private Avaliacao convertToEntity(AvaliacaoDTO avaliacaoDTO) {
         Avaliacao avaliacao = new Avaliacao();
         avaliacao.setId(avaliacaoDTO.getId());
-        avaliacao.setDisciplina(disciplinaService.findById(avaliacaoDTO.getDisciplina()));
-
-        avaliacao.setTipoAvaliacao(tipoAvaliacaoService.findById(avaliacaoDTO.getTipo()));
+        avaliacao.setDisciplina(disciplinaService.findDisciplina(avaliacaoDTO.getDisciplina()));
+        avaliacao.setTipoAvaliacao(tipoAvaliacaoService.findTipoAvaliacao(avaliacaoDTO.getTipo()));
         avaliacao.setTrimestre(avaliacaoDTO.getTrimestre());
         avaliacao.setObservacao(avaliacaoDTO.getObservacao());
-
-        Estado estado = estadoService.findEstado(avaliacaoDTO.getEstado())
-                .orElseThrow(() -> new EntityNotFoundException("Estado não encontrado: " + avaliacaoDTO.getEstado()));
+        Estado estado = estadoService.findEstado(avaliacaoDTO.getEstado());
         avaliacao.setEstado(estado);
 
         return avaliacao;

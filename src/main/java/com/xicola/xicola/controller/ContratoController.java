@@ -25,7 +25,6 @@ import com.xicola.xicola.model.dto.ContratoDTO;
 import com.xicola.xicola.service.ContratoService;
 import com.xicola.xicola.service.EstadoService;
 import com.xicola.xicola.service.FuncionarioService;
-import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -137,7 +136,6 @@ public class ContratoController {
     }
 
     private Estado fetchEstado(String estado) {
-        return estadoService.findEstado(estado)
-                .orElseThrow(() -> new ResourceNotFoundException("Estado não encontrado"));
+        return estadoService.findEstado(estado);
     }
 }

@@ -118,12 +118,7 @@ public class AvaliacaoAlunoController {
         avaliacaoAluno.setDataLancamento(avaliacaoAlunoDTO.getDataLancamento());
         avaliacaoAluno.setNota(avaliacaoAlunoDTO.getNota());
         avaliacaoAluno.setObservacao(avaliacaoAlunoDTO.getObservacao());
-        
-
-        avaliacaoAluno.setEstado(estadoService.findEstado(avaliacaoAlunoDTO.getEstado())
-                .orElseThrow(
-                        () -> new EntityNotFoundException("Estado não encontrado: " + avaliacaoAlunoDTO.getEstado())));
-
+        avaliacaoAluno.setEstado(estadoService.findEstado(avaliacaoAlunoDTO.getEstado()));
         return avaliacaoAluno;
     }
 

@@ -52,7 +52,7 @@ public class AlunoController {
     }
 
     @GetMapping("/aluno/{id}")
-    @PreAuthorize("#id == principal.id or hasRole('ADMINISTRATOR')")
+    @PreAuthorize("#id == principal.id or hasRole('ADMINISTRATOR') or hasRole('PEDAGOGICO') or hasRole('PROFESSOR')")
     public ResponseEntity<AlunoDTO> findAlunoById(@PathVariable Long id) {
         try {
             var aluno = alunoService.findById(id);
@@ -128,11 +128,8 @@ public class AlunoController {
         aluno.setGrupoSanguineo(alunoDTO.getGrupoSanguineo());
         aluno.setEndereco(alunoDTO.getEndereco());
         aluno.setDataRegisto(alunoDTO.getDataRegisto());
-
-        Estado estado = estadoService.findEstado(alunoDTO.getEstado())
-                .orElseThrow(() -> new EntityNotFoundException("Estado não encontrado: " + alunoDTO.getEstado()));
+        Estado estado = estadoService.findEstado(alunoDTO.getEstado());
         aluno.setEstado(estado);
-
         aluno.setEscolaAnterior(alunoDTO.getEscolaAnterior());
         aluno.setNomeDoPai(alunoDTO.getNomeDoPai());
         aluno.setNomeDaMae(alunoDTO.getNomeDaMae());
@@ -141,22 +138,6 @@ public class AlunoController {
     }
 
     private AlunoDTO convertToDTO(Aluno aluno) {
-        var alunoDTO = new AlunoDTO(aluno);
-        alunoDTO.setId(aluno.getId());
-        alunoDTO.setNomeCompleto(aluno.getNomeCompleto());
-        alunoDTO.setDataNascimento(aluno.getDataNascimento());
-        alunoDTO.setDistritoNascimento(aluno.getDistritoNascimento());
-        alunoDTO.setSexo(aluno.getSexo());
-        alunoDTO.setBilheteIdentificacao(aluno.getBilheteIdentificacao());
-        alunoDTO.setReligiao(aluno.getReligiao());
-        alunoDTO.setGrupoSanguineo(aluno.getGrupoSanguineo());
-        alunoDTO.setEndereco(aluno.getEndereco());
-        alunoDTO.setDataRegisto(aluno.getDataRegisto());
-        alunoDTO.setEstado(aluno.getEstado().getDescricao());
-        alunoDTO.setEscolaAnterior(aluno.getEscolaAnterior());
-        alunoDTO.setNomeDoPai(aluno.getNomeDoPai());
-        alunoDTO.setNomeDaMae(aluno.getNomeDaMae());
-        alunoDTO.setNumeroTelefonePrincipal(aluno.getNumeroTelefonePrincipal());
-        return alunoDTO;
+        return new AlunoDTO(aluno);
     }
 }

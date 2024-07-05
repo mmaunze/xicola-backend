@@ -120,9 +120,7 @@ public class AtivoController {
         ativo.setDataAquisicao(ativoDTO.getDataAquisicao());
         ativo.setValorAquisicao(ativoDTO.getValorAquisicao());
         ativo.setLocalizacao(ativoDTO.getLocalizacao());
-
-        Estado estado = estadoService.findEstado(ativoDTO.getEstado())
-                .orElseThrow(() -> new EntityNotFoundException("Estado não encontrado: " + ativoDTO.getEstado()));
+        Estado estado = estadoService.findEstado(ativoDTO.getEstado());
         ativo.setEstado(estado);
 
         return ativo;

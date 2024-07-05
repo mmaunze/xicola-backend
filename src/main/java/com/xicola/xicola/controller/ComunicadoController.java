@@ -9,7 +9,6 @@ import com.xicola.xicola.service.ComunicadoService;
 import com.xicola.xicola.service.EstadoService;
 import com.xicola.xicola.service.FuncionarioService;
 import com.xicola.xicola.service.TipoPessoaService;
-import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.util.ArrayList;
@@ -127,13 +126,11 @@ public class ComunicadoController {
         return funcionarioService.findById(id);
     }
 
-    private TipoPessoa fetchDestinatario(Integer id) {
-        return tipoPessoaService.findById(id);
+    private TipoPessoa fetchDestinatario(String destinatario) {
+        return tipoPessoaService.findDestinatario(destinatario);
     }
 
     private Estado fetchEstado(String estado) {
-        return estadoService.findEstado(estado)
-                .orElseThrow(() -> new ResourceNotFoundException("Estado nao encontrado"));
-
+        return estadoService.findEstado(estado);
     }
 }

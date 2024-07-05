@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xicola.xicola.model.CategoriaFinanceira;
 import com.xicola.xicola.model.Despesa;
 import com.xicola.xicola.model.Estado;
 import com.xicola.xicola.model.Funcionario;
@@ -108,7 +109,6 @@ public class DespesaController {
     }
 
     private DespesaDTO convertToDTO(Despesa despesa) {
-
         return new DespesaDTO(despesa);
     }
 
@@ -118,7 +118,7 @@ public class DespesaController {
         despesa.setDescricao(despesaDTO.getNome());
         despesa.setValor(despesaDTO.getValor());
         despesa.setDataDespesa(despesaDTO.getData());
-        despesa.setCategoria(categoriaFinanceiraService.findById(despesaDTO.getCategoria()));
+        despesa.setCategoria(fetchCategoria(despesaDTO.getCategoria()));
         despesa.setResponsavel(fetchResponsavel(despesaDTO.getResponsavel()));
         despesa.setEstado(fetchEstado(despesaDTO.getEstado()));
 
@@ -126,11 +126,14 @@ public class DespesaController {
     }
 
     private Estado fetchEstado(String estado) {
-        return estadoService.findEstado(estado)
-                .orElseThrow(() -> new ResourceNotFoundException("Estado não encontrado"));
+        return estadoService.findEstado(estado);
     }
 
     private Funcionario fetchResponsavel(Long id) {
         return funcionarioService.findById(id);
+    }
+
+    private CategoriaFinanceira fetchCategoria(String categoria) {
+        return categoriaFinanceiraService.findCategoria(categoria);
     }
 }

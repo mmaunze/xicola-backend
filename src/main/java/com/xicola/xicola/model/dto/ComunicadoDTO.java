@@ -11,7 +11,7 @@ public class ComunicadoDTO {
     private String conteudo;
     private Instant dataPublicacao;
     private Long responsavel;
-    private Integer destinatario;
+    private String destinatario;
     private String estado;
 
     public ComunicadoDTO(Comunicado comunicado) {
@@ -20,7 +20,7 @@ public class ComunicadoDTO {
         this.conteudo = comunicado.getConteudo();
         this.dataPublicacao = comunicado.getDataPublicacao();
         this.responsavel = comunicado.getResponsavel().getId();
-        this.destinatario = comunicado.getDestinatario().getId();
+        this.destinatario = comunicado.getDestinatario().getDescricao();
         this.estado = comunicado.getEstado().getDescricao();
     }
 }

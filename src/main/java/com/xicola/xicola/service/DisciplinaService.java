@@ -1,13 +1,14 @@
 package com.xicola.xicola.service;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.xicola.xicola.model.Disciplina;
 import com.xicola.xicola.repository.DisciplinaRepository;
 import com.xicola.xicola.service.exceptions.BadRequestException;
 import com.xicola.xicola.service.exceptions.ResourceNotFoundException;
-import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -72,7 +73,8 @@ public class DisciplinaService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<Disciplina> findDisciplina(String disciplina) {
-        return disciplinaRepository.findDisciplina(disciplina);
+    public Disciplina findDisciplina(String disciplina) {
+        return disciplinaRepository.findDisciplina(disciplina)
+                .orElseThrow(() -> new ResourceNotFoundException(DISCIPLINA_NOT_FOUND_MESSAGE + disciplina));
     }
 }
