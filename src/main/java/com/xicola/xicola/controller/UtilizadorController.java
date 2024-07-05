@@ -6,12 +6,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.xicola.xicola.model.Utilizador;
 import com.xicola.xicola.model.dto.LoginUserDto;
 import com.xicola.xicola.model.dto.RecoveryJwtTokenDto;
 import com.xicola.xicola.service.UtilizadorService;
-
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -20,12 +18,6 @@ import lombok.RequiredArgsConstructor;
 public class UtilizadorController {
 
     private final UtilizadorService userService;
-
-    @PostMapping("/login")
-    public ResponseEntity<RecoveryJwtTokenDto> authenticateUser(@RequestBody LoginUserDto loginUserDto) {
-        RecoveryJwtTokenDto token = userService.authenticateUser(loginUserDto);
-        return new ResponseEntity<>(token, HttpStatus.OK);
-    }
 
     @PostMapping("/create/user")
     public ResponseEntity<Void> createUser(@RequestBody Utilizador utilizador) {

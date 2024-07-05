@@ -26,9 +26,9 @@ public class Utilizador {
     @Column(name = "username", nullable = false, length = 20)
     private String username;
 
-    @Size(max = 40)
+    @Size(min = 8)
     @NotNull
-    @Column(name = "senha", nullable = false, length = 40)
+    @Column(name = "senha", nullable = false, length = Integer.MAX_VALUE)
     private String senha;
 
     @NotNull
@@ -43,14 +43,13 @@ public class Utilizador {
     private Estado estado;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinTable(name="users_roles",
-            joinColumns = @JoinColumn(name = "user"),
-            inverseJoinColumns = @JoinColumn(name="role"))
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "utilizador"),
+            inverseJoinColumns = @JoinColumn(name = "role"))
     private List<Role> roles;
 
     private boolean enabled;
 
     @Enumerated(EnumType.STRING)
     private Provider provider;
-
 }
