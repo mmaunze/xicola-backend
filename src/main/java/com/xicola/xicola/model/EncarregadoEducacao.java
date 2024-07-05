@@ -55,7 +55,7 @@ public class EncarregadoEducacao {
     private String localTrabalho;
 
     @Column(name = "sector_trabalho")
-    private Integer sectorTrabalho;
+    private SectorTrabalho sectorTrabalho;
 
     @Size(max = 255)
     @Column(name = "endereco")

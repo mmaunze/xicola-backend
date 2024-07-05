@@ -28,6 +28,13 @@ public class DistritoService {
                 .orElseThrow(() -> new ResourceNotFoundException(String.format(DISTRICT_NOT_FOUND_MESSAGE, id)));
     }
 
+    @Transactional(readOnly = true)
+    public Distrito findDistrito(String nome) {
+        return distritoRepository.findDistrito(nome)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(DISTRICT_NOT_FOUND_MESSAGE, nome)));
+    }
+
+
     @Transactional
     public Distrito create(Distrito distrito) {
         validarCamposObrigatorios(distrito);

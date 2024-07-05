@@ -62,4 +62,9 @@ public class TipoDocumentoService {
 
         // Adicione outras validações conforme necessário
     }
+
+    public TipoDocumento findTipoDocumento(String tipoDocumento) {
+        return tipoDocumentoRepository.findTipoDocumento(tipoDocumento)
+                .orElseThrow(() -> new ResourceNotFoundException(TIPO_DOCUMENTO_NOT_FOUND_MESSAGE + tipoDocumento));
+    }
 }

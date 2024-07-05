@@ -8,6 +8,7 @@ import java.util.Date;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +20,11 @@ public class DocumentoService {
     private static final String DOCUMENT_DATE_REQUIRED_MESSAGE = "A data de criação do documento é obrigatória";
 
     private final DocumentoRepository documentoRepository;
+
+     @Transactional(readOnly = true)
+    public List<Documento> findAll() {
+        return documentoRepository.findAll();
+    }
 
     @Transactional(readOnly = true)
     public Documento findById(Long id) {
@@ -38,7 +44,8 @@ public class DocumentoService {
         validarDocumentoExistente(id);
         validarCamposObrigatorios(documentoAtualizado);
 
-        var documentoExistente = findById(id);
+        var documentoExistente = documentoRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException(String.format(DOCUMENT_NOT_FOUND_MESSAGE, id)));
         mapearDocumentoAtualizado(documentoExistente, documentoAtualizado);
 
         return documentoRepository.save(documentoExistente);
@@ -60,7 +67,6 @@ public class DocumentoService {
         if (documento.getDataCriacao() == null) {
             throw new BadRequestException(DOCUMENT_DATE_REQUIRED_MESSAGE);
         }
-        // Aqui podem ser adicionadas outras validações conforme necessário
     }
 
     private void validarDocumentoExistente(Long id) {
@@ -75,7 +81,6 @@ public class DocumentoService {
         documentoExistente.setEstado(documentoAtualizado.getEstado());
         documentoExistente.setAutor(documentoAtualizado.getAutor());
         documentoExistente.setTipoDocumento(documentoAtualizado.getTipoDocumento());
-        // Aqui podem ser adicionados outros mapeamentos de atributos conforme
-        // necessário
+        
     }
 }

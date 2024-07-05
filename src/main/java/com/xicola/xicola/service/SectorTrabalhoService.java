@@ -24,6 +24,12 @@ public class SectorTrabalhoService {
     }
 
     @Transactional(readOnly = true)
+    public SectorTrabalho findSector(String sector) {
+        return sectorTrabalhoRepository.findSector(sector)
+                .orElseThrow(() -> new ResourceNotFoundException(SECTOR_TRABALHO_NOT_FOUND_MESSAGE + sector));
+    }
+
+    @Transactional(readOnly = true)
     public List<SectorTrabalho> findAll() {
         return sectorTrabalhoRepository.findAll();
     }
