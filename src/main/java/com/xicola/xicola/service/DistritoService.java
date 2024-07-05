@@ -18,7 +18,12 @@ public class DistritoService {
     private final DistritoRepository distritoRepository;
 
     @Transactional(readOnly = true)
-    public Distrito findById(Long id) {
+    public Iterable<Distrito> findAll() {
+        return distritoRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public Distrito findById(Integer id) {
         return distritoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format(DISTRICT_NOT_FOUND_MESSAGE, id)));
     }
@@ -30,18 +35,19 @@ public class DistritoService {
     }
 
     @Transactional
-    public Distrito update(Long id, Distrito distritoAtualizado) {
+    public Distrito update(Integer id, Distrito distritoAtualizado) {
         validarDistritoExistente(id);
         validarCamposObrigatorios(distritoAtualizado);
 
-        var distritoExistente = findById(id);
+        var distritoExistente = distritoRepository.findById(id)               
+         .orElseThrow(() -> new ResourceNotFoundException(String.format(DISTRICT_NOT_FOUND_MESSAGE, id)));
         mapearDistritoAtualizado(distritoExistente, distritoAtualizado);
 
         return distritoRepository.save(distritoExistente);
     }
 
     @Transactional
-    public void delete(Long id) {
+    public void delete(Integer id) {
         validarDistritoExistente(id);
         distritoRepository.deleteById(id);
     }
@@ -52,7 +58,7 @@ public class DistritoService {
         }
     }
 
-    private void validarDistritoExistente(Long id) {
+    private void validarDistritoExistente(Integer id) {
         if (!distritoRepository.existsById(id)) {
             throw new ResourceNotFoundException(String.format(DISTRICT_NOT_FOUND_MESSAGE, id));
         }
@@ -60,7 +66,6 @@ public class DistritoService {
 
     private void mapearDistritoAtualizado(Distrito distritoExistente, Distrito distritoAtualizado) {
         distritoExistente.setNomeDistrito(distritoAtualizado.getNomeDistrito());
-        // Aqui podem ser adicionados outros mapeamentos de atributos conforme
-        // necessário
+        
     }
 }

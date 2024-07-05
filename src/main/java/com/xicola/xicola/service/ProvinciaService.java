@@ -62,4 +62,9 @@ public class ProvinciaService {
             throw new BadRequestException("Já existe uma província com o nome fornecido: " + nomeProvincia);
         }
     }
+
+    public Provincia findProvincia(String provincia) {
+        return provinciaRepository.findByNomeProvincia(provincia)
+        .orElseThrow(() -> new ResourceNotFoundException(PROVINCIA_NOT_FOUND_MESSAGE + provincia));
+    }
 }
