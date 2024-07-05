@@ -54,7 +54,10 @@ public class EncarregadoEducacao {
     @Column(name = "local_trabalho")
     private String localTrabalho;
 
-    @Column(name = "sector_trabalho")
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "sector_trabalho", nullable = false)
     private SectorTrabalho sectorTrabalho;
 
     @Size(max = 255)
