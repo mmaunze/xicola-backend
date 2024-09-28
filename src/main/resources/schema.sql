@@ -153,14 +153,7 @@ CREATE TABLE distrito (
 
 /* ------------------------------------------- ------------------------------------- */
 
-CREATE TABLE utilizador (
-                            id bigint not null,
-                            username varchar(20) not null unique,
-                            senha varchar(40) not null,
-                            tipo_utilizador integer not null,
-                            foreign key (tipo_utilizador) references tipo_pessoa (id),
-                            primary key (id)
-);
+-- utilizador
 
 /* ------------------------------------------- ------------------------------------- */
 
