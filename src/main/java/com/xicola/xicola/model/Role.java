@@ -1,4 +1,4 @@
-package com.xicola.xicola.model;
+package com.mefemasys.nomeprojecto.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

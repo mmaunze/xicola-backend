@@ -194,6 +194,6 @@ Contribuições são bem-vindas! Siga os passos abaixo para contribuir com o pro
 
 ## Licença
 
-Este projeto está licenciado por Mefema Systems. Consulte o arquivo [LICENSE](LICENSE.md) para mais informações.
+Este projeto está licenciado por Mefema Systems. Consulte o arquivo [LICENSE](LICENSE) para mais informações.
 
 ---
