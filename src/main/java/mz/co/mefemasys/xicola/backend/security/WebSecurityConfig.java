@@ -80,6 +80,18 @@ public class WebSecurityConfig {
         "/api/aluno/**"
     };
 
+    String[] ROTAS_FINANCEIRO = {
+      "/api/admin/**"
+  };
+
+  String[] ROTAS_PEDAGOGICO = {
+      "/api/professor/**"
+  };
+
+  String[] ROTAS_BIBLIOTECARIO = {
+      "/api/aluno/**"
+  };
+
     http.csrf(csrf -> csrf.disable())
         .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -89,6 +101,9 @@ public class WebSecurityConfig {
               .requestMatchers(ROTAS_ADMIN).hasRole("ADMIN")  // Rotas de Admin
               .requestMatchers(ROTAS_PROFESSOR).hasRole("PROFESSOR") // Rotas de Professor
               .requestMatchers(ROTAS_ALUNO).hasRole("ALUNO")  // Rotas de Aluno
+              .requestMatchers(ROTAS_FINANCEIRO).hasRole("FINANCEIRO")  // Rotas de Admin
+              .requestMatchers(ROTAS_PEDAGOGICO).hasRole("PEDAGOGICO") // Rotas de Professor
+              .requestMatchers(ROTAS_BIBLIOTECARIO).hasRole("BIBLIOTECARIO") 
               .anyRequest().authenticated() // Qualquer outra requisição precisa de autenticação
         );
 
