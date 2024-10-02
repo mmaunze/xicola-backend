@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mz.co.mefemasys.xicola.backend.models.Cargo;
+import mz.co.mefemasys.xicola.backend.models.ERole;
 import mz.co.mefemasys.xicola.backend.models.Role;
 import mz.co.mefemasys.xicola.backend.models.dto.CargoDTO;
 import mz.co.mefemasys.xicola.backend.models.dto.RoleDTO;
@@ -23,7 +24,8 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/geral/roles")
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RequestMapping("/roles")
 @Slf4j
 public class RoleController {
     private final RoleService roleService;
@@ -99,7 +101,7 @@ public class RoleController {
     private Role convertToEntity(RoleDTO roleDTO) {
         Role role = new Role();
         role.setId(roleDTO.getId());
-        role.setName(roleDTO.getName());
+        role.setName(ERole.valueOf(roleDTO.getName()));
         return role;
     }
 

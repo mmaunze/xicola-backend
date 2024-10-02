@@ -44,6 +44,14 @@ public class UtilizadorController {
         }
     }
 
+    @GetMapping("/totais")
+    public ResponseEntity<Long> totais() {
+            var total = userService.count();
+            return new ResponseEntity<>(total, OK);
+    }
+
+
+
     @GetMapping("/utilizador/{id}")
     @PreAuthorize("#id == principal.id or hasRole('ROLE_ADMINISTRATOR') or hasRole('ROLE_PEDAGOGICO') or hasRole('ROLE_PROFESSOR')")
     public ResponseEntity<UtilizadorDTO> findUtilizadorById(@PathVariable Long id) {

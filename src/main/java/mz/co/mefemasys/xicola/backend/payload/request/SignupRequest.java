@@ -3,8 +3,14 @@ package mz.co.mefemasys.xicola.backend.payload.request;
 import java.util.Set;
 
 import jakarta.validation.constraints.*;
+import lombok.Data;
 
+@Data
 public class SignupRequest {
+  @NotBlank
+  @Size(min = 3, max = 147)
+  private String nome;
+
   @NotBlank
   @Size(min = 3, max = 20)
   private String username;
@@ -27,6 +33,15 @@ public class SignupRequest {
   public void setUsername(String username) {
     this.username = username;
   }
+
+  public String getNome() {
+    return nome;
+  }
+
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
+
 
   public String getEmail() {
     return email;

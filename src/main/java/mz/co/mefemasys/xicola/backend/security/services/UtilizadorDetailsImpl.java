@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,10 +17,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class UtilizadorDetailsImpl implements UserDetails {
   private static final long serialVersionUID = 1L;
 
+  @Getter
   private Long id;
+
+  @Setter
+  @Getter
+  private String nome;
 
   private String username;
 
+  @Getter
   private String email;
 
   @JsonIgnore
@@ -26,9 +34,10 @@ public class UtilizadorDetailsImpl implements UserDetails {
 
   private Collection<? extends GrantedAuthority> authorities;
 
-  public UtilizadorDetailsImpl(Long id, String username, String email, String password,
+  public UtilizadorDetailsImpl(Long id,String nome, String username, String email, String password,
                                Collection<? extends GrantedAuthority> authorities) {
     this.id = id;
+    this.nome = nome;
     this.username = username;
     this.email = email;
     this.password = password;
@@ -41,6 +50,7 @@ public class UtilizadorDetailsImpl implements UserDetails {
                                .collect(Collectors.toList());
 
     return new UtilizadorDetailsImpl(utilizador.getId(),
+                               utilizador.getNome(),
                                utilizador.getUsername(),
                                utilizador.getEmail(),
                                utilizador.getPassword(),
@@ -52,15 +62,7 @@ public class UtilizadorDetailsImpl implements UserDetails {
     return authorities;
   }
 
-  public Long getId() {
-    return id;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  @Override
+    @Override
   public String getPassword() {
     return password;
   }

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -61,11 +62,11 @@ public class AuthController {
         String jwt = jwtUtils.generateJwtToken(authentication);
 
         UtilizadorDetailsImpl userDetails = (UtilizadorDetailsImpl) authentication.getPrincipal();
-        List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
+        List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
         return ResponseEntity
-                .ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
+                .ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getNome(), userDetails.getUsername(), userDetails.getEmail(), roles));
     }
 
     @PostMapping("/cadastro")
@@ -79,7 +80,7 @@ public class AuthController {
         }
 
         // Create new utilizador's account
-        Utilizador utilizador = new Utilizador(signUpRequest.getUsername(), signUpRequest.getEmail(),
+        Utilizador utilizador = new Utilizador(signUpRequest.getUsername() ,signUpRequest.getNome(), signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()));
 
         Set<String> strRoles = signUpRequest.getRole();

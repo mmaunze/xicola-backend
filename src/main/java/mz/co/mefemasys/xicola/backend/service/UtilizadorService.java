@@ -35,6 +35,10 @@ public class UtilizadorService {
                 .orElseThrow(() -> new ResourceNotFoundException(UTILIZADOR_NOT_FOUND_MESSAGE + id));
     }
 
+    public Long count(){
+        return utilizadorRepository.count();
+    }
+
     @Transactional(readOnly = true)
     public List<Utilizador> findAll() {
         return utilizadorRepository.findAll();

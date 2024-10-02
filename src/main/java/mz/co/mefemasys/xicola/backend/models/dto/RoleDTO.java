@@ -7,10 +7,10 @@ import mz.co.mefemasys.xicola.backend.models.Role;
 @Data
 public class RoleDTO {
     private Long id;
-    private ERole name;
+    private String name;
 
     public RoleDTO(Role role) {
         this.id = role.getId();
-        this.name = role.getName();
+        this.name = String.valueOf(role.getName());
     }
 }
