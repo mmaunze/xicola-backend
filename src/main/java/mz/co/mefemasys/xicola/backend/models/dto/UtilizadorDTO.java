@@ -10,11 +10,13 @@ import java.util.Set;
 public class UtilizadorDTO {
     private Long id;
     private String name;
+    private String email;
     private Set<Role> role;
 
     public UtilizadorDTO(Utilizador utilizador) {
         this.id = utilizador.getId();
         this.name = utilizador.getUsername();
+        this.email = utilizador.getEmail();
         this.role = utilizador.getRoles();
     }
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import static java.util.stream.Collectors.toList;
 import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.ResponseEntity.ok;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -63,6 +64,20 @@ public class UtilizadorController {
     public ResponseEntity<Void> createUser(@RequestBody Utilizador utilizador) {
         userService.create(utilizador);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/remover/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        try {
+            userService.delete(id);
+            return ok().build();
+        } catch (EntityNotFoundException e) {
+            log.error("Utilizador não encontrado para remoção com o ID: {}", id, e);
+            return new ResponseEntity<>(NOT_FOUND);
+        } catch (Exception e) {
+            log.error("Erro ao remover utilizador com o ID: {}", id, e);
+            return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
+        }
     }
 
     private UtilizadorDTO convertToDTO(Utilizador utilizador) {

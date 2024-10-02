@@ -32,6 +32,13 @@ public class EstadoService {
         return estadoRepository.findAll();
     }
 
+
+    @Transactional(readOnly = true)
+    public List<Estado> findEstadoTipo(String tipo) {
+        return estadoRepository.findByTipoEstado(tipo);
+    }
+
+
     @Transactional(readOnly = true)
     public Estado findEstado(String estado) {
         return estadoRepository.findEstado(estado)
