@@ -56,9 +56,8 @@ public class WebSecurityConfig {
 
     // Definindo rotas públicas
     String[] ROTAS_PUBLICAS = {
-        "/api/auth/**", 
-        "/", 
-        "/api/test/**"
+        "/autenticacao/**",
+        "/"
     };
 
     // Definindo rotas privadas (apenas requerem autenticação)

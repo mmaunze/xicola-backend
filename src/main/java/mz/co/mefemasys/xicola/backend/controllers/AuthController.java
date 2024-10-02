@@ -33,7 +33,7 @@ import mz.co.mefemasys.xicola.backend.security.services.UtilizadorDetailsImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/autenticacao")
 public class AuthController {
 
     @Autowired
@@ -68,7 +68,7 @@ public class AuthController {
                 .ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
     }
 
-    @PostMapping("/cadastrar")
+    @PostMapping("/cadastro")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (utilizadorRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Username existente!"));
