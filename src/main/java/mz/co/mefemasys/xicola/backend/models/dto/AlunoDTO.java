@@ -5,15 +5,17 @@ import mz.co.mefemasys.xicola.backend.models.Distrito;
 import java.time.Instant;
 import java.time.LocalDate;
 import lombok.Data;
+import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
 @Data
 
-public class AlunoDTO {
+public class AlunoDTO implements MetodosGerais {
 
     private Long id;
     private String nomeCompleto;
-    private LocalDate dataNascimento;
-    private Distrito distritoNascimento;
+    private String dataNascimento;
+    private String distritoNascimento;
+    private String provinciaNascimento;
     private String sexo;
     private String bilheteIdentificacao;
     private String religiao;
@@ -29,8 +31,9 @@ public class AlunoDTO {
     public AlunoDTO(Aluno aluno) {
         this.id = aluno.getId();
         this.nomeCompleto = aluno.getNomeCompleto();
-        this.dataNascimento = aluno.getDataNascimento();
-        this.distritoNascimento = aluno.getDistritoNascimento();
+        this.dataNascimento = converterDataParaString(aluno.getDataNascimento());
+        this.distritoNascimento = aluno.getDistritoNascimento().getNomeDistrito();
+        this.provinciaNascimento = aluno.getDistritoNascimento().getProvincia().getNomeProvincia();
         this.sexo = aluno.getSexo();
         this.bilheteIdentificacao = aluno.getBilheteIdentificacao();
         this.religiao = aluno.getReligiao();

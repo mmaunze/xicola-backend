@@ -44,6 +44,23 @@ public class AlunoService implements MetodosGerais {
         return alunoRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
+    public Long count(){
+        return alunoRepository.count();
+    }
+
+    @Transactional(readOnly = true)
+    public Long totalAlunosEstado(String estado) {
+
+        if (estado == null || estado.trim().isEmpty()) {
+            return 0L;
+        }
+
+        // Se não for nulo, faz a busca
+        return alunoRepository.findAlunosByEstado(estado.toLowerCase());
+    }
+
+
     @Transactional
     public Aluno create(Aluno aluno) {
         // Obtém o estado "Activo" da base de dados

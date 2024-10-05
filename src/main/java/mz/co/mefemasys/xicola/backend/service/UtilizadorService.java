@@ -35,6 +35,7 @@ public class UtilizadorService {
                 .orElseThrow(() -> new ResourceNotFoundException(UTILIZADOR_NOT_FOUND_MESSAGE + id));
     }
 
+    @Transactional(readOnly = true)
     public Long count(){
         return utilizadorRepository.count();
     }

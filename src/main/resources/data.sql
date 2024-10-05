@@ -215,6 +215,14 @@ INSERT INTO tipo_estado ( descricao ) VALUES( 'Estado de Evento');
 /********************
 estados 
 ******************/
+insert into estado (descricao, tipo_estado) values ('Matriculado',(select id from tipo_estado where descricao ='Estado de Estudante'));
+insert into estado (descricao, tipo_estado) values ('Trenserido',(select id from tipo_estado where descricao ='Estado de Estudante'));
+insert into estado (descricao, tipo_estado) values ('Graduado',(select id from tipo_estado where descricao ='Estado de Estudante'));
+insert into estado (descricao, tipo_estado) values ('Desistente',(select id from tipo_estado where descricao ='Estado de Estudante'));
+insert into estado (descricao, tipo_estado) values ('Expulso',(select id from tipo_estado where descricao ='Estado de Estudante'));
+insert into estado (descricao, tipo_estado) values ('Suspenso',(select id from tipo_estado where descricao ='Estado de Estudante'));
+
+
 
 
 

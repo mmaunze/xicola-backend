@@ -1,18 +1,25 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
 import mz.co.mefemasys.xicola.backend.models.Aluno;
+import mz.co.mefemasys.xicola.backend.models.Distrito;
 import mz.co.mefemasys.xicola.backend.models.Estado;
+import mz.co.mefemasys.xicola.backend.models.Provincia;
 import mz.co.mefemasys.xicola.backend.models.dto.AlunoDTO;
 import mz.co.mefemasys.xicola.backend.service.AlunoService;
+import mz.co.mefemasys.xicola.backend.service.DistritoService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;
 import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
+import java.text.ParseException;
 import java.util.List;
 import static java.util.stream.Collectors.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import static org.springframework.http.HttpStatus.*;
+
+import mz.co.mefemasys.xicola.backend.service.ProvinciaService;
+import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 
@@ -22,15 +29,18 @@ import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @Data
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/utilizadores/alunos")
+@RequestMapping("/alunos")
 @Slf4j
-public class AlunoController {
+public class AlunoController implements MetodosGerais {
 
     private final EstadoService estadoService;
     private final AlunoService alunoService;
+    private final ProvinciaService provinciaService;
+    private final DistritoService distritoService;
 
     @GetMapping
     public ResponseEntity<List<AlunoDTO>> findAll() {
@@ -61,21 +71,31 @@ public class AlunoController {
         }
     }
 
-    
-    @PostMapping
-    public ResponseEntity<Void> create(@RequestBody AlunoDTO alunoDTO) {
+
+    @GetMapping("/totais")
+    public ResponseEntity<Long> totais() {
+        var total = alunoService.count();
+        return new ResponseEntity<>(total, OK);
+    }
+
+    @GetMapping("/alunos/{estado}")
+    public ResponseEntity<Long> totalAlunosEstado(String estado) {
+        var total = alunoService.totalAlunosEstado(estado);
+        return new ResponseEntity<>(total, OK);
+    }
+
+
+    @PostMapping("/cadastrar")
+    public ResponseEntity<Void> create(@RequestBody Aluno aluno) {
         try {
-            var newAluno = alunoService.create(convertToEntity(alunoDTO));
-            var newAlunoDTO = convertToDTO(newAluno);
+            var newAluno = alunoService.create(aluno);
 
             URI location = fromCurrentRequest()
                     .path("/{id}")
-                    .buildAndExpand(newAlunoDTO.getId())
+                    .buildAndExpand(newAluno.getId())
                     .toUri();
-
             return created(location).build();
         } catch (EntityNotFoundException e) {
-            log.error("Estado não encontrado: " + alunoDTO.getEstado(), e);
             return new ResponseEntity<>(BAD_REQUEST);
         } catch (Exception e) {
             log.error("Erro ao criar novo aluno", e);
@@ -115,8 +135,11 @@ public class AlunoController {
         var aluno = new Aluno();
         aluno.setId(alunoDTO.getId());
         aluno.setNomeCompleto(alunoDTO.getNomeCompleto());
-        aluno.setDataNascimento(alunoDTO.getDataNascimento());
-        aluno.setDistritoNascimento(alunoDTO.getDistritoNascimento());
+
+            aluno.setDataNascimento(converterStringParaData(alunoDTO.getDataNascimento()));
+
+
+        aluno.setDistritoNascimento(fectchDistrito(alunoDTO.getDistritoNascimento()));
         aluno.setSexo(alunoDTO.getSexo());
         aluno.setBilheteIdentificacao(alunoDTO.getBilheteIdentificacao());
         aluno.setReligiao(alunoDTO.getReligiao());
@@ -135,4 +158,10 @@ public class AlunoController {
     private AlunoDTO convertToDTO(Aluno aluno) {
         return new AlunoDTO(aluno);
     }
+
+    private Distrito fectchDistrito(String distrito) {
+        return distritoService.findDistrito(distrito);
+    }
+
+
 }

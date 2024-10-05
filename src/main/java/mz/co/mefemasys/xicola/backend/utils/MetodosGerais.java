@@ -5,6 +5,9 @@ import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Calendar;
 import static java.util.Calendar.*;
@@ -18,17 +21,23 @@ import javax.swing.JTextField;
 public interface MetodosGerais {
 
 
-    public default Date converterStringParaData(String dataString) throws ParseException {
-        var formato = new SimpleDateFormat("dd/MM/yyyy");
-        var dataUtil = formato.parse(dataString);
-        return new Date(dataUtil.getTime());
+    public default LocalDate converterStringParaData(String dataString) throws DateTimeParseException {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return LocalDate.parse(dataString, formato);
     }
 
     public default String converterDataParaString(@NotNull LocalDate data) {
-        var df = new SimpleDateFormat("yyyy-MM-dd");
-        var dataFormatada = df.format(data);
-        var partes = dataFormatada.split("-");
-        return String.format("%s/%s/%s", partes[2], partes[1], partes[0]);
+        // Obter o dia do mês
+        String dia = String.format("%02d", data.getDayOfMonth());
+
+        // Obter o mês por extenso em português
+        String mes = data.getMonth().getDisplayName(TextStyle.FULL, new Locale("pt", "PT"));
+
+        // Obter o ano
+        String ano = String.valueOf(data.getYear());
+
+        // Formatar a string final
+        return String.format("%s de %s de %s", dia, mes.toUpperCase(), ano);
     }
 
     public default int calcularIdade(String dataNascimento) {
