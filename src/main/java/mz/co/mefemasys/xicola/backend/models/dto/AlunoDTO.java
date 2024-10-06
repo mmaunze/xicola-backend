@@ -1,5 +1,8 @@
 package mz.co.mefemasys.xicola.backend.models.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.models.Aluno;
 import mz.co.mefemasys.xicola.backend.models.Distrito;
 import java.time.Instant;
@@ -8,7 +11,6 @@ import lombok.Data;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
 @Data
-
 public class AlunoDTO implements MetodosGerais {
 
     private Long id;
@@ -27,6 +29,8 @@ public class AlunoDTO implements MetodosGerais {
     private String nomeDoPai;
     private String nomeDaMae;
     private Long numeroTelefonePrincipal;
+
+    public AlunoDTO(){}
 
     public AlunoDTO(Aluno aluno) {
         this.id = aluno.getId();

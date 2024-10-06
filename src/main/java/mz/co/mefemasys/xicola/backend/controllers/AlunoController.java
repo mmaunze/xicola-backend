@@ -86,9 +86,9 @@ public class AlunoController implements MetodosGerais {
 
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Void> create(@RequestBody Aluno aluno) {
+    public ResponseEntity<Void> create(@RequestBody AlunoDTO aluno) {
         try {
-            var newAluno = alunoService.create(aluno);
+            var newAluno = alunoService.create(convertToEntity(aluno));
 
             URI location = fromCurrentRequest()
                     .path("/{id}")
@@ -146,7 +146,7 @@ public class AlunoController implements MetodosGerais {
         aluno.setGrupoSanguineo(alunoDTO.getGrupoSanguineo());
         aluno.setEndereco(alunoDTO.getEndereco());
         aluno.setDataRegisto(alunoDTO.getDataRegisto());
-        Estado estado = estadoService.findEstado(alunoDTO.getEstado());
+        Estado estado = estadoService.findById(Long.parseLong("1")); //findEstado(alunoDTO.getEstado());
         aluno.setEstado(estado);
         aluno.setEscolaAnterior(alunoDTO.getEscolaAnterior());
         aluno.setNomeDoPai(alunoDTO.getNomeDoPai());

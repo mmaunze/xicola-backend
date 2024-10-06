@@ -1,18 +1,18 @@
 package mz.co.mefemasys.xicola.backend.models.dto;
 
-import mz.co.mefemasys.xicola.backend.models.Distrito;
-
 import lombok.Data;
+import mz.co.mefemasys.xicola.backend.models.Distrito;
+import mz.co.mefemasys.xicola.backend.models.Provincia;
 
 @Data
-public class DistritoDTO {
+public class ProvinciaDTO {
     private Long id;
     private String nome;
-    private String provincia;
 
-    public DistritoDTO (Distrito distrito) {
-        this.id = distrito.getId();
-        this.nome = distrito.getNomeDistrito();
-        this.provincia = distrito.getProvincia().getNomeProvincia();
+
+    public ProvinciaDTO(Provincia provincia) {
+        this.id = provincia.getId();
+        this.nome = provincia.getNomeProvincia();
+
     }
 }

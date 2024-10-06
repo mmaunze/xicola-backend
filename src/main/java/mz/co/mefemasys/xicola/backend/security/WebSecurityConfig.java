@@ -56,22 +56,22 @@ public class WebSecurityConfig {
 
     // Definindo rotas públicas
     String[] ROTAS_PUBLICAS = {
-        "/autenticacao/**", "/utilizadores/**","/alunos/**", "/roles/**", "/distritos/**",
+        "/autenticacao/**",
     };
 
     // Definindo rotas privadas (apenas requerem autenticação)
     String[] ROTAS_PRIVADAS = {
-      "/qyags/**",
-  
+      "/estados/**", "/utilizadores/**", "/distritos/**", "/roles/**", "/provincias/**",
+
     };
 
     // Definindo rotas para roles específicas
     String[] ROTAS_ADMIN = {
-        "/api/admin/**",
+        "/api/admin/**",  "/alunos/**",
     };
 
     String[] ROTAS_PROFESSOR = {
-        "/api/professor/**",
+        "/api/professor/**", "/alunos/**",
     };
 
     String[] ROTAS_ALUNO = {
@@ -79,11 +79,11 @@ public class WebSecurityConfig {
     };
 
     String[] ROTAS_FINANCEIRO = {
-      "/api/admin/**"
+      "/api/admin/**",  "/alunos/**",
   };
 
   String[] ROTAS_PEDAGOGICO = {
-      "/api/professor/**",
+      "/professores/**",  "/alunos/**",
   };
 
   String[] ROTAS_BIBLIOTECARIO = {
@@ -94,15 +94,15 @@ public class WebSecurityConfig {
         .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(auth -> 
-          auth.requestMatchers(ROTAS_PUBLICAS).permitAll()  // Rotas públicas
-              .requestMatchers(ROTAS_PRIVADAS).authenticated() // Rotas privadas (apenas autenticadas)
-              .requestMatchers(ROTAS_ADMIN).hasRole("ADMIN")  // Rotas de Admin
-              .requestMatchers(ROTAS_PROFESSOR).hasRole("PROFESSOR") // Rotas de Professor
-              .requestMatchers(ROTAS_ALUNO).hasRole("ALUNO")  // Rotas de Aluno
-              .requestMatchers(ROTAS_FINANCEIRO).hasRole("FINANCEIRO")  // Rotas de Admin
-              .requestMatchers(ROTAS_PEDAGOGICO).hasRole("PEDAGOGICO") // Rotas de Professor
+          auth.requestMatchers(ROTAS_PUBLICAS).permitAll()
+              .requestMatchers(ROTAS_PRIVADAS).authenticated()
+              .requestMatchers(ROTAS_ADMIN).hasRole("ADMIN")
+              .requestMatchers(ROTAS_PROFESSOR).hasRole("PROFESSOR")
+              .requestMatchers(ROTAS_ALUNO).hasRole("ALUNO")
+              .requestMatchers(ROTAS_FINANCEIRO).hasRole("FINANCEIRO")
+              .requestMatchers(ROTAS_PEDAGOGICO).hasRole("PEDAGOGICO")
               .requestMatchers(ROTAS_BIBLIOTECARIO).hasRole("BIBLIOTECARIO") 
-              .anyRequest().authenticated() // Qualquer outra requisição precisa de autenticação
+              .anyRequest().authenticated()
         );
 
     http.authenticationProvider(authenticationProvider());
