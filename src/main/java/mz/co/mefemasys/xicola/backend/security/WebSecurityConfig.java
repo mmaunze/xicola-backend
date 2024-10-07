@@ -57,21 +57,27 @@ public class WebSecurityConfig {
     // Definindo rotas públicas
     String[] ROTAS_PUBLICAS = {
         "/autenticacao/**",
+            "/estados/**",
+            "/utilizadores/**",
+            "/distritos/**",
+            "/roles/**",
+            "/provincias/**",
+            "/alunos/**",
     };
 
     // Definindo rotas privadas (apenas requerem autenticação)
     String[] ROTAS_PRIVADAS = {
-      "/estados/**", "/utilizadores/**", "/distritos/**", "/roles/**", "/provincias/**",
+
 
     };
 
     // Definindo rotas para roles específicas
     String[] ROTAS_ADMIN = {
-        "/api/admin/**",  "/alunos/**",
+        "/api/admin/**",
     };
 
     String[] ROTAS_PROFESSOR = {
-        "/api/professor/**", "/alunos/**",
+        "/api/professor/**",
     };
 
     String[] ROTAS_ALUNO = {
@@ -79,11 +85,11 @@ public class WebSecurityConfig {
     };
 
     String[] ROTAS_FINANCEIRO = {
-      "/api/admin/**",  "/alunos/**",
+      "/api/admin/**",
   };
 
   String[] ROTAS_PEDAGOGICO = {
-      "/professores/**",  "/alunos/**",
+      "/professores/**",
   };
 
   String[] ROTAS_BIBLIOTECARIO = {

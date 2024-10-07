@@ -43,6 +43,7 @@ public class AlunoController implements MetodosGerais {
     private final DistritoService distritoService;
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PEDAGOGICO') or hasRole('PROFESSOR')")
     public ResponseEntity<List<AlunoDTO>> findAll() {
         try {
             var alunos = alunoService.findAll();
@@ -57,7 +58,7 @@ public class AlunoController implements MetodosGerais {
     }
 
     @GetMapping("/aluno/{id}")
-    @PreAuthorize("#id == principal.id or hasRole('ADMINISTRATOR') or hasRole('PEDAGOGICO') or hasRole('PROFESSOR')")
+    @PreAuthorize("#id == principal.id or hasRole('ADMIN') or hasRole('PEDAGOGICO') or hasRole('PROFESSOR')")
     public ResponseEntity<AlunoDTO> findAlunoById(@PathVariable Long id) {
         try {
             var aluno = alunoService.findById(id);
