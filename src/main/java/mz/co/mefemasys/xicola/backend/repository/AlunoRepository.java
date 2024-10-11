@@ -13,6 +13,6 @@ import java.util.Optional;
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
 
-    @Query("SELECT count(a) FROM Aluno a WHERE a.estado.descricao like :descricao")
+    @Query("SELECT count(a) FROM Aluno a WHERE a.estado.descricao = :descricao")
     Long findAlunosByEstado (@Param("descricao") String descricao);
 }

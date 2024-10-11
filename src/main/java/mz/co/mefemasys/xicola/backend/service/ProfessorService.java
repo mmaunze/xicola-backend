@@ -100,7 +100,7 @@ public class ProfessorService implements MetodosGerais {
 
     private Utilizador criarUtilizadorParaProfessor(Professor professor, Estado estado) {
         var utilizador = new Utilizador();
-        utilizador.setId(Long.parseLong(gerarId()));
+        utilizador.setId(gerarId());
 
         List<String> usernames = gerarUsernames(professor.getNomeCompleto());
         utilizador.setUsername(gerarUsernameUnico(usernames));

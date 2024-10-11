@@ -40,7 +40,7 @@ public interface MetodosGerais {
         return String.format("%s de %s de %s", dia, mes.toUpperCase(), ano);
     }
 
-    public default int calcularIdade(String dataNascimento) {
+     default int calcularIdade(String dataNascimento) {
         try {
             var sdf = new SimpleDateFormat("dd/MM/yyyy");
             var dataNasc = sdf.parse(dataNascimento);
@@ -59,7 +59,7 @@ public interface MetodosGerais {
     }
 
 
-    public default String calcularFaixaEtaria(int idade) {
+     default String calcularFaixaEtaria(int idade) {
         if (idade < 18) {
             return "<18";
         } else if (idade <= 25) {
@@ -99,7 +99,7 @@ public interface MetodosGerais {
         campo.requestFocus();
     }
 
-    public default int obterNumeroMes(String nomeMes) {
+     default int obterNumeroMes(String nomeMes) {
         var symbols = new DateFormatSymbols(new Locale("pt", "BR"));
         var meses = symbols.getMonths();
         for (var i = 0; i < meses.length; i++) {
@@ -110,15 +110,38 @@ public interface MetodosGerais {
         return 0;
     }
 
+     default String generateUsername(String nomeCompleto) {
+
+        String[] partesNome = nomeCompleto.split(" ");
+
+        if (partesNome.length == 1) {
+            return partesNome[0].toLowerCase();
+        }
+
+        String primeiroNome = partesNome[0].toLowerCase();
+        String ultimoNome = partesNome[partesNome.length - 1].toLowerCase();
+
+
+        String[] opcoesUsername = new String[] {
+                primeiroNome + "." + ultimoNome,
+                ultimoNome + "." + primeiroNome,
+                primeiroNome + "." + primeiroNome,
+                nomeCompleto.replace(" ", ".").toLowerCase()
+        };
+
+
+        return opcoesUsername[0];
+    }
+
     default List<String> gerarUsernames(String nomeCompleto) {
         if (nomeCompleto == null || nomeCompleto.isBlank()) {
             throw new IllegalArgumentException("Nome completo não pode estar vazio");
         }
-    
+
         var partesNome = nomeCompleto.trim().toLowerCase().split("\\s+");
         var numPalavras = partesNome.length;
         List<String> usernames = new ArrayList<>();
-    
+
         // Adiciona combinações iniciais
         var sb = new StringBuilder();
         for (var parte : partesNome) {
@@ -126,23 +149,23 @@ public interface MetodosGerais {
         }
         usernames.add(sb.toString() + partesNome[numPalavras - 1]);
         usernames.add(sb.toString() + "." + partesNome[numPalavras - 1]);
-    
+
         // Método auxiliar para gerar combinações
         generateCombinations(partesNome, numPalavras, usernames, 2);
         generateCombinations(partesNome, numPalavras, usernames, 3);
         generateCombinations(partesNome, numPalavras, usernames, 4);
         generateCombinations(partesNome, numPalavras, usernames, 5);
-    
+
         return usernames;
     }
-    
+
     private void generateCombinations(String[] partesNome, int numPalavras, List<String> usernames, int combinationSize) {
         if (numPalavras >= combinationSize) {
             int[] indices = new int[combinationSize];
             combine(partesNome, usernames, indices, 0, numPalavras - 1, 0, combinationSize);
         }
     }
-    
+
     private void combine(String[] partesNome, List<String> usernames, int[] indices, int start, int end, int index, int combinationSize) {
         if (index == combinationSize) {
             addCombination(partesNome, usernames, indices, combinationSize);
@@ -153,7 +176,7 @@ public interface MetodosGerais {
             combine(partesNome, usernames, indices, i + 1, end, index + 1, combinationSize);
         }
     }
-    
+
     private void addCombination(String[] partesNome, List<String> usernames, int[] indices, int combinationSize) {
         var sb = new StringBuilder();
         var sbWithDots = new StringBuilder();
@@ -167,37 +190,36 @@ public interface MetodosGerais {
         usernames.add(sb.toString());
         usernames.add(sbWithDots.toString());
     }
-    
-    default String gerarId() {
+
+    default Long gerarId() {
         String dataHora = getCurrentTimestamp();
-        String randomNumber = generateRandomNumber(3); 
-        return String.format("%s%s", dataHora, randomNumber);
+        return Long.valueOf(dataHora);
     }
-    
+
     private String getCurrentTimestamp() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         return sdf.format(new Date());
     }
-    
+
     public static final Random random = new Random();
 
     private String generateRandomNumber(int digits) {
         int upperBound = (int) Math.pow(10, digits);
         int randomNumber = random.nextInt(upperBound);
-    
+
         StringBuilder formatBuilder = new StringBuilder();
         formatBuilder.append("%0").append(digits).append("d");
-    
+
         return String.format(formatBuilder.toString(), randomNumber);
     }
 
     public default Date converterParaData(int ano, int mes, int dia) {
         var calendar = getInstance();
         calendar.set(YEAR, ano);
-        calendar.set(MONTH, mes - 1); 
+        calendar.set(MONTH, mes - 1);
         calendar.set(DAY_OF_MONTH, dia);
         return calendar.getTime();
     }
 
-   
+
 }

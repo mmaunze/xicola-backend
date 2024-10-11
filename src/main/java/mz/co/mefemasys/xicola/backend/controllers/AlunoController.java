@@ -3,14 +3,12 @@ package mz.co.mefemasys.xicola.backend.controllers;
 import mz.co.mefemasys.xicola.backend.models.Aluno;
 import mz.co.mefemasys.xicola.backend.models.Distrito;
 import mz.co.mefemasys.xicola.backend.models.Estado;
-import mz.co.mefemasys.xicola.backend.models.Provincia;
 import mz.co.mefemasys.xicola.backend.models.dto.AlunoDTO;
 import mz.co.mefemasys.xicola.backend.service.AlunoService;
 import mz.co.mefemasys.xicola.backend.service.DistritoService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;
 import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
-import java.text.ParseException;
 import java.util.List;
 import static java.util.stream.Collectors.*;
 import lombok.Data;
@@ -89,7 +87,7 @@ public class AlunoController implements MetodosGerais {
     @PostMapping("/cadastrar")
     public ResponseEntity<Void> create(@RequestBody AlunoDTO aluno) {
         try {
-            var newAluno = alunoService.create(convertToEntity(aluno));
+            var newAluno = alunoService.create(aluno);
 
             URI location = fromCurrentRequest()
                     .path("/{id}")

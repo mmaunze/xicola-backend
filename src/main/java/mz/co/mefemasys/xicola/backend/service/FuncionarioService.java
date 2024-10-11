@@ -68,7 +68,7 @@ public class FuncionarioService implements MetodosGerais {
 
         // Gerar e definir o username único para o utilizador
         var utilizador = new Utilizador();
-        utilizador.setId(Long.parseLong(gerarId()));
+        utilizador.setId(gerarId());
 
         // Gera a lista de usernames possíveis a partir do nome completo do professor
         List<String> usernames = gerarUsernames(funcionario.getNomeCompleto());

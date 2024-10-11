@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.mefemasys</groupId>
-	<artifactId>nomeprojecto</artifactId>
+	<artifactId>xicola</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>xicola.backend</name>
 	<description>Descricao</description>

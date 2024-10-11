@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -32,7 +33,9 @@ public class DistritoController {
     private final DistritoService distritoService;
     private final ProvinciaService provinciaService;
 
+
     @GetMapping
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<List<DistritoDTO>> findAll() {
         try {
             var distritos = distritoService.findAll();
@@ -50,7 +53,7 @@ public class DistritoController {
     }
 
     @GetMapping("/provincia/{provincia}")
-    public ResponseEntity<List<DistritoDTO>> findByProvincia(@RequestParam String provincia) {
+    public ResponseEntity<List<DistritoDTO>> findByProvincia(@PathVariable String provincia) {
         try {
             var distritos = distritoService.findDistritoProvincia(provincia) ;
             var distritoList = new ArrayList<Distrito>();

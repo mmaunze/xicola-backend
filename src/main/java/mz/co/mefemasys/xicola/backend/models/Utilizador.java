@@ -17,8 +17,8 @@ import lombok.Data;
           @UniqueConstraint(columnNames = "email") 
         })
 public class Utilizador {
+
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @NotBlank

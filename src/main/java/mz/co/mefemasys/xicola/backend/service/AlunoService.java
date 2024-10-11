@@ -1,21 +1,32 @@
 package mz.co.mefemasys.xicola.backend.service;
 
-import mz.co.mefemasys.xicola.backend.models.Aluno;
-import mz.co.mefemasys.xicola.backend.models.Utilizador;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.models.*;
+import mz.co.mefemasys.xicola.backend.models.dto.AlunoDTO;
+import mz.co.mefemasys.xicola.backend.payload.request.SignupRequest;
 import mz.co.mefemasys.xicola.backend.repository.AlunoRepository;
 import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
+import mz.co.mefemasys.xicola.backend.repository.RoleRepository;
 import mz.co.mefemasys.xicola.backend.repository.UtilizadorRepository;
 import mz.co.mefemasys.xicola.backend.service.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.service.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 import java.time.Instant;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
+
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static mz.co.mefemasys.xicola.backend.models.ERole.ROLE_ESTUDANTE;
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Data
@@ -31,7 +42,11 @@ public class AlunoService implements MetodosGerais {
 
     private final AlunoRepository alunoRepository;
     private final EstadoRepository estadoRepository;
+    private final RoleRepository roleRepository;
+    private final EstadoService estadoService;
     private final UtilizadorRepository utilizadorRepository;
+    private final DistritoService distritoService;
+    private  final PasswordEncoder encoder;
 
     @Transactional(readOnly = true)
     public Aluno findById(Long id) {
@@ -60,49 +75,104 @@ public class AlunoService implements MetodosGerais {
         return alunoRepository.findAlunosByEstado(estado.toLowerCase());
     }
 
+    private static final Logger logger = LoggerFactory.getLogger(AlunoService.class);
+
 
     @Transactional
-    public Aluno create(Aluno aluno) {
-        // Obtém o estado "Activo" da base de dados
-        var estadoOptional = estadoRepository.findEstado("Activo");
-        // Verifica se o estado foi encontrado
-        var estado = estadoOptional
-                .orElseThrow(() -> new ResourceNotFoundException(ESTADO_NOT_FOUND_MESSAGE));
+    public Aluno create(AlunoDTO aluno) {
+        try {
+            // Gerar username
+            logger.info("A gerar um username único para o aluno: {}", aluno.getNomeCompleto());
+            String username = gerarUsernameUnico(gerarUsernames(aluno.getNomeCompleto()));
+            logger.info("Username gerado: {}", username);
 
-        // Realiza as validações necessárias
-        validarDadosObrigatorios(aluno);
-        validarComprimentoMinimo(aluno);
-        validarReligiao(aluno);
-        validarSexo(aluno);
-        validarEndereco(aluno);
-        validarDataNascimento(aluno);
-        validarDataRegisto(aluno);
+            // Gerar ID
+            long id = gerarId();
+            logger.info("ID gerado para o utilizador: {}", id);
 
-        // Define o estado no aluno
-        aluno.setEstado(estado);
+            // Criar utilizador
+            Utilizador utilizador = new Utilizador();
+            utilizador.setId(id);
+            utilizador.setNome(aluno.getNomeCompleto());
+            utilizador.setUsername(username);
+            utilizador.setPassword(encoder.encode(username));
+            utilizador.setEmail(username + "@gmail.com");
+            logger.info("Utilizador preparado: {}", utilizador);
 
-        // Gerar e definir o username único para o utilizador
-        var utilizador = new Utilizador();
-        utilizador.setId(Long.parseLong(gerarId()));
+            // Buscar Role
+            logger.info("A buscar o Role 'ESTUDANTE' do repositório");
+            Role estudanteRole = roleRepository.findByName(ROLE_ESTUDANTE)
+                    .orElseThrow(() -> new RuntimeException("Error: Role 'ESTUDANTE' não encontrado."));
+            logger.info("Role 'ESTUDANTE' encontrado");
 
-        // Gera a lista de usernames possíveis a partir do nome completo do professor
-        List<String> usernames = gerarUsernames(aluno.getNomeCompleto());
+            // Atribuir roles
+            Set<Role> roles = new HashSet<>();
+            roles.add(estudanteRole);
+            utilizador.setRoles(roles);
 
-        var usernameFinal = gerarUsernameUnico(usernames);
+            // Guardar utilizador no repositório
+            try {
+                logger.info("A guardar o utilizador no repositório");
+                utilizadorRepository.save(utilizador);
+                logger.info("Utilizador guardado com sucesso: {}", utilizador);
+            } catch (Exception e) {
+                logger.error("Erro ao salvar o utilizador: {}", e.getMessage());
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao salvar o utilizador.", e);
+            }
 
-        utilizador.setUsername(usernameFinal);
+            // Buscar distrito e estado
+            logger.info("A buscar o distrito de nascimento: {}", aluno.getDistritoNascimento());
+            Distrito distrito = fectchDistrito(aluno.getDistritoNascimento());
+            logger.info("Distrito encontrado: {}", distrito);
 
-        // Configurar o Utilizador no Professor
-        utilizador.setPassword(aluno.getUtilizador().getUsername()); // Pode ser qualquer senha padrão
+            logger.info("A buscar o estado 'Activo'");
+            Estado estado = fectchEstado("Activo");
+            logger.info("Estado encontrado: {}", estado);
 
-        utilizadorRepository.save(utilizador);
+            // Criar novo aluno
+            var newAluno = new Aluno();
+            newAluno.setId(aluno.getId());
+            newAluno.setNomeCompleto(aluno.getNomeCompleto());
+            newAluno.setDataRegisto(new Date().toInstant());
+            newAluno.setDataNascimento(converterStringParaData(aluno.getDataNascimento()));
+            newAluno.setEndereco(aluno.getEndereco());
+            newAluno.setReligiao(aluno.getReligiao());
+            newAluno.setNomeDaMae(aluno.getNomeDaMae());
+            newAluno.setNomeDoPai(aluno.getNomeDoPai());
+            newAluno.setSexo(aluno.getSexo());
+            newAluno.setDistritoNascimento(distrito);
+            newAluno.setEstado(estado);
+            newAluno.setNumeroTelefonePrincipal(aluno.getNumeroTelefonePrincipal());
+            newAluno.setBilheteIdentificacao(aluno.getBilheteIdentificacao());
+            newAluno.setEscolaAnterior(aluno.getEscolaAnterior());
+            newAluno.setGrupoSanguineo(aluno.getGrupoSanguineo());
 
-        aluno.setUtilizador(utilizador);
-        aluno.setId(utilizador.getId());
+            try {
+                logger.info("A guardar o novo aluno no repositório");
+                return alunoRepository.save(newAluno);
+            } catch (Exception e) {
+                logger.error("Erro ao salvar o aluno: {}", e.getMessage());
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao salvar o aluno.", e);
+            }
 
-        // Salva o aluno no banco de dados
-        return alunoRepository.save(aluno);
+        } catch (Exception e) {
+            logger.error("Erro ao criar  aluno: {}", e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao criar aluno.", e);
+        }
     }
+
+
+    private Distrito fectchDistrito(String distrito) {
+        return distritoService.findDistrito(distrito);
+    }
+
+    private Estado fectchEstado(String estado) {
+        return estadoService.findEstado(estado) ;
+    }
+
 
     @Transactional
     public Aluno update(Long id, Aluno alunoAtualizado) {

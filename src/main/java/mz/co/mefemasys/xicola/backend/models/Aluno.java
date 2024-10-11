@@ -16,8 +16,8 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "aluno", schema = "public")
 public class Aluno {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -25,6 +25,7 @@ public class Aluno {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id", nullable = false)
     private Utilizador utilizador;
+
 
     @Size(max = 100)
     @NotNull
@@ -42,7 +43,7 @@ public class Aluno {
 
     @Size(max = 1)
     @NotNull
-    @Column(name = "sexo", nullable = false, length = 1)
+    @Column(name = "sexo", nullable = false, length = 12)
     private String sexo;
 
     @Size(max = 13)

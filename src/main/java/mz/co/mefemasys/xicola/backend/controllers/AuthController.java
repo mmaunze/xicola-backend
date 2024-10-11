@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,7 +36,7 @@ import mz.co.mefemasys.xicola.backend.security.services.UtilizadorDetailsImpl;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/autenticacao")
-public class AuthController {
+public class AuthController  implements MetodosGerais {
 
     @Autowired
     AuthenticationManager authenticationManager;
@@ -82,7 +83,7 @@ public class AuthController {
         // Create new utilizador's account
         Utilizador utilizador = new Utilizador(signUpRequest.getUsername() ,signUpRequest.getNome(), signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()));
-
+        utilizador.setId(gerarId());
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
 
