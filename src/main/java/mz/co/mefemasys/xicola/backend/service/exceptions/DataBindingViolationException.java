@@ -1,8 +1,9 @@
 package mz.co.mefemasys.xicola.backend.service.exceptions;
 
 import org.springframework.dao.DataIntegrityViolationException;
-import static org.springframework.http.HttpStatus.*;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 /**
  *

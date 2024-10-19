@@ -1,25 +1,21 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
-import static java.util.stream.Collectors.*;
-import static org.springframework.http.HttpStatus.*;
-import static org.springframework.http.ResponseEntity.*;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
-
+import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.util.List;
+import static java.util.stream.Collectors.toList;
 import java.util.stream.StreamSupport;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Cargo;
 import mz.co.mefemasys.xicola.backend.models.dto.CargoDTO;
 import mz.co.mefemasys.xicola.backend.service.CargoService;
-
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import static org.springframework.http.HttpStatus.*;
+import org.springframework.http.ResponseEntity;
+import static org.springframework.http.ResponseEntity.created;
+import org.springframework.web.bind.annotation.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
 @RequiredArgsConstructor
@@ -51,7 +47,7 @@ public class CargoController {
         } catch (EntityNotFoundException e) {
             log.error("Cargo não encontrado com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar cargo com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -77,7 +73,7 @@ public class CargoController {
         } catch (EntityNotFoundException e) {
             log.error("Cargo não encontrado para o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao atualizar cargo com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -91,7 +87,7 @@ public class CargoController {
         } catch (EntityNotFoundException e) {
             log.error("Cargo não encontrado para remoção com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover cargo com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }

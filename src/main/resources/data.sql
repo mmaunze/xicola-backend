@@ -486,3 +486,14 @@ insert into disciplina (nome_disciplina) values ('Ingles');
 
 
 
+INSERT INTO role (name) VALUES ('ROLE_USER');
+INSERT INTO role (name) VALUES ('ROLE_MODERATOR');
+INSERT INTO role (name) VALUES ('ROLE_ADMIN');
+INSERT INTO role (name) VALUES ('ROLE_ESTUDANTE');
+INSERT INTO role (name) VALUES ('ROLE_PROFESSOR');
+INSERT INTO role (name) VALUES ('ROLE_BIBLIOTECARIO');
+INSERT INTO role (name) VALUES ('ROLE_FINANCEIRO');
+INSERT INTO role (name) VALUES ('ROLE_PEDAGOGICO');
+INSERT INTO role (name) VALUES ('ROLE_AQUISICOES');
+INSERT INTO role (name) VALUES ('ROLE_DIRECTOR');
+INSERT INTO role (name) VALUES ('ROLE_ENCARREGADO');

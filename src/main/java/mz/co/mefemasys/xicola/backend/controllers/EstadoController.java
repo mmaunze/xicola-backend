@@ -1,23 +1,20 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
 import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import mz.co.mefemasys.xicola.backend.models.Cargo;
-import mz.co.mefemasys.xicola.backend.models.Estado;
-import mz.co.mefemasys.xicola.backend.models.dto.CargoDTO;
-import mz.co.mefemasys.xicola.backend.models.dto.EstadoDTO;
-import mz.co.mefemasys.xicola.backend.service.EstadoService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 import java.util.List;
-import java.util.stream.StreamSupport;
-
 import static java.util.stream.Collectors.toList;
+import java.util.stream.StreamSupport;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
+import mz.co.mefemasys.xicola.backend.models.Estado;
+import mz.co.mefemasys.xicola.backend.models.dto.EstadoDTO;
+import mz.co.mefemasys.xicola.backend.service.EstadoService;
 import static org.springframework.http.HttpStatus.*;
+import org.springframework.http.ResponseEntity;
 import static org.springframework.http.ResponseEntity.created;
+import org.springframework.web.bind.annotation.*;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
@@ -64,7 +61,7 @@ public class EstadoController {
         } catch (EntityNotFoundException e) {
             log.error("Estado não encontrado com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar estado com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -90,7 +87,7 @@ public class EstadoController {
         } catch (EntityNotFoundException e) {
             log.error("Estado não encontrado para o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao atualizar estado com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -104,7 +101,7 @@ public class EstadoController {
         } catch (EntityNotFoundException e) {
             log.error("Estado não encontrado para remoção com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover estado com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }

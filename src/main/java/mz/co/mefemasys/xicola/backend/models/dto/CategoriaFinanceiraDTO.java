@@ -1,8 +1,7 @@
 package mz.co.mefemasys.xicola.backend.models.dto;
 
-import mz.co.mefemasys.xicola.backend.models.CategoriaFinanceira;
-
 import lombok.Data;
+import mz.co.mefemasys.xicola.backend.models.CategoriaFinanceira;
 
 @Data
 public class CategoriaFinanceiraDTO {

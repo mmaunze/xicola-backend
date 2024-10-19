@@ -1,24 +1,24 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
+import jakarta.persistence.EntityNotFoundException;
+import java.net.URI;
+import java.util.List;
+import static java.util.stream.Collectors.toList;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Ativo;
 import mz.co.mefemasys.xicola.backend.models.Estado;
 import mz.co.mefemasys.xicola.backend.models.dto.AtivoDTO;
 import mz.co.mefemasys.xicola.backend.service.AtivoService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;
-import jakarta.persistence.EntityNotFoundException;
-import java.net.URI;
-import java.util.List;
-import static java.util.stream.Collectors.*;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;
-import static org.springframework.http.ResponseEntity.*;
-
+import static org.springframework.http.ResponseEntity.created;
+import static org.springframework.http.ResponseEntity.ok;
 import org.springframework.web.bind.annotation.*;
-
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @Data
 @RestController
@@ -52,7 +52,7 @@ public class AtivoController {
         } catch (EntityNotFoundException e) {
             log.error("Ativo não encontrado com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar ativo com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -87,7 +87,7 @@ public class AtivoController {
         } catch (EntityNotFoundException e) {
             log.error("Ativo ou Estado não encontrado para o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao atualizar ativo com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -101,7 +101,7 @@ public class AtivoController {
         } catch (EntityNotFoundException e) {
             log.error("Ativo não encontrado para remoção com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover ativo com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }

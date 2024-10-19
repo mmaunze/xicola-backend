@@ -1,25 +1,22 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
-import static java.util.stream.Collectors.*;
-import static org.springframework.http.HttpStatus.*;
-import static org.springframework.http.ResponseEntity.*;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
-
+import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-
-import mz.co.mefemasys.xicola.backend.models.AreaCientifica;
-import mz.co.mefemasys.xicola.backend.models.dto.AreaCientificaDTO;
-import mz.co.mefemasys.xicola.backend.service.AreaCientificaService;
-
-import jakarta.persistence.EntityNotFoundException;
+import static java.util.stream.Collectors.toList;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
+import mz.co.mefemasys.xicola.backend.models.AreaCientifica;
+import mz.co.mefemasys.xicola.backend.models.dto.AreaCientificaDTO;
+import mz.co.mefemasys.xicola.backend.service.AreaCientificaService;
+import static org.springframework.http.HttpStatus.*;
+import org.springframework.http.ResponseEntity;
+import static org.springframework.http.ResponseEntity.created;
+import static org.springframework.http.ResponseEntity.ok;
+import org.springframework.web.bind.annotation.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @Data
 @RestController
@@ -52,7 +49,7 @@ public class AreaCientificaController {
         } catch (EntityNotFoundException e) {
             log.error("Área científica não encontrada com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar área científica com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -84,7 +81,7 @@ public class AreaCientificaController {
         } catch (EntityNotFoundException e) {
             log.error("Área científica não encontrada para o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao atualizar área científica com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -98,7 +95,7 @@ public class AreaCientificaController {
         } catch (EntityNotFoundException e) {
             log.error("Área científica não encontrada para remoção com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover área científica com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }

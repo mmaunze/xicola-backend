@@ -1,23 +1,19 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
 import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import mz.co.mefemasys.xicola.backend.models.Distrito;
-import mz.co.mefemasys.xicola.backend.models.Provincia;
-import mz.co.mefemasys.xicola.backend.models.dto.DistritoDTO;
-import mz.co.mefemasys.xicola.backend.models.dto.ProvinciaDTO;
-import mz.co.mefemasys.xicola.backend.service.DistritoService;
-import mz.co.mefemasys.xicola.backend.service.ProvinciaService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
+import mz.co.mefemasys.xicola.backend.models.Provincia;
+import mz.co.mefemasys.xicola.backend.models.dto.ProvinciaDTO;
+import mz.co.mefemasys.xicola.backend.service.ProvinciaService;
 import static org.springframework.http.HttpStatus.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -26,7 +22,6 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @RequestMapping("/provincias")
 @Slf4j
 public class ProvinciaController {
-
 
     private final ProvinciaService provinciaService;
 
@@ -55,13 +50,11 @@ public class ProvinciaController {
         } catch (EntityNotFoundException e) {
             log.error("distrito não encontrado com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar distrito com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
     }
-
-
 
     @PostMapping
     public ResponseEntity<Void> create(@RequestBody ProvinciaDTO provinciaDTO) {
@@ -86,7 +79,7 @@ public class ProvinciaController {
         } catch (EntityNotFoundException e) {
             log.error("distrito não encontrado para o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao atualizar distrito com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -100,7 +93,7 @@ public class ProvinciaController {
         } catch (EntityNotFoundException e) {
             log.error("distrito não encontrado para remoção com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover distrito com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }

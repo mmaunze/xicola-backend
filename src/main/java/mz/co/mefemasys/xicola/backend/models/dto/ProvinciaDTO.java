@@ -1,7 +1,6 @@
 package mz.co.mefemasys.xicola.backend.models.dto;
 
 import lombok.Data;
-import mz.co.mefemasys.xicola.backend.models.Distrito;
 import mz.co.mefemasys.xicola.backend.models.Provincia;
 
 @Data

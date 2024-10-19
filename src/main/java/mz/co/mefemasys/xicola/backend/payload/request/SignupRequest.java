@@ -1,9 +1,11 @@
 package mz.co.mefemasys.xicola.backend.payload.request;
 
-import java.util.Set;
-
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
+
+import java.util.Set;
 
 @Data
 public class SignupRequest {

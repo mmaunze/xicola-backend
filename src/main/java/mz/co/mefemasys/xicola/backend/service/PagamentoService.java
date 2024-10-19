@@ -1,23 +1,16 @@
 package mz.co.mefemasys.xicola.backend.service;
 
-import mz.co.mefemasys.xicola.backend.models.Aluno;
-import mz.co.mefemasys.xicola.backend.models.Estado;
-import mz.co.mefemasys.xicola.backend.models.Funcionario;
-import mz.co.mefemasys.xicola.backend.models.Pagamento;
-import mz.co.mefemasys.xicola.backend.models.TipoPagamento;
-import mz.co.mefemasys.xicola.backend.repository.AlunoRepository;
-import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
-import mz.co.mefemasys.xicola.backend.repository.FuncionarioRepository;
-import mz.co.mefemasys.xicola.backend.repository.PagamentoRepository;
-import mz.co.mefemasys.xicola.backend.repository.TipoPagamentoRepository;
-import mz.co.mefemasys.xicola.backend.service.exceptions.BadRequestException;
-import mz.co.mefemasys.xicola.backend.service.exceptions.ResourceNotFoundException;
+import lombok.RequiredArgsConstructor;
+import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
+import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
+import mz.co.mefemasys.xicola.backend.models.*;
+import mz.co.mefemasys.xicola.backend.repository.*;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor

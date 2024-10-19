@@ -1,24 +1,21 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
-import static org.springframework.http.HttpStatus.*;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
-
+import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-
+import lombok.RequiredArgsConstructor;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.DetalheRelatorioFinanceiro;
 import mz.co.mefemasys.xicola.backend.models.RelatorioFinanceiro;
 import mz.co.mefemasys.xicola.backend.models.dto.DetalheRelatorioFinanceiroDTO;
 import mz.co.mefemasys.xicola.backend.service.DetalheRelatorioFinanceiroService;
 import mz.co.mefemasys.xicola.backend.service.RelatorioFinanceiroService;
-
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
 @RequiredArgsConstructor
@@ -48,7 +45,7 @@ public class DetalheRelatorioFinanceiroController {
             return ResponseEntity.ok(new DetalheRelatorioFinanceiroDTO(detalhe));
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
     }
@@ -76,7 +73,7 @@ public class DetalheRelatorioFinanceiroController {
             return ResponseEntity.ok().build();
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
     }
@@ -88,7 +85,7 @@ public class DetalheRelatorioFinanceiroController {
             return ResponseEntity.ok().build();
         } catch (EntityNotFoundException e) {
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
     }

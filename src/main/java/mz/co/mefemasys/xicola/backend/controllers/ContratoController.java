@@ -1,17 +1,13 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
-import static java.util.stream.Collectors.*;
-import static org.springframework.http.HttpStatus.*;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
-
+import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-
+import static java.util.stream.Collectors.toList;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Contrato;
 import mz.co.mefemasys.xicola.backend.models.Estado;
 import mz.co.mefemasys.xicola.backend.models.Funcionario;
@@ -19,10 +15,10 @@ import mz.co.mefemasys.xicola.backend.models.dto.ContratoDTO;
 import mz.co.mefemasys.xicola.backend.service.ContratoService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;
 import mz.co.mefemasys.xicola.backend.service.FuncionarioService;
-
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import static org.springframework.http.HttpStatus.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
 @RequiredArgsConstructor
@@ -59,7 +55,7 @@ public class ContratoController {
         } catch (EntityNotFoundException e) {
             log.error("Contrato não encontrado com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar contrato com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -89,7 +85,7 @@ public class ContratoController {
         } catch (EntityNotFoundException e) {
             log.error("Contrato não encontrado para o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao atualizar contrato com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -103,7 +99,7 @@ public class ContratoController {
         } catch (EntityNotFoundException e) {
             log.error("Contrato não encontrado para remoção com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover contrato com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }

@@ -1,12 +1,13 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import lombok.RequiredArgsConstructor;
+import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.Comunicado;
 import mz.co.mefemasys.xicola.backend.repository.ComunicadoRepository;
-import mz.co.mefemasys.xicola.backend.service.exceptions.ResourceNotFoundException;
-import java.util.Date;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor

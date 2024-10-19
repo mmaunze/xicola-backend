@@ -1,18 +1,17 @@
 package mz.co.mefemasys.xicola.backend.security.services;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import mz.co.mefemasys.xicola.backend.models.Utilizador;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import mz.co.mefemasys.xicola.backend.models.Utilizador;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class UtilizadorDetailsImpl implements UserDetails {
   private static final long serialVersionUID = 1L;

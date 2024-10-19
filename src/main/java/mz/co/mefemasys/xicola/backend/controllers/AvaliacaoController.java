@@ -1,17 +1,12 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
-import static java.util.stream.Collectors.*;
-import static org.springframework.http.HttpStatus.*;
-import static org.springframework.http.ResponseEntity.*;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
-
+import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-
+import static java.util.stream.Collectors.toList;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Avaliacao;
 import mz.co.mefemasys.xicola.backend.models.Estado;
 import mz.co.mefemasys.xicola.backend.models.dto.AvaliacaoDTO;
@@ -19,10 +14,12 @@ import mz.co.mefemasys.xicola.backend.service.AvaliacaoService;
 import mz.co.mefemasys.xicola.backend.service.DisciplinaService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;
 import mz.co.mefemasys.xicola.backend.service.TipoAvaliacaoService;
-
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import static org.springframework.http.HttpStatus.*;
+import org.springframework.http.ResponseEntity;
+import static org.springframework.http.ResponseEntity.created;
+import static org.springframework.http.ResponseEntity.ok;
+import org.springframework.web.bind.annotation.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
 @RequestMapping("/academico/avaliacoes")
@@ -55,7 +52,7 @@ public class AvaliacaoController {
         } catch (EntityNotFoundException e) {
             log.error("Avaliação não encontrada com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar avaliação com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -83,7 +80,7 @@ public class AvaliacaoController {
         } catch (EntityNotFoundException e) {
             log.error("Avaliação não encontrada para o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao atualizar avaliação com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -97,7 +94,7 @@ public class AvaliacaoController {
         } catch (EntityNotFoundException e) {
             log.error("Avaliação não encontrada para remoção com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover avaliação com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }

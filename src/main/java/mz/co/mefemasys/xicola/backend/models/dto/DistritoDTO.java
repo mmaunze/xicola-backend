@@ -1,8 +1,7 @@
 package mz.co.mefemasys.xicola.backend.models.dto;
 
-import mz.co.mefemasys.xicola.backend.models.Distrito;
-
 import lombok.Data;
+import mz.co.mefemasys.xicola.backend.models.Distrito;
 
 @Data
 public class DistritoDTO {

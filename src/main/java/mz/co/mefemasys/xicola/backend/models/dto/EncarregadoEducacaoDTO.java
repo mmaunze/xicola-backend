@@ -1,10 +1,9 @@
 package mz.co.mefemasys.xicola.backend.models.dto;
 
-import java.time.LocalDate;
-
+import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.EncarregadoEducacao;
 
-import lombok.Data;
+import java.time.LocalDate;
 
 @Data
 public class EncarregadoEducacaoDTO {

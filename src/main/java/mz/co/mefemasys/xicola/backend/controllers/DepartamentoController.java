@@ -1,24 +1,20 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
-import static org.springframework.http.HttpStatus.*;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
-
+import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Departamento;
 import mz.co.mefemasys.xicola.backend.models.dto.DepartamentoDTO;
 import mz.co.mefemasys.xicola.backend.service.DepartamentoService;
-
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import static org.springframework.http.HttpStatus.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
 @RequiredArgsConstructor
@@ -53,7 +49,7 @@ public class DepartamentoController {
         } catch (EntityNotFoundException e) {
             log.error("Departamento não encontrado com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar departamento com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -67,7 +63,7 @@ public class DepartamentoController {
         } catch (EntityNotFoundException e) {
             log.error("Departamento não encontrado com o ID: " + sigla, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar departamento com o ID: " + sigla, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -97,7 +93,7 @@ public class DepartamentoController {
         } catch (EntityNotFoundException e) {
             log.error("Departamento não encontrado para o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao atualizar departamento com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -111,7 +107,7 @@ public class DepartamentoController {
         } catch (EntityNotFoundException e) {
             log.error("Departamento não encontrado para remoção com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover departamento com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }

@@ -1,9 +1,10 @@
 package mz.co.mefemasys.xicola.backend.models.dto;
 
+import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.Ativo;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import lombok.Data;
 
 @Data
 public class AtivoDTO {

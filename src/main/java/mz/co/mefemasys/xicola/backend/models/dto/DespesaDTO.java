@@ -1,11 +1,10 @@
 package mz.co.mefemasys.xicola.backend.models.dto;
 
-import java.math.BigDecimal;
-import java.time.Instant;
-
+import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.Despesa;
 
-import lombok.Data;
+import java.math.BigDecimal;
+import java.time.Instant;
 
 @Data
 public class DespesaDTO {

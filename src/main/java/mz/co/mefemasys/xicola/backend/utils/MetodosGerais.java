@@ -1,6 +1,8 @@
 package mz.co.mefemasys.xicola.backend.utils;
 
 import jakarta.validation.constraints.NotNull;
+
+import javax.swing.*;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,15 +10,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.TextStyle;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.*;
+
 import static java.util.Calendar.*;
-import java.util.Date;
-import java.util.Random;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Locale;
-import javax.swing.JTextField;
 
 public interface MetodosGerais {
 

@@ -1,9 +1,10 @@
 package mz.co.mefemasys.xicola.backend.models.dto;
 
+import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.AvaliacaoAluno;
+
 import java.io.Serializable;
 import java.time.Instant;
-import lombok.Data;
 
 @Data
 public class AvaliacaoAlunoDTO implements Serializable {

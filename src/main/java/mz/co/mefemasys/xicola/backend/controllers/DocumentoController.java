@@ -1,5 +1,13 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
+import jakarta.persistence.EntityNotFoundException;
+import java.net.URI;
+import java.util.List;
+import static java.util.stream.Collectors.toList;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Documento;
 import mz.co.mefemasys.xicola.backend.models.Estado;
 import mz.co.mefemasys.xicola.backend.models.Funcionario;
@@ -9,17 +17,10 @@ import mz.co.mefemasys.xicola.backend.service.DocumentoService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;
 import mz.co.mefemasys.xicola.backend.service.FuncionarioService;
 import mz.co.mefemasys.xicola.backend.service.TipoDocumentoService;
-import jakarta.persistence.EntityNotFoundException;
-import java.net.URI;
-import java.util.List;
-import static java.util.stream.Collectors.*;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @Data
 @RestController
@@ -55,7 +56,7 @@ public class DocumentoController {
         } catch (EntityNotFoundException e) {
             log.error("Documento não encontrado com o ID: {}", id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar documento com o ID: {}", id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -90,7 +91,7 @@ public class DocumentoController {
         } catch (EntityNotFoundException e) {
             log.error("Documento, Tipo de documento, autor ou estado não encontrado para o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao atualizar documento com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -104,7 +105,7 @@ public class DocumentoController {
         } catch (EntityNotFoundException e) {
             log.error("Documento não encontrado para remoção com o ID: {}", id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover documento com o ID: {}", id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }

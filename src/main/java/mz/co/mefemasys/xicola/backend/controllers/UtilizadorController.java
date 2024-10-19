@@ -1,25 +1,20 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
 import jakarta.persistence.EntityNotFoundException;
+import java.util.List;
+import static java.util.stream.Collectors.toList;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import mz.co.mefemasys.xicola.backend.models.dto.AlunoDTO;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Utilizador;
 import mz.co.mefemasys.xicola.backend.models.dto.UtilizadorDTO;
 import mz.co.mefemasys.xicola.backend.service.UtilizadorService;
-import lombok.RequiredArgsConstructor;
-
-import java.util.List;
-
-import org.springframework.web.bind.annotation.*;
-
-import static java.util.stream.Collectors.toList;
+import org.springframework.http.HttpStatus;
 import static org.springframework.http.HttpStatus.*;
+import org.springframework.http.ResponseEntity;
 import static org.springframework.http.ResponseEntity.ok;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -46,11 +41,9 @@ public class UtilizadorController {
 
     @GetMapping("/totais")
     public ResponseEntity<Long> totais() {
-            var total = userService.count();
-            return new ResponseEntity<>(total, OK);
+        var total = userService.count();
+        return new ResponseEntity<>(total, OK);
     }
-
-
 
     @GetMapping("/utilizador/{id}")
     @PreAuthorize("#id == principal.id or hasRole('ROLE_ADMINISTRATOR') or hasRole('ROLE_PEDAGOGICO') or hasRole('ROLE_PROFESSOR')")
@@ -61,12 +54,11 @@ public class UtilizadorController {
         } catch (EntityNotFoundException e) {
             log.error("Utilizador não encontrado com o ID: {}", id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar Utilizador com o ID: {}", id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
     }
-
 
     @PostMapping("/create/user")
     public ResponseEntity<Void> createUser(@RequestBody Utilizador utilizador) {
@@ -82,7 +74,7 @@ public class UtilizadorController {
         } catch (EntityNotFoundException e) {
             log.error("Utilizador não encontrado para remoção com o ID: {}", id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover utilizador com o ID: {}", id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }

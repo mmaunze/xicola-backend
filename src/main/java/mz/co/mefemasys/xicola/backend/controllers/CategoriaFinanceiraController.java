@@ -1,24 +1,20 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
-import static java.util.stream.Collectors.*;
-import static org.springframework.http.HttpStatus.*;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
-
+import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-
+import static java.util.stream.Collectors.toList;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.CategoriaFinanceira;
 import mz.co.mefemasys.xicola.backend.models.dto.CategoriaFinanceiraDTO;
 import mz.co.mefemasys.xicola.backend.service.CategoriaFinanceiraService;
-
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import static org.springframework.http.HttpStatus.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
 @RequiredArgsConstructor
@@ -53,7 +49,7 @@ public class CategoriaFinanceiraController {
         } catch (EntityNotFoundException e) {
             log.error("Categoria financeira não encontrada com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar categoria financeira com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -84,7 +80,7 @@ public class CategoriaFinanceiraController {
         } catch (EntityNotFoundException e) {
             log.error("Categoria financeira não encontrada para o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao atualizar categoria financeira com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -98,7 +94,7 @@ public class CategoriaFinanceiraController {
         } catch (EntityNotFoundException e) {
             log.error("Categoria financeira não encontrada para remoção com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover categoria financeira com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }

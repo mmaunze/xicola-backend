@@ -1,27 +1,23 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
-import static org.springframework.http.HttpStatus.*;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
-
+import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-
-
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Distrito;
 import mz.co.mefemasys.xicola.backend.models.Provincia;
 import mz.co.mefemasys.xicola.backend.models.dto.DistritoDTO;
 import mz.co.mefemasys.xicola.backend.service.DistritoService;
 import mz.co.mefemasys.xicola.backend.service.ProvinciaService;
-
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import static org.springframework.http.HttpStatus.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -32,7 +28,6 @@ public class DistritoController {
 
     private final DistritoService distritoService;
     private final ProvinciaService provinciaService;
-
 
     @GetMapping
     @PreAuthorize("isAuthenticated()")
@@ -55,7 +50,7 @@ public class DistritoController {
     @GetMapping("/provincia/{provincia}")
     public ResponseEntity<List<DistritoDTO>> findByProvincia(@PathVariable String provincia) {
         try {
-            var distritos = distritoService.findDistritoProvincia(provincia) ;
+            var distritos = distritoService.findDistritoProvincia(provincia);
             var distritoList = new ArrayList<Distrito>();
             distritoList.addAll(distritos);
 
@@ -69,7 +64,6 @@ public class DistritoController {
         }
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<DistritoDTO> findById(@PathVariable Long id) {
         try {
@@ -78,13 +72,11 @@ public class DistritoController {
         } catch (EntityNotFoundException e) {
             log.error("distrito não encontrado com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar distrito com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
     }
-
-
 
     @PostMapping
     public ResponseEntity<Void> create(@RequestBody DistritoDTO distritoDTO) {
@@ -109,7 +101,7 @@ public class DistritoController {
         } catch (EntityNotFoundException e) {
             log.error("distrito não encontrado para o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao atualizar distrito com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -123,7 +115,7 @@ public class DistritoController {
         } catch (EntityNotFoundException e) {
             log.error("distrito não encontrado para remoção com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover distrito com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }

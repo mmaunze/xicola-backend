@@ -1,24 +1,24 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
+import jakarta.persistence.EntityNotFoundException;
+import java.net.URI;
+import java.util.List;
+import static java.util.stream.Collectors.toList;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Aula;
 import mz.co.mefemasys.xicola.backend.models.dto.AulaDTO;
 import mz.co.mefemasys.xicola.backend.service.AulaService;
 import mz.co.mefemasys.xicola.backend.service.DisciplinaService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;
-import jakarta.persistence.EntityNotFoundException;
-import java.net.URI;
-import java.util.List;
-import static java.util.stream.Collectors.*;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;
-import static org.springframework.http.ResponseEntity.*;
-
+import static org.springframework.http.ResponseEntity.created;
+import static org.springframework.http.ResponseEntity.ok;
 import org.springframework.web.bind.annotation.*;
-
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @Data
 @RestController
@@ -53,7 +53,7 @@ public class AulaController {
         } catch (EntityNotFoundException e) {
             log.error("Aula não encontrada com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar aula com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -89,7 +89,7 @@ public class AulaController {
         } catch (EntityNotFoundException e) {
             log.error("Aula, Disciplina ou Estado não encontrado para o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao atualizar aula com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -103,7 +103,7 @@ public class AulaController {
         } catch (EntityNotFoundException e) {
             log.error("Aula não encontrada para remoção com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover aula com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }

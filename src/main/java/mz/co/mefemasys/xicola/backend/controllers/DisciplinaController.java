@@ -1,24 +1,21 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
-import static java.util.stream.Collectors.*;
-import static org.springframework.http.HttpStatus.*;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
-
+import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-
+import static java.util.stream.Collectors.toList;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Disciplina;
 import mz.co.mefemasys.xicola.backend.models.dto.DisciplinaDTO;
 import mz.co.mefemasys.xicola.backend.service.DisciplinaService;
-
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.OK;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
 @RequestMapping("/academico/disciplinas")
@@ -40,7 +37,7 @@ public class DisciplinaController {
                     .map(DisciplinaDTO::new)
                     .collect(toList());
             return new ResponseEntity<>(comunicadoDTOs, OK);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar todos os comunicados", e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -54,7 +51,7 @@ public class DisciplinaController {
         } catch (EntityNotFoundException e) {
             log.error("Disciplina não encontrada com o ID: {}", id, e);
             return ResponseEntity.notFound().build();
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar disciplina com o ID: {}", id, e);
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).build();
         }
@@ -69,7 +66,7 @@ public class DisciplinaController {
                     .buildAndExpand(newDisciplina.getId())
                     .toUri();
             return ResponseEntity.created(location).build();
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao criar nova disciplina", e);
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).build();
         }
@@ -83,7 +80,7 @@ public class DisciplinaController {
         } catch (EntityNotFoundException e) {
             log.error("Disciplina não encontrada para o ID: {}", id, e);
             return ResponseEntity.notFound().build();
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao atualizar disciplina com o ID: {}", id, e);
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).build();
         }
@@ -97,7 +94,7 @@ public class DisciplinaController {
         } catch (EntityNotFoundException e) {
             log.error("Disciplina não encontrada para remoção com o ID: {}", id, e);
             return ResponseEntity.notFound().build();
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover disciplina com o ID: {}", id, e);
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).build();
         }

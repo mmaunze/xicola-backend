@@ -3,18 +3,20 @@ package mz.co.mefemasys.xicola.backend.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import java.time.Instant;
-import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.time.Instant;
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @Entity
 @Table(name = "aluno", schema = "public")
+
 public class Aluno {
 
     @Id
@@ -29,13 +31,14 @@ public class Aluno {
 
     @Size(max = 100)
     @NotNull
-    @Column(name = "nome_completo", nullable = false, length = 100)
+    @Column(name = "nome_completo", nullable = false, length = 190)
     private String nomeCompleto;
 
     @NotNull
     @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "distrito_nascimento")
@@ -47,15 +50,15 @@ public class Aluno {
     private String sexo;
 
     @Size(max = 13)
-    @Column(name = "bilhete_identificacao", length = 13)
+    @Column(name = "bilhete_identificacao")
     private String bilheteIdentificacao;
 
     @Size(max = 78)
     @Column(name = "religiao", length = 78)
     private String religiao;
 
-    @Size(max = 3)
-    @Column(name = "grupo_sanguineo", length = 3)
+    @Size(max = 5)
+    @Column(name = "grupo_sanguineo", length = 5)
     private String grupoSanguineo;
 
     @Size(max = 255)

@@ -1,31 +1,31 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
+import jakarta.persistence.EntityNotFoundException;
+import java.net.URI;
+import java.util.List;
+import static java.util.stream.Collectors.toList;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
+import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.Aluno;
 import mz.co.mefemasys.xicola.backend.models.Distrito;
 import mz.co.mefemasys.xicola.backend.models.Estado;
 import mz.co.mefemasys.xicola.backend.models.dto.AlunoDTO;
+import mz.co.mefemasys.xicola.backend.models.dto.create.CreateAlunoDTO;
 import mz.co.mefemasys.xicola.backend.service.AlunoService;
 import mz.co.mefemasys.xicola.backend.service.DistritoService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;
-import jakarta.persistence.EntityNotFoundException;
-import java.net.URI;
-import java.util.List;
-import static java.util.stream.Collectors.*;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import static org.springframework.http.HttpStatus.*;
-
 import mz.co.mefemasys.xicola.backend.service.ProvinciaService;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
+import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;
+import static org.springframework.http.ResponseEntity.created;
+import static org.springframework.http.ResponseEntity.ok;
 import org.springframework.security.access.prepost.PreAuthorize;
-
-import static org.springframework.http.ResponseEntity.*;
-
 import org.springframework.web.bind.annotation.*;
-
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Data
@@ -61,15 +61,14 @@ public class AlunoController implements MetodosGerais {
         try {
             var aluno = alunoService.findById(id);
             return ResponseEntity.ok(new AlunoDTO(aluno));
-        } catch (EntityNotFoundException e) {
+        } catch (ResourceNotFoundException e) {
             log.error("Aluno não encontrado com o ID: {}", id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar aluno com o ID: {}", id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
     }
-
 
     @GetMapping("/totais")
     public ResponseEntity<Long> totais() {
@@ -83,9 +82,8 @@ public class AlunoController implements MetodosGerais {
         return new ResponseEntity<>(total, OK);
     }
 
-
     @PostMapping("/cadastrar")
-    public ResponseEntity<Void> create(@RequestBody AlunoDTO aluno) {
+    public ResponseEntity<Void> create(@RequestBody CreateAlunoDTO aluno) {
         try {
             var newAluno = alunoService.create(aluno);
 
@@ -94,9 +92,9 @@ public class AlunoController implements MetodosGerais {
                     .buildAndExpand(newAluno.getId())
                     .toUri();
             return created(location).build();
-        } catch (EntityNotFoundException e) {
+        } catch (ResourceNotFoundException e) {
             return new ResponseEntity<>(BAD_REQUEST);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao criar novo aluno", e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -107,12 +105,12 @@ public class AlunoController implements MetodosGerais {
         try {
             alunoService.update(id, convertToEntity(alunoDTO));
             return ok().build();
-        } catch (EntityNotFoundException e) {
+        } catch (ResourceNotFoundException e) {
             log.error("Aluno ou Estado não encontrado para o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao atualizar aluno com o ID: " + id, e);
-            return new ResponseEntity<>(INTERNAL_SERVER_ERROR );
+            return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -121,10 +119,10 @@ public class AlunoController implements MetodosGerais {
         try {
             alunoService.delete(id);
             return ok().build();
-        } catch (EntityNotFoundException e) {
+        } catch (ResourceNotFoundException e) {
             log.error("Aluno não encontrado para remoção com o ID: {}", id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover aluno com o ID: {}", id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -135,8 +133,7 @@ public class AlunoController implements MetodosGerais {
         aluno.setId(alunoDTO.getId());
         aluno.setNomeCompleto(alunoDTO.getNomeCompleto());
 
-            aluno.setDataNascimento(converterStringParaData(alunoDTO.getDataNascimento()));
-
+        aluno.setDataNascimento(converterStringParaData(alunoDTO.getDataNascimento()));
 
         aluno.setDistritoNascimento(fectchDistrito(alunoDTO.getDistritoNascimento()));
         aluno.setSexo(alunoDTO.getSexo());
@@ -161,6 +158,5 @@ public class AlunoController implements MetodosGerais {
     private Distrito fectchDistrito(String distrito) {
         return distritoService.findDistrito(distrito);
     }
-
 
 }

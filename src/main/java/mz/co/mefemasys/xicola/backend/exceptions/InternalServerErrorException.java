@@ -1,4 +1,4 @@
-package mz.co.mefemasys.xicola.backend.service.exceptions;
+package mz.co.mefemasys.xicola.backend.exceptions;
 
 public class InternalServerErrorException extends RuntimeException {
 

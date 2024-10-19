@@ -1,8 +1,9 @@
 package mz.co.mefemasys.xicola.backend.models.dto;
 
-import mz.co.mefemasys.xicola.backend.models.Aula;
-import java.time.Instant;
 import lombok.Data;
+import mz.co.mefemasys.xicola.backend.models.Aula;
+
+import java.time.Instant;
 
 @Data
 public class AulaDTO {

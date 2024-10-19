@@ -1,10 +1,9 @@
 package mz.co.mefemasys.xicola.backend.models.dto;
 
-import java.io.Serializable;
-
+import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.Avaliacao;
 
-import lombok.Data;
+import java.io.Serializable;
 
 @Data
 public class AvaliacaoDTO implements Serializable {

@@ -1,24 +1,17 @@
 package mz.co.mefemasys.xicola.backend.service;
 
-import mz.co.mefemasys.xicola.backend.models.Estado;
-import mz.co.mefemasys.xicola.backend.models.Fornecedor;
-import mz.co.mefemasys.xicola.backend.models.Funcionario;
-import mz.co.mefemasys.xicola.backend.models.ItemOrdemCompra;
-import mz.co.mefemasys.xicola.backend.models.OrdemCompra;
-import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
-import mz.co.mefemasys.xicola.backend.repository.FornecedorRepository;
-import mz.co.mefemasys.xicola.backend.repository.FuncionarioRepository;
-import mz.co.mefemasys.xicola.backend.repository.ItemOrdemCompraRepository;
-import mz.co.mefemasys.xicola.backend.repository.OrdemCompraRepository;
-import mz.co.mefemasys.xicola.backend.service.exceptions.BadRequestException;
-import mz.co.mefemasys.xicola.backend.service.exceptions.ResourceNotFoundException;
 import jakarta.validation.constraints.NotNull;
+import lombok.RequiredArgsConstructor;
+import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
+import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
+import mz.co.mefemasys.xicola.backend.models.*;
+import mz.co.mefemasys.xicola.backend.repository.*;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor

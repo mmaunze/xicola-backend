@@ -1,30 +1,22 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
-import static org.springframework.http.HttpStatus.*;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
-
+import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-
-
-import mz.co.mefemasys.xicola.backend.models.EncarregadoEducacao;
-import mz.co.mefemasys.xicola.backend.models.dto.EncarregadoEducacaoDTO;
-import mz.co.mefemasys.xicola.backend.service.DistritoService;
-import mz.co.mefemasys.xicola.backend.service.SectorTrabalhoService;
-import mz.co.mefemasys.xicola.backend.models.SectorTrabalho;
-import mz.co.mefemasys.xicola.backend.service.EncarregadoEducacaoService;
-import mz.co.mefemasys.xicola.backend.service.EstadoService;
-import mz.co.mefemasys.xicola.backend.service.UtilizadorService;
-
-import jakarta.persistence.EntityNotFoundException;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
+import mz.co.mefemasys.xicola.backend.models.EncarregadoEducacao;
+import mz.co.mefemasys.xicola.backend.models.SectorTrabalho;
+import mz.co.mefemasys.xicola.backend.models.dto.EncarregadoEducacaoDTO;
+import mz.co.mefemasys.xicola.backend.service.*;
+import static org.springframework.http.HttpStatus.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @Data
 @RestController
@@ -63,7 +55,7 @@ public class EncarregadoEducacaoController {
         } catch (EntityNotFoundException e) {
             log.error("Encarregado de educação não encontrado com o ID: {}", id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao buscar encarregado de educação com o ID: {}", id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -100,7 +92,7 @@ public class EncarregadoEducacaoController {
         } catch (EntityNotFoundException e) {
             log.error("Encarregado de educação ou estado não encontrado para o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao atualizar encarregado de educação com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
@@ -115,7 +107,7 @@ public class EncarregadoEducacaoController {
         } catch (EntityNotFoundException e) {
             log.error("Encarregado de educação não encontrado para remoção com o ID: {}", id, e);
             return new ResponseEntity<>(NOT_FOUND);
-        } catch (Exception e) {
+        } catch (InternalServerErrorException e) {
             log.error("Erro ao remover encarregado de educação com o ID: {}", id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }

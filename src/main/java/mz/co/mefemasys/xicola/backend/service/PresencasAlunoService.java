@@ -1,22 +1,15 @@
 package mz.co.mefemasys.xicola.backend.service;
 
-import mz.co.mefemasys.xicola.backend.models.Aluno;
-import mz.co.mefemasys.xicola.backend.models.Disciplina;
-import mz.co.mefemasys.xicola.backend.models.Estado;
-import mz.co.mefemasys.xicola.backend.models.PresencasAluno;
-import mz.co.mefemasys.xicola.backend.models.Turma;
-import mz.co.mefemasys.xicola.backend.repository.AlunoRepository;
-import mz.co.mefemasys.xicola.backend.repository.DisciplinaRepository;
-import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
-import mz.co.mefemasys.xicola.backend.repository.PresencasAlunoRepository;
-import mz.co.mefemasys.xicola.backend.repository.TurmaRepository;
-import mz.co.mefemasys.xicola.backend.service.exceptions.BadRequestException;
-import mz.co.mefemasys.xicola.backend.service.exceptions.ResourceNotFoundException;
-import java.util.Date;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
+import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
+import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
+import mz.co.mefemasys.xicola.backend.models.*;
+import mz.co.mefemasys.xicola.backend.repository.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor

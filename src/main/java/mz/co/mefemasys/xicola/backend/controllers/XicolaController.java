@@ -3,16 +3,11 @@ package mz.co.mefemasys.xicola.backend.controllers;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-
-import mz.co.mefemasys.xicola.backend.models.dto.LoginUserDto;
-import mz.co.mefemasys.xicola.backend.models.dto.RecoveryJwtTokenDto;
-import mz.co.mefemasys.xicola.backend.service.UtilizadorService;
 import lombok.RequiredArgsConstructor;
+import mz.co.mefemasys.xicola.backend.service.UtilizadorService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/")

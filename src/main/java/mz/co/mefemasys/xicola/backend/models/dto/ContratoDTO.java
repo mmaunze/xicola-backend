@@ -1,11 +1,10 @@
 package mz.co.mefemasys.xicola.backend.models.dto;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-
+import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.Contrato;
 
-import lombok.Data;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Data
 public class ContratoDTO {

@@ -1,14 +1,10 @@
 package mz.co.mefemasys.xicola.backend.models.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import mz.co.mefemasys.xicola.backend.models.Aluno;
-import mz.co.mefemasys.xicola.backend.models.Distrito;
-import java.time.Instant;
-import java.time.LocalDate;
 import lombok.Data;
+import mz.co.mefemasys.xicola.backend.models.Aluno;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
+
+import java.time.Instant;
 
 @Data
 public class AlunoDTO implements MetodosGerais {
