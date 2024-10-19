@@ -25,6 +25,7 @@ public class Aluno {
 
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id", nullable = false)
     private Utilizador utilizador;
 

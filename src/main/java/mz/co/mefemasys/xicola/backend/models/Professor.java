@@ -17,15 +17,13 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "professor", schema = "public")
 public class Professor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
+    @Id
     @Column(name = "id", nullable = false)
     private Long id;
 
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @ColumnDefault("nextval('professor_id_seq'::regclass)")
     @JoinColumn(name = "id", nullable = false)
     private Utilizador utilizador;
 

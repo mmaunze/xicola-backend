@@ -23,6 +23,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @RequiredArgsConstructor
 @RequestMapping("/utilizadores/encarregados")
 @Slf4j
+@PreAuthorize("isFullyAuthenticated()")
 public class EncarregadoEducacaoController {
 
     private final EncarregadoEducacaoService encarregadoEducacaoService;

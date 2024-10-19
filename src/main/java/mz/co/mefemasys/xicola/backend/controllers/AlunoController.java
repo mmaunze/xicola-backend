@@ -33,6 +33,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @RequiredArgsConstructor
 @RequestMapping("/alunos")
 @Slf4j
+@PreAuthorize("isFullyAuthenticated()")
 public class AlunoController implements MetodosGerais {
 
     private final EstadoService estadoService;
@@ -76,17 +77,17 @@ public class AlunoController implements MetodosGerais {
         return new ResponseEntity<>(total, OK);
     }
 
-    @GetMapping("/alunos/{estado}")
-    public ResponseEntity<Long> totalAlunosEstado(String estado) {
+    @GetMapping("/estado/{estado}")
+    public ResponseEntity<Long> totalAlunosEstado(@PathVariable String estado) {
         var total = alunoService.totalAlunosEstado(estado);
         return new ResponseEntity<>(total, OK);
     }
 
     @PostMapping("/cadastrar")
+    @PreAuthorize("#id == principal.id or hasRole('ADMIN')")
     public ResponseEntity<Void> create(@RequestBody CreateAlunoDTO aluno) {
         try {
             var newAluno = alunoService.create(aluno);
-
             URI location = fromCurrentRequest()
                     .path("/{id}")
                     .buildAndExpand(newAluno.getId())
@@ -100,6 +101,7 @@ public class AlunoController implements MetodosGerais {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/actualizar/{id}")
     public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody AlunoDTO alunoDTO) {
         try {
@@ -114,6 +116,7 @@ public class AlunoController implements MetodosGerais {
         }
     }
 
+    @PreAuthorize("#id == principal.id or hasRole('ADMIN')")
     @DeleteMapping("/remover/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         try {
@@ -142,7 +145,7 @@ public class AlunoController implements MetodosGerais {
         aluno.setGrupoSanguineo(alunoDTO.getGrupoSanguineo());
         aluno.setEndereco(alunoDTO.getEndereco());
         aluno.setDataRegisto(alunoDTO.getDataRegisto());
-        Estado estado = estadoService.findById(Long.parseLong("1")); //findEstado(alunoDTO.getEstado());
+        Estado estado = estadoService.findEstado(alunoDTO.getEstado()); //findEstado(alunoDTO.getEstado());
         aluno.setEstado(estado);
         aluno.setEscolaAnterior(alunoDTO.getEscolaAnterior());
         aluno.setNomeDoPai(alunoDTO.getNomeDoPai());

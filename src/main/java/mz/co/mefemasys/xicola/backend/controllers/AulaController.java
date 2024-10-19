@@ -17,6 +17,8 @@ import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;
 import static org.springframework.http.ResponseEntity.created;
 import static org.springframework.http.ResponseEntity.ok;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
@@ -25,6 +27,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @RequiredArgsConstructor
 @RequestMapping("/academico/aulas")
 @Slf4j
+@PreAuthorize("isFullyAuthenticated()")
 public class AulaController {
 
     private final DisciplinaService disciplinaService;

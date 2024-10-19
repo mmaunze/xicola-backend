@@ -26,7 +26,6 @@ public class AlunoDTO implements MetodosGerais {
     private String nomeDaMae;
     private Long numeroTelefonePrincipal;
 
-    public AlunoDTO(){}
 
     public AlunoDTO(Aluno aluno) {
         this.id = aluno.getId();

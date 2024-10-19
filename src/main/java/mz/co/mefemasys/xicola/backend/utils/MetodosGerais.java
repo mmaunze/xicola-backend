@@ -22,21 +22,16 @@ public interface MetodosGerais {
         return LocalDate.parse(dataString, formato);
     }
 
-    public default String converterDataParaString(@NotNull LocalDate data) {
-        // Obter o dia do mês
+    default String converterDataParaString(@NotNull LocalDate data) {
         String dia = String.format("%02d", data.getDayOfMonth());
-
-        // Obter o mês por extenso em português
-        String mes = data.getMonth().getDisplayName(TextStyle.FULL, new Locale("pt", "PT"));
-
-        // Obter o ano
+        String mes = data.getMonth().getDisplayName(TextStyle.SHORT_STANDALONE, new Locale("pt", "PT"));
+        mes = mes.substring(0, 1).toUpperCase() + mes.substring(1).toLowerCase();
         String ano = String.valueOf(data.getYear());
-
-        // Formatar a string final
-        return String.format("%s de %s de %s", dia, mes.toUpperCase(), ano);
+        return String.format("%s de %s de %s", dia, mes, ano);
     }
 
-     default int calcularIdade(String dataNascimento) {
+
+    default int calcularIdade(String dataNascimento) {
         try {
             var sdf = new SimpleDateFormat("dd/MM/yyyy");
             var dataNasc = sdf.parse(dataNascimento);

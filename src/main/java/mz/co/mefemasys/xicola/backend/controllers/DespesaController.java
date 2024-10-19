@@ -17,12 +17,14 @@ import mz.co.mefemasys.xicola.backend.service.EstadoService;
 import mz.co.mefemasys.xicola.backend.service.FuncionarioService;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/financeiro/despesas")
 @Slf4j
+@PreAuthorize("isFullyAuthenticated()")
 public class DespesaController {
 
     private final DespesaService despesaService;

@@ -51,61 +51,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-        // Definindo rotas públicas
-        String[] ROTAS_PUBLICAS = {
-                "/autenticacao/**",
-                "/estados/**",
-                "/utilizadores/**",
-                "/distritos/**",
-                "/roles/**",
-                "/provincias/**",
-                "/alunos/**",
-        };
-
-        // Definindo rotas privadas (apenas requerem autenticação)
-        String[] ROTAS_PRIVADAS = {
-
-        };
-
-        // Definindo rotas para roles específicas
-        String[] ROTAS_ADMIN = {
-                "*",
-        };
-
-        String[] ROTAS_PROFESSOR = {
-                "/professor/**",
-        };
-
-        String[] ROTAS_ALUNO = {
-                "/api/aluno/**",
-        };
-
-        String[] ROTAS_FINANCEIRO = {
-                "/financas/**",
-        };
-
-        String[] ROTAS_PEDAGOGICO = {
-                "/pedagogico/**",
-        };
-
-        String[] ROTAS_BIBLIOTECARIO = {
-                "/biblioteca/**"
-        };
-
         http.csrf(AbstractHttpConfigurer::disable)
-                .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth ->
-                        auth.requestMatchers(ROTAS_PUBLICAS).permitAll()
-                                .requestMatchers(ROTAS_PRIVADAS).authenticated()
-                                .requestMatchers(ROTAS_ADMIN).hasRole("ADMIN")
-                                .requestMatchers(ROTAS_PROFESSOR).hasRole("PROFESSOR")
-                                .requestMatchers(ROTAS_ALUNO).hasRole("ALUNO")
-                                .requestMatchers(ROTAS_FINANCEIRO).hasRole("FINANCEIRO")
-                                .requestMatchers(ROTAS_PEDAGOGICO).hasRole("PEDAGOGICO")
-                                .requestMatchers(ROTAS_BIBLIOTECARIO).hasRole("BIBLIOTECARIO")
-                                .anyRequest().authenticated()
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest().permitAll()
                 );
 
         http.authenticationProvider(authenticationProvider());
@@ -114,4 +63,5 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 }

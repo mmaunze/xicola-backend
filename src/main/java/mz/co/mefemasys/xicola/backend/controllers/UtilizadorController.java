@@ -21,11 +21,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/utilizadores")
 @RequiredArgsConstructor
 @Slf4j
+@PreAuthorize("isFullyAuthenticated()")
 public class UtilizadorController {
 
     private final UtilizadorService userService;
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<UtilizadorDTO>> findAll() {
         try {
             var utilizadores = userService.findAll();
@@ -46,7 +48,7 @@ public class UtilizadorController {
     }
 
     @GetMapping("/utilizador/{id}")
-    @PreAuthorize("#id == principal.id or hasRole('ROLE_ADMINISTRATOR') or hasRole('ROLE_PEDAGOGICO') or hasRole('ROLE_PROFESSOR')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<UtilizadorDTO> findUtilizadorById(@PathVariable Long id) {
         try {
             var utilizador = userService.findById(id);
@@ -60,12 +62,8 @@ public class UtilizadorController {
         }
     }
 
-    @PostMapping("/create/user")
-    public ResponseEntity<Void> createUser(@RequestBody Utilizador utilizador) {
-        userService.create(utilizador);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/remover/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         try {

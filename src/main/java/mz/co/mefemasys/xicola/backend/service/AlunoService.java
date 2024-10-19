@@ -73,16 +73,16 @@ public class AlunoService implements MetodosGerais {
             return 0L;
         }
 
-        // Se não for nulo, faz a busca
-        return alunoRepository.findAlunosByEstado(estado.toLowerCase());
+        return alunoRepository.findAlunosByEstado(estado);
     }
 
     private static final Logger logger = LoggerFactory.getLogger(AlunoService.class);
 
-
+    @Transactional
     public Aluno create(CreateAlunoDTO aluno) {
 
         logger.info("Iniciando o processo de criação de aluno...");
+        log.info(aluno.toString());
 
         long id = gerarId();
         logger.info("ID gerado para o aluno: " + id);
@@ -92,9 +92,6 @@ public class AlunoService implements MetodosGerais {
 
         var email = username + "@xicola.co.mz";
         logger.info("Email gerado para o utilizador: " + email);
-
-        var newAluno = new Aluno();
-        logger.info("Instância do Aluno criada.");
 
         var estado = fectchEstado("Matriculado");
         logger.info("Estado do aluno obtido: " + estado.getDescricao());
@@ -142,6 +139,9 @@ public class AlunoService implements MetodosGerais {
 
        log.info("Usuario Encontrado {}",cadastrado.getId());
 
+        var newAluno = new Aluno();
+        logger.info("Instância do Aluno criada.");
+
         newAluno.setUtilizador(cadastrado);
         newAluno.setDataRegisto(Instant.now());
         newAluno.setNomeCompleto(aluno.getNomeCompleto());
@@ -161,7 +161,7 @@ public class AlunoService implements MetodosGerais {
         logger.info("Aluno criado: {} {}" , newAluno.getDataRegisto() , newAluno.getDataNascimento());
         logger.info("Salvando o aluno...");
         alunoRepository.save(newAluno);
-      //log.info("Aluno salvo com sucesso: {}", alunoSalvo);
+        log.info("Aluno salvo com sucesso: {}", newAluno);
 
         return newAluno;
     }
@@ -192,11 +192,8 @@ public class AlunoService implements MetodosGerais {
         validarDataNascimento(alunoAtualizado);
         validarDataRegisto(alunoAtualizado);
 
-        // Outras validações específicas de atualização, se necessário
-
         var alunoExistente = alunoOptional.get();
 
-        // Atualize outras propriedades conforme necessário
 
         alunoExistente.setNomeCompleto(alunoAtualizado.getNomeCompleto());
         alunoExistente.setNomeDoPai(alunoAtualizado.getNomeDoPai());
@@ -216,7 +213,7 @@ public class AlunoService implements MetodosGerais {
 
     @Transactional
     public void delete(Long id) {
-        // Verifica se o aluno existe antes de excluí-lo
+        
         if (!alunoRepository.existsById(id)) {
             throw new ResourceNotFoundException(ALUNO_NOT_FOUND_MESSAGE + id);
         }

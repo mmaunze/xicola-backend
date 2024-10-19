@@ -13,6 +13,7 @@ import mz.co.mefemasys.xicola.backend.models.dto.DepartamentoDTO;
 import mz.co.mefemasys.xicola.backend.service.DepartamentoService;
 import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
@@ -20,6 +21,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @RequiredArgsConstructor
 @RequestMapping("/geral/departamentos")
 @Slf4j
+@PreAuthorize("isFullyAuthenticated()")
 public class DepartamentoController {
 
     private final DepartamentoService departamentoService;

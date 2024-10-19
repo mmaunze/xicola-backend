@@ -14,6 +14,7 @@ import mz.co.mefemasys.xicola.backend.service.DisciplinaService;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.OK;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
@@ -21,6 +22,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @RequestMapping("/academico/disciplinas")
 @RequiredArgsConstructor
 @Slf4j
+@PreAuthorize("isFullyAuthenticated()")
 public class DisciplinaController {
 
     private final DisciplinaService disciplinaService;

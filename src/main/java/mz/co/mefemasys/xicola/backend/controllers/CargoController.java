@@ -14,6 +14,8 @@ import mz.co.mefemasys.xicola.backend.service.CargoService;
 import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;
 import static org.springframework.http.ResponseEntity.created;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
@@ -21,6 +23,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @RequiredArgsConstructor
 @RequestMapping("/geral/cargos")
 @Slf4j
+@PreAuthorize("isFullyAuthenticated()")
 public class CargoController {
 
     private final CargoService cargoService;
