@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -47,6 +48,7 @@ public class AlunoService implements MetodosGerais {
     private final UtilizadorRepository utilizadorRepository;
     private final DistritoService distritoService;
     private  final PasswordEncoder encoder;
+    private final TransactionTemplate transactionTemplate;
 
     @Transactional(readOnly = true)
     public Aluno findById(Long id) {
@@ -141,6 +143,7 @@ public class AlunoService implements MetodosGerais {
        log.info("Usuario Encontrado {}",cadastrado.getId());
 
         newAluno.setUtilizador(cadastrado);
+        newAluno.setDataRegisto(Instant.now());
         newAluno.setNomeCompleto(aluno.getNomeCompleto());
         newAluno.setDataNascimento(aluno.getDataNascimento());
         newAluno.setEndereco(aluno.getEndereco());
@@ -155,12 +158,12 @@ public class AlunoService implements MetodosGerais {
         newAluno.setEscolaAnterior(aluno.getEscolaAnterior());
         newAluno.setGrupoSanguineo(aluno.getGrupoSanguineo());
 
-        log.info("Aluno preenchido com os dados fornecidos: {}", newAluno);
+        logger.info("Aluno criado: {} {}" , newAluno.getDataRegisto() , newAluno.getDataNascimento());
         logger.info("Salvando o aluno...");
-        Aluno alunoSalvo = alunoRepository.save(newAluno);
-        log.info("Aluno salvo com sucesso: {}", alunoSalvo);
+        alunoRepository.save(newAluno);
+      //log.info("Aluno salvo com sucesso: {}", alunoSalvo);
 
-        return alunoSalvo;
+        return newAluno;
     }
 
 

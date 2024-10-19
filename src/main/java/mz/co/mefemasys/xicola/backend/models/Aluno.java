@@ -44,7 +44,7 @@ public class Aluno {
     @JoinColumn(name = "distrito_nascimento")
     private Distrito distritoNascimento;
 
-    @Size(max = 1)
+    @Size(max = 12)
     @NotNull
     @Column(name = "sexo", nullable = false, length = 12)
     private String sexo;
