@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Avaliacao;
 import mz.co.mefemasys.xicola.backend.models.Estado;
-import mz.co.mefemasys.xicola.backend.models.dto.AvaliacaoDTO;
+import mz.co.mefemasys.xicola.backend.dto.AvaliacaoDTO;
 import mz.co.mefemasys.xicola.backend.service.AvaliacaoService;
 import mz.co.mefemasys.xicola.backend.service.DisciplinaService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;

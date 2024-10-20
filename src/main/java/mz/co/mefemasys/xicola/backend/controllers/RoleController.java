@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.ERole;
 import mz.co.mefemasys.xicola.backend.models.Role;
-import mz.co.mefemasys.xicola.backend.models.dto.RoleDTO;
+import mz.co.mefemasys.xicola.backend.dto.RoleDTO;
 import mz.co.mefemasys.xicola.backend.service.RoleService;
 import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;

@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Utilizador;
-import mz.co.mefemasys.xicola.backend.models.dto.UtilizadorDTO;
+import mz.co.mefemasys.xicola.backend.dto.UtilizadorDTO;
 import mz.co.mefemasys.xicola.backend.service.UtilizadorService;
-import org.springframework.http.HttpStatus;
+
 import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;
 import static org.springframework.http.ResponseEntity.ok;

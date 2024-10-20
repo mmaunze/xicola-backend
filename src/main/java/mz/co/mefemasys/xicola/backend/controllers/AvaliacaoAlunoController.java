@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.AvaliacaoAluno;
-import mz.co.mefemasys.xicola.backend.models.dto.AvaliacaoAlunoDTO;
+import mz.co.mefemasys.xicola.backend.dto.AvaliacaoAlunoDTO;
 import mz.co.mefemasys.xicola.backend.service.AlunoService;
 import mz.co.mefemasys.xicola.backend.service.AvaliacaoAlunoService;
 import mz.co.mefemasys.xicola.backend.service.AvaliacaoService;

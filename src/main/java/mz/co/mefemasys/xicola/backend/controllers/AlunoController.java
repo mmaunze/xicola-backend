@@ -1,6 +1,5 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
-import jakarta.persistence.EntityNotFoundException;
 import java.net.URI;
 import java.util.List;
 import static java.util.stream.Collectors.toList;
@@ -12,8 +11,8 @@ import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.Aluno;
 import mz.co.mefemasys.xicola.backend.models.Distrito;
 import mz.co.mefemasys.xicola.backend.models.Estado;
-import mz.co.mefemasys.xicola.backend.models.dto.AlunoDTO;
-import mz.co.mefemasys.xicola.backend.models.dto.create.CreateAlunoDTO;
+import mz.co.mefemasys.xicola.backend.dto.AlunoDTO;
+import mz.co.mefemasys.xicola.backend.dto.create.CreateAlunoDTO;
 import mz.co.mefemasys.xicola.backend.service.AlunoService;
 import mz.co.mefemasys.xicola.backend.service.DistritoService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;

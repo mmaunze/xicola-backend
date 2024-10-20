@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.DetalheRelatorioFinanceiro;
 import mz.co.mefemasys.xicola.backend.models.RelatorioFinanceiro;
-import mz.co.mefemasys.xicola.backend.models.dto.DetalheRelatorioFinanceiroDTO;
+import mz.co.mefemasys.xicola.backend.dto.DetalheRelatorioFinanceiroDTO;
 import mz.co.mefemasys.xicola.backend.service.DetalheRelatorioFinanceiroService;
 import mz.co.mefemasys.xicola.backend.service.RelatorioFinanceiroService;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;

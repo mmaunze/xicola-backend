@@ -12,7 +12,7 @@ import mz.co.mefemasys.xicola.backend.models.Comunicado;
 import mz.co.mefemasys.xicola.backend.models.Estado;
 import mz.co.mefemasys.xicola.backend.models.Funcionario;
 import mz.co.mefemasys.xicola.backend.models.TipoPessoa;
-import mz.co.mefemasys.xicola.backend.models.dto.ComunicadoDTO;
+import mz.co.mefemasys.xicola.backend.dto.ComunicadoDTO;
 import mz.co.mefemasys.xicola.backend.service.ComunicadoService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;
 import mz.co.mefemasys.xicola.backend.service.FuncionarioService;

@@ -44,6 +44,8 @@ public class EstadoService {
         .orElseThrow(() -> new EntityNotFoundException(ESTADO_NOT_FOUND_MESSAGE));
     }
 
+
+
     @Transactional
     public Estado create(Estado estado) {
         validarEstado(estado);

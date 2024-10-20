@@ -1,4 +1,4 @@
-package mz.co.mefemasys.xicola.backend.models.dto;
+package mz.co.mefemasys.xicola.backend.dto;
 
 import lombok.Getter;
 import lombok.Setter;

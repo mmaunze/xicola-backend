@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Disciplina;
-import mz.co.mefemasys.xicola.backend.models.dto.DisciplinaDTO;
+import mz.co.mefemasys.xicola.backend.dto.DisciplinaDTO;
 import mz.co.mefemasys.xicola.backend.service.DisciplinaService;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.OK;

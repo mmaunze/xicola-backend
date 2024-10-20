@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.AreaCientifica;
-import mz.co.mefemasys.xicola.backend.models.dto.AreaCientificaDTO;
+import mz.co.mefemasys.xicola.backend.dto.AreaCientificaDTO;
 import mz.co.mefemasys.xicola.backend.service.AreaCientificaService;
 import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;

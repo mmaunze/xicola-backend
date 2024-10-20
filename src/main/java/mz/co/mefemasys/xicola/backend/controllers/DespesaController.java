@@ -10,7 +10,7 @@ import mz.co.mefemasys.xicola.backend.models.CategoriaFinanceira;
 import mz.co.mefemasys.xicola.backend.models.Despesa;
 import mz.co.mefemasys.xicola.backend.models.Estado;
 import mz.co.mefemasys.xicola.backend.models.Funcionario;
-import mz.co.mefemasys.xicola.backend.models.dto.DespesaDTO;
+import mz.co.mefemasys.xicola.backend.dto.DespesaDTO;
 import mz.co.mefemasys.xicola.backend.service.CategoriaFinanceiraService;
 import mz.co.mefemasys.xicola.backend.service.DespesaService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;

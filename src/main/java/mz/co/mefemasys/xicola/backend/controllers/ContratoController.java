@@ -11,7 +11,7 @@ import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Contrato;
 import mz.co.mefemasys.xicola.backend.models.Estado;
 import mz.co.mefemasys.xicola.backend.models.Funcionario;
-import mz.co.mefemasys.xicola.backend.models.dto.ContratoDTO;
+import mz.co.mefemasys.xicola.backend.dto.ContratoDTO;
 import mz.co.mefemasys.xicola.backend.service.ContratoService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;
 import mz.co.mefemasys.xicola.backend.service.FuncionarioService;

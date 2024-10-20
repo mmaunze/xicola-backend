@@ -2,25 +2,30 @@ package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.dto.ProfessorDTO;
+import mz.co.mefemasys.xicola.backend.dto.create.CreateAlunoDTO;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-import mz.co.mefemasys.xicola.backend.models.Estado;
-import mz.co.mefemasys.xicola.backend.models.Professor;
-import mz.co.mefemasys.xicola.backend.models.Utilizador;
-import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
-import mz.co.mefemasys.xicola.backend.repository.ProfessorRepository;
-import mz.co.mefemasys.xicola.backend.repository.UtilizadorRepository;
+import mz.co.mefemasys.xicola.backend.models.*;
+import mz.co.mefemasys.xicola.backend.repository.*;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 @Data
+@Slf4j
 public class ProfessorService implements MetodosGerais {
 
     private static final String PROFESSOR_NOT_FOUND_MESSAGE = "Professor não encontrado com o ID: ";
@@ -35,6 +40,12 @@ public class ProfessorService implements MetodosGerais {
     private final ProfessorRepository professorRepository;
     private final EstadoRepository estadoRepository;
     private final UtilizadorRepository utilizadorRepository;
+    private  final PasswordEncoder encoder;
+    private final RoleRepository roleRepository;
+    private final EstadoService estadoService;
+    private final DistritoService distritoService;
+    private final TransactionTemplate transactionTemplate;
+    private final AreaCientificaService areaCientificaService;
 
     @Transactional(readOnly = true)
     public Professor findById(Long id) {
@@ -47,20 +58,113 @@ public class ProfessorService implements MetodosGerais {
         return professorRepository.findAll();
     }
 
-    @Transactional
-    public Professor create(Professor professor) {
-        var estado = obterEstadoActivo();
-
-        validarProfessor(professor);
-
-        var utilizador = criarUtilizadorParaProfessor(professor, estado);
-
-        professor.setUtilizador(utilizador);
-        professor.setId(utilizador.getId());
-        professor.setEstado(estado);
-
-        return professorRepository.save(professor);
+    @Transactional(readOnly = true)
+    public Long count(){
+        return professorRepository.count();
     }
+
+    @Transactional(readOnly = true)
+    public Long totalProfessorEstado(String estado) {
+
+        if (estado == null || estado.trim().isEmpty()) {
+            return 0L;
+        }
+
+        return professorRepository.findProfessorByEstado(estado);
+    }
+
+    @Transactional
+    public Professor create(ProfessorDTO professor) {
+
+        log.info("Iniciando o processo de criação de professor...");
+        log.info(professor.toString());
+
+        long id = gerarId();
+        log.info("ID gerado para o professor: " + id);
+
+        var username = gerarUsernameUnico(gerarUsernames(professor.getNomeCompleto()));
+        log.info("Nome de utilizador gerado: " + username);
+
+        var email = professor.getEmail();
+
+        var estado = fectchEstado("Activo");
+        log.info("Estado do professor obtido: " + estado.getDescricao());
+
+        var distrito = fectchDistrito(professor.getDistritoNascimento());
+        log.info("Distrito de nascimento obtido: " + distrito.getNomeDistrito());
+
+        /*
+         * Cadastrar o utilizador primeiro
+         */
+
+        Utilizador utilizador = new Utilizador(username, professor.getNomeCompleto(), email,
+                encoder.encode(username));
+        utilizador.setId(id);
+        log.info("Utilizador criado: " + utilizador);
+
+        Set<Role> roles = new HashSet<>();
+
+        Role professorRole = roleRepository.findByName(ERole.ROLE_PROFESSOR)
+                .orElseThrow(() -> new ResourceNotFoundException("Role is not found."));
+        log.info("Role 'ROLE_PROFESSOR' obtida.");
+
+        roles.add(professorRole);
+
+        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                .orElseThrow(() -> new ResourceNotFoundException("Role is not found."));
+        log.info("Role 'ROLE_USER' obtida.");
+
+        roles.add(userRole);
+        utilizador.setRoles(roles);
+
+        log.info("Roles atribuídas ao utilizador: {}", roles);
+
+        log.info("Salvando o utilizador...");
+
+        utilizadorRepository.save(utilizador);
+        utilizadorRepository.flush();
+        log.info("Utilizador salvo com sucesso.");
+
+        /*
+         * Cadastrar o professor
+         */
+
+        Utilizador cadastrado = utilizadorRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(PROFESSOR_NOT_FOUND_MESSAGE + id));
+
+        log.info("Usuario Encontrado {}",cadastrado.getId());
+
+        var newProfessor = new Professor();
+        log.info("Instância do Professor criada.");
+
+        newProfessor.setUtilizador(cadastrado);
+        newProfessor.setEmail(cadastrado.getEmail());
+        newProfessor.setDataContracto(Instant.now());
+        newProfessor.setNomeCompleto(professor.getNomeCompleto());
+        newProfessor.setDataNascimento(converterStringParaData(professor.getDataNascimento()));
+        newProfessor.setEndereco(professor.getEndereco());
+        newProfessor.setReligiao(professor.getReligiao());
+        newProfessor.setNomeDaMae(professor.getNomeDaMae());
+        newProfessor.setNomeDoPai(professor.getNomeDoPai());
+        newProfessor.setSexo(professor.getSexo());
+        newProfessor.setDistritoNascimento(distrito);
+        newProfessor.setEstado(estado);
+        newProfessor.setNumeroTelefonePrincipal(professor.getNumeroTelefonePrincipal());
+        newProfessor.setNumeroTelefoneAlternativo(professor.getNumeroTelefoneAlternativo());
+        newProfessor.setEstadoCivil(professor.getEstadoCivil());
+        newProfessor.setAreaFormacao(fectchAreaCientifica(professor.getAreaFormacao()));
+        newProfessor.setBilheteIdentificacao(professor.getBilheteIdentificacao());
+        newProfessor.setEscolaAnterior(professor.getEscolaAnterior());
+        newProfessor.setGrupoSanguineo(professor.getGrupoSanguineo());
+
+        log.info("Professor criado: {} {}" , newProfessor.getDataContracto() , newProfessor.getDataNascimento());
+        log.info("Salvando o professor...");
+        professorRepository.save(newProfessor);
+        log.info("Professor salvo com sucesso: {}", newProfessor);
+
+        return newProfessor;
+    }
+
 
     @Transactional
     public Professor update(Long id, Professor professorAtualizado) {
@@ -224,5 +328,19 @@ public class ProfessorService implements MetodosGerais {
         }
         return usernames.get(0);
     }
+
+    private Distrito fectchDistrito(String distrito) {
+        return distritoService.findDistrito(distrito);
+    }
+
+    private Estado fectchEstado(String estado) {
+        return estadoService.findEstado(estado) ;
+    }
+
+    private AreaCientifica fectchAreaCientifica(String areaCientifica) {
+        return areaCientificaService.findArea(areaCientifica) ;
+    }
+
+
 }
 

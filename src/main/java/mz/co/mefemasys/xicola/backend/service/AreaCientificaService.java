@@ -1,9 +1,11 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.AreaCientifica;
+import mz.co.mefemasys.xicola.backend.models.Estado;
 import mz.co.mefemasys.xicola.backend.repository.AreaCientificaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +32,14 @@ public class AreaCientificaService {
     public List<AreaCientifica> findAll() {
         return areaCientificaRepository.findAll();
     }
+
+
+    @Transactional(readOnly = true)
+    public AreaCientifica findArea(String estado) {
+        return areaCientificaRepository.findArea(estado)
+                .orElseThrow(() -> new EntityNotFoundException(AREA_CIENTIFICA_NOT_FOUND_MESSAGE));
+    }
+
 
     @Transactional
     public AreaCientifica create(AreaCientifica areaCientifica) {

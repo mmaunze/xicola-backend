@@ -1,3 +1,43 @@
+INSERT INTO area_cientifica (descricao) VALUES ('Matemática');
+INSERT INTO area_cientifica (descricao) VALUES ('Física');
+INSERT INTO area_cientifica (descricao) VALUES ('Química');
+INSERT INTO area_cientifica (descricao) VALUES ('Biologia');
+INSERT INTO area_cientifica (descricao) VALUES ('Informática');
+INSERT INTO area_cientifica (descricao) VALUES ('Engenharia Civil');
+INSERT INTO area_cientifica (descricao) VALUES ('Engenharia Mecânica');
+INSERT INTO area_cientifica (descricao) VALUES ('Engenharia Electrotécnica');
+INSERT INTO area_cientifica (descricao) VALUES ('Engenharia Química');
+INSERT INTO area_cientifica (descricao) VALUES ('Ciências da Saúde');
+INSERT INTO area_cientifica (descricao) VALUES ('Medicina');
+INSERT INTO area_cientifica (descricao) VALUES ('Enfermagem');
+INSERT INTO area_cientifica (descricao) VALUES ('Psicologia');
+INSERT INTO area_cientifica (descricao) VALUES ('Sociologia');
+INSERT INTO area_cientifica (descricao) VALUES ('Antropologia');
+INSERT INTO area_cientifica (descricao) VALUES ('Economia');
+INSERT INTO area_cientifica (descricao) VALUES ('Gestão');
+INSERT INTO area_cientifica (descricao) VALUES ('Finanças');
+INSERT INTO area_cientifica (descricao) VALUES ('Ciência Política');
+INSERT INTO area_cientifica (descricao) VALUES ('Relações Internacionais');
+INSERT INTO area_cientifica (descricao) VALUES ('Direito');
+INSERT INTO area_cientifica (descricao) VALUES ('História');
+INSERT INTO area_cientifica (descricao) VALUES ('Filosofia');
+INSERT INTO area_cientifica (descricao) VALUES ('Linguística');
+INSERT INTO area_cientifica (descricao) VALUES ('Literatura');
+INSERT INTO area_cientifica (descricao) VALUES ('Artes Visuais');
+INSERT INTO area_cientifica (descricao) VALUES ('Música');
+INSERT INTO area_cientifica (descricao) VALUES ('Ciências do Desporto');
+INSERT INTO area_cientifica (descricao) VALUES ('Educação');
+INSERT INTO area_cientifica (descricao) VALUES ('Geografia');
+INSERT INTO area_cientifica (descricao) VALUES ('Geologia');
+INSERT INTO area_cientifica (descricao) VALUES ('Ciências Ambientais');
+INSERT INTO area_cientifica (descricao) VALUES ('Agronomia');
+INSERT INTO area_cientifica (descricao) VALUES ('Zootecnia');
+INSERT INTO area_cientifica (descricao) VALUES ('Veterinária');
+INSERT INTO area_cientifica (descricao) VALUES ('Arquitectura');
+INSERT INTO area_cientifica (descricao) VALUES ('Engenharia Informática');
+INSERT INTO area_cientifica (descricao) VALUES ('Física Quântica');
+INSERT INTO area_cientifica (descricao) VALUES ('Ciências dos Materiais');
+INSERT INTO area_cientifica (descricao) VALUES ('Bioquímica');
 
 
 

@@ -4,10 +4,9 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.*;
-import mz.co.mefemasys.xicola.backend.models.dto.create.CreateAlunoDTO;
+import mz.co.mefemasys.xicola.backend.dto.create.CreateAlunoDTO;
 import mz.co.mefemasys.xicola.backend.repository.AlunoRepository;
 import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
 import mz.co.mefemasys.xicola.backend.repository.RoleRepository;
@@ -213,7 +212,7 @@ public class AlunoService implements MetodosGerais {
 
     @Transactional
     public void delete(Long id) {
-        
+
         if (!alunoRepository.existsById(id)) {
             throw new ResourceNotFoundException(ALUNO_NOT_FOUND_MESSAGE + id);
         }

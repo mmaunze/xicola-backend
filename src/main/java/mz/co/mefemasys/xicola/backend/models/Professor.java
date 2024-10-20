@@ -32,6 +32,12 @@ public class Professor {
     @Column(name = "nome_completo", nullable = false, length = 100)
     private String nomeCompleto;
 
+    @Size(max = 1)
+    @NotNull
+    @Column(name = "sexo", nullable = false, length = 1)
+    private String sexo;
+
+
     @NotNull
     @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;
@@ -41,10 +47,20 @@ public class Professor {
     @JoinColumn(name = "distrito_nascimento")
     private Distrito distritoNascimento;
 
-    @Size(max = 1)
+    @Size(max = 150)
+    @Column(name = "nome_do_pai", length = 150)
+    private String nomeDoPai;
+
+    @Size(max = 150)
+    @Column(name = "nome_da_mae", length = 150)
+    private String nomeDaMae;
+
     @NotNull
-    @Column(name = "sexo", nullable = false, length = 1)
-    private String sexo;
+    @Column(name = "numero_telefone_principal", nullable = false)
+    private Long numeroTelefonePrincipal;
+
+    @Column(name = "numero_telefone_alternativo")
+    private Long numeroTelefoneAlternativo;
 
     @Size(max = 255)
     @NotNull
@@ -56,23 +72,14 @@ public class Professor {
     @Column(name = "email", nullable = false, length = 75)
     private String email;
 
-    @NotNull
-    @Column(name = "numero_telefone_principal", nullable = false)
-    private Long numeroTelefonePrincipal;
 
-    @Column(name = "numero_telefone_alternativo")
-    private Long numeroTelefoneAlternativo;
+    @Column(name = "escola_anterior", length = Integer.MAX_VALUE)
+    private String escolaAnterior;
 
     @NotNull
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "data_contracto", nullable = false)
     private Instant dataContracto;
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "estado", nullable = false)
-    private Estado estado;
 
     @Size(max = 10)
     @Column(name = "estado_civil", length = 10)
@@ -95,5 +102,11 @@ public class Professor {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "area_formacao", nullable = false)
     private AreaCientifica areaFormacao;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "estado", nullable = false)
+    private Estado estado;
 
 }

@@ -12,7 +12,7 @@ import mz.co.mefemasys.xicola.backend.models.Documento;
 import mz.co.mefemasys.xicola.backend.models.Estado;
 import mz.co.mefemasys.xicola.backend.models.Funcionario;
 import mz.co.mefemasys.xicola.backend.models.TipoDocumento;
-import mz.co.mefemasys.xicola.backend.models.dto.DocumentoDTO;
+import mz.co.mefemasys.xicola.backend.dto.DocumentoDTO;
 import mz.co.mefemasys.xicola.backend.service.DocumentoService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;
 import mz.co.mefemasys.xicola.backend.service.FuncionarioService;

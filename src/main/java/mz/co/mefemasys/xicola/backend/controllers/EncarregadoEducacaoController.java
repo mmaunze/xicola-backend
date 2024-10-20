@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.EncarregadoEducacao;
 import mz.co.mefemasys.xicola.backend.models.SectorTrabalho;
-import mz.co.mefemasys.xicola.backend.models.dto.EncarregadoEducacaoDTO;
+import mz.co.mefemasys.xicola.backend.dto.EncarregadoEducacaoDTO;
 import mz.co.mefemasys.xicola.backend.service.*;
 import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;

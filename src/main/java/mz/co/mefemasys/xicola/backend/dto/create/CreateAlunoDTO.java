@@ -1,4 +1,4 @@
-package mz.co.mefemasys.xicola.backend.models.dto.create;
+package mz.co.mefemasys.xicola.backend.dto.create;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
