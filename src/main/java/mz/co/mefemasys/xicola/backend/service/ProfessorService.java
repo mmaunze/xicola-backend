@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mz.co.mefemasys.xicola.backend.dto.ProfessorDTO;
 import mz.co.mefemasys.xicola.backend.dto.create.CreateAlunoDTO;
+import mz.co.mefemasys.xicola.backend.dto.create.CreateProfessorDTO;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.*;
@@ -74,7 +75,7 @@ public class ProfessorService implements MetodosGerais {
     }
 
     @Transactional
-    public Professor create(ProfessorDTO professor) {
+    public Professor create(CreateProfessorDTO professor) {
 
         log.info("Iniciando o processo de criação de professor...");
         log.info(professor.toString());
@@ -141,7 +142,7 @@ public class ProfessorService implements MetodosGerais {
         newProfessor.setEmail(cadastrado.getEmail());
         newProfessor.setDataContracto(Instant.now());
         newProfessor.setNomeCompleto(professor.getNomeCompleto());
-        newProfessor.setDataNascimento(converterStringParaData(professor.getDataNascimento()));
+        newProfessor.setDataNascimento(professor.getDataNascimento());
         newProfessor.setEndereco(professor.getEndereco());
         newProfessor.setReligiao(professor.getReligiao());
         newProfessor.setNomeDaMae(professor.getNomeDaMae());
@@ -149,6 +150,10 @@ public class ProfessorService implements MetodosGerais {
         newProfessor.setSexo(professor.getSexo());
         newProfessor.setDistritoNascimento(distrito);
         newProfessor.setEstado(estado);
+
+        if (professor.getNumeroTelefoneAlternativo() == null)
+        { professor.setNumeroTelefoneAlternativo(professor.getNumeroTelefonePrincipal());}
+
         newProfessor.setNumeroTelefonePrincipal(professor.getNumeroTelefonePrincipal());
         newProfessor.setNumeroTelefoneAlternativo(professor.getNumeroTelefoneAlternativo());
         newProfessor.setEstadoCivil(professor.getEstadoCivil());

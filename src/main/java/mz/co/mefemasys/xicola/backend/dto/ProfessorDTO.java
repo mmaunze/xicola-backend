@@ -41,6 +41,7 @@ public class ProfessorDTO implements MetodosGerais {
         this.distritoNascimento = professor.getDistritoNascimento().getNomeDistrito();
         this.provinciaNascimento = professor.getDistritoNascimento().getProvincia().getNomeProvincia();
         this.sexo = professor.getSexo();
+        this.email = professor.getEmail();
         this.bilheteIdentificacao = professor.getBilheteIdentificacao();
         this.religiao = professor.getReligiao();
         this.grupoSanguineo = professor.getGrupoSanguineo();
@@ -50,6 +51,8 @@ public class ProfessorDTO implements MetodosGerais {
         this.escolaAnterior = professor.getEscolaAnterior();
         this.nomeDoPai = professor.getNomeDoPai();
         this.nomeDaMae = professor.getNomeDaMae();
+        this.estadoCivil = professor.getEstadoCivil();
+        this.areaFormacao = professor.getAreaFormacao().getDescricao();
         this.numeroTelefonePrincipal = professor.getNumeroTelefonePrincipal();
         this.numeroTelefoneAlternativo = professor.getNumeroTelefoneAlternativo();
     }

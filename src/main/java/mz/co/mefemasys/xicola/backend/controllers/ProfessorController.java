@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import mz.co.mefemasys.xicola.backend.dto.AlunoDTO;
 import mz.co.mefemasys.xicola.backend.dto.ProfessorDTO;
 import mz.co.mefemasys.xicola.backend.dto.create.CreateAlunoDTO;
+import mz.co.mefemasys.xicola.backend.dto.create.CreateProfessorDTO;
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.Distrito;
@@ -84,7 +85,7 @@ public class ProfessorController implements MetodosGerais {
 
     @PostMapping("/cadastrar")
     @PreAuthorize("#id == principal.id or hasRole('ADMIN')")
-    public ResponseEntity<Void> create(@RequestBody ProfessorDTO professor) {
+    public ResponseEntity<Void> create(@RequestBody CreateProfessorDTO professor) {
         try {
             var newProfessor = professorService.create(professor);
             URI location = fromCurrentRequest()
