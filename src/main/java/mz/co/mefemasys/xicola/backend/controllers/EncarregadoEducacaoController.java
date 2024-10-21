@@ -7,24 +7,31 @@ import java.util.stream.Collectors;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.dto.create.CreateAlunoDTO;
+import mz.co.mefemasys.xicola.backend.dto.create.CreateEncarregadoDTO;
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
+import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.EncarregadoEducacao;
 import mz.co.mefemasys.xicola.backend.models.SectorTrabalho;
 import mz.co.mefemasys.xicola.backend.dto.EncarregadoEducacaoDTO;
 import mz.co.mefemasys.xicola.backend.service.*;
 import static org.springframework.http.HttpStatus.*;
+
+import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import static org.springframework.http.ResponseEntity.created;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @Data
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/utilizadores/encarregados")
+@RequestMapping("/encarregados-educacao")
 @Slf4j
 @PreAuthorize("isFullyAuthenticated()")
-public class EncarregadoEducacaoController {
+public class EncarregadoEducacaoController implements MetodosGerais {
 
     private final EncarregadoEducacaoService encarregadoEducacaoService;
     private final UtilizadorService utilizadorService;
@@ -33,7 +40,7 @@ public class EncarregadoEducacaoController {
     private final EstadoService estadoService;
 
     @GetMapping
-    @PreAuthorize("hasRole('PROFESSOR') or hasRole('DIRECTOR') or hasRole('PEDAGOGICO') or hasRole('ENCARREGADO')")
+    @PreAuthorize("hasRole('PROFESSOR') or hasRole('DIRECTOR') or hasRole('PEDAGOGICO') or hasRole('ADMIN')")
     public ResponseEntity<List<EncarregadoEducacaoDTO>> findAll() {
         try {
             var encarregados = encarregadoEducacaoService.findAll();
@@ -47,8 +54,8 @@ public class EncarregadoEducacaoController {
         }
     }
 
-    @GetMapping("/{id}")
-    @PreAuthorize("#id == principal.id or hasRole('PROFESSOR') or hasRole('DIRECTOR') or hasRole('PEDAGOGICO') or hasRole('ENCARREGADO')")
+    @GetMapping("/encarregado/{id}")
+    @PreAuthorize("#id == principal.id or hasRole('PROFESSOR') or hasRole('DIRECTOR') or hasRole('PEDAGOGICO') or hasRole('ADMIN')")
     public ResponseEntity<EncarregadoEducacaoDTO> findEncarregadoById(@PathVariable Long id) {
         try {
             var encarregado = encarregadoEducacaoService.findById(id);
@@ -62,29 +69,39 @@ public class EncarregadoEducacaoController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<Void> create(@RequestBody EncarregadoEducacaoDTO encarregadoEducacaoDTO) {
-        try {
-            var newEncarregado = encarregadoEducacaoService.create(convertToEntity(encarregadoEducacaoDTO));
-            var newEncarregadoDTO = convertToDTO(newEncarregado);
 
+    @GetMapping("/totais")
+    public ResponseEntity<Long> totais() {
+        var total = encarregadoEducacaoService.count();
+        return new ResponseEntity<>(total, OK);
+    }
+
+    @GetMapping("/estado/{estado}")
+    public ResponseEntity<Long> totalEncarregadoEstado(@PathVariable String estado) {
+        var total = encarregadoEducacaoService.totalEncarregadosEstado(estado);
+        return new ResponseEntity<>(total, OK);
+    }
+
+    @PostMapping("/cadastrar")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> create(@RequestBody CreateEncarregadoDTO encarregado) {
+        try {
+            var encarregadoEducacao = encarregadoEducacaoService.create(encarregado);
             URI location = fromCurrentRequest()
                     .path("/{id}")
-                    .buildAndExpand(newEncarregadoDTO.getId())
+                    .buildAndExpand(encarregadoEducacao.getId())
                     .toUri();
-
-            return ResponseEntity.created(location).build();
-        } catch (EntityNotFoundException e) {
-            log.error("Erro ao criar novo encarregado de educação", e);
+            return created(location).build();
+        } catch (ResourceNotFoundException e) {
             return new ResponseEntity<>(BAD_REQUEST);
-        } catch (Exception e) {
-            log.error("Erro ao criar novo encarregado de educação", e);
+        } catch (InternalServerErrorException e) {
+            log.error("Erro ao criar novo encarregado", e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ENCARREGADO') or hasRole('DIRECTOR') or hasRole('PEDAGOGICO')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('DIRECTOR') or hasRole('PEDAGOGICO')")
     public ResponseEntity<Void> update(@PathVariable Long id,
             @RequestBody EncarregadoEducacaoDTO encarregadoEducacaoDTO) {
         try {
@@ -100,7 +117,7 @@ public class EncarregadoEducacaoController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('DIRECTOR') or hasRole('PEDAGOGICO')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         try {
             encarregadoEducacaoService.delete(id);
@@ -118,7 +135,7 @@ public class EncarregadoEducacaoController {
         var encarregado = new EncarregadoEducacao();
         encarregado.setId(encarregadoEducacaoDTO.getId());
         encarregado.setNomeCompleto(encarregadoEducacaoDTO.getNomeCompleto());
-        encarregado.setDataNascimento(encarregadoEducacaoDTO.getDataNascimento());
+        encarregado.setDataNascimento(converterStringParaData(encarregadoEducacaoDTO.getDataNascimento()));
         encarregado.setSexo(encarregadoEducacaoDTO.getSexo());
         encarregado.setReligiao(encarregadoEducacaoDTO.getReligiao());
         encarregado.setLocalTrabalho(encarregadoEducacaoDTO.getLocalTrabalho());
@@ -129,7 +146,7 @@ public class EncarregadoEducacaoController {
         encarregado.setNumeroTelefonePrincipal(encarregadoEducacaoDTO.getNumeroTelefonePrincipal());
         encarregado.setNumeroTelefoneAlternativo(encarregadoEducacaoDTO.getNumeroTelefoneAlternativo());
 
-        var utilizador = utilizadorService.findById(encarregadoEducacaoDTO.getUtilizador());
+        var utilizador = utilizadorService.findById(encarregadoEducacaoDTO.getId());
         encarregado.setUtilizador(utilizador);
 
         if (encarregadoEducacaoDTO.getDistritoNascimento() != null) {

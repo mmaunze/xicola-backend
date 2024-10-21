@@ -3,8 +3,6 @@ package mz.co.mefemasys.xicola.backend.service;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import mz.co.mefemasys.xicola.backend.dto.ProfessorDTO;
-import mz.co.mefemasys.xicola.backend.dto.create.CreateAlunoDTO;
 import mz.co.mefemasys.xicola.backend.dto.create.CreateProfessorDTO;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
@@ -81,18 +79,18 @@ public class ProfessorService implements MetodosGerais {
         log.info(professor.toString());
 
         long id = gerarId();
-        log.info("ID gerado para o professor: " + id);
+        log.info("ID gerado para o professor: {}", id);
 
         var username = gerarUsernameUnico(gerarUsernames(professor.getNomeCompleto()));
-        log.info("Nome de utilizador gerado: " + username);
+        log.info("Nome de utilizador gerado: {}", username);
 
         var email = professor.getEmail();
 
         var estado = fectchEstado("Activo");
-        log.info("Estado do professor obtido: " + estado.getDescricao());
+        log.info("Estado do professor obtido: {}", estado.getDescricao());
 
         var distrito = fectchDistrito(professor.getDistritoNascimento());
-        log.info("Distrito de nascimento obtido: " + distrito.getNomeDistrito());
+        log.info("Distrito de nascimento obtido: {}", distrito.getNomeDistrito());
 
         /*
          * Cadastrar o utilizador primeiro
@@ -126,14 +124,16 @@ public class ProfessorService implements MetodosGerais {
         utilizadorRepository.flush();
         log.info("Utilizador salvo com sucesso.");
 
-        /*
-         * Cadastrar o professor
-         */
+
 
         Utilizador cadastrado = utilizadorRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(PROFESSOR_NOT_FOUND_MESSAGE + id));
 
         log.info("Usuario Encontrado {}",cadastrado.getId());
+
+        /*
+         * Cadastrar o professor
+         */
 
         var newProfessor = new Professor();
         log.info("Instância do Professor criada.");
@@ -201,25 +201,6 @@ public class ProfessorService implements MetodosGerais {
         validarEmail(professor);
         validarDataContracto(professor);
         validarTelefone(professor);
-    }
-
-    private Estado obterEstadoActivo() {
-        return estadoRepository.findEstado("Activo")
-                .orElseThrow(() -> new ResourceNotFoundException(ESTADO_NOT_FOUND_MESSAGE));
-    }
-
-    private Utilizador criarUtilizadorParaProfessor(Professor professor, Estado estado) {
-        var utilizador = new Utilizador();
-        utilizador.setId(gerarId());
-
-        List<String> usernames = gerarUsernames(professor.getNomeCompleto());
-        utilizador.setUsername(gerarUsernameUnico(usernames));
-        utilizador.setPassword(professor.getUtilizador().getUsername());
-    //    utilizador.setEstado(estado);
-   //     utilizador.setTipoUtilizador(professor.getUtilizador().getTipoUtilizador());
-
-        utilizadorRepository.save(utilizador);
-        return utilizador;
     }
 
     private void atualizarProfessor(Professor professorExistente, Professor professorAtualizado) {

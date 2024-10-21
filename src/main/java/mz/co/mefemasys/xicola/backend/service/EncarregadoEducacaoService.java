@@ -1,22 +1,34 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.dto.create.CreateEncarregadoDTO;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-import mz.co.mefemasys.xicola.backend.models.EncarregadoEducacao;
-import mz.co.mefemasys.xicola.backend.models.Utilizador;
+import mz.co.mefemasys.xicola.backend.models.*;
 import mz.co.mefemasys.xicola.backend.repository.EncarregadoEducacaoRepository;
+import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
+import mz.co.mefemasys.xicola.backend.repository.RoleRepository;
 import mz.co.mefemasys.xicola.backend.repository.UtilizadorRepository;
+import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class EncarregadoEducacaoService {
+@Data
+@Slf4j
+public class EncarregadoEducacaoService implements MetodosGerais {
 
     private static final String ENC_EDU_NOT_FOUND_MESSAGE = "Encarregado de Educação não encontrado com o ID: ";
     private static final String NOME_VAZIO_MESSAGE = "O nome não pode estar vazio";
@@ -31,6 +43,13 @@ public class EncarregadoEducacaoService {
 
     private final EncarregadoEducacaoRepository encarregadoEducacaoRepository;
     private final UtilizadorRepository utilizadorRepository;
+    private final EstadoRepository estadoRepository;
+    private  final PasswordEncoder encoder;
+    private final RoleRepository roleRepository;
+    private final EstadoService estadoService;
+    private final DistritoService distritoService;
+    private final TransactionTemplate transactionTemplate;
+    private final SectorTrabalhoService sectorTrabalhoService;
 
     @Transactional(readOnly = true)
     public EncarregadoEducacao findById(Long id) {
@@ -43,16 +62,118 @@ public class EncarregadoEducacaoService {
         return encarregadoEducacaoRepository.findAll();
     }
 
-    @Transactional
-    public EncarregadoEducacao create(EncarregadoEducacao encarregadoEducacao) {
-        validarEncarregadoEducacao(encarregadoEducacao);
-
-        encarregadoEducacao.setId(Long.parseLong(gerarId()));
-        var utilizador = criarUtilizadorParaEncarregado(encarregadoEducacao);
-        encarregadoEducacao.setUtilizador(utilizador);
-
-        return encarregadoEducacaoRepository.save(encarregadoEducacao);
+    @Transactional(readOnly = true)
+    public Long count(){
+        return encarregadoEducacaoRepository.count();
     }
+
+    @Transactional(readOnly = true)
+    public Long totalEncarregadosEstado(String estado) {
+
+        if (estado == null || estado.trim().isEmpty()) {
+            return 0L;
+        }
+
+        return encarregadoEducacaoRepository.findEncarregadoEducacaoByEstado(estado);
+    }
+
+    @Transactional
+    public EncarregadoEducacao create(CreateEncarregadoDTO encarregado) {
+
+        log.info("Iniciando o processo de criação de encarregado...");
+        log.info(encarregado.toString());
+
+        long id = gerarId();
+        log.info("ID gerado para o encarregado: {}", id);
+
+        var username = gerarUsernameUnico(gerarUsernames(encarregado.getNomeCompleto()));
+        log.info("Nome de utilizador gerado: {}", username);
+
+        var email = encarregado.getEmail();
+
+        var estado = fectchEstado("Activo");
+        log.info("Estado do encarregado obtido: {}", estado.getDescricao());
+
+        var distrito = fectchDistrito(encarregado.getDistritoNascimento());
+        log.info("Distrito de nascimento obtido: {}", distrito.getNomeDistrito());
+
+        /*
+         * Cadastrar o utilizador primeiro
+         */
+
+        Utilizador utilizador = new Utilizador(username, encarregado.getNomeCompleto(), email,
+                encoder.encode(username));
+        utilizador.setId(id);
+        log.info("Utilizador criado: {}", utilizador);
+
+        Set<Role> roles = new HashSet<>();
+
+        Role encarregadoRole = roleRepository.findByName(ERole.ROLE_ENCARREGADO)
+                .orElseThrow(() -> new ResourceNotFoundException("Role is not found."));
+        log.info("Role 'ROLE_ENCARREGADO' obtida.");
+
+        roles.add(encarregadoRole);
+
+        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                .orElseThrow(() -> new ResourceNotFoundException("Role is not found."));
+        log.info("Role 'ROLE_USER' obtida.");
+
+        roles.add(userRole);
+        utilizador.setRoles(roles);
+
+        log.info("Roles atribuídas ao utilizador: {}", roles);
+
+        log.info("Salvando o utilizador...");
+
+        utilizadorRepository.save(utilizador);
+        utilizadorRepository.flush();
+        log.info("Utilizador salvo com sucesso.");
+
+        /*
+         * Cadastrar o encarregado
+         */
+
+        Utilizador cadastrado = utilizadorRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(ENC_EDU_NOT_FOUND_MESSAGE + id));
+
+        log.info("Usuario Encontrado {}",cadastrado.getId());
+
+        var newEncarregado = new EncarregadoEducacao();
+        log.info("Instância do Encarregado criada.");
+
+        newEncarregado.setUtilizador(cadastrado);
+        newEncarregado.setEmail(cadastrado.getEmail());
+
+        newEncarregado.setNomeCompleto(encarregado.getNomeCompleto());
+        newEncarregado.setDataNascimento(encarregado.getDataNascimento());
+        newEncarregado.setEndereco(encarregado.getEndereco());
+        newEncarregado.setReligiao(encarregado.getReligiao());
+        newEncarregado.setNomeDaMae(encarregado.getNomeDaMae());
+        newEncarregado.setNomeDoPai(encarregado.getNomeDoPai());
+        newEncarregado.setSexo(encarregado.getSexo());
+        newEncarregado.setDistritoNascimento(distrito);
+        newEncarregado.setEstado(estado);
+        newEncarregado.setDataRegisto(Instant.now());
+
+        if (encarregado.getNumeroTelefoneAlternativo() == null)
+        { encarregado.setNumeroTelefoneAlternativo(encarregado.getNumeroTelefonePrincipal());}
+
+        newEncarregado.setNumeroTelefonePrincipal(encarregado.getNumeroTelefonePrincipal());
+        newEncarregado.setNumeroTelefoneAlternativo(encarregado.getNumeroTelefoneAlternativo());
+        newEncarregado.setSectorTrabalho(fectchSectorTrabalho(encarregado.getSectorTrabalho()));
+        newEncarregado.setBilheteIdentificacao(encarregado.getBilheteIdentificacao());
+        newEncarregado.setLocalTrabalho(encarregado.getLocalTrabalho());
+        newEncarregado.setGrupoSanguineo(encarregado.getGrupoSanguineo());
+
+        log.info("Encarregado criado: {} {}" , newEncarregado.getDataRegisto() , newEncarregado.getDataNascimento());
+        log.info("Salvando o encarregado...");
+        encarregadoEducacaoRepository.save(newEncarregado);
+        log.info("Encarregado salvo com sucesso: {}", newEncarregado);
+
+        return newEncarregado;
+    }
+
+
 
     @Transactional
     public EncarregadoEducacao update(Long id, EncarregadoEducacao encarregadoAtualizado) {
@@ -141,40 +262,16 @@ public class EncarregadoEducacaoService {
         }
     }
 
-    private Utilizador criarUtilizadorParaEncarregado(EncarregadoEducacao encarregadoEducacao) {
-        var utilizador = new Utilizador();
-        utilizador.setId(encarregadoEducacao.getId()); // Utilizando o mesmo ID do encarregado
-
-        List<String> usernames = gerarUsernames(encarregadoEducacao.getNomeCompleto());
-        utilizador.setUsername(gerarUsernameUnico(usernames));
-        utilizador.setPassword(encarregadoEducacao.getEmail()); // Utilizando o email como senha
-       // utilizador.setPassword(encarregadoEducacao.getEstado()); // Supondo que o estado do utilizador está definido no
-                                                               // objeto encarregadoEducacao
-
-        utilizadorRepository.save(utilizador);
-        return utilizador;
-    }
-
     private String gerarUsernameUnico(List<String> usernames) {
         for (var username : usernames) {
-            if (!utilizadorRepository.findByUsername(username).isPresent()) {
+            if (utilizadorRepository.findByUsername(username).isEmpty()) {
                 return username;
             }
         }
         return usernames.get(0) + new Random().nextInt(1000);
     }
 
-    private List<String> gerarUsernames(String nomeCompleto) {
-        // Implemente lógica para gerar uma lista de usernames a partir do nome completo
-        // Exemplo simples:
-        return List.of(nomeCompleto.toLowerCase().replace(" ", "_"));
-    }
 
-    private String gerarId() {
-        // Implemente lógica para gerar um ID único (exemplo simplificado usando
-        // timestamp)
-        return String.valueOf(System.currentTimeMillis());
-    }
 
     private void atualizarEncarregado(EncarregadoEducacao encarregadoExistente,
             EncarregadoEducacao encarregadoAtualizado) {
@@ -188,5 +285,17 @@ public class EncarregadoEducacaoService {
         encarregadoExistente.setNumeroTelefonePrincipal(encarregadoAtualizado.getNumeroTelefonePrincipal());
         encarregadoExistente.setNumeroTelefoneAlternativo(encarregadoAtualizado.getNumeroTelefoneAlternativo());
         encarregadoExistente.setDistritoNascimento(encarregadoAtualizado.getDistritoNascimento());
+    }
+
+    private Distrito fectchDistrito(String distrito) {
+        return distritoService.findDistrito(distrito);
+    }
+
+    private Estado fectchEstado(String estado) {
+        return estadoService.findEstado(estado) ;
+    }
+
+    private SectorTrabalho fectchSectorTrabalho(String sectorTrabalho) {
+        return sectorTrabalhoService.findSector(sectorTrabalho) ;
     }
 }

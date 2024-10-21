@@ -23,7 +23,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @Data
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/geral/areas-cientificas")
+@RequestMapping("/areas-cientificas")
 @Slf4j
 @PreAuthorize("isFullyAuthenticated()")
 public class AreaCientificaController {

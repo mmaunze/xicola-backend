@@ -1,45 +1,57 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.models.EncarregadoEducacao;
+import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
-import java.time.LocalDate;
+import java.time.Instant;
 
 @Data
-public class EncarregadoEducacaoDTO {
+@RequiredArgsConstructor
+public class EncarregadoEducacaoDTO implements MetodosGerais {
+
     private Long id;
-    private Long utilizador;
     private String nomeCompleto;
-    private LocalDate dataNascimento;
-    private String distritoNascimento;
-    private String sexo;
-    private String religiao;
-    private String localTrabalho;
-    private String sectorTrabalho;
-    private String endereco;
     private String email;
+    private String dataNascimento;
+    private String distritoNascimento;
+    private String provinciaNascimento;
+    private String sexo;
+    private String bilheteIdentificacao;
+    private String religiao;
     private String grupoSanguineo;
+    private String endereco;
+    private String estadoCivil;
+    private String sectorTrabalho;
+    private Instant dataRegisto;
+    private String estado;
+    private String localTrabalho;
+    private String nomeDoPai;
+    private String nomeDaMae;
     private Long numeroTelefonePrincipal;
     private Long numeroTelefoneAlternativo;
-    private String estado;
 
-    public EncarregadoEducacaoDTO(EncarregadoEducacao encarregadoEducacao) {
-        this.id = encarregadoEducacao.getId();
-        this.utilizador = encarregadoEducacao.getUtilizador().getId();
-        this.nomeCompleto = encarregadoEducacao.getNomeCompleto();
-        this.dataNascimento = encarregadoEducacao.getDataNascimento();
-        this.distritoNascimento = encarregadoEducacao.getDistritoNascimento() != null
-                ? encarregadoEducacao.getDistritoNascimento().getNomeDistrito()
-                : null;
-        this.sexo = encarregadoEducacao.getSexo();
-        this.religiao = encarregadoEducacao.getReligiao();
-        this.localTrabalho = encarregadoEducacao.getLocalTrabalho();
-        this.sectorTrabalho = encarregadoEducacao.getSectorTrabalho().getDescricao();
-        this.endereco = encarregadoEducacao.getEndereco();
-        this.email = encarregadoEducacao.getEmail();
-        this.grupoSanguineo = encarregadoEducacao.getGrupoSanguineo();
-        this.numeroTelefonePrincipal = encarregadoEducacao.getNumeroTelefonePrincipal();
-        this.numeroTelefoneAlternativo = encarregadoEducacao.getNumeroTelefoneAlternativo();
-        this.estado = encarregadoEducacao.getEstado().getDescricao();
+
+    public EncarregadoEducacaoDTO(EncarregadoEducacao professor) {
+        this.id = professor.getId();
+        this.nomeCompleto = professor.getNomeCompleto();
+        this.dataNascimento = converterDataParaString(professor.getDataNascimento());
+        this.distritoNascimento = professor.getDistritoNascimento().getNomeDistrito();
+        this.provinciaNascimento = professor.getDistritoNascimento().getProvincia().getNomeProvincia();
+        this.sexo = professor.getSexo();
+        this.email = professor.getEmail();
+        this.bilheteIdentificacao = professor.getBilheteIdentificacao();
+        this.religiao = professor.getReligiao();
+        this.grupoSanguineo = professor.getGrupoSanguineo();
+        this.endereco = professor.getEndereco();
+        this.dataRegisto = professor.getDataRegisto();
+        this.estado = professor.getEstado().getDescricao();
+        this.localTrabalho = professor.getLocalTrabalho();
+        this.nomeDoPai = professor.getNomeDoPai();
+        this.nomeDaMae = professor.getNomeDaMae();
+        this.sectorTrabalho = professor.getSectorTrabalho().getDescricao();
+        this.numeroTelefonePrincipal = professor.getNumeroTelefonePrincipal();
+        this.numeroTelefoneAlternativo = professor.getNumeroTelefoneAlternativo();
     }
 }

@@ -9,6 +9,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.time.Instant;
 import java.time.LocalDate;
 
 @Getter
@@ -16,15 +17,13 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "encarregado_educacao", schema = "public")
 public class EncarregadoEducacao {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
+    @Id
     @Column(name = "id", nullable = false)
     private Long id;
 
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @ColumnDefault("nextval('encarregado_educacao_id_seq'::regclass)")
     @JoinColumn(name = "id", nullable = false)
     private Utilizador utilizador;
 
@@ -42,10 +41,22 @@ public class EncarregadoEducacao {
     @JoinColumn(name = "distrito_nascimento")
     private Distrito distritoNascimento;
 
+    @Size(max = 150)
+    @Column(name = "nome_do_pai", length = 150)
+    private String nomeDoPai;
+
+    @Size(max = 150)
+    @Column(name = "nome_da_mae", length = 150)
+    private String nomeDaMae;
+
     @Size(max = 10, min = 8)
     @NotNull
     @Column(name = "sexo", nullable = false, length = 1)
     private String sexo;
+
+    @Size(max = 13)
+    @Column(name = "bilhete_identificacao")
+    private String bilheteIdentificacao;
 
     @Size(max = 78)
     @Column(name = "religiao", length = 78)
@@ -79,6 +90,11 @@ public class EncarregadoEducacao {
 
     @Column(name = "numero_telefone_alternativo")
     private Long numeroTelefoneAlternativo;
+
+    @NotNull
+    @ColumnDefault("CURRENT_TIMESTAMP")
+    @Column(name = "data_registo", nullable = false)
+    private Instant dataRegisto;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

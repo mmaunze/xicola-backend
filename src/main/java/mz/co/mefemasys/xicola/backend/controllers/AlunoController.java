@@ -83,7 +83,7 @@ public class AlunoController implements MetodosGerais {
     }
 
     @PostMapping("/cadastrar")
-    @PreAuthorize("#id == principal.id or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> create(@RequestBody CreateAlunoDTO aluno) {
         try {
             var newAluno = alunoService.create(aluno);
