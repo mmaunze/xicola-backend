@@ -3,6 +3,7 @@ package mz.co.mefemasys.xicola.backend.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.util.logging.Logger;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
@@ -40,5 +41,6 @@ public class Material {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "estado", nullable = false)
     private Estado estado;
+    private static final Logger LOG = Logger.getLogger(Material.class.getName());
 
 }

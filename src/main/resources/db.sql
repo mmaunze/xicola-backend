@@ -70,40 +70,44 @@ SET default_table_access_method = heap;
 -- Name: aluno; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.aluno (
-    id bigint NOT NULL,
-    nome_completo character varying(100) NOT NULL,
-    data_nascimento date NOT NULL,
-    distrito_nascimento bigint,
-    sexo character varying(1) NOT NULL,
-    bilhete_identificacao character varying(13),
-    religiao character varying(78),
-    grupo_sanguineo character varying(3),
-    endereco character varying(255),
-    data_registo timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    estado bigint NOT NULL,
-    escola_anterior text,
-    nome_do_pai character varying(150),
-    nome_da_mae character varying(150),
+CREATE TABLE public.aluno
+(
+    id                        bigint                                                NOT NULL,
+    nome_completo             character varying(100)                                NOT NULL,
+    data_nascimento           date                                                  NOT NULL,
+    distrito_nascimento       bigint,
+    sexo                      character varying(1)                                  NOT NULL,
+    bilhete_identificacao     character varying(13),
+    religiao                  character varying(78),
+    grupo_sanguineo           character varying(3),
+    endereco                  character varying(255),
+    data_registo              timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    estado                    bigint                                                NOT NULL,
+    escola_anterior           text,
+    nome_do_pai               character varying(150),
+    nome_da_mae               character varying(150),
     numero_telefone_principal bigint,
-    username bigint NOT NULL
+    username                  bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.aluno OWNER TO postgres;
+ALTER TABLE public.aluno
+    OWNER TO postgres;
 
 --
 -- TOC entry 223 (class 1259 OID 24783)
 -- Name: area_cientifica; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.area_cientifica (
-    id bigint NOT NULL,
+CREATE TABLE public.area_cientifica
+(
+    id        bigint                 NOT NULL,
     descricao character varying(150) NOT NULL
 );
 
 
-ALTER TABLE public.area_cientifica OWNER TO postgres;
+ALTER TABLE public.area_cientifica
+    OWNER TO postgres;
 
 --
 -- TOC entry 222 (class 1259 OID 24782)
@@ -135,18 +139,20 @@ ALTER SEQUENCE public.area_cientifica_id_seq OWNED BY public.area_cientifica.id;
 -- Name: ativo; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.ativo (
-    id bigint NOT NULL,
-    descricao character varying(200) NOT NULL,
-    tipo character varying(100) NOT NULL,
-    data_aquisicao date NOT NULL,
-    valor_aquisicao numeric(10,2) NOT NULL,
-    localizacao character varying(255),
-    estado bigint NOT NULL
+CREATE TABLE public.ativo
+(
+    id              bigint                 NOT NULL,
+    descricao       character varying(200) NOT NULL,
+    tipo            character varying(100) NOT NULL,
+    data_aquisicao  date                   NOT NULL,
+    valor_aquisicao numeric(10, 2)         NOT NULL,
+    localizacao     character varying(255),
+    estado          bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.ativo OWNER TO postgres;
+ALTER TABLE public.ativo
+    OWNER TO postgres;
 
 --
 -- TOC entry 305 (class 1259 OID 25564)
@@ -178,20 +184,22 @@ ALTER SEQUENCE public.ativo_id_seq OWNED BY public.ativo.id;
 -- Name: aula; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.aula (
-    id bigint NOT NULL,
-    disciplina bigint NOT NULL,
-    titulo character varying(255),
-    ano_lectivo integer NOT NULL,
-    classe integer NOT NULL,
-    resumo text NOT NULL,
-    data_aula timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    conteudo text NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.aula
+(
+    id          bigint                                                NOT NULL,
+    disciplina  bigint                                                NOT NULL,
+    titulo      character varying(255),
+    ano_lectivo integer                                               NOT NULL,
+    classe      integer                                               NOT NULL,
+    resumo      text                                                  NOT NULL,
+    data_aula   timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    conteudo    text                                                  NOT NULL,
+    estado      bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.aula OWNER TO postgres;
+ALTER TABLE public.aula
+    OWNER TO postgres;
 
 --
 -- TOC entry 289 (class 1259 OID 25390)
@@ -223,38 +231,42 @@ ALTER SEQUENCE public.aula_id_seq OWNED BY public.aula.id;
 -- Name: avaliacao; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.avaliacao (
-    id bigint NOT NULL,
-    aluno bigint NOT NULL,
-    tipo_avaliacao bigint NOT NULL,
-    trimestre integer NOT NULL,
-    disciplina bigint NOT NULL,
-    observacao text NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.avaliacao
+(
+    id             bigint  NOT NULL,
+    aluno          bigint  NOT NULL,
+    tipo_avaliacao bigint  NOT NULL,
+    trimestre      integer NOT NULL,
+    disciplina     bigint  NOT NULL,
+    observacao     text    NOT NULL,
+    estado         bigint  NOT NULL
 );
 
 
-ALTER TABLE public.avaliacao OWNER TO postgres;
+ALTER TABLE public.avaliacao
+    OWNER TO postgres;
 
 --
 -- TOC entry 282 (class 1259 OID 25284)
 -- Name: avaliacao_aluno; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.avaliacao_aluno (
-    id bigint NOT NULL,
-    aluno bigint NOT NULL,
-    trimestre integer NOT NULL,
-    ano_lectivo integer NOT NULL,
+CREATE TABLE public.avaliacao_aluno
+(
+    id              bigint                                                NOT NULL,
+    aluno           bigint                                                NOT NULL,
+    trimestre       integer                                               NOT NULL,
+    ano_lectivo     integer                                               NOT NULL,
     data_lancamento timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    nota double precision DEFAULT 0 NOT NULL,
-    observacao text,
-    estado bigint NOT NULL,
-    avaliacao bigint NOT NULL
+    nota            double precision            DEFAULT 0                 NOT NULL,
+    observacao      text,
+    estado          bigint                                                NOT NULL,
+    avaliacao       bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.avaliacao_aluno OWNER TO postgres;
+ALTER TABLE public.avaliacao_aluno
+    OWNER TO postgres;
 
 --
 -- TOC entry 281 (class 1259 OID 25283)
@@ -311,13 +323,15 @@ ALTER SEQUENCE public.avaliacao_id_seq OWNED BY public.avaliacao.id;
 -- Name: cargo; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.cargo (
-    id bigint NOT NULL,
+CREATE TABLE public.cargo
+(
+    id        bigint                NOT NULL,
     descricao character varying(50) NOT NULL
 );
 
 
-ALTER TABLE public.cargo OWNER TO postgres;
+ALTER TABLE public.cargo
+    OWNER TO postgres;
 
 --
 -- TOC entry 230 (class 1259 OID 24823)
@@ -349,13 +363,15 @@ ALTER SEQUENCE public.cargo_id_seq OWNED BY public.cargo.id;
 -- Name: categoria_financeira; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.categoria_financeira (
-    id bigint NOT NULL,
+CREATE TABLE public.categoria_financeira
+(
+    id        bigint                 NOT NULL,
     descricao character varying(100) NOT NULL
 );
 
 
-ALTER TABLE public.categoria_financeira OWNER TO postgres;
+ALTER TABLE public.categoria_financeira
+    OWNER TO postgres;
 
 --
 -- TOC entry 242 (class 1259 OID 24881)
@@ -387,18 +403,20 @@ ALTER SEQUENCE public.categoria_financeira_id_seq OWNED BY public.categoria_fina
 -- Name: comunicados; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.comunicados (
-    id bigint NOT NULL,
-    titulo character varying(200) NOT NULL,
-    conteudo text NOT NULL,
+CREATE TABLE public.comunicados
+(
+    id              bigint                                                NOT NULL,
+    titulo          character varying(200)                                NOT NULL,
+    conteudo        text                                                  NOT NULL,
     data_publicacao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    responsavel bigint NOT NULL,
-    destinatario bigint NOT NULL,
-    estado bigint NOT NULL
+    responsavel     bigint                                                NOT NULL,
+    destinatario    bigint                                                NOT NULL,
+    estado          bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.comunicados OWNER TO postgres;
+ALTER TABLE public.comunicados
+    OWNER TO postgres;
 
 --
 -- TOC entry 274 (class 1259 OID 25187)
@@ -430,20 +448,22 @@ ALTER SEQUENCE public.comunicados_id_seq OWNED BY public.comunicados.id;
 -- Name: contrato; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.contrato (
-    id bigint NOT NULL,
-    descricao character varying(255) NOT NULL,
-    tipo character varying(100) NOT NULL,
-    data_inicio date NOT NULL,
-    data_fim date,
-    valor_total numeric(15,2) NOT NULL,
-    fornecedor character varying(255) NOT NULL,
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.contrato
+(
+    id          bigint                 NOT NULL,
+    descricao   character varying(255) NOT NULL,
+    tipo        character varying(100) NOT NULL,
+    data_inicio date                   NOT NULL,
+    data_fim    date,
+    valor_total numeric(15, 2)         NOT NULL,
+    fornecedor  character varying(255) NOT NULL,
+    responsavel bigint                 NOT NULL,
+    estado      bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.contrato OWNER TO postgres;
+ALTER TABLE public.contrato
+    OWNER TO postgres;
 
 --
 -- TOC entry 309 (class 1259 OID 25600)
@@ -475,14 +495,16 @@ ALTER SEQUENCE public.contrato_id_seq OWNED BY public.contrato.id;
 -- Name: departamento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.departamento (
-    id bigint NOT NULL,
+CREATE TABLE public.departamento
+(
+    id        bigint                 NOT NULL,
     descricao character varying(100) NOT NULL,
-    sigla character varying(10) NOT NULL
+    sigla     character varying(10)  NOT NULL
 );
 
 
-ALTER TABLE public.departamento OWNER TO postgres;
+ALTER TABLE public.departamento
+    OWNER TO postgres;
 
 --
 -- TOC entry 240 (class 1259 OID 24870)
@@ -514,18 +536,20 @@ ALTER SEQUENCE public.departamento_id_seq OWNED BY public.departamento.id;
 -- Name: despesa; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.despesa (
-    id bigint NOT NULL,
-    descricao character varying(200) NOT NULL,
-    valor numeric(10,2) NOT NULL,
+CREATE TABLE public.despesa
+(
+    id           bigint                                                NOT NULL,
+    descricao    character varying(200)                                NOT NULL,
+    valor        numeric(10, 2)                                        NOT NULL,
     data_despesa timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    categoria bigint NOT NULL,
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+    categoria    bigint                                                NOT NULL,
+    responsavel  bigint                                                NOT NULL,
+    estado       bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.despesa OWNER TO postgres;
+ALTER TABLE public.despesa
+    OWNER TO postgres;
 
 --
 -- TOC entry 297 (class 1259 OID 25475)
@@ -557,15 +581,17 @@ ALTER SEQUENCE public.despesa_id_seq OWNED BY public.despesa.id;
 -- Name: detalhe_relatorio_financeiro; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.detalhe_relatorio_financeiro (
-    id bigint NOT NULL,
-    relatorio bigint NOT NULL,
-    descricao text NOT NULL,
-    valor numeric(15,2) NOT NULL
+CREATE TABLE public.detalhe_relatorio_financeiro
+(
+    id        bigint         NOT NULL,
+    relatorio bigint         NOT NULL,
+    descricao text           NOT NULL,
+    valor     numeric(15, 2) NOT NULL
 );
 
 
-ALTER TABLE public.detalhe_relatorio_financeiro OWNER TO postgres;
+ALTER TABLE public.detalhe_relatorio_financeiro
+    OWNER TO postgres;
 
 --
 -- TOC entry 317 (class 1259 OID 25678)
@@ -597,29 +623,33 @@ ALTER SEQUENCE public.detalhe_relatorio_financeiro_id_seq OWNED BY public.detalh
 -- Name: disciplina; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.disciplina (
-    id bigint NOT NULL,
+CREATE TABLE public.disciplina
+(
+    id              bigint                 NOT NULL,
     nome_disciplina character varying(100) NOT NULL
 );
 
 
-ALTER TABLE public.disciplina OWNER TO postgres;
+ALTER TABLE public.disciplina
+    OWNER TO postgres;
 
 --
 -- TOC entry 267 (class 1259 OID 25106)
 -- Name: disciplina_aluno; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.disciplina_aluno (
-    disciplina integer NOT NULL,
+CREATE TABLE public.disciplina_aluno
+(
+    disciplina  integer                   NOT NULL,
     ano_lectivo integer,
-    aluno integer NOT NULL,
-    data_aula date NOT NULL,
-    hora_aula time(6) without time zone NOT NULL
+    aluno       integer                   NOT NULL,
+    data_aula   date                      NOT NULL,
+    hora_aula   time(6) without time zone NOT NULL
 );
 
 
-ALTER TABLE public.disciplina_aluno OWNER TO postgres;
+ALTER TABLE public.disciplina_aluno
+    OWNER TO postgres;
 
 --
 -- TOC entry 264 (class 1259 OID 25082)
@@ -651,14 +681,16 @@ ALTER SEQUENCE public.disciplina_id_seq OWNED BY public.disciplina.id;
 -- Name: distrito; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.distrito (
-    id bigint NOT NULL,
+CREATE TABLE public.distrito
+(
+    id            bigint                NOT NULL,
     nome_distrito character varying(50) NOT NULL,
-    provincia bigint NOT NULL
+    provincia     bigint                NOT NULL
 );
 
 
-ALTER TABLE public.distrito OWNER TO postgres;
+ALTER TABLE public.distrito
+    OWNER TO postgres;
 
 --
 -- TOC entry 252 (class 1259 OID 24926)
@@ -690,18 +722,20 @@ ALTER SEQUENCE public.distrito_id_seq OWNED BY public.distrito.id;
 -- Name: documento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.documento (
-    id bigint NOT NULL,
-    titulo character varying(200) NOT NULL,
-    tipo_documento bigint NOT NULL,
-    conteudo text NOT NULL,
-    data_criacao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    autor bigint NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.documento
+(
+    id             bigint                                                NOT NULL,
+    titulo         character varying(200)                                NOT NULL,
+    tipo_documento bigint                                                NOT NULL,
+    conteudo       text                                                  NOT NULL,
+    data_criacao   timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    autor          bigint                                                NOT NULL,
+    estado         bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.documento OWNER TO postgres;
+ALTER TABLE public.documento
+    OWNER TO postgres;
 
 --
 -- TOC entry 293 (class 1259 OID 25427)
@@ -733,39 +767,43 @@ ALTER SEQUENCE public.documento_id_seq OWNED BY public.documento.id;
 -- Name: encarregado_aluno; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.encarregado_aluno (
-    encarregado integer NOT NULL,
-    aluno integer NOT NULL,
+CREATE TABLE public.encarregado_aluno
+(
+    encarregado     integer                NOT NULL,
+    aluno           integer                NOT NULL,
     grau_parentesco character varying(100) NOT NULL
 );
 
 
-ALTER TABLE public.encarregado_aluno OWNER TO postgres;
+ALTER TABLE public.encarregado_aluno
+    OWNER TO postgres;
 
 --
 -- TOC entry 256 (class 1259 OID 24962)
 -- Name: encarregado_educacao; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.encarregado_educacao (
-    id bigint NOT NULL,
-    nome_completo character varying(150) NOT NULL,
-    data_nascimento date NOT NULL,
-    distrito_nascimento bigint,
-    sexo character varying(10) NOT NULL,
-    local_trabalho character varying(255),
-    sector_trabalho bigint,
-    endereco character varying(255),
-    email character varying(75),
-    grupo_sanguineo character varying(3),
-    numero_telefone_principal bigint NOT NULL,
+CREATE TABLE public.encarregado_educacao
+(
+    id                          bigint                 NOT NULL,
+    nome_completo               character varying(150) NOT NULL,
+    data_nascimento             date                   NOT NULL,
+    distrito_nascimento         bigint,
+    sexo                        character varying(10)  NOT NULL,
+    local_trabalho              character varying(255),
+    sector_trabalho             bigint,
+    endereco                    character varying(255),
+    email                       character varying(75),
+    grupo_sanguineo             character varying(3),
+    numero_telefone_principal   bigint                 NOT NULL,
     numero_telefone_alternativo bigint,
-    religiao character varying(78),
-    estado bigint NOT NULL
+    religiao                    character varying(78),
+    estado                      bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.encarregado_educacao OWNER TO postgres;
+ALTER TABLE public.encarregado_educacao
+    OWNER TO postgres;
 
 --
 -- TOC entry 255 (class 1259 OID 24961)
@@ -797,14 +835,16 @@ ALTER SEQUENCE public.encarregado_educacao_id_seq OWNED BY public.encarregado_ed
 -- Name: estado; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.estado (
-    id bigint NOT NULL,
-    descricao character varying NOT NULL,
-    tipo_estado bigint NOT NULL
+CREATE TABLE public.estado
+(
+    id          bigint            NOT NULL,
+    descricao   character varying NOT NULL,
+    tipo_estado bigint            NOT NULL
 );
 
 
-ALTER TABLE public.estado OWNER TO postgres;
+ALTER TABLE public.estado
+    OWNER TO postgres;
 
 --
 -- TOC entry 228 (class 1259 OID 24809)
@@ -836,19 +876,21 @@ ALTER SEQUENCE public.estado_id_seq OWNED BY public.estado.id;
 -- Name: evento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.evento (
-    id bigint NOT NULL,
-    nome character varying(200) NOT NULL,
-    descricao text,
+CREATE TABLE public.evento
+(
+    id          bigint                      NOT NULL,
+    nome        character varying(200)      NOT NULL,
+    descricao   text,
     data_inicio timestamp(6) with time zone NOT NULL,
-    data_fim timestamp(6) with time zone,
+    data_fim    timestamp(6) with time zone,
     localizacao character varying(255),
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+    responsavel bigint                      NOT NULL,
+    estado      bigint                      NOT NULL
 );
 
 
-ALTER TABLE public.evento OWNER TO postgres;
+ALTER TABLE public.evento
+    OWNER TO postgres;
 
 --
 -- TOC entry 311 (class 1259 OID 25619)
@@ -880,19 +922,21 @@ ALTER SEQUENCE public.evento_id_seq OWNED BY public.evento.id;
 -- Name: folha_pagamento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.folha_pagamento (
-    id bigint NOT NULL,
-    funcionario bigint NOT NULL,
-    salario_bruto numeric(10,2) NOT NULL,
-    descontos numeric(10,2),
-    salario_liquido numeric(10,2) NOT NULL,
-    mes_referencia date NOT NULL,
-    data_pagamento timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.folha_pagamento
+(
+    id              bigint                                                NOT NULL,
+    funcionario     bigint                                                NOT NULL,
+    salario_bruto   numeric(10, 2)                                        NOT NULL,
+    descontos       numeric(10, 2),
+    salario_liquido numeric(10, 2)                                        NOT NULL,
+    mes_referencia  date                                                  NOT NULL,
+    data_pagamento  timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    estado          bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.folha_pagamento OWNER TO postgres;
+ALTER TABLE public.folha_pagamento
+    OWNER TO postgres;
 
 --
 -- TOC entry 303 (class 1259 OID 25546)
@@ -924,18 +968,20 @@ ALTER SEQUENCE public.folha_pagamento_id_seq OWNED BY public.folha_pagamento.id;
 -- Name: fornecedor; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.fornecedor (
-    id bigint NOT NULL,
-    nome character varying(200) NOT NULL,
-    endereco character varying(255),
-    telefone character varying(15),
-    email character varying(100),
+CREATE TABLE public.fornecedor
+(
+    id        bigint                 NOT NULL,
+    nome      character varying(200) NOT NULL,
+    endereco  character varying(255),
+    telefone  character varying(15),
+    email     character varying(100),
     descricao text,
-    estado bigint NOT NULL
+    estado    bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.fornecedor OWNER TO postgres;
+ALTER TABLE public.fornecedor
+    OWNER TO postgres;
 
 --
 -- TOC entry 319 (class 1259 OID 25692)
@@ -967,30 +1013,32 @@ ALTER SEQUENCE public.fornecedor_id_seq OWNED BY public.fornecedor.id;
 -- Name: funcionario; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.funcionario (
-    id bigint NOT NULL,
-    nome_completo character varying(100) NOT NULL,
-    data_nascimento date NOT NULL,
-    distrito_nascimento bigint,
-    sexo character varying(1) NOT NULL,
-    endereco character varying(255) NOT NULL,
-    email character varying(75) NOT NULL,
-    numero_telefone_principal bigint NOT NULL,
+CREATE TABLE public.funcionario
+(
+    id                          bigint                                                NOT NULL,
+    nome_completo               character varying(100)                                NOT NULL,
+    data_nascimento             date                                                  NOT NULL,
+    distrito_nascimento         bigint,
+    sexo                        character varying(1)                                  NOT NULL,
+    endereco                    character varying(255)                                NOT NULL,
+    email                       character varying(75)                                 NOT NULL,
+    numero_telefone_principal   bigint                                                NOT NULL,
     numero_telefone_alternativo bigint,
-    data_contracto timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    cargo bigint NOT NULL,
-    departamento bigint NOT NULL,
-    estado bigint NOT NULL,
-    estado_civil character varying(10),
-    bilhete_identificacao character varying(13),
-    religiao character varying(78),
-    grupo_sanguineo character varying(3),
-    area_formacao bigint NOT NULL,
-    tipo_funcionario bigint NOT NULL
+    data_contracto              timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    cargo                       bigint                                                NOT NULL,
+    departamento                bigint                                                NOT NULL,
+    estado                      bigint                                                NOT NULL,
+    estado_civil                character varying(10),
+    bilhete_identificacao       character varying(13),
+    religiao                    character varying(78),
+    grupo_sanguineo             character varying(3),
+    area_formacao               bigint                                                NOT NULL,
+    tipo_funcionario            bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.funcionario OWNER TO postgres;
+ALTER TABLE public.funcionario
+    OWNER TO postgres;
 
 --
 -- TOC entry 260 (class 1259 OID 25025)
@@ -1022,20 +1070,22 @@ ALTER SEQUENCE public.funcionario_id_seq OWNED BY public.funcionario.id;
 -- Name: horario; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.horario (
-    id bigint NOT NULL,
-    sala bigint NOT NULL,
-    turma bigint NOT NULL,
-    disciplina bigint NOT NULL,
-    professor bigint NOT NULL,
-    dia_semana character varying(10) NOT NULL,
-    hora_inicio time(6) without time zone NOT NULL,
+CREATE TABLE public.horario
+(
+    id           bigint                    NOT NULL,
+    sala         bigint                    NOT NULL,
+    turma        bigint                    NOT NULL,
+    disciplina   bigint                    NOT NULL,
+    professor    bigint                    NOT NULL,
+    dia_semana   character varying(10)     NOT NULL,
+    hora_inicio  time(6) without time zone NOT NULL,
     hora_termino time(6) without time zone NOT NULL,
-    estado bigint NOT NULL
+    estado       bigint                    NOT NULL
 );
 
 
-ALTER TABLE public.horario OWNER TO postgres;
+ALTER TABLE public.horario
+    OWNER TO postgres;
 
 --
 -- TOC entry 277 (class 1259 OID 25227)
@@ -1067,18 +1117,20 @@ ALTER SEQUENCE public.horario_id_seq OWNED BY public.horario.id;
 -- Name: item_ordem_compra; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.item_ordem_compra (
-    id bigint NOT NULL,
-    ordem_compra bigint NOT NULL,
-    material bigint NOT NULL,
-    descricao character varying(200) NOT NULL,
-    quantidade integer NOT NULL,
-    valor_unitario numeric(10,2) NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.item_ordem_compra
+(
+    id             bigint                 NOT NULL,
+    ordem_compra   bigint                 NOT NULL,
+    material       bigint                 NOT NULL,
+    descricao      character varying(200) NOT NULL,
+    quantidade     integer                NOT NULL,
+    valor_unitario numeric(10, 2)         NOT NULL,
+    estado         bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.item_ordem_compra OWNER TO postgres;
+ALTER TABLE public.item_ordem_compra
+    OWNER TO postgres;
 
 --
 -- TOC entry 323 (class 1259 OID 25728)
@@ -1110,18 +1162,20 @@ ALTER SEQUENCE public.item_ordem_compra_id_seq OWNED BY public.item_ordem_compra
 -- Name: manutencao_ativo; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.manutencao_ativo (
-    id bigint NOT NULL,
-    ativo bigint NOT NULL,
-    descricao character varying(255) NOT NULL,
-    data_manutencao date NOT NULL,
-    custo numeric(10,2),
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.manutencao_ativo
+(
+    id              bigint                 NOT NULL,
+    ativo           bigint                 NOT NULL,
+    descricao       character varying(255) NOT NULL,
+    data_manutencao date                   NOT NULL,
+    custo           numeric(10, 2),
+    responsavel     bigint                 NOT NULL,
+    estado          bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.manutencao_ativo OWNER TO postgres;
+ALTER TABLE public.manutencao_ativo
+    OWNER TO postgres;
 
 --
 -- TOC entry 307 (class 1259 OID 25578)
@@ -1153,16 +1207,18 @@ ALTER SEQUENCE public.manutencao_ativo_id_seq OWNED BY public.manutencao_ativo.i
 -- Name: material; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.material (
-    id bigint NOT NULL,
-    tipo_material bigint NOT NULL,
+CREATE TABLE public.material
+(
+    id            bigint                 NOT NULL,
+    tipo_material bigint                 NOT NULL,
     nome_material character varying(100) NOT NULL,
-    quantidade integer,
-    estado bigint NOT NULL
+    quantidade    integer,
+    estado        bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.material OWNER TO postgres;
+ALTER TABLE public.material
+    OWNER TO postgres;
 
 --
 -- TOC entry 268 (class 1259 OID 25121)
@@ -1194,15 +1250,17 @@ ALTER SEQUENCE public.material_id_seq OWNED BY public.material.id;
 -- Name: matricula; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.matricula (
-    id bigint NOT NULL,
+CREATE TABLE public.matricula
+(
+    id          bigint  NOT NULL,
     ano_lectivo integer NOT NULL,
-    aluno bigint NOT NULL,
-    estado bigint NOT NULL
+    aluno       bigint  NOT NULL,
+    estado      bigint  NOT NULL
 );
 
 
-ALTER TABLE public.matricula OWNER TO postgres;
+ALTER TABLE public.matricula
+    OWNER TO postgres;
 
 --
 -- TOC entry 272 (class 1259 OID 25170)
@@ -1234,17 +1292,19 @@ ALTER SEQUENCE public.matricula_id_seq OWNED BY public.matricula.id;
 -- Name: orcamento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.orcamento (
-    id bigint NOT NULL,
-    ano integer NOT NULL,
-    valor_total numeric(15,2) NOT NULL,
+CREATE TABLE public.orcamento
+(
+    id           bigint                                                NOT NULL,
+    ano          integer                                               NOT NULL,
+    valor_total  numeric(15, 2)                                        NOT NULL,
     data_criacao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+    responsavel  bigint                                                NOT NULL,
+    estado       bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.orcamento OWNER TO postgres;
+ALTER TABLE public.orcamento
+    OWNER TO postgres;
 
 --
 -- TOC entry 299 (class 1259 OID 25498)
@@ -1276,18 +1336,20 @@ ALTER SEQUENCE public.orcamento_id_seq OWNED BY public.orcamento.id;
 -- Name: ordem_compra; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.ordem_compra (
-    id bigint NOT NULL,
-    fornecedor bigint NOT NULL,
-    data_ordem date NOT NULL,
+CREATE TABLE public.ordem_compra
+(
+    id           bigint         NOT NULL,
+    fornecedor   bigint         NOT NULL,
+    data_ordem   date           NOT NULL,
     data_entrega date,
-    valor_total numeric(15,2) NOT NULL,
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+    valor_total  numeric(15, 2) NOT NULL,
+    responsavel  bigint         NOT NULL,
+    estado       bigint         NOT NULL
 );
 
 
-ALTER TABLE public.ordem_compra OWNER TO postgres;
+ALTER TABLE public.ordem_compra
+    OWNER TO postgres;
 
 --
 -- TOC entry 321 (class 1259 OID 25706)
@@ -1319,20 +1381,22 @@ ALTER SEQUENCE public.ordem_compra_id_seq OWNED BY public.ordem_compra.id;
 -- Name: pagamento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.pagamento (
-    id bigint NOT NULL,
-    referencia character varying(100) NOT NULL,
-    aluno bigint NOT NULL,
-    valor numeric(10,2) NOT NULL,
-    tipo_pagamento bigint NOT NULL,
+CREATE TABLE public.pagamento
+(
+    id             bigint                                                NOT NULL,
+    referencia     character varying(100)                                NOT NULL,
+    aluno          bigint                                                NOT NULL,
+    valor          numeric(10, 2)                                        NOT NULL,
+    tipo_pagamento bigint                                                NOT NULL,
     data_pagamento timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    responsavel bigint NOT NULL,
-    observacao text,
-    estado bigint NOT NULL
+    responsavel    bigint                                                NOT NULL,
+    observacao     text,
+    estado         bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.pagamento OWNER TO postgres;
+ALTER TABLE public.pagamento
+    OWNER TO postgres;
 
 --
 -- TOC entry 270 (class 1259 OID 25140)
@@ -1364,15 +1428,17 @@ ALTER SEQUENCE public.pagamento_id_seq OWNED BY public.pagamento.id;
 -- Name: participante_evento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.participante_evento (
-    id bigint NOT NULL,
-    evento bigint NOT NULL,
+CREATE TABLE public.participante_evento
+(
+    id                bigint                 NOT NULL,
+    evento            bigint                 NOT NULL,
     nome_participante character varying(150) NOT NULL,
-    tipo_participante bigint NOT NULL
+    tipo_participante bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.participante_evento OWNER TO postgres;
+ALTER TABLE public.participante_evento
+    OWNER TO postgres;
 
 --
 -- TOC entry 313 (class 1259 OID 25638)
@@ -1404,20 +1470,22 @@ ALTER SEQUENCE public.participante_evento_id_seq OWNED BY public.participante_ev
 -- Name: pauta_final; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.pauta_final (
-    id bigint NOT NULL,
-    disciplina bigint NOT NULL,
-    aluno bigint NOT NULL,
-    ano_lectivo integer,
-    nota_final integer NOT NULL,
-    professor bigint NOT NULL,
+CREATE TABLE public.pauta_final
+(
+    id              bigint                NOT NULL,
+    disciplina      bigint                NOT NULL,
+    aluno           bigint                NOT NULL,
+    ano_lectivo     integer,
+    nota_final      integer               NOT NULL,
+    professor       bigint                NOT NULL,
     data_publicacao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP,
-    resultado character varying(30) NOT NULL,
-    estado_pauta bigint NOT NULL
+    resultado       character varying(30) NOT NULL,
+    estado_pauta    bigint                NOT NULL
 );
 
 
-ALTER TABLE public.pauta_final OWNER TO postgres;
+ALTER TABLE public.pauta_final
+    OWNER TO postgres;
 
 --
 -- TOC entry 287 (class 1259 OID 25362)
@@ -1449,21 +1517,23 @@ ALTER SEQUENCE public.pauta_final_id_seq OWNED BY public.pauta_final.id;
 -- Name: pauta_trimestral; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.pauta_trimestral (
-    id bigint NOT NULL,
-    disciplina bigint NOT NULL,
-    aluno bigint NOT NULL,
-    trimestre integer NOT NULL,
-    ano_lectivo integer,
-    nota_final integer NOT NULL,
-    professor bigint NOT NULL,
+CREATE TABLE public.pauta_trimestral
+(
+    id              bigint  NOT NULL,
+    disciplina      bigint  NOT NULL,
+    aluno           bigint  NOT NULL,
+    trimestre       integer NOT NULL,
+    ano_lectivo     integer,
+    nota_final      integer NOT NULL,
+    professor       bigint  NOT NULL,
     data_publicacao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP,
-    observacao text,
-    estado bigint NOT NULL
+    observacao      text,
+    estado          bigint  NOT NULL
 );
 
 
-ALTER TABLE public.pauta_trimestral OWNER TO postgres;
+ALTER TABLE public.pauta_trimestral
+    OWNER TO postgres;
 
 --
 -- TOC entry 285 (class 1259 OID 25332)
@@ -1495,17 +1565,19 @@ ALTER SEQUENCE public.pauta_trimestral_id_seq OWNED BY public.pauta_trimestral.i
 -- Name: presencas_aluno; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.presencas_aluno (
-    id bigint NOT NULL,
-    aluno bigint NOT NULL,
-    turma bigint NOT NULL,
-    disciplina bigint NOT NULL,
-    data timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.presencas_aluno
+(
+    id         bigint                                                NOT NULL,
+    aluno      bigint                                                NOT NULL,
+    turma      bigint                                                NOT NULL,
+    disciplina bigint                                                NOT NULL,
+    data       timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    estado     bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.presencas_aluno OWNER TO postgres;
+ALTER TABLE public.presencas_aluno
+    OWNER TO postgres;
 
 --
 -- TOC entry 283 (class 1259 OID 25304)
@@ -1537,42 +1609,46 @@ ALTER SEQUENCE public.presencas_aluno_id_seq OWNED BY public.presencas_aluno.id;
 -- Name: professor; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.professor (
-    id bigint NOT NULL,
-    nome_completo character varying(100) NOT NULL,
-    data_nascimento date NOT NULL,
-    distrito_nascimento bigint,
-    sexo character varying(1) NOT NULL,
-    endereco character varying(255) NOT NULL,
-    email character varying(75) NOT NULL,
-    numero_telefone_principal bigint NOT NULL,
+CREATE TABLE public.professor
+(
+    id                          bigint                                                NOT NULL,
+    nome_completo               character varying(100)                                NOT NULL,
+    data_nascimento             date                                                  NOT NULL,
+    distrito_nascimento         bigint,
+    sexo                        character varying(1)                                  NOT NULL,
+    endereco                    character varying(255)                                NOT NULL,
+    email                       character varying(75)                                 NOT NULL,
+    numero_telefone_principal   bigint                                                NOT NULL,
     numero_telefone_alternativo bigint,
-    data_contracto timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    estado bigint NOT NULL,
-    estado_civil character varying(10),
-    bilhete_identificacao character varying(13),
-    religiao character varying(78),
-    grupo_sanguineo character varying(3),
-    area_formacao bigint NOT NULL
+    data_contracto              timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    estado                      bigint                                                NOT NULL,
+    estado_civil                character varying(10),
+    bilhete_identificacao       character varying(13),
+    religiao                    character varying(78),
+    grupo_sanguineo             character varying(3),
+    area_formacao               bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.professor OWNER TO postgres;
+ALTER TABLE public.professor
+    OWNER TO postgres;
 
 --
 -- TOC entry 266 (class 1259 OID 25091)
 -- Name: professor_disciplina; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.professor_disciplina (
-    professor integer NOT NULL,
+CREATE TABLE public.professor_disciplina
+(
+    professor   integer NOT NULL,
     ano_lectivo integer,
-    disciplina integer NOT NULL,
-    classe integer NOT NULL
+    disciplina  integer NOT NULL,
+    classe      integer NOT NULL
 );
 
 
-ALTER TABLE public.professor_disciplina OWNER TO postgres;
+ALTER TABLE public.professor_disciplina
+    OWNER TO postgres;
 
 --
 -- TOC entry 258 (class 1259 OID 24995)
@@ -1604,13 +1680,15 @@ ALTER SEQUENCE public.professor_id_seq OWNED BY public.professor.id;
 -- Name: provincia; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.provincia (
-    id bigint NOT NULL,
+CREATE TABLE public.provincia
+(
+    id             bigint NOT NULL,
     nome_provincia character varying(30)
 );
 
 
-ALTER TABLE public.provincia OWNER TO postgres;
+ALTER TABLE public.provincia
+    OWNER TO postgres;
 
 --
 -- TOC entry 250 (class 1259 OID 24917)
@@ -1642,18 +1720,20 @@ ALTER SEQUENCE public.provincia_id_seq OWNED BY public.provincia.id;
 -- Name: receita; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.receita (
-    id bigint NOT NULL,
-    descricao character varying(200) NOT NULL,
-    valor numeric(10,2) NOT NULL,
+CREATE TABLE public.receita
+(
+    id           bigint                                                NOT NULL,
+    descricao    character varying(200)                                NOT NULL,
+    valor        numeric(10, 2)                                        NOT NULL,
     data_receita timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    categoria bigint NOT NULL,
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+    categoria    bigint                                                NOT NULL,
+    responsavel  bigint                                                NOT NULL,
+    estado       bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.receita OWNER TO postgres;
+ALTER TABLE public.receita
+    OWNER TO postgres;
 
 --
 -- TOC entry 295 (class 1259 OID 25452)
@@ -1685,18 +1765,20 @@ ALTER SEQUENCE public.receita_id_seq OWNED BY public.receita.id;
 -- Name: relatorio_financeiro; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.relatorio_financeiro (
-    id bigint NOT NULL,
-    tipo_relatorio bigint NOT NULL,
-    ano integer NOT NULL,
-    mes integer,
-    data_criacao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.relatorio_financeiro
+(
+    id             bigint                                                NOT NULL,
+    tipo_relatorio bigint                                                NOT NULL,
+    ano            integer                                               NOT NULL,
+    mes            integer,
+    data_criacao   timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    responsavel    bigint                                                NOT NULL,
+    estado         bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.relatorio_financeiro OWNER TO postgres;
+ALTER TABLE public.relatorio_financeiro
+    OWNER TO postgres;
 
 --
 -- TOC entry 315 (class 1259 OID 25655)
@@ -1728,18 +1810,20 @@ ALTER SEQUENCE public.relatorio_financeiro_id_seq OWNED BY public.relatorio_fina
 -- Name: requisicao_material; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.requisicao_material (
-    id bigint NOT NULL,
+CREATE TABLE public.requisicao_material
+(
+    id              bigint                                                NOT NULL,
     data_requisicao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    material bigint NOT NULL,
-    quantidade integer NOT NULL,
-    requisitor bigint NOT NULL,
-    observacao text,
-    estado bigint NOT NULL
+    material        bigint                                                NOT NULL,
+    quantidade      integer                                               NOT NULL,
+    requisitor      bigint                                                NOT NULL,
+    observacao      text,
+    estado          bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.requisicao_material OWNER TO postgres;
+ALTER TABLE public.requisicao_material
+    OWNER TO postgres;
 
 --
 -- TOC entry 325 (class 1259 OID 25745)
@@ -1771,14 +1855,17 @@ ALTER SEQUENCE public.requisicao_material_id_seq OWNED BY public.requisicao_mate
 -- Name: role; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.role (
-    id bigint NOT NULL,
+CREATE TABLE public.role
+(
+    id   bigint NOT NULL,
     name character varying(40),
-    CONSTRAINT role_name_check CHECK (((name)::text = ANY (ARRAY[('ROLE_USER'::character varying)::text, ('ROLE_MODERATOR'::character varying)::text, ('ROLE_ESTUDANTE'::character varying)::text, ('ROLE_PROFESSOR'::character varying)::text, ('ROLE_DIRECTOR'::character varying)::text, ('ROLE_PEDAGOGICO'::character varying)::text, ('ROLE_FINANCEIRO'::character varying)::text, ('ROLE_BIBLIOTECARIO'::character varying)::text, ('ROLE_AQUISICOES'::character varying)::text])))
+    CONSTRAINT role_name_check CHECK (((name)::text = ANY
+                                       (ARRAY [('ROLE_USER'::character varying)::text, ('ROLE_MODERATOR'::character varying)::text, ('ROLE_ESTUDANTE'::character varying)::text, ('ROLE_PROFESSOR'::character varying)::text, ('ROLE_DIRECTOR'::character varying)::text, ('ROLE_PEDAGOGICO'::character varying)::text, ('ROLE_FINANCEIRO'::character varying)::text, ('ROLE_BIBLIOTECARIO'::character varying)::text, ('ROLE_AQUISICOES'::character varying)::text])))
 );
 
 
-ALTER TABLE public.role OWNER TO postgres;
+ALTER TABLE public.role
+    OWNER TO postgres;
 
 --
 -- TOC entry 215 (class 1259 OID 24739)
@@ -1810,14 +1897,16 @@ ALTER SEQUENCE public.role_id_seq OWNED BY public.role.id;
 -- Name: sala; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.sala (
-    id bigint NOT NULL,
-    nome_sala character varying(100) NOT NULL,
-    capacidade integer NOT NULL
+CREATE TABLE public.sala
+(
+    id         bigint                 NOT NULL,
+    nome_sala  character varying(100) NOT NULL,
+    capacidade integer                NOT NULL
 );
 
 
-ALTER TABLE public.sala OWNER TO postgres;
+ALTER TABLE public.sala
+    OWNER TO postgres;
 
 --
 -- TOC entry 232 (class 1259 OID 24832)
@@ -1849,13 +1938,15 @@ ALTER SEQUENCE public.sala_id_seq OWNED BY public.sala.id;
 -- Name: sector_trabalho; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.sector_trabalho (
-    id bigint NOT NULL,
+CREATE TABLE public.sector_trabalho
+(
+    id        bigint                 NOT NULL,
     descricao character varying(150) NOT NULL
 );
 
 
-ALTER TABLE public.sector_trabalho OWNER TO postgres;
+ALTER TABLE public.sector_trabalho
+    OWNER TO postgres;
 
 --
 -- TOC entry 244 (class 1259 OID 24890)
@@ -1887,13 +1978,15 @@ ALTER SEQUENCE public.sector_trabalho_id_seq OWNED BY public.sector_trabalho.id;
 -- Name: tipo_avaliacao; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_avaliacao (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_avaliacao
+(
+    id        bigint            NOT NULL,
     descricao character varying NOT NULL
 );
 
 
-ALTER TABLE public.tipo_avaliacao OWNER TO postgres;
+ALTER TABLE public.tipo_avaliacao
+    OWNER TO postgres;
 
 --
 -- TOC entry 236 (class 1259 OID 24850)
@@ -1925,13 +2018,15 @@ ALTER SEQUENCE public.tipo_avaliacao_id_seq OWNED BY public.tipo_avaliacao.id;
 -- Name: tipo_documento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_documento (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_documento
+(
+    id        bigint                NOT NULL,
     descricao character varying(70) NOT NULL
 );
 
 
-ALTER TABLE public.tipo_documento OWNER TO postgres;
+ALTER TABLE public.tipo_documento
+    OWNER TO postgres;
 
 --
 -- TOC entry 234 (class 1259 OID 24841)
@@ -1963,13 +2058,15 @@ ALTER SEQUENCE public.tipo_documento_id_seq OWNED BY public.tipo_documento.id;
 -- Name: tipo_estado; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_estado (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_estado
+(
+    id        bigint            NOT NULL,
     descricao character varying NOT NULL
 );
 
 
-ALTER TABLE public.tipo_estado OWNER TO postgres;
+ALTER TABLE public.tipo_estado
+    OWNER TO postgres;
 
 --
 -- TOC entry 226 (class 1259 OID 24800)
@@ -2001,13 +2098,15 @@ ALTER SEQUENCE public.tipo_estado_id_seq OWNED BY public.tipo_estado.id;
 -- Name: tipo_funcionario; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_funcionario (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_funcionario
+(
+    id        bigint                NOT NULL,
     descricao character varying(70) NOT NULL
 );
 
 
-ALTER TABLE public.tipo_funcionario OWNER TO postgres;
+ALTER TABLE public.tipo_funcionario
+    OWNER TO postgres;
 
 --
 -- TOC entry 327 (class 1259 OID 34660)
@@ -2038,13 +2137,15 @@ ALTER SEQUENCE public.tipo_funcionario_id_seq OWNED BY public.tipo_funcionario.i
 -- Name: tipo_material; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_material (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_material
+(
+    id        bigint                 NOT NULL,
     descricao character varying(100) NOT NULL
 );
 
 
-ALTER TABLE public.tipo_material OWNER TO postgres;
+ALTER TABLE public.tipo_material
+    OWNER TO postgres;
 
 --
 -- TOC entry 246 (class 1259 OID 24899)
@@ -2076,13 +2177,15 @@ ALTER SEQUENCE public.tipo_material_id_seq OWNED BY public.tipo_material.id;
 -- Name: tipo_pagamento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_pagamento (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_pagamento
+(
+    id        bigint NOT NULL,
     descricao character varying(80)
 );
 
 
-ALTER TABLE public.tipo_pagamento OWNER TO postgres;
+ALTER TABLE public.tipo_pagamento
+    OWNER TO postgres;
 
 --
 -- TOC entry 248 (class 1259 OID 24908)
@@ -2114,13 +2217,15 @@ ALTER SEQUENCE public.tipo_pagamento_id_seq OWNED BY public.tipo_pagamento.id;
 -- Name: tipo_pessoa; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_pessoa (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_pessoa
+(
+    id        bigint                NOT NULL,
     descricao character varying(70) NOT NULL
 );
 
 
-ALTER TABLE public.tipo_pessoa OWNER TO postgres;
+ALTER TABLE public.tipo_pessoa
+    OWNER TO postgres;
 
 --
 -- TOC entry 224 (class 1259 OID 24791)
@@ -2152,13 +2257,15 @@ ALTER SEQUENCE public.tipo_pessoa_id_seq OWNED BY public.tipo_pessoa.id;
 -- Name: tipo_relatorio; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_relatorio (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_relatorio
+(
+    id        bigint                 NOT NULL,
     descricao character varying(100) NOT NULL
 );
 
 
-ALTER TABLE public.tipo_relatorio OWNER TO postgres;
+ALTER TABLE public.tipo_relatorio
+    OWNER TO postgres;
 
 --
 -- TOC entry 220 (class 1259 OID 24773)
@@ -2190,13 +2297,15 @@ ALTER SEQUENCE public.tipo_relatorio_id_seq OWNED BY public.tipo_relatorio.id;
 -- Name: tipo_transacao; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_transacao (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_transacao
+(
+    id        bigint                 NOT NULL,
     descricao character varying(100) NOT NULL
 );
 
 
-ALTER TABLE public.tipo_transacao OWNER TO postgres;
+ALTER TABLE public.tipo_transacao
+    OWNER TO postgres;
 
 --
 -- TOC entry 238 (class 1259 OID 24861)
@@ -2228,19 +2337,21 @@ ALTER SEQUENCE public.tipo_transacao_id_seq OWNED BY public.tipo_transacao.id;
 -- Name: transacao; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.transacao (
-    id bigint NOT NULL,
-    tipo_transacao bigint NOT NULL,
-    valor numeric(10,2) NOT NULL,
+CREATE TABLE public.transacao
+(
+    id             bigint                                                NOT NULL,
+    tipo_transacao bigint                                                NOT NULL,
+    valor          numeric(10, 2)                                        NOT NULL,
     data_transacao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    categoria bigint NOT NULL,
-    responsavel bigint NOT NULL,
-    descricao text NOT NULL,
-    estado bigint NOT NULL
+    categoria      bigint                                                NOT NULL,
+    responsavel    bigint                                                NOT NULL,
+    descricao      text                                                  NOT NULL,
+    estado         bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.transacao OWNER TO postgres;
+ALTER TABLE public.transacao
+    OWNER TO postgres;
 
 --
 -- TOC entry 301 (class 1259 OID 25516)
@@ -2272,30 +2383,34 @@ ALTER SEQUENCE public.transacao_id_seq OWNED BY public.transacao.id;
 -- Name: turma; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.turma (
-    id bigint NOT NULL,
-    nome_turma character varying(100) NOT NULL,
-    ano_lectivo integer NOT NULL,
-    professor_responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.turma
+(
+    id                    bigint                 NOT NULL,
+    nome_turma            character varying(100) NOT NULL,
+    ano_lectivo           integer                NOT NULL,
+    professor_responsavel bigint                 NOT NULL,
+    estado                bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.turma OWNER TO postgres;
+ALTER TABLE public.turma
+    OWNER TO postgres;
 
 --
 -- TOC entry 276 (class 1259 OID 25212)
 -- Name: turma_aluno; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.turma_aluno (
-    aluno integer NOT NULL,
+CREATE TABLE public.turma_aluno
+(
+    aluno       integer NOT NULL,
     ano_lectivo integer NOT NULL,
-    turma integer NOT NULL
+    turma       integer NOT NULL
 );
 
 
-ALTER TABLE public.turma_aluno OWNER TO postgres;
+ALTER TABLE public.turma_aluno
+    OWNER TO postgres;
 
 --
 -- TOC entry 262 (class 1259 OID 25065)
@@ -2327,16 +2442,18 @@ ALTER SEQUENCE public.turma_id_seq OWNED BY public.turma.id;
 -- Name: utilizador; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.utilizador (
-    id bigint NOT NULL,
-    email character varying(50),
+CREATE TABLE public.utilizador
+(
+    id       bigint                 NOT NULL,
+    email    character varying(50),
     password character varying(120),
     username character varying(20),
-    nome character varying(150) NOT NULL
+    nome     character varying(150) NOT NULL
 );
 
 
-ALTER TABLE public.utilizador OWNER TO postgres;
+ALTER TABLE public.utilizador
+    OWNER TO postgres;
 
 --
 -- TOC entry 217 (class 1259 OID 24747)
@@ -2367,29 +2484,33 @@ ALTER SEQUENCE public.utilizador_id_seq OWNED BY public.utilizador.id;
 -- Name: utilizador_role; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.utilizador_role (
+CREATE TABLE public.utilizador_role
+(
     utilizador bigint NOT NULL,
-    role bigint NOT NULL
+    role       bigint NOT NULL
 );
 
 
-ALTER TABLE public.utilizador_role OWNER TO postgres;
+ALTER TABLE public.utilizador_role
+    OWNER TO postgres;
 
 --
 -- TOC entry 292 (class 1259 OID 25411)
 -- Name: veiculo; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.veiculo (
-    id bigint NOT NULL,
+CREATE TABLE public.veiculo
+(
+    id             bigint NOT NULL,
     codigo_veiculo character varying(19),
-    marca_veiculo character varying(30),
-    motorista bigint NOT NULL,
-    estado bigint NOT NULL
+    marca_veiculo  character varying(30),
+    motorista      bigint NOT NULL,
+    estado         bigint NOT NULL
 );
 
 
-ALTER TABLE public.veiculo OWNER TO postgres;
+ALTER TABLE public.veiculo
+    OWNER TO postgres;
 
 --
 -- TOC entry 291 (class 1259 OID 25410)
@@ -2421,7 +2542,8 @@ ALTER SEQUENCE public.veiculo_id_seq OWNED BY public.veiculo.id;
 -- Name: area_cientifica id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.area_cientifica ALTER COLUMN id SET DEFAULT nextval('public.area_cientifica_id_seq'::regclass);
+ALTER TABLE ONLY public.area_cientifica
+    ALTER COLUMN id SET DEFAULT nextval('public.area_cientifica_id_seq'::regclass);
 
 
 --
@@ -2429,7 +2551,8 @@ ALTER TABLE ONLY public.area_cientifica ALTER COLUMN id SET DEFAULT nextval('pub
 -- Name: ativo id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.ativo ALTER COLUMN id SET DEFAULT nextval('public.ativo_id_seq'::regclass);
+ALTER TABLE ONLY public.ativo
+    ALTER COLUMN id SET DEFAULT nextval('public.ativo_id_seq'::regclass);
 
 
 --
@@ -2437,7 +2560,8 @@ ALTER TABLE ONLY public.ativo ALTER COLUMN id SET DEFAULT nextval('public.ativo_
 -- Name: aula id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.aula ALTER COLUMN id SET DEFAULT nextval('public.aula_id_seq'::regclass);
+ALTER TABLE ONLY public.aula
+    ALTER COLUMN id SET DEFAULT nextval('public.aula_id_seq'::regclass);
 
 
 --
@@ -2445,7 +2569,8 @@ ALTER TABLE ONLY public.aula ALTER COLUMN id SET DEFAULT nextval('public.aula_id
 -- Name: avaliacao id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.avaliacao ALTER COLUMN id SET DEFAULT nextval('public.avaliacao_id_seq'::regclass);
+ALTER TABLE ONLY public.avaliacao
+    ALTER COLUMN id SET DEFAULT nextval('public.avaliacao_id_seq'::regclass);
 
 
 --
@@ -2453,7 +2578,8 @@ ALTER TABLE ONLY public.avaliacao ALTER COLUMN id SET DEFAULT nextval('public.av
 -- Name: avaliacao_aluno id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.avaliacao_aluno ALTER COLUMN id SET DEFAULT nextval('public.avaliacao_aluno_id_seq'::regclass);
+ALTER TABLE ONLY public.avaliacao_aluno
+    ALTER COLUMN id SET DEFAULT nextval('public.avaliacao_aluno_id_seq'::regclass);
 
 
 --
@@ -2461,7 +2587,8 @@ ALTER TABLE ONLY public.avaliacao_aluno ALTER COLUMN id SET DEFAULT nextval('pub
 -- Name: cargo id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.cargo ALTER COLUMN id SET DEFAULT nextval('public.cargo_id_seq'::regclass);
+ALTER TABLE ONLY public.cargo
+    ALTER COLUMN id SET DEFAULT nextval('public.cargo_id_seq'::regclass);
 
 
 --
@@ -2469,7 +2596,8 @@ ALTER TABLE ONLY public.cargo ALTER COLUMN id SET DEFAULT nextval('public.cargo_
 -- Name: categoria_financeira id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.categoria_financeira ALTER COLUMN id SET DEFAULT nextval('public.categoria_financeira_id_seq'::regclass);
+ALTER TABLE ONLY public.categoria_financeira
+    ALTER COLUMN id SET DEFAULT nextval('public.categoria_financeira_id_seq'::regclass);
 
 
 --
@@ -2477,7 +2605,8 @@ ALTER TABLE ONLY public.categoria_financeira ALTER COLUMN id SET DEFAULT nextval
 -- Name: comunicados id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.comunicados ALTER COLUMN id SET DEFAULT nextval('public.comunicados_id_seq'::regclass);
+ALTER TABLE ONLY public.comunicados
+    ALTER COLUMN id SET DEFAULT nextval('public.comunicados_id_seq'::regclass);
 
 
 --
@@ -2485,7 +2614,8 @@ ALTER TABLE ONLY public.comunicados ALTER COLUMN id SET DEFAULT nextval('public.
 -- Name: contrato id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.contrato ALTER COLUMN id SET DEFAULT nextval('public.contrato_id_seq'::regclass);
+ALTER TABLE ONLY public.contrato
+    ALTER COLUMN id SET DEFAULT nextval('public.contrato_id_seq'::regclass);
 
 
 --
@@ -2493,7 +2623,8 @@ ALTER TABLE ONLY public.contrato ALTER COLUMN id SET DEFAULT nextval('public.con
 -- Name: departamento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.departamento ALTER COLUMN id SET DEFAULT nextval('public.departamento_id_seq'::regclass);
+ALTER TABLE ONLY public.departamento
+    ALTER COLUMN id SET DEFAULT nextval('public.departamento_id_seq'::regclass);
 
 
 --
@@ -2501,7 +2632,8 @@ ALTER TABLE ONLY public.departamento ALTER COLUMN id SET DEFAULT nextval('public
 -- Name: despesa id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.despesa ALTER COLUMN id SET DEFAULT nextval('public.despesa_id_seq'::regclass);
+ALTER TABLE ONLY public.despesa
+    ALTER COLUMN id SET DEFAULT nextval('public.despesa_id_seq'::regclass);
 
 
 --
@@ -2509,7 +2641,8 @@ ALTER TABLE ONLY public.despesa ALTER COLUMN id SET DEFAULT nextval('public.desp
 -- Name: detalhe_relatorio_financeiro id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.detalhe_relatorio_financeiro ALTER COLUMN id SET DEFAULT nextval('public.detalhe_relatorio_financeiro_id_seq'::regclass);
+ALTER TABLE ONLY public.detalhe_relatorio_financeiro
+    ALTER COLUMN id SET DEFAULT nextval('public.detalhe_relatorio_financeiro_id_seq'::regclass);
 
 
 --
@@ -2517,7 +2650,8 @@ ALTER TABLE ONLY public.detalhe_relatorio_financeiro ALTER COLUMN id SET DEFAULT
 -- Name: disciplina id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.disciplina ALTER COLUMN id SET DEFAULT nextval('public.disciplina_id_seq'::regclass);
+ALTER TABLE ONLY public.disciplina
+    ALTER COLUMN id SET DEFAULT nextval('public.disciplina_id_seq'::regclass);
 
 
 --
@@ -2525,7 +2659,8 @@ ALTER TABLE ONLY public.disciplina ALTER COLUMN id SET DEFAULT nextval('public.d
 -- Name: distrito id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.distrito ALTER COLUMN id SET DEFAULT nextval('public.distrito_id_seq'::regclass);
+ALTER TABLE ONLY public.distrito
+    ALTER COLUMN id SET DEFAULT nextval('public.distrito_id_seq'::regclass);
 
 
 --
@@ -2533,7 +2668,8 @@ ALTER TABLE ONLY public.distrito ALTER COLUMN id SET DEFAULT nextval('public.dis
 -- Name: documento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.documento ALTER COLUMN id SET DEFAULT nextval('public.documento_id_seq'::regclass);
+ALTER TABLE ONLY public.documento
+    ALTER COLUMN id SET DEFAULT nextval('public.documento_id_seq'::regclass);
 
 
 --
@@ -2541,7 +2677,8 @@ ALTER TABLE ONLY public.documento ALTER COLUMN id SET DEFAULT nextval('public.do
 -- Name: encarregado_educacao id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.encarregado_educacao ALTER COLUMN id SET DEFAULT nextval('public.encarregado_educacao_id_seq'::regclass);
+ALTER TABLE ONLY public.encarregado_educacao
+    ALTER COLUMN id SET DEFAULT nextval('public.encarregado_educacao_id_seq'::regclass);
 
 
 --
@@ -2549,7 +2686,8 @@ ALTER TABLE ONLY public.encarregado_educacao ALTER COLUMN id SET DEFAULT nextval
 -- Name: estado id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.estado ALTER COLUMN id SET DEFAULT nextval('public.estado_id_seq'::regclass);
+ALTER TABLE ONLY public.estado
+    ALTER COLUMN id SET DEFAULT nextval('public.estado_id_seq'::regclass);
 
 
 --
@@ -2557,7 +2695,8 @@ ALTER TABLE ONLY public.estado ALTER COLUMN id SET DEFAULT nextval('public.estad
 -- Name: evento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.evento ALTER COLUMN id SET DEFAULT nextval('public.evento_id_seq'::regclass);
+ALTER TABLE ONLY public.evento
+    ALTER COLUMN id SET DEFAULT nextval('public.evento_id_seq'::regclass);
 
 
 --
@@ -2565,7 +2704,8 @@ ALTER TABLE ONLY public.evento ALTER COLUMN id SET DEFAULT nextval('public.event
 -- Name: folha_pagamento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.folha_pagamento ALTER COLUMN id SET DEFAULT nextval('public.folha_pagamento_id_seq'::regclass);
+ALTER TABLE ONLY public.folha_pagamento
+    ALTER COLUMN id SET DEFAULT nextval('public.folha_pagamento_id_seq'::regclass);
 
 
 --
@@ -2573,7 +2713,8 @@ ALTER TABLE ONLY public.folha_pagamento ALTER COLUMN id SET DEFAULT nextval('pub
 -- Name: fornecedor id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.fornecedor ALTER COLUMN id SET DEFAULT nextval('public.fornecedor_id_seq'::regclass);
+ALTER TABLE ONLY public.fornecedor
+    ALTER COLUMN id SET DEFAULT nextval('public.fornecedor_id_seq'::regclass);
 
 
 --
@@ -2581,7 +2722,8 @@ ALTER TABLE ONLY public.fornecedor ALTER COLUMN id SET DEFAULT nextval('public.f
 -- Name: funcionario id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.funcionario ALTER COLUMN id SET DEFAULT nextval('public.funcionario_id_seq'::regclass);
+ALTER TABLE ONLY public.funcionario
+    ALTER COLUMN id SET DEFAULT nextval('public.funcionario_id_seq'::regclass);
 
 
 --
@@ -2589,7 +2731,8 @@ ALTER TABLE ONLY public.funcionario ALTER COLUMN id SET DEFAULT nextval('public.
 -- Name: horario id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.horario ALTER COLUMN id SET DEFAULT nextval('public.horario_id_seq'::regclass);
+ALTER TABLE ONLY public.horario
+    ALTER COLUMN id SET DEFAULT nextval('public.horario_id_seq'::regclass);
 
 
 --
@@ -2597,7 +2740,8 @@ ALTER TABLE ONLY public.horario ALTER COLUMN id SET DEFAULT nextval('public.hora
 -- Name: item_ordem_compra id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.item_ordem_compra ALTER COLUMN id SET DEFAULT nextval('public.item_ordem_compra_id_seq'::regclass);
+ALTER TABLE ONLY public.item_ordem_compra
+    ALTER COLUMN id SET DEFAULT nextval('public.item_ordem_compra_id_seq'::regclass);
 
 
 --
@@ -2605,7 +2749,8 @@ ALTER TABLE ONLY public.item_ordem_compra ALTER COLUMN id SET DEFAULT nextval('p
 -- Name: manutencao_ativo id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.manutencao_ativo ALTER COLUMN id SET DEFAULT nextval('public.manutencao_ativo_id_seq'::regclass);
+ALTER TABLE ONLY public.manutencao_ativo
+    ALTER COLUMN id SET DEFAULT nextval('public.manutencao_ativo_id_seq'::regclass);
 
 
 --
@@ -2613,7 +2758,8 @@ ALTER TABLE ONLY public.manutencao_ativo ALTER COLUMN id SET DEFAULT nextval('pu
 -- Name: material id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.material ALTER COLUMN id SET DEFAULT nextval('public.material_id_seq'::regclass);
+ALTER TABLE ONLY public.material
+    ALTER COLUMN id SET DEFAULT nextval('public.material_id_seq'::regclass);
 
 
 --
@@ -2621,7 +2767,8 @@ ALTER TABLE ONLY public.material ALTER COLUMN id SET DEFAULT nextval('public.mat
 -- Name: matricula id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.matricula ALTER COLUMN id SET DEFAULT nextval('public.matricula_id_seq'::regclass);
+ALTER TABLE ONLY public.matricula
+    ALTER COLUMN id SET DEFAULT nextval('public.matricula_id_seq'::regclass);
 
 
 --
@@ -2629,7 +2776,8 @@ ALTER TABLE ONLY public.matricula ALTER COLUMN id SET DEFAULT nextval('public.ma
 -- Name: orcamento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.orcamento ALTER COLUMN id SET DEFAULT nextval('public.orcamento_id_seq'::regclass);
+ALTER TABLE ONLY public.orcamento
+    ALTER COLUMN id SET DEFAULT nextval('public.orcamento_id_seq'::regclass);
 
 
 --
@@ -2637,7 +2785,8 @@ ALTER TABLE ONLY public.orcamento ALTER COLUMN id SET DEFAULT nextval('public.or
 -- Name: ordem_compra id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.ordem_compra ALTER COLUMN id SET DEFAULT nextval('public.ordem_compra_id_seq'::regclass);
+ALTER TABLE ONLY public.ordem_compra
+    ALTER COLUMN id SET DEFAULT nextval('public.ordem_compra_id_seq'::regclass);
 
 
 --
@@ -2645,7 +2794,8 @@ ALTER TABLE ONLY public.ordem_compra ALTER COLUMN id SET DEFAULT nextval('public
 -- Name: pagamento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.pagamento ALTER COLUMN id SET DEFAULT nextval('public.pagamento_id_seq'::regclass);
+ALTER TABLE ONLY public.pagamento
+    ALTER COLUMN id SET DEFAULT nextval('public.pagamento_id_seq'::regclass);
 
 
 --
@@ -2653,7 +2803,8 @@ ALTER TABLE ONLY public.pagamento ALTER COLUMN id SET DEFAULT nextval('public.pa
 -- Name: participante_evento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.participante_evento ALTER COLUMN id SET DEFAULT nextval('public.participante_evento_id_seq'::regclass);
+ALTER TABLE ONLY public.participante_evento
+    ALTER COLUMN id SET DEFAULT nextval('public.participante_evento_id_seq'::regclass);
 
 
 --
@@ -2661,7 +2812,8 @@ ALTER TABLE ONLY public.participante_evento ALTER COLUMN id SET DEFAULT nextval(
 -- Name: pauta_final id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.pauta_final ALTER COLUMN id SET DEFAULT nextval('public.pauta_final_id_seq'::regclass);
+ALTER TABLE ONLY public.pauta_final
+    ALTER COLUMN id SET DEFAULT nextval('public.pauta_final_id_seq'::regclass);
 
 
 --
@@ -2669,7 +2821,8 @@ ALTER TABLE ONLY public.pauta_final ALTER COLUMN id SET DEFAULT nextval('public.
 -- Name: pauta_trimestral id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.pauta_trimestral ALTER COLUMN id SET DEFAULT nextval('public.pauta_trimestral_id_seq'::regclass);
+ALTER TABLE ONLY public.pauta_trimestral
+    ALTER COLUMN id SET DEFAULT nextval('public.pauta_trimestral_id_seq'::regclass);
 
 
 --
@@ -2677,7 +2830,8 @@ ALTER TABLE ONLY public.pauta_trimestral ALTER COLUMN id SET DEFAULT nextval('pu
 -- Name: presencas_aluno id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.presencas_aluno ALTER COLUMN id SET DEFAULT nextval('public.presencas_aluno_id_seq'::regclass);
+ALTER TABLE ONLY public.presencas_aluno
+    ALTER COLUMN id SET DEFAULT nextval('public.presencas_aluno_id_seq'::regclass);
 
 
 --
@@ -2685,7 +2839,8 @@ ALTER TABLE ONLY public.presencas_aluno ALTER COLUMN id SET DEFAULT nextval('pub
 -- Name: professor id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.professor ALTER COLUMN id SET DEFAULT nextval('public.professor_id_seq'::regclass);
+ALTER TABLE ONLY public.professor
+    ALTER COLUMN id SET DEFAULT nextval('public.professor_id_seq'::regclass);
 
 
 --
@@ -2693,7 +2848,8 @@ ALTER TABLE ONLY public.professor ALTER COLUMN id SET DEFAULT nextval('public.pr
 -- Name: provincia id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.provincia ALTER COLUMN id SET DEFAULT nextval('public.provincia_id_seq'::regclass);
+ALTER TABLE ONLY public.provincia
+    ALTER COLUMN id SET DEFAULT nextval('public.provincia_id_seq'::regclass);
 
 
 --
@@ -2701,7 +2857,8 @@ ALTER TABLE ONLY public.provincia ALTER COLUMN id SET DEFAULT nextval('public.pr
 -- Name: receita id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.receita ALTER COLUMN id SET DEFAULT nextval('public.receita_id_seq'::regclass);
+ALTER TABLE ONLY public.receita
+    ALTER COLUMN id SET DEFAULT nextval('public.receita_id_seq'::regclass);
 
 
 --
@@ -2709,7 +2866,8 @@ ALTER TABLE ONLY public.receita ALTER COLUMN id SET DEFAULT nextval('public.rece
 -- Name: relatorio_financeiro id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.relatorio_financeiro ALTER COLUMN id SET DEFAULT nextval('public.relatorio_financeiro_id_seq'::regclass);
+ALTER TABLE ONLY public.relatorio_financeiro
+    ALTER COLUMN id SET DEFAULT nextval('public.relatorio_financeiro_id_seq'::regclass);
 
 
 --
@@ -2717,7 +2875,8 @@ ALTER TABLE ONLY public.relatorio_financeiro ALTER COLUMN id SET DEFAULT nextval
 -- Name: requisicao_material id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.requisicao_material ALTER COLUMN id SET DEFAULT nextval('public.requisicao_material_id_seq'::regclass);
+ALTER TABLE ONLY public.requisicao_material
+    ALTER COLUMN id SET DEFAULT nextval('public.requisicao_material_id_seq'::regclass);
 
 
 --
@@ -2725,7 +2884,8 @@ ALTER TABLE ONLY public.requisicao_material ALTER COLUMN id SET DEFAULT nextval(
 -- Name: role id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.role ALTER COLUMN id SET DEFAULT nextval('public.role_id_seq'::regclass);
+ALTER TABLE ONLY public.role
+    ALTER COLUMN id SET DEFAULT nextval('public.role_id_seq'::regclass);
 
 
 --
@@ -2733,7 +2893,8 @@ ALTER TABLE ONLY public.role ALTER COLUMN id SET DEFAULT nextval('public.role_id
 -- Name: sala id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.sala ALTER COLUMN id SET DEFAULT nextval('public.sala_id_seq'::regclass);
+ALTER TABLE ONLY public.sala
+    ALTER COLUMN id SET DEFAULT nextval('public.sala_id_seq'::regclass);
 
 
 --
@@ -2741,7 +2902,8 @@ ALTER TABLE ONLY public.sala ALTER COLUMN id SET DEFAULT nextval('public.sala_id
 -- Name: sector_trabalho id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.sector_trabalho ALTER COLUMN id SET DEFAULT nextval('public.sector_trabalho_id_seq'::regclass);
+ALTER TABLE ONLY public.sector_trabalho
+    ALTER COLUMN id SET DEFAULT nextval('public.sector_trabalho_id_seq'::regclass);
 
 
 --
@@ -2749,7 +2911,8 @@ ALTER TABLE ONLY public.sector_trabalho ALTER COLUMN id SET DEFAULT nextval('pub
 -- Name: tipo_avaliacao id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_avaliacao ALTER COLUMN id SET DEFAULT nextval('public.tipo_avaliacao_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_avaliacao
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_avaliacao_id_seq'::regclass);
 
 
 --
@@ -2757,7 +2920,8 @@ ALTER TABLE ONLY public.tipo_avaliacao ALTER COLUMN id SET DEFAULT nextval('publ
 -- Name: tipo_documento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_documento ALTER COLUMN id SET DEFAULT nextval('public.tipo_documento_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_documento
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_documento_id_seq'::regclass);
 
 
 --
@@ -2765,7 +2929,8 @@ ALTER TABLE ONLY public.tipo_documento ALTER COLUMN id SET DEFAULT nextval('publ
 -- Name: tipo_estado id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_estado ALTER COLUMN id SET DEFAULT nextval('public.tipo_estado_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_estado
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_estado_id_seq'::regclass);
 
 
 --
@@ -2773,7 +2938,8 @@ ALTER TABLE ONLY public.tipo_estado ALTER COLUMN id SET DEFAULT nextval('public.
 -- Name: tipo_funcionario id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_funcionario ALTER COLUMN id SET DEFAULT nextval('public.tipo_funcionario_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_funcionario
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_funcionario_id_seq'::regclass);
 
 
 --
@@ -2781,7 +2947,8 @@ ALTER TABLE ONLY public.tipo_funcionario ALTER COLUMN id SET DEFAULT nextval('pu
 -- Name: tipo_material id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_material ALTER COLUMN id SET DEFAULT nextval('public.tipo_material_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_material
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_material_id_seq'::regclass);
 
 
 --
@@ -2789,7 +2956,8 @@ ALTER TABLE ONLY public.tipo_material ALTER COLUMN id SET DEFAULT nextval('publi
 -- Name: tipo_pagamento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_pagamento ALTER COLUMN id SET DEFAULT nextval('public.tipo_pagamento_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_pagamento
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_pagamento_id_seq'::regclass);
 
 
 --
@@ -2797,7 +2965,8 @@ ALTER TABLE ONLY public.tipo_pagamento ALTER COLUMN id SET DEFAULT nextval('publ
 -- Name: tipo_pessoa id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_pessoa ALTER COLUMN id SET DEFAULT nextval('public.tipo_pessoa_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_pessoa
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_pessoa_id_seq'::regclass);
 
 
 --
@@ -2805,7 +2974,8 @@ ALTER TABLE ONLY public.tipo_pessoa ALTER COLUMN id SET DEFAULT nextval('public.
 -- Name: tipo_relatorio id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_relatorio ALTER COLUMN id SET DEFAULT nextval('public.tipo_relatorio_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_relatorio
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_relatorio_id_seq'::regclass);
 
 
 --
@@ -2813,7 +2983,8 @@ ALTER TABLE ONLY public.tipo_relatorio ALTER COLUMN id SET DEFAULT nextval('publ
 -- Name: tipo_transacao id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_transacao ALTER COLUMN id SET DEFAULT nextval('public.tipo_transacao_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_transacao
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_transacao_id_seq'::regclass);
 
 
 --
@@ -2821,7 +2992,8 @@ ALTER TABLE ONLY public.tipo_transacao ALTER COLUMN id SET DEFAULT nextval('publ
 -- Name: transacao id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.transacao ALTER COLUMN id SET DEFAULT nextval('public.transacao_id_seq'::regclass);
+ALTER TABLE ONLY public.transacao
+    ALTER COLUMN id SET DEFAULT nextval('public.transacao_id_seq'::regclass);
 
 
 --
@@ -2829,7 +3001,8 @@ ALTER TABLE ONLY public.transacao ALTER COLUMN id SET DEFAULT nextval('public.tr
 -- Name: turma id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.turma ALTER COLUMN id SET DEFAULT nextval('public.turma_id_seq'::regclass);
+ALTER TABLE ONLY public.turma
+    ALTER COLUMN id SET DEFAULT nextval('public.turma_id_seq'::regclass);
 
 
 --
@@ -2837,7 +3010,8 @@ ALTER TABLE ONLY public.turma ALTER COLUMN id SET DEFAULT nextval('public.turma_
 -- Name: utilizador id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.utilizador ALTER COLUMN id SET DEFAULT nextval('public.utilizador_id_seq'::regclass);
+ALTER TABLE ONLY public.utilizador
+    ALTER COLUMN id SET DEFAULT nextval('public.utilizador_id_seq'::regclass);
 
 
 --
@@ -2845,7 +3019,8 @@ ALTER TABLE ONLY public.utilizador ALTER COLUMN id SET DEFAULT nextval('public.u
 -- Name: veiculo id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.veiculo ALTER COLUMN id SET DEFAULT nextval('public.veiculo_id_seq'::regclass);
+ALTER TABLE ONLY public.veiculo
+    ALTER COLUMN id SET DEFAULT nextval('public.veiculo_id_seq'::regclass);
 
 
 --
@@ -2855,13 +3030,11 @@ ALTER TABLE ONLY public.veiculo ALTER COLUMN id SET DEFAULT nextval('public.veic
 --
 
 
-
 --
 -- TOC entry 5475 (class 0 OID 24783)
 -- Dependencies: 223
 -- Data for Name: area_cientifica; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -2871,13 +3044,11 @@ ALTER TABLE ONLY public.veiculo ALTER COLUMN id SET DEFAULT nextval('public.veic
 --
 
 
-
 --
 -- TOC entry 5542 (class 0 OID 25391)
 -- Dependencies: 290
 -- Data for Name: aula; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -2887,13 +3058,11 @@ ALTER TABLE ONLY public.veiculo ALTER COLUMN id SET DEFAULT nextval('public.veic
 --
 
 
-
 --
 -- TOC entry 5534 (class 0 OID 25284)
 -- Dependencies: 282
 -- Data for Name: avaliacao_aluno; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -2902,42 +3071,114 @@ ALTER TABLE ONLY public.veiculo ALTER COLUMN id SET DEFAULT nextval('public.veic
 -- Data for Name: cargo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.cargo (id, descricao) VALUES (1, 'Diretor(a)') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (2, 'Vice-Diretor(a)') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (3, 'Coordenador(a) Pedagógico(a)') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (4, 'Secretário(a) Escolar') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (5, 'Assistente Administrativo') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (6, 'Gestor(a) Financeiro(a)') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (7, 'Contador(a)') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (8, 'Bibliotecário(a)') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (9, 'Recepcionista') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (10, 'Inspetor(a) de Alunos') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (11, 'Professor(a)') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (12, 'Orientador(a) Educacional') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (13, 'Supervisor(a) Educacional') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (14, 'Auxiliar de Sala de Aula') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (15, 'Monitor(a) de Laboratório') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (16, 'Zelador(a)') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (17, 'Servente') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (18, 'Cozinheiro(a)') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (19, 'Auxiliar de Cozinha') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (20, 'Segurança') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (21, 'Motorista') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (22, 'Técnico(a) de Informática') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (23, 'Manutencionista') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (24, 'Psicólogo(a) Escolar') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (25, 'Assistente Social') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (26, 'Mediador(a) Escolar') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (27, 'Nutricionista') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (28, 'Enfermeiro(a) Escolar') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (29, 'Gestor(a) de Tecnologia da Informação') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (30, 'Gestor(a) de Manutenção') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (31, 'Gestor(a) de Recursos Humanos') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (32, 'Gestor(a) de Logística') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (33, 'Gestor(a) de Compras') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (34, 'Responsável pelo Marketing Escolar') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (35, 'Responsável pela Comunicação Institucional') ON CONFLICT DO NOTHING;
-INSERT INTO public.cargo (id, descricao) VALUES (36, 'Designer Gráfico') ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (1, 'Diretor(a)')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (2, 'Vice-Diretor(a)')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (3, 'Coordenador(a) Pedagógico(a)')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (4, 'Secretário(a) Escolar')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (5, 'Assistente Administrativo')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (6, 'Gestor(a) Financeiro(a)')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (7, 'Contador(a)')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (8, 'Bibliotecário(a)')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (9, 'Recepcionista')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (10, 'Inspetor(a) de Alunos')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (11, 'Professor(a)')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (12, 'Orientador(a) Educacional')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (13, 'Supervisor(a) Educacional')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (14, 'Auxiliar de Sala de Aula')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (15, 'Monitor(a) de Laboratório')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (16, 'Zelador(a)')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (17, 'Servente')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (18, 'Cozinheiro(a)')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (19, 'Auxiliar de Cozinha')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (20, 'Segurança')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (21, 'Motorista')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (22, 'Técnico(a) de Informática')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (23, 'Manutencionista')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (24, 'Psicólogo(a) Escolar')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (25, 'Assistente Social')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (26, 'Mediador(a) Escolar')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (27, 'Nutricionista')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (28, 'Enfermeiro(a) Escolar')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (29, 'Gestor(a) de Tecnologia da Informação')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (30, 'Gestor(a) de Manutenção')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (31, 'Gestor(a) de Recursos Humanos')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (32, 'Gestor(a) de Logística')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (33, 'Gestor(a) de Compras')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (34, 'Responsável pelo Marketing Escolar')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (35, 'Responsável pela Comunicação Institucional')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.cargo (id, descricao)
+VALUES (36, 'Designer Gráfico')
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -2947,13 +3188,11 @@ INSERT INTO public.cargo (id, descricao) VALUES (36, 'Designer Gráfico') ON CON
 --
 
 
-
 --
 -- TOC entry 5527 (class 0 OID 25188)
 -- Dependencies: 275
 -- Data for Name: comunicados; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -2963,18 +3202,27 @@ INSERT INTO public.cargo (id, descricao) VALUES (36, 'Designer Gráfico') ON CON
 --
 
 
-
 --
 -- TOC entry 5493 (class 0 OID 24871)
 -- Dependencies: 241
 -- Data for Name: departamento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.departamento (id, descricao, sigla) VALUES (1, 'Departamento Academico', 'DEA') ON CONFLICT DO NOTHING;
-INSERT INTO public.departamento (id, descricao, sigla) VALUES (3, 'Departamento Finaceiro', 'DEF') ON CONFLICT DO NOTHING;
-INSERT INTO public.departamento (id, descricao, sigla) VALUES (4, 'Departamento de Recursos Humanos', 'DRH') ON CONFLICT DO NOTHING;
-INSERT INTO public.departamento (id, descricao, sigla) VALUES (5, 'Departamento Aquisicoes', 'DAQ') ON CONFLICT DO NOTHING;
-INSERT INTO public.departamento (id, descricao, sigla) VALUES (2, 'Departamento Pedagogico', 'DEP') ON CONFLICT DO NOTHING;
+INSERT INTO public.departamento (id, descricao, sigla)
+VALUES (1, 'Departamento Academico', 'DEA')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.departamento (id, descricao, sigla)
+VALUES (3, 'Departamento Finaceiro', 'DEF')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.departamento (id, descricao, sigla)
+VALUES (4, 'Departamento de Recursos Humanos', 'DRH')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.departamento (id, descricao, sigla)
+VALUES (5, 'Departamento Aquisicoes', 'DAQ')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.departamento (id, descricao, sigla)
+VALUES (2, 'Departamento Pedagogico', 'DEP')
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -2984,13 +3232,11 @@ INSERT INTO public.departamento (id, descricao, sigla) VALUES (2, 'Departamento 
 --
 
 
-
 --
 -- TOC entry 5570 (class 0 OID 25679)
 -- Dependencies: 318
 -- Data for Name: detalhe_relatorio_financeiro; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -2999,13 +3245,27 @@ INSERT INTO public.departamento (id, descricao, sigla) VALUES (2, 'Departamento 
 -- Data for Name: disciplina; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.disciplina (id, nome_disciplina) VALUES (1, 'Portugues') ON CONFLICT DO NOTHING;
-INSERT INTO public.disciplina (id, nome_disciplina) VALUES (2, 'Matematica') ON CONFLICT DO NOTHING;
-INSERT INTO public.disciplina (id, nome_disciplina) VALUES (3, 'Quimica') ON CONFLICT DO NOTHING;
-INSERT INTO public.disciplina (id, nome_disciplina) VALUES (4, 'Fisica') ON CONFLICT DO NOTHING;
-INSERT INTO public.disciplina (id, nome_disciplina) VALUES (5, 'Historia') ON CONFLICT DO NOTHING;
-INSERT INTO public.disciplina (id, nome_disciplina) VALUES (6, 'Geografia') ON CONFLICT DO NOTHING;
-INSERT INTO public.disciplina (id, nome_disciplina) VALUES (7, 'Ingles') ON CONFLICT DO NOTHING;
+INSERT INTO public.disciplina (id, nome_disciplina)
+VALUES (1, 'Portugues')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.disciplina (id, nome_disciplina)
+VALUES (2, 'Matematica')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.disciplina (id, nome_disciplina)
+VALUES (3, 'Quimica')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.disciplina (id, nome_disciplina)
+VALUES (4, 'Fisica')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.disciplina (id, nome_disciplina)
+VALUES (5, 'Historia')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.disciplina (id, nome_disciplina)
+VALUES (6, 'Geografia')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.disciplina (id, nome_disciplina)
+VALUES (7, 'Ingles')
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -3015,162 +3275,459 @@ INSERT INTO public.disciplina (id, nome_disciplina) VALUES (7, 'Ingles') ON CONF
 --
 
 
-
 --
 -- TOC entry 5505 (class 0 OID 24927)
 -- Dependencies: 253
 -- Data for Name: distrito; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (1, 'Boane', 1) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (2, 'Magude', 1) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (3, 'Manhiça', 1) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (4, 'Marracuene', 1) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (5, 'Matutuíne', 1) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (6, 'Moamba', 1) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (7, 'Namaacha', 1) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (8, 'Matola', 1) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (9, 'KaMpfumo', 2) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (10, 'KaMubukwana', 2) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (11, 'KaTembe', 2) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (12, 'Machava', 2) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (13, 'Mahanje', 2) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (14, 'Malhangalene', 2) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (15, 'Mavalane', 2) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (16, 'Nlhamankulu', 2) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (17, 'Zimpeto', 2) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (18, 'Bilene', 3) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (19, 'Chibuto', 3) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (20, 'Chicualacuala', 3) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (21, 'Chigubo', 3) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (22, 'Chókwè', 3) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (23, 'Guijá', 3) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (24, 'Limpopo', 3) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (25, 'Mabalane', 3) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (26, 'Manjacaze', 3) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (27, 'Massangena', 3) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (28, 'Massingir', 3) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (29, 'Xai-Xai', 3) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (30, 'Funhalouro', 4) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (31, 'Govuro', 4) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (32, 'Homoíne', 4) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (33, 'Inharrime', 4) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (34, 'Inhassoro', 4) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (35, 'Jangamo', 4) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (36, 'Mabote', 4) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (37, 'Massinga', 4) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (38, 'Morrumbene', 4) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (39, 'Panda', 4) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (40, 'Vilankulo', 4) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (41, 'Zavala', 4) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (42, 'Beira', 5) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (43, 'Búzi', 5) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (44, 'Caia', 5) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (45, 'Chemba', 5) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (46, 'Cheringoma', 5) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (47, 'Chibabava', 5) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (48, 'Dondo', 5) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (49, 'Gorongosa', 5) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (50, 'Machanga', 5) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (51, 'Marínguè', 5) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (52, 'Marromeu', 5) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (53, 'Muanza', 5) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (54, 'Nhamatanda', 5) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (55, 'Bárue', 6) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (56, 'Chimoio', 6) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (57, 'Gondola', 6) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (58, 'Guro', 6) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (59, 'Macate', 6) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (60, 'Machaze', 6) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (61, 'Macossa', 6) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (62, 'Manica', 6) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (63, 'Mossurize', 6) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (64, 'Sussundenga', 6) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (65, 'Tambara', 6) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (66, 'Vanduzi', 6) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (67, 'Angónia', 7) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (68, 'Cahora-Bassa', 7) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (69, 'Changara', 7) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (70, 'Chifunde', 7) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (71, 'Chiuta', 7) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (72, 'Marávia', 7) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (73, 'Mágoè', 7) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (74, 'Moatize', 7) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (75, 'Mutarara', 7) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (76, 'Tete', 7) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (77, 'Tsangano', 7) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (78, 'Zumbo', 7) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (79, 'Alto Molócuè', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (80, 'Chinde', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (81, 'Gilé', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (82, 'Gurué', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (83, 'Ile', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (84, 'Inhassunge', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (85, 'Lugela', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (86, 'Maganja da Costa', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (87, 'Milange', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (88, 'Mocuba', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (89, 'Mopeia', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (90, 'Morrumbala', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (91, 'Namacurra', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (92, 'Namarroi', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (93, 'Nicoadala', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (94, 'Pebane', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (95, 'Quelimane', 8) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (96, 'Angoche', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (97, 'Eráti', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (98, 'Ilha de Moçambique', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (99, 'Lalaua', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (100, 'Larde', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (101, 'Liúpo', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (102, 'Malema', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (103, 'Meconta', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (104, 'Mecubúri', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (105, 'Memba', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (106, 'Mogincual', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (107, 'Mogovolas', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (108, 'Moma', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (109, 'Monapo', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (110, 'Mossuril', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (111, 'Muecate', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (112, 'Murrupula', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (113, 'Nacala-a-Velha', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (114, 'Nacala Porto', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (115, 'Nacaroa', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (116, 'Nampula', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (117, 'Rapale', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (118, 'Ribaué', 9) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (119, 'Ancuabe', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (120, 'Balama', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (121, 'Chiúre', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (122, 'Ibo', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (123, 'Macomia', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (124, 'Mecúfi', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (125, 'Meluco', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (126, 'Mocímboa da Praia', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (127, 'Montepuez', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (128, 'Mueda', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (129, 'Muidumbe', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (130, 'Namuno', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (131, 'Nangade', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (132, 'Palma', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (133, 'Pemba-Metuge', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (134, 'Quissanga', 10) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (135, 'Chimbonila', 11) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (136, 'Lago', 11) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (137, 'Lichinga', 11) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (138, 'Majune', 11) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (139, 'Mandimba', 11) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (140, 'Marrupa', 11) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (141, 'Maúa', 11) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (142, 'Mavago', 11) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (143, 'Mecanhelas', 11) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (144, 'Mecula', 11) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (145, 'Metarica', 11) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (146, 'Muembe', 11) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (147, 'Ngauma', 11) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (148, 'Nipepe', 11) ON CONFLICT DO NOTHING;
-INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (149, 'Sanga', 11) ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (1, 'Boane', 1)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (2, 'Magude', 1)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (3, 'Manhiça', 1)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (4, 'Marracuene', 1)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (5, 'Matutuíne', 1)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (6, 'Moamba', 1)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (7, 'Namaacha', 1)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (8, 'Matola', 1)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (9, 'KaMpfumo', 2)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (10, 'KaMubukwana', 2)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (11, 'KaTembe', 2)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (12, 'Machava', 2)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (13, 'Mahanje', 2)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (14, 'Malhangalene', 2)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (15, 'Mavalane', 2)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (16, 'Nlhamankulu', 2)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (17, 'Zimpeto', 2)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (18, 'Bilene', 3)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (19, 'Chibuto', 3)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (20, 'Chicualacuala', 3)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (21, 'Chigubo', 3)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (22, 'Chókwè', 3)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (23, 'Guijá', 3)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (24, 'Limpopo', 3)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (25, 'Mabalane', 3)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (26, 'Manjacaze', 3)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (27, 'Massangena', 3)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (28, 'Massingir', 3)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (29, 'Xai-Xai', 3)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (30, 'Funhalouro', 4)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (31, 'Govuro', 4)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (32, 'Homoíne', 4)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (33, 'Inharrime', 4)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (34, 'Inhassoro', 4)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (35, 'Jangamo', 4)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (36, 'Mabote', 4)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (37, 'Massinga', 4)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (38, 'Morrumbene', 4)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (39, 'Panda', 4)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (40, 'Vilankulo', 4)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (41, 'Zavala', 4)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (42, 'Beira', 5)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (43, 'Búzi', 5)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (44, 'Caia', 5)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (45, 'Chemba', 5)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (46, 'Cheringoma', 5)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (47, 'Chibabava', 5)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (48, 'Dondo', 5)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (49, 'Gorongosa', 5)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (50, 'Machanga', 5)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (51, 'Marínguè', 5)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (52, 'Marromeu', 5)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (53, 'Muanza', 5)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (54, 'Nhamatanda', 5)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (55, 'Bárue', 6)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (56, 'Chimoio', 6)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (57, 'Gondola', 6)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (58, 'Guro', 6)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (59, 'Macate', 6)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (60, 'Machaze', 6)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (61, 'Macossa', 6)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (62, 'Manica', 6)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (63, 'Mossurize', 6)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (64, 'Sussundenga', 6)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (65, 'Tambara', 6)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (66, 'Vanduzi', 6)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (67, 'Angónia', 7)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (68, 'Cahora-Bassa', 7)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (69, 'Changara', 7)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (70, 'Chifunde', 7)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (71, 'Chiuta', 7)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (72, 'Marávia', 7)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (73, 'Mágoè', 7)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (74, 'Moatize', 7)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (75, 'Mutarara', 7)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (76, 'Tete', 7)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (77, 'Tsangano', 7)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (78, 'Zumbo', 7)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (79, 'Alto Molócuè', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (80, 'Chinde', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (81, 'Gilé', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (82, 'Gurué', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (83, 'Ile', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (84, 'Inhassunge', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (85, 'Lugela', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (86, 'Maganja da Costa', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (87, 'Milange', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (88, 'Mocuba', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (89, 'Mopeia', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (90, 'Morrumbala', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (91, 'Namacurra', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (92, 'Namarroi', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (93, 'Nicoadala', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (94, 'Pebane', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (95, 'Quelimane', 8)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (96, 'Angoche', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (97, 'Eráti', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (98, 'Ilha de Moçambique', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (99, 'Lalaua', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (100, 'Larde', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (101, 'Liúpo', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (102, 'Malema', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (103, 'Meconta', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (104, 'Mecubúri', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (105, 'Memba', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (106, 'Mogincual', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (107, 'Mogovolas', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (108, 'Moma', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (109, 'Monapo', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (110, 'Mossuril', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (111, 'Muecate', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (112, 'Murrupula', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (113, 'Nacala-a-Velha', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (114, 'Nacala Porto', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (115, 'Nacaroa', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (116, 'Nampula', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (117, 'Rapale', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (118, 'Ribaué', 9)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (119, 'Ancuabe', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (120, 'Balama', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (121, 'Chiúre', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (122, 'Ibo', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (123, 'Macomia', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (124, 'Mecúfi', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (125, 'Meluco', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (126, 'Mocímboa da Praia', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (127, 'Montepuez', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (128, 'Mueda', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (129, 'Muidumbe', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (130, 'Namuno', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (131, 'Nangade', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (132, 'Palma', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (133, 'Pemba-Metuge', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (134, 'Quissanga', 10)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (135, 'Chimbonila', 11)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (136, 'Lago', 11)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (137, 'Lichinga', 11)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (138, 'Majune', 11)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (139, 'Mandimba', 11)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (140, 'Marrupa', 11)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (141, 'Maúa', 11)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (142, 'Mavago', 11)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (143, 'Mecanhelas', 11)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (144, 'Mecula', 11)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (145, 'Metarica', 11)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (146, 'Muembe', 11)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (147, 'Ngauma', 11)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (148, 'Nipepe', 11)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.distrito (id, nome_distrito, provincia)
+VALUES (149, 'Sanga', 11)
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -3180,13 +3737,11 @@ INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (149, 'Sanga',
 --
 
 
-
 --
 -- TOC entry 5509 (class 0 OID 24980)
 -- Dependencies: 257
 -- Data for Name: encarregado_aluno; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -3196,13 +3751,11 @@ INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (149, 'Sanga',
 --
 
 
-
 --
 -- TOC entry 5481 (class 0 OID 24810)
 -- Dependencies: 229
 -- Data for Name: estado; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -3212,13 +3765,11 @@ INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (149, 'Sanga',
 --
 
 
-
 --
 -- TOC entry 5556 (class 0 OID 25547)
 -- Dependencies: 304
 -- Data for Name: folha_pagamento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -3228,13 +3779,11 @@ INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (149, 'Sanga',
 --
 
 
-
 --
 -- TOC entry 5513 (class 0 OID 25026)
 -- Dependencies: 261
 -- Data for Name: funcionario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -3244,13 +3793,11 @@ INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (149, 'Sanga',
 --
 
 
-
 --
 -- TOC entry 5576 (class 0 OID 25729)
 -- Dependencies: 324
 -- Data for Name: item_ordem_compra; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -3260,13 +3807,11 @@ INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (149, 'Sanga',
 --
 
 
-
 --
 -- TOC entry 5521 (class 0 OID 25122)
 -- Dependencies: 269
 -- Data for Name: material; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -3276,13 +3821,11 @@ INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (149, 'Sanga',
 --
 
 
-
 --
 -- TOC entry 5552 (class 0 OID 25499)
 -- Dependencies: 300
 -- Data for Name: orcamento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -3292,13 +3835,11 @@ INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (149, 'Sanga',
 --
 
 
-
 --
 -- TOC entry 5523 (class 0 OID 25141)
 -- Dependencies: 271
 -- Data for Name: pagamento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -3308,13 +3849,11 @@ INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (149, 'Sanga',
 --
 
 
-
 --
 -- TOC entry 5540 (class 0 OID 25363)
 -- Dependencies: 288
 -- Data for Name: pauta_final; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -3324,13 +3863,11 @@ INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (149, 'Sanga',
 --
 
 
-
 --
 -- TOC entry 5536 (class 0 OID 25305)
 -- Dependencies: 284
 -- Data for Name: presencas_aluno; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -3340,13 +3877,11 @@ INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (149, 'Sanga',
 --
 
 
-
 --
 -- TOC entry 5518 (class 0 OID 25091)
 -- Dependencies: 266
 -- Data for Name: professor_disciplina; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -3355,17 +3890,39 @@ INSERT INTO public.distrito (id, nome_distrito, provincia) VALUES (149, 'Sanga',
 -- Data for Name: provincia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.provincia (id, nome_provincia) VALUES (1, 'Maputo provincia') ON CONFLICT DO NOTHING;
-INSERT INTO public.provincia (id, nome_provincia) VALUES (2, 'Maputo Cidade') ON CONFLICT DO NOTHING;
-INSERT INTO public.provincia (id, nome_provincia) VALUES (3, 'Gaza') ON CONFLICT DO NOTHING;
-INSERT INTO public.provincia (id, nome_provincia) VALUES (4, 'Inhambane') ON CONFLICT DO NOTHING;
-INSERT INTO public.provincia (id, nome_provincia) VALUES (5, 'Sofala') ON CONFLICT DO NOTHING;
-INSERT INTO public.provincia (id, nome_provincia) VALUES (6, 'Manica') ON CONFLICT DO NOTHING;
-INSERT INTO public.provincia (id, nome_provincia) VALUES (7, 'Tete') ON CONFLICT DO NOTHING;
-INSERT INTO public.provincia (id, nome_provincia) VALUES (8, 'Zambézia') ON CONFLICT DO NOTHING;
-INSERT INTO public.provincia (id, nome_provincia) VALUES (9, 'Nampula') ON CONFLICT DO NOTHING;
-INSERT INTO public.provincia (id, nome_provincia) VALUES (10, 'Cabo Delgado') ON CONFLICT DO NOTHING;
-INSERT INTO public.provincia (id, nome_provincia) VALUES (11, 'Niassa') ON CONFLICT DO NOTHING;
+INSERT INTO public.provincia (id, nome_provincia)
+VALUES (1, 'Maputo provincia')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.provincia (id, nome_provincia)
+VALUES (2, 'Maputo Cidade')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.provincia (id, nome_provincia)
+VALUES (3, 'Gaza')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.provincia (id, nome_provincia)
+VALUES (4, 'Inhambane')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.provincia (id, nome_provincia)
+VALUES (5, 'Sofala')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.provincia (id, nome_provincia)
+VALUES (6, 'Manica')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.provincia (id, nome_provincia)
+VALUES (7, 'Tete')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.provincia (id, nome_provincia)
+VALUES (8, 'Zambézia')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.provincia (id, nome_provincia)
+VALUES (9, 'Nampula')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.provincia (id, nome_provincia)
+VALUES (10, 'Cabo Delgado')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.provincia (id, nome_provincia)
+VALUES (11, 'Niassa')
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -3375,13 +3932,11 @@ INSERT INTO public.provincia (id, nome_provincia) VALUES (11, 'Niassa') ON CONFL
 --
 
 
-
 --
 -- TOC entry 5568 (class 0 OID 25656)
 -- Dependencies: 316
 -- Data for Name: relatorio_financeiro; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -3391,22 +3946,39 @@ INSERT INTO public.provincia (id, nome_provincia) VALUES (11, 'Niassa') ON CONFL
 --
 
 
-
 --
 -- TOC entry 5468 (class 0 OID 24740)
 -- Dependencies: 216
 -- Data for Name: role; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.role (id, name) VALUES (12, 'ROLE_USER') ON CONFLICT DO NOTHING;
-INSERT INTO public.role (id, name) VALUES (13, 'ROLE_MODERATOR') ON CONFLICT DO NOTHING;
-INSERT INTO public.role (id, name) VALUES (14, 'ROLE_ESTUDANTE') ON CONFLICT DO NOTHING;
-INSERT INTO public.role (id, name) VALUES (15, 'ROLE_PROFESSOR') ON CONFLICT DO NOTHING;
-INSERT INTO public.role (id, name) VALUES (16, 'ROLE_DIRECTOR') ON CONFLICT DO NOTHING;
-INSERT INTO public.role (id, name) VALUES (17, 'ROLE_PEDAGOGICO') ON CONFLICT DO NOTHING;
-INSERT INTO public.role (id, name) VALUES (18, 'ROLE_FINANCEIRO') ON CONFLICT DO NOTHING;
-INSERT INTO public.role (id, name) VALUES (19, 'ROLE_BIBLIOTECARIO') ON CONFLICT DO NOTHING;
-INSERT INTO public.role (id, name) VALUES (20, 'ROLE_AQUISICOES') ON CONFLICT DO NOTHING;
+INSERT INTO public.role (id, name)
+VALUES (12, 'ROLE_USER')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.role (id, name)
+VALUES (13, 'ROLE_MODERATOR')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.role (id, name)
+VALUES (14, 'ROLE_ESTUDANTE')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.role (id, name)
+VALUES (15, 'ROLE_PROFESSOR')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.role (id, name)
+VALUES (16, 'ROLE_DIRECTOR')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.role (id, name)
+VALUES (17, 'ROLE_PEDAGOGICO')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.role (id, name)
+VALUES (18, 'ROLE_FINANCEIRO')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.role (id, name)
+VALUES (19, 'ROLE_BIBLIOTECARIO')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.role (id, name)
+VALUES (20, 'ROLE_AQUISICOES')
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -3416,38 +3988,87 @@ INSERT INTO public.role (id, name) VALUES (20, 'ROLE_AQUISICOES') ON CONFLICT DO
 --
 
 
-
 --
 -- TOC entry 5497 (class 0 OID 24891)
 -- Dependencies: 245
 -- Data for Name: sector_trabalho; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (1, 'Saúde') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (2, 'Educação') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (3, 'Comércio') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (4, 'Serviços') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (5, 'Indústria') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (6, 'Agricultura') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (7, 'Construção Civil') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (8, 'Tecnologia da Informação') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (9, 'Finanças') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (10, 'Transporte e Logística') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (11, 'Administração Pública') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (12, 'Forças Armadas') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (13, 'Segurança Privada') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (14, 'Turismo e Hotelaria') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (15, 'Artes e Entretenimento') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (16, 'Comunicação e Marketing') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (17, 'Engenharia') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (18, 'Recursos Humanos') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (19, 'Consultoria') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (20, 'Pesquisa e Desenvolvimento') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (21, 'Energia e Meio Ambiente') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (22, 'Jurídico') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (23, 'Imobiliário') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (24, 'Telecomunicações') ON CONFLICT DO NOTHING;
-INSERT INTO public.sector_trabalho (id, descricao) VALUES (25, 'Bancário') ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (1, 'Saúde')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (2, 'Educação')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (3, 'Comércio')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (4, 'Serviços')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (5, 'Indústria')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (6, 'Agricultura')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (7, 'Construção Civil')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (8, 'Tecnologia da Informação')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (9, 'Finanças')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (10, 'Transporte e Logística')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (11, 'Administração Pública')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (12, 'Forças Armadas')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (13, 'Segurança Privada')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (14, 'Turismo e Hotelaria')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (15, 'Artes e Entretenimento')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (16, 'Comunicação e Marketing')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (17, 'Engenharia')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (18, 'Recursos Humanos')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (19, 'Consultoria')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (20, 'Pesquisa e Desenvolvimento')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (21, 'Energia e Meio Ambiente')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (22, 'Jurídico')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (23, 'Imobiliário')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (24, 'Telecomunicações')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.sector_trabalho (id, descricao)
+VALUES (25, 'Bancário')
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -3456,7 +4077,9 @@ INSERT INTO public.sector_trabalho (id, descricao) VALUES (25, 'Bancário') ON C
 -- Data for Name: tipo_avaliacao; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tipo_avaliacao (id, descricao) VALUES (1, 'Exame Final') ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_avaliacao (id, descricao)
+VALUES (1, 'Exame Final')
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -3465,66 +4088,186 @@ INSERT INTO public.tipo_avaliacao (id, descricao) VALUES (1, 'Exame Final') ON C
 -- Data for Name: tipo_documento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tipo_documento (id, descricao) VALUES (1, 'Boletim Escolar') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (2, 'Histórico Escolar') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (3, 'Certificado de Conclusão') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (4, 'Declaração de Matrícula') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (5, 'Plano de Aula') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (6, 'Calendário Escolar') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (7, 'Horário das Aulas') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (8, 'Lista de Presença') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (9, 'Relatórios de Desempenho') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (10, 'Pauta de Notas') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (11, 'Ficha de Inscrição') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (12, 'Contrato de Prestação de Serviços Educacionais') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (13, 'Regulamento Interno') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (14, 'Relatórios de Gestão') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (15, 'Atas de Reuniões') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (16, 'Plano de Desenvolvimento Escolar') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (17, 'Relatórios de Inspeção Escolar') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (18, 'Registros de Funcionários') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (19, 'Planilhas de Controle Financeiro') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (20, 'Recibos de Pagamento') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (21, 'Notas Fiscais') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (22, 'Relatórios de Orçamento') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (23, 'Balancetes') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (24, 'Demonstrativos Financeiros') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (25, 'Planilhas de Custos') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (26, 'Plano de Orçamento Anual') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (27, 'Relatórios de Auditoria') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (28, 'Contratos de Trabalho') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (29, 'Folha de Pagamento') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (30, 'Relatórios de Frequência') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (31, 'Avaliações de Desempenho') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (32, 'Planos de Carreira') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (33, 'Relatórios de Treinamento e Desenvolvimento') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (34, 'Registros de Férias') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (35, 'Circulares Internas') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (36, 'Avisos e Comunicados') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (37, 'Boletins Informativos') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (38, 'Cartas e Memorandos') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (39, 'E-mails Institucionais') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (40, 'Licenças de Funcionamento') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (41, 'Regulamentos do Ministério da Educação') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (42, 'Acordos e Convênios') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (43, 'Termos de Ajuste de Conduta') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (44, 'Registros de Processos Judiciais') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (45, 'Projetos Pedagógicos') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (46, 'Plano de Curso') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (47, 'Material Didático') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (48, 'Provas e Avaliações') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (49, 'Trabalhos de Alunos') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (50, 'Projetos de Pesquisa') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (51, 'Registros de Atividades Extracurriculares') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (52, 'Plantas e Projetos Arquitetônicos') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (53, 'Relatórios de Manutenção') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (54, 'Registros de Inventário de Equipamentos') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (55, 'Contratos de Serviço de Manutenção') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (56, 'Fichas Médicas dos Alunos') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (57, 'Registros de Vacinação') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (58, 'Relatórios de Acidentes') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (59, 'Planos de Evacuação') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_documento (id, descricao) VALUES (60, 'Relatórios de Inspeção de Segurança') ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (1, 'Boletim Escolar')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (2, 'Histórico Escolar')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (3, 'Certificado de Conclusão')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (4, 'Declaração de Matrícula')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (5, 'Plano de Aula')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (6, 'Calendário Escolar')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (7, 'Horário das Aulas')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (8, 'Lista de Presença')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (9, 'Relatórios de Desempenho')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (10, 'Pauta de Notas')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (11, 'Ficha de Inscrição')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (12, 'Contrato de Prestação de Serviços Educacionais')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (13, 'Regulamento Interno')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (14, 'Relatórios de Gestão')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (15, 'Atas de Reuniões')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (16, 'Plano de Desenvolvimento Escolar')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (17, 'Relatórios de Inspeção Escolar')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (18, 'Registros de Funcionários')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (19, 'Planilhas de Controle Financeiro')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (20, 'Recibos de Pagamento')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (21, 'Notas Fiscais')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (22, 'Relatórios de Orçamento')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (23, 'Balancetes')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (24, 'Demonstrativos Financeiros')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (25, 'Planilhas de Custos')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (26, 'Plano de Orçamento Anual')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (27, 'Relatórios de Auditoria')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (28, 'Contratos de Trabalho')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (29, 'Folha de Pagamento')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (30, 'Relatórios de Frequência')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (31, 'Avaliações de Desempenho')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (32, 'Planos de Carreira')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (33, 'Relatórios de Treinamento e Desenvolvimento')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (34, 'Registros de Férias')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (35, 'Circulares Internas')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (36, 'Avisos e Comunicados')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (37, 'Boletins Informativos')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (38, 'Cartas e Memorandos')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (39, 'E-mails Institucionais')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (40, 'Licenças de Funcionamento')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (41, 'Regulamentos do Ministério da Educação')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (42, 'Acordos e Convênios')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (43, 'Termos de Ajuste de Conduta')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (44, 'Registros de Processos Judiciais')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (45, 'Projetos Pedagógicos')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (46, 'Plano de Curso')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (47, 'Material Didático')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (48, 'Provas e Avaliações')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (49, 'Trabalhos de Alunos')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (50, 'Projetos de Pesquisa')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (51, 'Registros de Atividades Extracurriculares')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (52, 'Plantas e Projetos Arquitetônicos')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (53, 'Relatórios de Manutenção')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (54, 'Registros de Inventário de Equipamentos')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (55, 'Contratos de Serviço de Manutenção')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (56, 'Fichas Médicas dos Alunos')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (57, 'Registros de Vacinação')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (58, 'Relatórios de Acidentes')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (59, 'Planos de Evacuação')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_documento (id, descricao)
+VALUES (60, 'Relatórios de Inspeção de Segurança')
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -3533,13 +4276,27 @@ INSERT INTO public.tipo_documento (id, descricao) VALUES (60, 'Relatórios de In
 -- Data for Name: tipo_estado; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tipo_estado (id, descricao) VALUES (22, 'Estado Geral') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_estado (id, descricao) VALUES (23, 'Estado de Pessoas') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_estado (id, descricao) VALUES (24, 'Estado de Estudante') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_estado (id, descricao) VALUES (25, 'Estado de Professor') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_estado (id, descricao) VALUES (26, 'Estado de Avaliação') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_estado (id, descricao) VALUES (27, 'Estado de Equipamento') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_estado (id, descricao) VALUES (28, 'Estado de Evento') ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_estado (id, descricao)
+VALUES (22, 'Estado Geral')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_estado (id, descricao)
+VALUES (23, 'Estado de Pessoas')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_estado (id, descricao)
+VALUES (24, 'Estado de Estudante')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_estado (id, descricao)
+VALUES (25, 'Estado de Professor')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_estado (id, descricao)
+VALUES (26, 'Estado de Avaliação')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_estado (id, descricao)
+VALUES (27, 'Estado de Equipamento')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_estado (id, descricao)
+VALUES (28, 'Estado de Evento')
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -3549,17 +4306,24 @@ INSERT INTO public.tipo_estado (id, descricao) VALUES (28, 'Estado de Evento') O
 --
 
 
-
 --
 -- TOC entry 5499 (class 0 OID 24900)
 -- Dependencies: 247
 -- Data for Name: tipo_material; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tipo_material (id, descricao) VALUES (1, 'Equipamento informatico') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_material (id, descricao) VALUES (2, 'Carteiras') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_material (id, descricao) VALUES (3, 'Material didactico') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_material (id, descricao) VALUES (4, 'Material de Escritorio') ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_material (id, descricao)
+VALUES (1, 'Equipamento informatico')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_material (id, descricao)
+VALUES (2, 'Carteiras')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_material (id, descricao)
+VALUES (3, 'Material didactico')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_material (id, descricao)
+VALUES (4, 'Material de Escritorio')
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -3568,17 +4332,39 @@ INSERT INTO public.tipo_material (id, descricao) VALUES (4, 'Material de Escrito
 -- Data for Name: tipo_pagamento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tipo_pagamento (id, descricao) VALUES (1, 'Pagamento de Mensalidade Escolar') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_pagamento (id, descricao) VALUES (2, 'Pagamento de Matrícula') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_pagamento (id, descricao) VALUES (3, 'Pagamento de Material Didático') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_pagamento (id, descricao) VALUES (4, 'Pagamento de Refeições') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_pagamento (id, descricao) VALUES (5, 'Pagamento de Transporte Escolar') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_pagamento (id, descricao) VALUES (6, 'Pagamento de Atividades Extracurriculares') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_pagamento (id, descricao) VALUES (7, 'Pagamento de Eventos e Excursões') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_pagamento (id, descricao) VALUES (8, 'Pagamento de Taxas Administrativas') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_pagamento (id, descricao) VALUES (9, 'Pagamento de Seguro Escolar') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_pagamento (id, descricao) VALUES (10, 'Pagamento de Doações') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_pagamento (id, descricao) VALUES (11, 'Outros') ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pagamento (id, descricao)
+VALUES (1, 'Pagamento de Mensalidade Escolar')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pagamento (id, descricao)
+VALUES (2, 'Pagamento de Matrícula')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pagamento (id, descricao)
+VALUES (3, 'Pagamento de Material Didático')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pagamento (id, descricao)
+VALUES (4, 'Pagamento de Refeições')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pagamento (id, descricao)
+VALUES (5, 'Pagamento de Transporte Escolar')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pagamento (id, descricao)
+VALUES (6, 'Pagamento de Atividades Extracurriculares')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pagamento (id, descricao)
+VALUES (7, 'Pagamento de Eventos e Excursões')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pagamento (id, descricao)
+VALUES (8, 'Pagamento de Taxas Administrativas')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pagamento (id, descricao)
+VALUES (9, 'Pagamento de Seguro Escolar')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pagamento (id, descricao)
+VALUES (10, 'Pagamento de Doações')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pagamento (id, descricao)
+VALUES (11, 'Outros')
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -3587,12 +4373,24 @@ INSERT INTO public.tipo_pagamento (id, descricao) VALUES (11, 'Outros') ON CONFL
 -- Data for Name: tipo_pessoa; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tipo_pessoa (id, descricao) VALUES (1, 'Professor') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_pessoa (id, descricao) VALUES (2, 'Aluno') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_pessoa (id, descricao) VALUES (3, 'Funcionario') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_pessoa (id, descricao) VALUES (4, 'Fornecedor') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_pessoa (id, descricao) VALUES (5, 'Encarregado de Educação') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_pessoa (id, descricao) VALUES (6, 'Director') ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pessoa (id, descricao)
+VALUES (1, 'Professor')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pessoa (id, descricao)
+VALUES (2, 'Aluno')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pessoa (id, descricao)
+VALUES (3, 'Funcionario')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pessoa (id, descricao)
+VALUES (4, 'Fornecedor')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pessoa (id, descricao)
+VALUES (5, 'Encarregado de Educação')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_pessoa (id, descricao)
+VALUES (6, 'Director')
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -3602,15 +4400,18 @@ INSERT INTO public.tipo_pessoa (id, descricao) VALUES (6, 'Director') ON CONFLIC
 --
 
 
-
 --
 -- TOC entry 5491 (class 0 OID 24862)
 -- Dependencies: 239
 -- Data for Name: tipo_transacao; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tipo_transacao (id, descricao) VALUES (1, 'Receita') ON CONFLICT DO NOTHING;
-INSERT INTO public.tipo_transacao (id, descricao) VALUES (2, 'Despesa') ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_transacao (id, descricao)
+VALUES (1, 'Receita')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.tipo_transacao (id, descricao)
+VALUES (2, 'Despesa')
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -3620,13 +4421,11 @@ INSERT INTO public.tipo_transacao (id, descricao) VALUES (2, 'Despesa') ON CONFL
 --
 
 
-
 --
 -- TOC entry 5515 (class 0 OID 25066)
 -- Dependencies: 263
 -- Data for Name: turma; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -3636,15 +4435,20 @@ INSERT INTO public.tipo_transacao (id, descricao) VALUES (2, 'Despesa') ON CONFL
 --
 
 
-
 --
 -- TOC entry 5470 (class 0 OID 24748)
 -- Dependencies: 218
 -- Data for Name: utilizador; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.utilizador (id, email, password, username, nome) VALUES (23, 'mlmaunze@gmail.com', '$2a$10$kuT/TLRdpmuzl2i4NP6NJO2XZFyf3sRYyRoo41InwSiyKE/8YsTC.', 'mmaunze', 'Meldo Leonardo Maunze') ON CONFLICT DO NOTHING;
-INSERT INTO public.utilizador (id, email, password, username, nome) VALUES (24, 'jagostinho@bci.co.mz', '$2a$10$a/97gUgeQ3oaEwR98YakB.UXhhtZE7tq/F7oG/W3wkx6o.NR4TbjS', 'jagostinho', 'Joana Joao Agostinho') ON CONFLICT DO NOTHING;
+INSERT INTO public.utilizador (id, email, password, username, nome)
+VALUES (23, 'mlmaunze@gmail.com', '$2a$10$kuT/TLRdpmuzl2i4NP6NJO2XZFyf3sRYyRoo41InwSiyKE/8YsTC.', 'mmaunze',
+        'Meldo Leonardo Maunze')
+ON CONFLICT DO NOTHING;
+INSERT INTO public.utilizador (id, email, password, username, nome)
+VALUES (24, 'jagostinho@bci.co.mz', '$2a$10$a/97gUgeQ3oaEwR98YakB.UXhhtZE7tq/F7oG/W3wkx6o.NR4TbjS', 'jagostinho',
+        'Joana Joao Agostinho')
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -3653,9 +4457,15 @@ INSERT INTO public.utilizador (id, email, password, username, nome) VALUES (24, 
 -- Data for Name: utilizador_role; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.utilizador_role (utilizador, role) VALUES (23, 12) ON CONFLICT DO NOTHING;
-INSERT INTO public.utilizador_role (utilizador, role) VALUES (23, 14) ON CONFLICT DO NOTHING;
-INSERT INTO public.utilizador_role (utilizador, role) VALUES (24, 12) ON CONFLICT DO NOTHING;
+INSERT INTO public.utilizador_role (utilizador, role)
+VALUES (23, 12)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.utilizador_role (utilizador, role)
+VALUES (23, 14)
+ON CONFLICT DO NOTHING;
+INSERT INTO public.utilizador_role (utilizador, role)
+VALUES (24, 12)
+ON CONFLICT DO NOTHING;
 
 
 --
@@ -3663,7 +4473,6 @@ INSERT INTO public.utilizador_role (utilizador, role) VALUES (24, 12) ON CONFLIC
 -- Dependencies: 292
 -- Data for Name: veiculo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
-
 
 
 --
@@ -4878,7 +5687,7 @@ ALTER TABLE ONLY public.veiculo
 --
 
 ALTER TABLE ONLY public.aluno
-    ADD CONSTRAINT aluno_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT aluno_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4887,7 +5696,7 @@ ALTER TABLE ONLY public.aluno
 --
 
 ALTER TABLE ONLY public.aluno
-    ADD CONSTRAINT aluno_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT aluno_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4896,7 +5705,7 @@ ALTER TABLE ONLY public.aluno
 --
 
 ALTER TABLE ONLY public.aluno
-    ADD CONSTRAINT aluno_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador(id);
+    ADD CONSTRAINT aluno_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador (id);
 
 
 --
@@ -4905,7 +5714,7 @@ ALTER TABLE ONLY public.aluno
 --
 
 ALTER TABLE ONLY public.ativo
-    ADD CONSTRAINT ativo_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT ativo_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4914,7 +5723,7 @@ ALTER TABLE ONLY public.ativo
 --
 
 ALTER TABLE ONLY public.aula
-    ADD CONSTRAINT aula_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT aula_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4923,7 +5732,7 @@ ALTER TABLE ONLY public.aula
 --
 
 ALTER TABLE ONLY public.aula
-    ADD CONSTRAINT aula_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT aula_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4932,7 +5741,7 @@ ALTER TABLE ONLY public.aula
 --
 
 ALTER TABLE ONLY public.avaliacao_aluno
-    ADD CONSTRAINT avaliacao_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT avaliacao_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4941,7 +5750,7 @@ ALTER TABLE ONLY public.avaliacao_aluno
 --
 
 ALTER TABLE ONLY public.avaliacao_aluno
-    ADD CONSTRAINT avaliacao_aluno_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT avaliacao_aluno_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4950,7 +5759,7 @@ ALTER TABLE ONLY public.avaliacao_aluno
 --
 
 ALTER TABLE ONLY public.avaliacao
-    ADD CONSTRAINT avaliacao_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT avaliacao_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4959,7 +5768,7 @@ ALTER TABLE ONLY public.avaliacao
 --
 
 ALTER TABLE ONLY public.avaliacao
-    ADD CONSTRAINT avaliacao_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT avaliacao_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4968,7 +5777,7 @@ ALTER TABLE ONLY public.avaliacao
 --
 
 ALTER TABLE ONLY public.avaliacao
-    ADD CONSTRAINT avaliacao_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT avaliacao_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4977,7 +5786,7 @@ ALTER TABLE ONLY public.avaliacao
 --
 
 ALTER TABLE ONLY public.avaliacao
-    ADD CONSTRAINT avaliacao_tipo_avaliacao_fkey FOREIGN KEY (tipo_avaliacao) REFERENCES public.tipo_avaliacao(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT avaliacao_tipo_avaliacao_fkey FOREIGN KEY (tipo_avaliacao) REFERENCES public.tipo_avaliacao (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4986,7 +5795,7 @@ ALTER TABLE ONLY public.avaliacao
 --
 
 ALTER TABLE ONLY public.comunicados
-    ADD CONSTRAINT comunicados_destinatario_fkey FOREIGN KEY (destinatario) REFERENCES public.tipo_pessoa(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT comunicados_destinatario_fkey FOREIGN KEY (destinatario) REFERENCES public.tipo_pessoa (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4995,7 +5804,7 @@ ALTER TABLE ONLY public.comunicados
 --
 
 ALTER TABLE ONLY public.comunicados
-    ADD CONSTRAINT comunicados_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT comunicados_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5004,7 +5813,7 @@ ALTER TABLE ONLY public.comunicados
 --
 
 ALTER TABLE ONLY public.comunicados
-    ADD CONSTRAINT comunicados_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT comunicados_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5013,7 +5822,7 @@ ALTER TABLE ONLY public.comunicados
 --
 
 ALTER TABLE ONLY public.contrato
-    ADD CONSTRAINT contrato_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT contrato_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5022,7 +5831,7 @@ ALTER TABLE ONLY public.contrato
 --
 
 ALTER TABLE ONLY public.contrato
-    ADD CONSTRAINT contrato_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT contrato_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5031,7 +5840,7 @@ ALTER TABLE ONLY public.contrato
 --
 
 ALTER TABLE ONLY public.despesa
-    ADD CONSTRAINT despesa_categoria_fkey FOREIGN KEY (categoria) REFERENCES public.categoria_financeira(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT despesa_categoria_fkey FOREIGN KEY (categoria) REFERENCES public.categoria_financeira (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5040,7 +5849,7 @@ ALTER TABLE ONLY public.despesa
 --
 
 ALTER TABLE ONLY public.despesa
-    ADD CONSTRAINT despesa_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT despesa_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5049,7 +5858,7 @@ ALTER TABLE ONLY public.despesa
 --
 
 ALTER TABLE ONLY public.despesa
-    ADD CONSTRAINT despesa_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT despesa_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5058,7 +5867,7 @@ ALTER TABLE ONLY public.despesa
 --
 
 ALTER TABLE ONLY public.detalhe_relatorio_financeiro
-    ADD CONSTRAINT detalhe_relatorio_financeiro_relatorio_fkey FOREIGN KEY (relatorio) REFERENCES public.relatorio_financeiro(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT detalhe_relatorio_financeiro_relatorio_fkey FOREIGN KEY (relatorio) REFERENCES public.relatorio_financeiro (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5067,7 +5876,7 @@ ALTER TABLE ONLY public.detalhe_relatorio_financeiro
 --
 
 ALTER TABLE ONLY public.disciplina_aluno
-    ADD CONSTRAINT disciplina_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT disciplina_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5076,7 +5885,7 @@ ALTER TABLE ONLY public.disciplina_aluno
 --
 
 ALTER TABLE ONLY public.disciplina_aluno
-    ADD CONSTRAINT disciplina_aluno_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT disciplina_aluno_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5085,7 +5894,7 @@ ALTER TABLE ONLY public.disciplina_aluno
 --
 
 ALTER TABLE ONLY public.distrito
-    ADD CONSTRAINT distrito_provincia_fkey FOREIGN KEY (provincia) REFERENCES public.provincia(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT distrito_provincia_fkey FOREIGN KEY (provincia) REFERENCES public.provincia (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5094,7 +5903,7 @@ ALTER TABLE ONLY public.distrito
 --
 
 ALTER TABLE ONLY public.documento
-    ADD CONSTRAINT documento_autor_fkey FOREIGN KEY (autor) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT documento_autor_fkey FOREIGN KEY (autor) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5103,7 +5912,7 @@ ALTER TABLE ONLY public.documento
 --
 
 ALTER TABLE ONLY public.documento
-    ADD CONSTRAINT documento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT documento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5112,7 +5921,7 @@ ALTER TABLE ONLY public.documento
 --
 
 ALTER TABLE ONLY public.documento
-    ADD CONSTRAINT documento_tipo_documento_fkey FOREIGN KEY (tipo_documento) REFERENCES public.tipo_documento(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT documento_tipo_documento_fkey FOREIGN KEY (tipo_documento) REFERENCES public.tipo_documento (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5121,7 +5930,7 @@ ALTER TABLE ONLY public.documento
 --
 
 ALTER TABLE ONLY public.encarregado_aluno
-    ADD CONSTRAINT encarregado_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id);
+    ADD CONSTRAINT encarregado_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id);
 
 
 --
@@ -5130,7 +5939,7 @@ ALTER TABLE ONLY public.encarregado_aluno
 --
 
 ALTER TABLE ONLY public.encarregado_aluno
-    ADD CONSTRAINT encarregado_aluno_encarregado_fkey FOREIGN KEY (encarregado) REFERENCES public.encarregado_educacao(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT encarregado_aluno_encarregado_fkey FOREIGN KEY (encarregado) REFERENCES public.encarregado_educacao (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5139,7 +5948,7 @@ ALTER TABLE ONLY public.encarregado_aluno
 --
 
 ALTER TABLE ONLY public.encarregado_educacao
-    ADD CONSTRAINT encarregado_educacao_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT encarregado_educacao_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5148,7 +5957,7 @@ ALTER TABLE ONLY public.encarregado_educacao
 --
 
 ALTER TABLE ONLY public.encarregado_educacao
-    ADD CONSTRAINT encarregado_educacao_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador(id);
+    ADD CONSTRAINT encarregado_educacao_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador (id);
 
 
 --
@@ -5157,7 +5966,7 @@ ALTER TABLE ONLY public.encarregado_educacao
 --
 
 ALTER TABLE ONLY public.estado
-    ADD CONSTRAINT estado_tipo_estado_fkey FOREIGN KEY (tipo_estado) REFERENCES public.tipo_estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT estado_tipo_estado_fkey FOREIGN KEY (tipo_estado) REFERENCES public.tipo_estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5166,7 +5975,7 @@ ALTER TABLE ONLY public.estado
 --
 
 ALTER TABLE ONLY public.evento
-    ADD CONSTRAINT evento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT evento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5175,7 +5984,7 @@ ALTER TABLE ONLY public.evento
 --
 
 ALTER TABLE ONLY public.evento
-    ADD CONSTRAINT evento_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT evento_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5184,7 +5993,7 @@ ALTER TABLE ONLY public.evento
 --
 
 ALTER TABLE ONLY public.avaliacao_aluno
-    ADD CONSTRAINT fk37xrlgvf8p0kl8tajttbt9mh8 FOREIGN KEY (avaliacao) REFERENCES public.avaliacao(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk37xrlgvf8p0kl8tajttbt9mh8 FOREIGN KEY (avaliacao) REFERENCES public.avaliacao (id) ON DELETE CASCADE;
 
 
 --
@@ -5193,7 +6002,7 @@ ALTER TABLE ONLY public.avaliacao_aluno
 --
 
 ALTER TABLE ONLY public.utilizador_role
-    ADD CONSTRAINT fk47b6nduvkj7lmjinhlv8s6bto FOREIGN KEY (utilizador) REFERENCES public.utilizador(id);
+    ADD CONSTRAINT fk47b6nduvkj7lmjinhlv8s6bto FOREIGN KEY (utilizador) REFERENCES public.utilizador (id);
 
 
 --
@@ -5202,7 +6011,7 @@ ALTER TABLE ONLY public.utilizador_role
 --
 
 ALTER TABLE ONLY public.item_ordem_compra
-    ADD CONSTRAINT fk7woghxkgm4nqiq1kw1o1avecf FOREIGN KEY (estado) REFERENCES public.estado(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk7woghxkgm4nqiq1kw1o1avecf FOREIGN KEY (estado) REFERENCES public.estado (id) ON DELETE CASCADE;
 
 
 --
@@ -5211,7 +6020,7 @@ ALTER TABLE ONLY public.item_ordem_compra
 --
 
 ALTER TABLE ONLY public.aluno
-    ADD CONSTRAINT fkbq5nt66xcxxrb7xbujb2ouqjc FOREIGN KEY (username) REFERENCES public.utilizador(id);
+    ADD CONSTRAINT fkbq5nt66xcxxrb7xbujb2ouqjc FOREIGN KEY (username) REFERENCES public.utilizador (id);
 
 
 --
@@ -5220,7 +6029,7 @@ ALTER TABLE ONLY public.aluno
 --
 
 ALTER TABLE ONLY public.encarregado_educacao
-    ADD CONSTRAINT fknhfbxdjf0455kxn9j95r8h4k1 FOREIGN KEY (sector_trabalho) REFERENCES public.sector_trabalho(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fknhfbxdjf0455kxn9j95r8h4k1 FOREIGN KEY (sector_trabalho) REFERENCES public.sector_trabalho (id) ON DELETE CASCADE;
 
 
 --
@@ -5229,7 +6038,7 @@ ALTER TABLE ONLY public.encarregado_educacao
 --
 
 ALTER TABLE ONLY public.encarregado_educacao
-    ADD CONSTRAINT fko6s10ywoe774dkkjwv4v8hrye FOREIGN KEY (estado) REFERENCES public.estado(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fko6s10ywoe774dkkjwv4v8hrye FOREIGN KEY (estado) REFERENCES public.estado (id) ON DELETE CASCADE;
 
 
 --
@@ -5238,7 +6047,7 @@ ALTER TABLE ONLY public.encarregado_educacao
 --
 
 ALTER TABLE ONLY public.utilizador_role
-    ADD CONSTRAINT fkphtwi61sw0744d9fswd2ehnat FOREIGN KEY (role) REFERENCES public.role(id);
+    ADD CONSTRAINT fkphtwi61sw0744d9fswd2ehnat FOREIGN KEY (role) REFERENCES public.role (id);
 
 
 --
@@ -5247,7 +6056,7 @@ ALTER TABLE ONLY public.utilizador_role
 --
 
 ALTER TABLE ONLY public.funcionario
-    ADD CONSTRAINT fkpsyut9lh7x4v2m2ssd9ypyna FOREIGN KEY (tipo_funcionario) REFERENCES public.tipo_funcionario(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fkpsyut9lh7x4v2m2ssd9ypyna FOREIGN KEY (tipo_funcionario) REFERENCES public.tipo_funcionario (id) ON DELETE CASCADE;
 
 
 --
@@ -5256,7 +6065,7 @@ ALTER TABLE ONLY public.funcionario
 --
 
 ALTER TABLE ONLY public.horario
-    ADD CONSTRAINT fks5plgjbovrcju2vmdt2ptb0fn FOREIGN KEY (estado) REFERENCES public.estado(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fks5plgjbovrcju2vmdt2ptb0fn FOREIGN KEY (estado) REFERENCES public.estado (id) ON DELETE CASCADE;
 
 
 --
@@ -5265,7 +6074,7 @@ ALTER TABLE ONLY public.horario
 --
 
 ALTER TABLE ONLY public.folha_pagamento
-    ADD CONSTRAINT folha_pagamento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT folha_pagamento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5274,7 +6083,7 @@ ALTER TABLE ONLY public.folha_pagamento
 --
 
 ALTER TABLE ONLY public.folha_pagamento
-    ADD CONSTRAINT folha_pagamento_funcionario_fkey FOREIGN KEY (funcionario) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT folha_pagamento_funcionario_fkey FOREIGN KEY (funcionario) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5283,7 +6092,7 @@ ALTER TABLE ONLY public.folha_pagamento
 --
 
 ALTER TABLE ONLY public.fornecedor
-    ADD CONSTRAINT fornecedor_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT fornecedor_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5292,7 +6101,7 @@ ALTER TABLE ONLY public.fornecedor
 --
 
 ALTER TABLE ONLY public.funcionario
-    ADD CONSTRAINT funcionario_area_formacao_fkey FOREIGN KEY (area_formacao) REFERENCES public.area_cientifica(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT funcionario_area_formacao_fkey FOREIGN KEY (area_formacao) REFERENCES public.area_cientifica (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5301,7 +6110,7 @@ ALTER TABLE ONLY public.funcionario
 --
 
 ALTER TABLE ONLY public.funcionario
-    ADD CONSTRAINT funcionario_cargo_fkey FOREIGN KEY (cargo) REFERENCES public.cargo(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT funcionario_cargo_fkey FOREIGN KEY (cargo) REFERENCES public.cargo (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5310,7 +6119,7 @@ ALTER TABLE ONLY public.funcionario
 --
 
 ALTER TABLE ONLY public.funcionario
-    ADD CONSTRAINT funcionario_departamento_fkey FOREIGN KEY (departamento) REFERENCES public.departamento(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT funcionario_departamento_fkey FOREIGN KEY (departamento) REFERENCES public.departamento (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5319,7 +6128,7 @@ ALTER TABLE ONLY public.funcionario
 --
 
 ALTER TABLE ONLY public.funcionario
-    ADD CONSTRAINT funcionario_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT funcionario_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5328,7 +6137,7 @@ ALTER TABLE ONLY public.funcionario
 --
 
 ALTER TABLE ONLY public.funcionario
-    ADD CONSTRAINT funcionario_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT funcionario_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5337,7 +6146,7 @@ ALTER TABLE ONLY public.funcionario
 --
 
 ALTER TABLE ONLY public.funcionario
-    ADD CONSTRAINT funcionario_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador(id);
+    ADD CONSTRAINT funcionario_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador (id);
 
 
 --
@@ -5346,7 +6155,7 @@ ALTER TABLE ONLY public.funcionario
 --
 
 ALTER TABLE ONLY public.horario
-    ADD CONSTRAINT horario_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT horario_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5355,7 +6164,7 @@ ALTER TABLE ONLY public.horario
 --
 
 ALTER TABLE ONLY public.horario
-    ADD CONSTRAINT horario_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT horario_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5364,7 +6173,7 @@ ALTER TABLE ONLY public.horario
 --
 
 ALTER TABLE ONLY public.horario
-    ADD CONSTRAINT horario_sala_fkey FOREIGN KEY (sala) REFERENCES public.sala(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT horario_sala_fkey FOREIGN KEY (sala) REFERENCES public.sala (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5373,7 +6182,7 @@ ALTER TABLE ONLY public.horario
 --
 
 ALTER TABLE ONLY public.horario
-    ADD CONSTRAINT horario_turma_fkey FOREIGN KEY (turma) REFERENCES public.turma(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT horario_turma_fkey FOREIGN KEY (turma) REFERENCES public.turma (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5382,7 +6191,7 @@ ALTER TABLE ONLY public.horario
 --
 
 ALTER TABLE ONLY public.item_ordem_compra
-    ADD CONSTRAINT item_ordem_compra_material_fkey FOREIGN KEY (material) REFERENCES public.material(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT item_ordem_compra_material_fkey FOREIGN KEY (material) REFERENCES public.material (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5391,7 +6200,7 @@ ALTER TABLE ONLY public.item_ordem_compra
 --
 
 ALTER TABLE ONLY public.item_ordem_compra
-    ADD CONSTRAINT item_ordem_compra_ordem_compra_fkey FOREIGN KEY (ordem_compra) REFERENCES public.ordem_compra(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT item_ordem_compra_ordem_compra_fkey FOREIGN KEY (ordem_compra) REFERENCES public.ordem_compra (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5400,7 +6209,7 @@ ALTER TABLE ONLY public.item_ordem_compra
 --
 
 ALTER TABLE ONLY public.manutencao_ativo
-    ADD CONSTRAINT manutencao_ativo_ativo_fkey FOREIGN KEY (ativo) REFERENCES public.ativo(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT manutencao_ativo_ativo_fkey FOREIGN KEY (ativo) REFERENCES public.ativo (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5409,7 +6218,7 @@ ALTER TABLE ONLY public.manutencao_ativo
 --
 
 ALTER TABLE ONLY public.manutencao_ativo
-    ADD CONSTRAINT manutencao_ativo_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT manutencao_ativo_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5418,7 +6227,7 @@ ALTER TABLE ONLY public.manutencao_ativo
 --
 
 ALTER TABLE ONLY public.manutencao_ativo
-    ADD CONSTRAINT manutencao_ativo_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT manutencao_ativo_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5427,7 +6236,7 @@ ALTER TABLE ONLY public.manutencao_ativo
 --
 
 ALTER TABLE ONLY public.material
-    ADD CONSTRAINT material_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT material_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5436,7 +6245,7 @@ ALTER TABLE ONLY public.material
 --
 
 ALTER TABLE ONLY public.material
-    ADD CONSTRAINT material_tipo_material_fkey FOREIGN KEY (tipo_material) REFERENCES public.tipo_material(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT material_tipo_material_fkey FOREIGN KEY (tipo_material) REFERENCES public.tipo_material (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5445,7 +6254,7 @@ ALTER TABLE ONLY public.material
 --
 
 ALTER TABLE ONLY public.matricula
-    ADD CONSTRAINT matricula_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT matricula_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5454,7 +6263,7 @@ ALTER TABLE ONLY public.matricula
 --
 
 ALTER TABLE ONLY public.matricula
-    ADD CONSTRAINT matricula_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT matricula_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5463,7 +6272,7 @@ ALTER TABLE ONLY public.matricula
 --
 
 ALTER TABLE ONLY public.orcamento
-    ADD CONSTRAINT orcamento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT orcamento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5472,7 +6281,7 @@ ALTER TABLE ONLY public.orcamento
 --
 
 ALTER TABLE ONLY public.orcamento
-    ADD CONSTRAINT orcamento_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT orcamento_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5481,7 +6290,7 @@ ALTER TABLE ONLY public.orcamento
 --
 
 ALTER TABLE ONLY public.ordem_compra
-    ADD CONSTRAINT ordem_compra_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT ordem_compra_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5490,7 +6299,7 @@ ALTER TABLE ONLY public.ordem_compra
 --
 
 ALTER TABLE ONLY public.ordem_compra
-    ADD CONSTRAINT ordem_compra_fornecedor_fkey FOREIGN KEY (fornecedor) REFERENCES public.fornecedor(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT ordem_compra_fornecedor_fkey FOREIGN KEY (fornecedor) REFERENCES public.fornecedor (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5499,7 +6308,7 @@ ALTER TABLE ONLY public.ordem_compra
 --
 
 ALTER TABLE ONLY public.ordem_compra
-    ADD CONSTRAINT ordem_compra_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT ordem_compra_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5508,7 +6317,7 @@ ALTER TABLE ONLY public.ordem_compra
 --
 
 ALTER TABLE ONLY public.pagamento
-    ADD CONSTRAINT pagamento_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pagamento_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5517,7 +6326,7 @@ ALTER TABLE ONLY public.pagamento
 --
 
 ALTER TABLE ONLY public.pagamento
-    ADD CONSTRAINT pagamento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pagamento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5526,7 +6335,7 @@ ALTER TABLE ONLY public.pagamento
 --
 
 ALTER TABLE ONLY public.pagamento
-    ADD CONSTRAINT pagamento_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pagamento_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5535,7 +6344,7 @@ ALTER TABLE ONLY public.pagamento
 --
 
 ALTER TABLE ONLY public.pagamento
-    ADD CONSTRAINT pagamento_tipo_pagamento_fkey FOREIGN KEY (tipo_pagamento) REFERENCES public.tipo_pagamento(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pagamento_tipo_pagamento_fkey FOREIGN KEY (tipo_pagamento) REFERENCES public.tipo_pagamento (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5544,7 +6353,7 @@ ALTER TABLE ONLY public.pagamento
 --
 
 ALTER TABLE ONLY public.participante_evento
-    ADD CONSTRAINT participante_evento_evento_fkey FOREIGN KEY (evento) REFERENCES public.evento(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT participante_evento_evento_fkey FOREIGN KEY (evento) REFERENCES public.evento (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5553,7 +6362,7 @@ ALTER TABLE ONLY public.participante_evento
 --
 
 ALTER TABLE ONLY public.participante_evento
-    ADD CONSTRAINT participante_evento_tipo_participante_fkey FOREIGN KEY (tipo_participante) REFERENCES public.tipo_pessoa(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT participante_evento_tipo_participante_fkey FOREIGN KEY (tipo_participante) REFERENCES public.tipo_pessoa (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5562,7 +6371,7 @@ ALTER TABLE ONLY public.participante_evento
 --
 
 ALTER TABLE ONLY public.pauta_final
-    ADD CONSTRAINT pauta_final_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_final_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5571,7 +6380,7 @@ ALTER TABLE ONLY public.pauta_final
 --
 
 ALTER TABLE ONLY public.pauta_final
-    ADD CONSTRAINT pauta_final_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_final_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5580,7 +6389,7 @@ ALTER TABLE ONLY public.pauta_final
 --
 
 ALTER TABLE ONLY public.pauta_final
-    ADD CONSTRAINT pauta_final_estado_pauta_fkey FOREIGN KEY (estado_pauta) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_final_estado_pauta_fkey FOREIGN KEY (estado_pauta) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5589,7 +6398,7 @@ ALTER TABLE ONLY public.pauta_final
 --
 
 ALTER TABLE ONLY public.pauta_final
-    ADD CONSTRAINT pauta_final_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_final_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5598,7 +6407,7 @@ ALTER TABLE ONLY public.pauta_final
 --
 
 ALTER TABLE ONLY public.pauta_trimestral
-    ADD CONSTRAINT pauta_trimestral_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_trimestral_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5607,7 +6416,7 @@ ALTER TABLE ONLY public.pauta_trimestral
 --
 
 ALTER TABLE ONLY public.pauta_trimestral
-    ADD CONSTRAINT pauta_trimestral_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_trimestral_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5616,7 +6425,7 @@ ALTER TABLE ONLY public.pauta_trimestral
 --
 
 ALTER TABLE ONLY public.pauta_trimestral
-    ADD CONSTRAINT pauta_trimestral_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_trimestral_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5625,7 +6434,7 @@ ALTER TABLE ONLY public.pauta_trimestral
 --
 
 ALTER TABLE ONLY public.pauta_trimestral
-    ADD CONSTRAINT pauta_trimestral_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_trimestral_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5634,7 +6443,7 @@ ALTER TABLE ONLY public.pauta_trimestral
 --
 
 ALTER TABLE ONLY public.presencas_aluno
-    ADD CONSTRAINT presencas_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT presencas_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5643,7 +6452,7 @@ ALTER TABLE ONLY public.presencas_aluno
 --
 
 ALTER TABLE ONLY public.presencas_aluno
-    ADD CONSTRAINT presencas_aluno_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT presencas_aluno_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5652,7 +6461,7 @@ ALTER TABLE ONLY public.presencas_aluno
 --
 
 ALTER TABLE ONLY public.presencas_aluno
-    ADD CONSTRAINT presencas_aluno_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT presencas_aluno_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5661,7 +6470,7 @@ ALTER TABLE ONLY public.presencas_aluno
 --
 
 ALTER TABLE ONLY public.presencas_aluno
-    ADD CONSTRAINT presencas_aluno_turma_fkey FOREIGN KEY (turma) REFERENCES public.turma(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT presencas_aluno_turma_fkey FOREIGN KEY (turma) REFERENCES public.turma (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5670,7 +6479,7 @@ ALTER TABLE ONLY public.presencas_aluno
 --
 
 ALTER TABLE ONLY public.professor
-    ADD CONSTRAINT professor_area_formacao_fkey FOREIGN KEY (area_formacao) REFERENCES public.area_cientifica(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT professor_area_formacao_fkey FOREIGN KEY (area_formacao) REFERENCES public.area_cientifica (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5679,7 +6488,7 @@ ALTER TABLE ONLY public.professor
 --
 
 ALTER TABLE ONLY public.professor_disciplina
-    ADD CONSTRAINT professor_disciplina_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT professor_disciplina_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5688,7 +6497,7 @@ ALTER TABLE ONLY public.professor_disciplina
 --
 
 ALTER TABLE ONLY public.professor_disciplina
-    ADD CONSTRAINT professor_disciplina_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT professor_disciplina_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5697,7 +6506,7 @@ ALTER TABLE ONLY public.professor_disciplina
 --
 
 ALTER TABLE ONLY public.professor
-    ADD CONSTRAINT professor_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT professor_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5706,7 +6515,7 @@ ALTER TABLE ONLY public.professor
 --
 
 ALTER TABLE ONLY public.professor
-    ADD CONSTRAINT professor_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT professor_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5715,7 +6524,7 @@ ALTER TABLE ONLY public.professor
 --
 
 ALTER TABLE ONLY public.professor
-    ADD CONSTRAINT professor_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador(id);
+    ADD CONSTRAINT professor_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador (id);
 
 
 --
@@ -5724,7 +6533,7 @@ ALTER TABLE ONLY public.professor
 --
 
 ALTER TABLE ONLY public.receita
-    ADD CONSTRAINT receita_categoria_fkey FOREIGN KEY (categoria) REFERENCES public.categoria_financeira(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT receita_categoria_fkey FOREIGN KEY (categoria) REFERENCES public.categoria_financeira (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5733,7 +6542,7 @@ ALTER TABLE ONLY public.receita
 --
 
 ALTER TABLE ONLY public.receita
-    ADD CONSTRAINT receita_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT receita_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5742,7 +6551,7 @@ ALTER TABLE ONLY public.receita
 --
 
 ALTER TABLE ONLY public.receita
-    ADD CONSTRAINT receita_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT receita_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5751,7 +6560,7 @@ ALTER TABLE ONLY public.receita
 --
 
 ALTER TABLE ONLY public.relatorio_financeiro
-    ADD CONSTRAINT relatorio_financeiro_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT relatorio_financeiro_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5760,7 +6569,7 @@ ALTER TABLE ONLY public.relatorio_financeiro
 --
 
 ALTER TABLE ONLY public.relatorio_financeiro
-    ADD CONSTRAINT relatorio_financeiro_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT relatorio_financeiro_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5769,7 +6578,7 @@ ALTER TABLE ONLY public.relatorio_financeiro
 --
 
 ALTER TABLE ONLY public.relatorio_financeiro
-    ADD CONSTRAINT relatorio_financeiro_tipo_relatorio_fkey FOREIGN KEY (tipo_relatorio) REFERENCES public.tipo_relatorio(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT relatorio_financeiro_tipo_relatorio_fkey FOREIGN KEY (tipo_relatorio) REFERENCES public.tipo_relatorio (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5778,7 +6587,7 @@ ALTER TABLE ONLY public.relatorio_financeiro
 --
 
 ALTER TABLE ONLY public.requisicao_material
-    ADD CONSTRAINT requisicao_material_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT requisicao_material_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5787,7 +6596,7 @@ ALTER TABLE ONLY public.requisicao_material
 --
 
 ALTER TABLE ONLY public.requisicao_material
-    ADD CONSTRAINT requisicao_material_material_fkey FOREIGN KEY (material) REFERENCES public.material(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT requisicao_material_material_fkey FOREIGN KEY (material) REFERENCES public.material (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5796,7 +6605,7 @@ ALTER TABLE ONLY public.requisicao_material
 --
 
 ALTER TABLE ONLY public.requisicao_material
-    ADD CONSTRAINT requisicao_material_requisitor_fkey FOREIGN KEY (requisitor) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT requisicao_material_requisitor_fkey FOREIGN KEY (requisitor) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5805,7 +6614,7 @@ ALTER TABLE ONLY public.requisicao_material
 --
 
 ALTER TABLE ONLY public.transacao
-    ADD CONSTRAINT transacao_categoria_fkey FOREIGN KEY (categoria) REFERENCES public.categoria_financeira(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT transacao_categoria_fkey FOREIGN KEY (categoria) REFERENCES public.categoria_financeira (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5814,7 +6623,7 @@ ALTER TABLE ONLY public.transacao
 --
 
 ALTER TABLE ONLY public.transacao
-    ADD CONSTRAINT transacao_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT transacao_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5823,7 +6632,7 @@ ALTER TABLE ONLY public.transacao
 --
 
 ALTER TABLE ONLY public.transacao
-    ADD CONSTRAINT transacao_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT transacao_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5832,7 +6641,7 @@ ALTER TABLE ONLY public.transacao
 --
 
 ALTER TABLE ONLY public.transacao
-    ADD CONSTRAINT transacao_tipo_transacao_fkey FOREIGN KEY (tipo_transacao) REFERENCES public.tipo_transacao(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT transacao_tipo_transacao_fkey FOREIGN KEY (tipo_transacao) REFERENCES public.tipo_transacao (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5841,7 +6650,7 @@ ALTER TABLE ONLY public.transacao
 --
 
 ALTER TABLE ONLY public.turma_aluno
-    ADD CONSTRAINT turma_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT turma_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5850,7 +6659,7 @@ ALTER TABLE ONLY public.turma_aluno
 --
 
 ALTER TABLE ONLY public.turma_aluno
-    ADD CONSTRAINT turma_aluno_turma_fkey FOREIGN KEY (turma) REFERENCES public.turma(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT turma_aluno_turma_fkey FOREIGN KEY (turma) REFERENCES public.turma (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5859,7 +6668,7 @@ ALTER TABLE ONLY public.turma_aluno
 --
 
 ALTER TABLE ONLY public.turma
-    ADD CONSTRAINT turma_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT turma_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5868,7 +6677,7 @@ ALTER TABLE ONLY public.turma
 --
 
 ALTER TABLE ONLY public.turma
-    ADD CONSTRAINT turma_professor_responsavel_fkey FOREIGN KEY (professor_responsavel) REFERENCES public.professor(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT turma_professor_responsavel_fkey FOREIGN KEY (professor_responsavel) REFERENCES public.professor (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5877,7 +6686,7 @@ ALTER TABLE ONLY public.turma
 --
 
 ALTER TABLE ONLY public.veiculo
-    ADD CONSTRAINT veiculo_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT veiculo_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5886,7 +6695,7 @@ ALTER TABLE ONLY public.veiculo
 --
 
 ALTER TABLE ONLY public.veiculo
-    ADD CONSTRAINT veiculo_motorista_fkey FOREIGN KEY (motorista) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT veiculo_motorista_fkey FOREIGN KEY (motorista) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 -- Completed on 2024-10-05 07:34:38

@@ -1,24 +1,27 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
 import jakarta.persistence.EntityNotFoundException;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import static java.util.stream.Collectors.toList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.dto.ContratoDTO;
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Contrato;
 import mz.co.mefemasys.xicola.backend.models.Estado;
 import mz.co.mefemasys.xicola.backend.models.Funcionario;
-import mz.co.mefemasys.xicola.backend.dto.ContratoDTO;
 import mz.co.mefemasys.xicola.backend.service.ContratoService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;
 import mz.co.mefemasys.xicola.backend.service.FuncionarioService;
-import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
+import static java.util.stream.Collectors.toList;
+import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
@@ -28,6 +31,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @PreAuthorize("isFullyAuthenticated()")
 public class ContratoController {
 
+    private static final Logger LOG = Logger.getLogger(ContratoController.class.getName());
     private final ContratoService contratoService;
     private final FuncionarioService funcionarioService;
     private final EstadoService estadoService;

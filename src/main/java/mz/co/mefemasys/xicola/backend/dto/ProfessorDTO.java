@@ -2,16 +2,17 @@ package mz.co.mefemasys.xicola.backend.dto;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import mz.co.mefemasys.xicola.backend.models.Aluno;
 import mz.co.mefemasys.xicola.backend.models.Professor;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
 import java.time.Instant;
+import java.util.logging.Logger;
 
 @Data
 @RequiredArgsConstructor
 public class ProfessorDTO implements MetodosGerais {
 
+    private static final Logger LOG = Logger.getLogger(ProfessorDTO.class.getName());
     private Long id;
     private String nomeCompleto;
     private String email;
@@ -32,7 +33,6 @@ public class ProfessorDTO implements MetodosGerais {
     private String nomeDaMae;
     private Long numeroTelefonePrincipal;
     private Long numeroTelefoneAlternativo;
-
 
     public ProfessorDTO(Professor professor) {
         this.id = professor.getId();

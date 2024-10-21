@@ -19,13 +19,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TurmaService {
 
-    private final TurmaRepository turmaRepository;
-    private final EstadoRepository estadoRepository;
-    private final ProfessorRepository professorRepository;
-
     private static final String TURMA_NOT_FOUND_MESSAGE = "Turma não encontrada com o ID: ";
     private static final String NOME_TURMA_VAZIO_MESSAGE = "O nome da turma não pode estar vazio";
     private static final String ANO_LETIVO_INVALIDO_MESSAGE = "Ano letivo inválido";
+    private final TurmaRepository turmaRepository;
+    private final EstadoRepository estadoRepository;
+    private final ProfessorRepository professorRepository;
 
     @Transactional(readOnly = true)
     public Turma findById(Long id) {

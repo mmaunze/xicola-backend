@@ -3,10 +3,10 @@ package mz.co.mefemasys.xicola.backend.service;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.dto.create.CreateAlunoDTO;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.*;
-import mz.co.mefemasys.xicola.backend.dto.create.CreateAlunoDTO;
 import mz.co.mefemasys.xicola.backend.repository.AlunoRepository;
 import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
 import mz.co.mefemasys.xicola.backend.repository.RoleRepository;
@@ -39,14 +39,15 @@ public class AlunoService implements MetodosGerais {
     private static final String DATA_NASCIMENTO_VAZIA_MESSAGE = "A data de nascimento do aluno não pode estar vazia";
     private static final String DATA_INVALIDA_MESSAGE = "Data Inválida";
     private static final String ESTADO_NOT_FOUND_MESSAGE = "Estado não encontrado com o nome: ";
-
+    private static final Logger logger = LoggerFactory.getLogger(AlunoService.class);
+    private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(AlunoService.class.getName());
     private final AlunoRepository alunoRepository;
     private final EstadoRepository estadoRepository;
     private final RoleRepository roleRepository;
     private final EstadoService estadoService;
     private final UtilizadorRepository utilizadorRepository;
     private final DistritoService distritoService;
-    private  final PasswordEncoder encoder;
+    private final PasswordEncoder encoder;
     private final TransactionTemplate transactionTemplate;
 
     @Transactional(readOnly = true)
@@ -61,7 +62,7 @@ public class AlunoService implements MetodosGerais {
     }
 
     @Transactional(readOnly = true)
-    public Long count(){
+    public Long count() {
         return alunoRepository.count();
     }
 
@@ -74,8 +75,6 @@ public class AlunoService implements MetodosGerais {
 
         return alunoRepository.findAlunosByEstado(estado);
     }
-
-    private static final Logger logger = LoggerFactory.getLogger(AlunoService.class);
 
     @Transactional
     public Aluno create(CreateAlunoDTO aluno) {
@@ -133,10 +132,10 @@ public class AlunoService implements MetodosGerais {
          * Cadastrar o aluno
          */
 
-       Utilizador cadastrado = utilizadorRepository.findById(id)
+        Utilizador cadastrado = utilizadorRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ALUNO_NOT_FOUND_MESSAGE + id));
 
-       log.info("Usuario Encontrado {}",cadastrado.getId());
+        log.info("Usuario Encontrado {}", cadastrado.getId());
 
         var newAluno = new Aluno();
         logger.info("Instância do Aluno criada.");
@@ -157,7 +156,7 @@ public class AlunoService implements MetodosGerais {
         newAluno.setEscolaAnterior(aluno.getEscolaAnterior());
         newAluno.setGrupoSanguineo(aluno.getGrupoSanguineo());
 
-        logger.info("Aluno criado: {} {}" , newAluno.getDataRegisto() , newAluno.getDataNascimento());
+        logger.info("Aluno criado: {} {}", newAluno.getDataRegisto(), newAluno.getDataNascimento());
         logger.info("Salvando o aluno...");
         alunoRepository.save(newAluno);
         log.info("Aluno salvo com sucesso: {}", newAluno);
@@ -165,15 +164,13 @@ public class AlunoService implements MetodosGerais {
         return newAluno;
     }
 
-
     private Distrito fectchDistrito(String distrito) {
         return distritoService.findDistrito(distrito);
     }
 
     private Estado fectchEstado(String estado) {
-        return estadoService.findEstado(estado) ;
+        return estadoService.findEstado(estado);
     }
-
 
     @Transactional
     public Aluno update(Long id, Aluno alunoAtualizado) {
@@ -303,6 +300,6 @@ public class AlunoService implements MetodosGerais {
             }
         }
         // Se nenhum username estiver disponível, gera um aleatório
-        return usernames.get(0) ;
+        return usernames.get(0);
     }
 }

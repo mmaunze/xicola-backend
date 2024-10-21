@@ -1,5 +1,6 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
+import java.util.logging.Logger;
 import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.Role;
 
@@ -12,4 +13,5 @@ public class RoleDTO {
         this.id = role.getId();
         this.name = String.valueOf(role.getName());
     }
+    private static final Logger LOG = Logger.getLogger(RoleDTO.class.getName());
 }

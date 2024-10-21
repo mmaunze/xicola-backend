@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface ProfessorRepository extends JpaRepository<Professor, Long> {
 
     @Query("SELECT count(p) FROM Professor p WHERE p.estado.descricao = :descricao")
-    Long findProfessorByEstado (@Param("descricao") String descricao);
-   
+    Long findProfessorByEstado(@Param("descricao") String descricao);
+
 }

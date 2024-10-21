@@ -1,9 +1,9 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
+import java.time.Instant;
+import java.util.logging.Logger;
 import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.Comunicado;
-
-import java.time.Instant;
 
 @Data
 public class ComunicadoDTO {
@@ -24,4 +24,5 @@ public class ComunicadoDTO {
         this.destinatario = comunicado.getDestinatario().getDescricao();
         this.estado = comunicado.getEstado().getDescricao();
     }
+    private static final Logger LOG = Logger.getLogger(ComunicadoDTO.class.getName());
 }

@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "tipo_documento", schema = "public", uniqueConstraints = {
-        @UniqueConstraint(name = "tipo_documento_descricao_key", columnNames = { "descricao" })
+        @UniqueConstraint(name = "tipo_documento_descricao_key", columnNames = {"descricao"})
 })
 public class TipoDocumento {
     @Id

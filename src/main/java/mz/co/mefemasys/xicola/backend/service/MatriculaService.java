@@ -1,5 +1,7 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.List;
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.Aluno;
@@ -10,8 +12,6 @@ import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
 import mz.co.mefemasys.xicola.backend.repository.MatriculaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -83,4 +83,5 @@ public class MatriculaService {
                         () -> new ResourceNotFoundException(ESTADO_NOT_FOUND_MESSAGE + matricula.getEstado().getId()));
         matricula.setEstado(estado);
     }
+    private static final Logger LOG = Logger.getLogger(MatriculaService.class.getName());
 }

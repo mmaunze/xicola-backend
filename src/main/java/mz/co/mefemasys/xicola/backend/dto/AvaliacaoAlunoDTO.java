@@ -1,10 +1,10 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
-import lombok.Data;
-import mz.co.mefemasys.xicola.backend.models.AvaliacaoAluno;
-
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.logging.Logger;
+import lombok.Data;
+import mz.co.mefemasys.xicola.backend.models.AvaliacaoAluno;
 
 @Data
 public class AvaliacaoAlunoDTO implements Serializable {
@@ -32,4 +32,5 @@ public class AvaliacaoAlunoDTO implements Serializable {
         this.avaliacao = avaliacaoAluno.getAvaliacao().getId();
         this.estado = avaliacaoAluno.getEstado().getDescricao();
     }
+    private static final Logger LOG = Logger.getLogger(AvaliacaoAlunoDTO.class.getName());
 }

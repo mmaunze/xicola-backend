@@ -1,5 +1,8 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
@@ -7,9 +10,6 @@ import mz.co.mefemasys.xicola.backend.models.FolhaPagamento;
 import mz.co.mefemasys.xicola.backend.repository.FolhaPagamentoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -89,4 +89,5 @@ public class FolhaPagamentoService {
             throw new BadRequestException(SALARIO_LIQUIDO_NEGATIVO_MESSAGE);
         }
     }
+    private static final Logger LOG = Logger.getLogger(FolhaPagamentoService.class.getName());
 }

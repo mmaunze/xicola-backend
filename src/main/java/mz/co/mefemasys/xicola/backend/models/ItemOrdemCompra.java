@@ -3,12 +3,12 @@ package mz.co.mefemasys.xicola.backend.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.math.BigDecimal;
+import java.util.logging.Logger;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
-import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -51,5 +51,6 @@ public class ItemOrdemCompra {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "estado", nullable = false)
     private Estado estado;
+    private static final Logger LOG = Logger.getLogger(ItemOrdemCompra.class.getName());
 
 }

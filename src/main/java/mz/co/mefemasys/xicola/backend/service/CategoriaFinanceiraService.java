@@ -65,6 +65,6 @@ public class CategoriaFinanceiraService {
     public CategoriaFinanceira findCategoria(String categoria) {
         return categoriaFinanceiraRepository.findCategoria(categoria)
                 .orElseThrow(() -> new ResourceNotFoundException(CATEGORIA_FINANCEIRA_NOT_FOUND_MESSAGE + categoria));
-   
+
     }
 }

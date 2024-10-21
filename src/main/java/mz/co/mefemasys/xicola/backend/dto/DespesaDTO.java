@@ -1,10 +1,10 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
-import lombok.Data;
-import mz.co.mefemasys.xicola.backend.models.Despesa;
-
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.logging.Logger;
+import lombok.Data;
+import mz.co.mefemasys.xicola.backend.models.Despesa;
 
 @Data
 public class DespesaDTO {
@@ -25,4 +25,5 @@ public class DespesaDTO {
         this.responsavel = despesa.getResponsavel().getId();
         this.estado = despesa.getEstado().getDescricao();
     }
+    private static final Logger LOG = Logger.getLogger(DespesaDTO.class.getName());
 }

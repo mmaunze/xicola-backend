@@ -1,5 +1,6 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
+import java.util.logging.Logger;
 import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.Disciplina;
 
@@ -12,4 +13,5 @@ public class DisciplinaDTO {
         this.id = disciplina.getId();
         this.nome = disciplina.getNomeDisciplina();
     }
+    private static final Logger LOG = Logger.getLogger(DisciplinaDTO.class.getName());
 }

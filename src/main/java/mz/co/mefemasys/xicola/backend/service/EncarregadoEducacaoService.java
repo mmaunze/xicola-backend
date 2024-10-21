@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.logging.Logger;
 
 @Service
 @RequiredArgsConstructor
@@ -40,11 +41,11 @@ public class EncarregadoEducacaoService implements MetodosGerais {
     private static final String TELEFONE_PRINCIPAL_VAZIO_MESSAGE = "O número de telefone principal não pode estar vazio";
     private static final String RELIGIAO_CURTO_MESSAGE = "Nome da religião do encarregado de educação curto demais";
     private static final String DATA_INVALIDA_MESSAGE = "Data Inválida";
-
+    private static final Logger LOG = Logger.getLogger(EncarregadoEducacaoService.class.getName());
     private final EncarregadoEducacaoRepository encarregadoEducacaoRepository;
     private final UtilizadorRepository utilizadorRepository;
     private final EstadoRepository estadoRepository;
-    private  final PasswordEncoder encoder;
+    private final PasswordEncoder encoder;
     private final RoleRepository roleRepository;
     private final EstadoService estadoService;
     private final DistritoService distritoService;
@@ -63,7 +64,7 @@ public class EncarregadoEducacaoService implements MetodosGerais {
     }
 
     @Transactional(readOnly = true)
-    public Long count(){
+    public Long count() {
         return encarregadoEducacaoRepository.count();
     }
 
@@ -136,7 +137,7 @@ public class EncarregadoEducacaoService implements MetodosGerais {
         Utilizador cadastrado = utilizadorRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(ENC_EDU_NOT_FOUND_MESSAGE + id));
 
-        log.info("Usuario Encontrado {}",cadastrado.getId());
+        log.info("Usuario Encontrado {}", cadastrado.getId());
 
         var newEncarregado = new EncarregadoEducacao();
         log.info("Instância do Encarregado criada.");
@@ -155,8 +156,9 @@ public class EncarregadoEducacaoService implements MetodosGerais {
         newEncarregado.setEstado(estado);
         newEncarregado.setDataRegisto(Instant.now());
 
-        if (encarregado.getNumeroTelefoneAlternativo() == null)
-        { encarregado.setNumeroTelefoneAlternativo(encarregado.getNumeroTelefonePrincipal());}
+        if (encarregado.getNumeroTelefoneAlternativo() == null) {
+            encarregado.setNumeroTelefoneAlternativo(encarregado.getNumeroTelefonePrincipal());
+        }
 
         newEncarregado.setNumeroTelefonePrincipal(encarregado.getNumeroTelefonePrincipal());
         newEncarregado.setNumeroTelefoneAlternativo(encarregado.getNumeroTelefoneAlternativo());
@@ -165,15 +167,13 @@ public class EncarregadoEducacaoService implements MetodosGerais {
         newEncarregado.setLocalTrabalho(encarregado.getLocalTrabalho());
         newEncarregado.setGrupoSanguineo(encarregado.getGrupoSanguineo());
 
-        log.info("Encarregado criado: {} {}" , newEncarregado.getDataRegisto() , newEncarregado.getDataNascimento());
+        log.info("Encarregado criado: {} {}", newEncarregado.getDataRegisto(), newEncarregado.getDataNascimento());
         log.info("Salvando o encarregado...");
         encarregadoEducacaoRepository.save(newEncarregado);
         log.info("Encarregado salvo com sucesso: {}", newEncarregado);
 
         return newEncarregado;
     }
-
-
 
     @Transactional
     public EncarregadoEducacao update(Long id, EncarregadoEducacao encarregadoAtualizado) {
@@ -271,10 +271,8 @@ public class EncarregadoEducacaoService implements MetodosGerais {
         return usernames.get(0) + new Random().nextInt(1000);
     }
 
-
-
     private void atualizarEncarregado(EncarregadoEducacao encarregadoExistente,
-            EncarregadoEducacao encarregadoAtualizado) {
+                                      EncarregadoEducacao encarregadoAtualizado) {
         encarregadoExistente.setNomeCompleto(encarregadoAtualizado.getNomeCompleto());
         encarregadoExistente.setDataNascimento(encarregadoAtualizado.getDataNascimento());
         encarregadoExistente.setSexo(encarregadoAtualizado.getSexo());
@@ -292,10 +290,10 @@ public class EncarregadoEducacaoService implements MetodosGerais {
     }
 
     private Estado fectchEstado(String estado) {
-        return estadoService.findEstado(estado) ;
+        return estadoService.findEstado(estado);
     }
 
     private SectorTrabalho fectchSectorTrabalho(String sectorTrabalho) {
-        return sectorTrabalhoService.findSector(sectorTrabalho) ;
+        return sectorTrabalhoService.findSector(sectorTrabalho);
     }
 }

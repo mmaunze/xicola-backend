@@ -1,9 +1,9 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
+import java.io.Serializable;
+import java.util.logging.Logger;
 import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.Avaliacao;
-
-import java.io.Serializable;
 
 @Data
 public class AvaliacaoDTO implements Serializable {
@@ -26,4 +26,5 @@ public class AvaliacaoDTO implements Serializable {
         this.observacao = avaliacao.getObservacao();
         this.estado = avaliacao.getEstado().getDescricao();
     }
+    private static final Logger LOG = Logger.getLogger(AvaliacaoDTO.class.getName());
 }

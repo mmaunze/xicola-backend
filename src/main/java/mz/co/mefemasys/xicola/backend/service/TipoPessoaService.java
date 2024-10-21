@@ -66,6 +66,6 @@ public class TipoPessoaService {
 
     public TipoPessoa findDestinatario(String destinatario) {
         return tipoPessoaRepository.findTipoPessoa(destinatario)
-        .orElseThrow(() -> new ResourceNotFoundException(TIPO_PESSOA_NOT_FOUND_MESSAGE + destinatario));
+                .orElseThrow(() -> new ResourceNotFoundException(TIPO_PESSOA_NOT_FOUND_MESSAGE + destinatario));
     }
 }

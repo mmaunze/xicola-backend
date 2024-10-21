@@ -1,10 +1,10 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
-import lombok.Data;
-import mz.co.mefemasys.xicola.backend.models.Contrato;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.logging.Logger;
+import lombok.Data;
+import mz.co.mefemasys.xicola.backend.models.Contrato;
 
 @Data
 public class ContratoDTO {
@@ -29,4 +29,5 @@ public class ContratoDTO {
         this.responsavel = contrato.getResponsavel().getId();
         this.estado = contrato.getEstado().getDescricao();
     }
+    private static final Logger LOG = Logger.getLogger(ContratoDTO.class.getName());
 }

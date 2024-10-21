@@ -6,11 +6,13 @@ import mz.co.mefemasys.xicola.backend.models.EncarregadoEducacao;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
 import java.time.Instant;
+import java.util.logging.Logger;
 
 @Data
 @RequiredArgsConstructor
 public class EncarregadoEducacaoDTO implements MetodosGerais {
 
+    private static final Logger LOG = Logger.getLogger(EncarregadoEducacaoDTO.class.getName());
     private Long id;
     private String nomeCompleto;
     private String email;
@@ -31,7 +33,6 @@ public class EncarregadoEducacaoDTO implements MetodosGerais {
     private String nomeDaMae;
     private Long numeroTelefonePrincipal;
     private Long numeroTelefoneAlternativo;
-
 
     public EncarregadoEducacaoDTO(EncarregadoEducacao professor) {
         this.id = professor.getId();

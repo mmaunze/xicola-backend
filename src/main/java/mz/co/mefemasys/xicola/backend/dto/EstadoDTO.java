@@ -1,5 +1,6 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
+import java.util.logging.Logger;
 import lombok.Getter;
 import lombok.Setter;
 import mz.co.mefemasys.xicola.backend.models.Estado;
@@ -14,4 +15,5 @@ public class EstadoDTO {
         this.id = estado.getId();
         this.descricao = estado.getDescricao();
     }
+    private static final Logger LOG = Logger.getLogger(EstadoDTO.class.getName());
 }

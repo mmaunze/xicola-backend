@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * Repositório JPA para a entidade TipoTransacao.
- *
+ * <p>
  * Este repositório estende JpaRepository, fornecendo métodos padrão para
  * operações CRUD e mais. Também permite o uso de consultas nomeadas definidas
  * na entidade TipoTransacao.

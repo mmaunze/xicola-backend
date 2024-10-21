@@ -1,5 +1,6 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.Role;
@@ -52,6 +53,7 @@ public class RoleService {
 
         roleRepository.deleteById(id);
     }
+    private static final Logger LOG = Logger.getLogger(RoleService.class.getName());
 
 
 }

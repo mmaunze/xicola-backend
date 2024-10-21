@@ -1,5 +1,7 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.List;
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
@@ -7,8 +9,6 @@ import mz.co.mefemasys.xicola.backend.models.TipoDocumento;
 import mz.co.mefemasys.xicola.backend.repository.TipoDocumentoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -68,4 +68,5 @@ public class TipoDocumentoService {
         return tipoDocumentoRepository.findTipoDocumento(tipoDocumento)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_DOCUMENTO_NOT_FOUND_MESSAGE + tipoDocumento));
     }
+    private static final Logger LOG = Logger.getLogger(TipoDocumentoService.class.getName());
 }

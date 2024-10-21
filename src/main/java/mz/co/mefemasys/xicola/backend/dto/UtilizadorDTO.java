@@ -5,9 +5,11 @@ import mz.co.mefemasys.xicola.backend.models.Role;
 import mz.co.mefemasys.xicola.backend.models.Utilizador;
 
 import java.util.Set;
+import java.util.logging.Logger;
 
 @Data
 public class UtilizadorDTO {
+    private static final Logger LOG = Logger.getLogger(UtilizadorDTO.class.getName());
     private Long id;
     private String nome;
     private String username;

@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "categoria_financeira", schema = "public", uniqueConstraints = {
-        @UniqueConstraint(name = "categoria_financeira_descricao_key", columnNames = { "descricao" })
+        @UniqueConstraint(name = "categoria_financeira_descricao_key", columnNames = {"descricao"})
 })
 public class CategoriaFinanceira {
     @Id

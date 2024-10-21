@@ -1,5 +1,6 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.Cargo;
@@ -61,4 +62,5 @@ public class CargoService {
             throw new ResourceNotFoundException(DESCRICAO_VAZIA_MESSAGE);
         }
     }
+    private static final Logger LOG = Logger.getLogger(CargoService.class.getName());
 }

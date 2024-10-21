@@ -1,5 +1,6 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
+import java.util.logging.Logger;
 import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.CategoriaFinanceira;
 
@@ -12,4 +13,5 @@ public class CategoriaFinanceiraDTO {
         this.id = categoriaFinanceira.getId();
         this.nome = categoriaFinanceira.getDescricao();
     }
+    private static final Logger LOG = Logger.getLogger(CategoriaFinanceiraDTO.class.getName());
 }

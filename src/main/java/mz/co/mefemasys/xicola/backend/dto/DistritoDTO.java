@@ -9,7 +9,7 @@ public class DistritoDTO {
     private String nome;
     private String provincia;
 
-    public DistritoDTO (Distrito distrito) {
+    public DistritoDTO(Distrito distrito) {
         this.id = distrito.getId();
         this.nome = distrito.getNomeDistrito();
         this.provincia = distrito.getProvincia().getNomeProvincia();

@@ -2,16 +2,16 @@ package mz.co.mefemasys.xicola.backend.dto.create;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import mz.co.mefemasys.xicola.backend.models.Professor;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
-import java.time.Instant;
 import java.time.LocalDate;
+import java.util.logging.Logger;
 
 @Data
 @RequiredArgsConstructor
 public class CreateProfessorDTO implements MetodosGerais {
 
+    private static final Logger LOG = Logger.getLogger(CreateProfessorDTO.class.getName());
     private String nomeCompleto;
     private String email;
     private LocalDate dataNascimento;

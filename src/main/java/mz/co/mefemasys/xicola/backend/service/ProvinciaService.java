@@ -9,13 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 @RequiredArgsConstructor
 public class ProvinciaService {
 
     private static final String PROVINCIA_NOT_FOUND_MESSAGE = "Provincia não encontrada com o ID: ";
-
+    private static final Logger LOG = Logger.getLogger(ProvinciaService.class.getName());
     private final ProvinciaRepository provinciaRepository;
 
     @Transactional(readOnly = true)
@@ -66,6 +67,6 @@ public class ProvinciaService {
 
     public Provincia findProvincia(String provincia) {
         return provinciaRepository.findByNomeProvincia(provincia)
-        .orElseThrow(() -> new ResourceNotFoundException(PROVINCIA_NOT_FOUND_MESSAGE + provincia));
+                .orElseThrow(() -> new ResourceNotFoundException(PROVINCIA_NOT_FOUND_MESSAGE + provincia));
     }
 }

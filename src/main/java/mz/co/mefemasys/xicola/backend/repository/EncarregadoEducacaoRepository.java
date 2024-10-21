@@ -11,5 +11,5 @@ public interface EncarregadoEducacaoRepository extends JpaRepository<Encarregado
 
 
     @Query("SELECT count(ed) FROM EncarregadoEducacao ed WHERE ed.estado.descricao = :descricao")
-    Long findEncarregadoEducacaoByEstado (@Param("descricao") String descricao);
+    Long findEncarregadoEducacaoByEstado(@Param("descricao") String descricao);
 }

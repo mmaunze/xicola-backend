@@ -17,7 +17,9 @@ import static java.util.Calendar.*;
 public interface MetodosGerais {
 
 
-    public default LocalDate converterStringParaData(String dataString) throws DateTimeParseException {
+    Random random = new Random();
+
+    default LocalDate converterStringParaData(String dataString) throws DateTimeParseException {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(dataString, formato);
     }
@@ -29,7 +31,6 @@ public interface MetodosGerais {
         String ano = String.valueOf(data.getYear());
         return String.format("%s de %s de %s", dia, mes, ano);
     }
-
 
     default int calcularIdade(String dataNascimento) {
         try {
@@ -49,8 +50,7 @@ public interface MetodosGerais {
         }
     }
 
-
-     default String calcularFaixaEtaria(int idade) {
+    default String calcularFaixaEtaria(int idade) {
         if (idade < 18) {
             return "<18";
         } else if (idade <= 25) {
@@ -74,7 +74,7 @@ public interface MetodosGerais {
         }
     }
 
-    public default String obterMesPorExtenso(int numeroMes) {
+    default String obterMesPorExtenso(int numeroMes) {
         if (numeroMes < 1 || numeroMes > 12) {
             throw new IllegalArgumentException("Número de mês inválido. Deve estar entre 1 e 12.");
         }
@@ -82,15 +82,14 @@ public interface MetodosGerais {
         return meses[numeroMes - 1];
     }
 
-
-    public default void habilitarCampo(JTextField campo) {
+    default void habilitarCampo(JTextField campo) {
         campo.setEnabled(true);
         campo.setEditable(true);
         campo.setFocusable(true);
         campo.requestFocus();
     }
 
-     default int obterNumeroMes(String nomeMes) {
+    default int obterNumeroMes(String nomeMes) {
         var symbols = new DateFormatSymbols(new Locale("pt", "BR"));
         var meses = symbols.getMonths();
         for (var i = 0; i < meses.length; i++) {
@@ -101,7 +100,7 @@ public interface MetodosGerais {
         return 0;
     }
 
-     default String generateUsername(String nomeCompleto) {
+    default String generateUsername(String nomeCompleto) {
 
         String[] partesNome = nomeCompleto.split(" ");
 
@@ -113,7 +112,7 @@ public interface MetodosGerais {
         String ultimoNome = partesNome[partesNome.length - 1].toLowerCase();
 
 
-        String[] opcoesUsername = new String[] {
+        String[] opcoesUsername = new String[]{
                 primeiroNome + "." + ultimoNome,
                 ultimoNome + "." + primeiroNome,
                 primeiroNome + "." + primeiroNome,
@@ -138,8 +137,8 @@ public interface MetodosGerais {
         for (var parte : partesNome) {
             sb.append(parte.charAt(0));
         }
-        usernames.add(sb.toString() + partesNome[numPalavras - 1]);
-        usernames.add(sb.toString() + "." + partesNome[numPalavras - 1]);
+        usernames.add(sb + partesNome[numPalavras - 1]);
+        usernames.add(sb + "." + partesNome[numPalavras - 1]);
 
         // Método auxiliar para gerar combinações
         generateCombinations(partesNome, numPalavras, usernames, 2);
@@ -192,19 +191,14 @@ public interface MetodosGerais {
         return sdf.format(new Date());
     }
 
-    public static final Random random = new Random();
-
     private String generateRandomNumber(int digits) {
         int upperBound = (int) Math.pow(10, digits);
         int randomNumber = random.nextInt(upperBound);
 
-        StringBuilder formatBuilder = new StringBuilder();
-        formatBuilder.append("%0").append(digits).append("d");
-
-        return String.format(formatBuilder.toString(), randomNumber);
+        return String.format("%0" + digits + "d", randomNumber);
     }
 
-    public default Date converterParaData(int ano, int mes, int dia) {
+    default Date converterParaData(int ano, int mes, int dia) {
         var calendar = getInstance();
         calendar.set(YEAR, ano);
         calendar.set(MONTH, mes - 1);

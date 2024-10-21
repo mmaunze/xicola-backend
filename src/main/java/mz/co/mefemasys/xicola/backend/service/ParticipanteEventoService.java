@@ -1,5 +1,7 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.List;
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
@@ -11,8 +13,6 @@ import mz.co.mefemasys.xicola.backend.repository.ParticipanteEventoRepository;
 import mz.co.mefemasys.xicola.backend.repository.TipoPessoaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -93,4 +93,5 @@ public class ParticipanteEventoService {
                         TIPO_PESSOA_NOT_FOUND_MESSAGE + participanteEvento.getTipoParticipante().getId()));
         participanteEvento.setTipoParticipante(tipoPessoa);
     }
+    private static final Logger LOG = Logger.getLogger(ParticipanteEventoService.class.getName());
 }

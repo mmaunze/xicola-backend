@@ -1,5 +1,9 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.logging.Logger;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
@@ -12,10 +16,6 @@ import mz.co.mefemasys.xicola.backend.repository.UtilizadorRepository;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -241,5 +241,6 @@ public class FuncionarioService implements MetodosGerais {
         // Se nenhum username estiver disponível, gera um aleatório
         return usernames.get(0);
     }
+    private static final Logger LOG = Logger.getLogger(FuncionarioService.class.getName());
 
 }

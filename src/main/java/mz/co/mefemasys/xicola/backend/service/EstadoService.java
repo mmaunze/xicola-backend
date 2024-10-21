@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 @RequiredArgsConstructor
@@ -17,7 +18,7 @@ public class EstadoService {
 
     private static final String ESTADO_NOT_FOUND_MESSAGE = "Estado não encontrado com o ID: ";
     private static final String DESCRICAO_VAZIA_MESSAGE = "A descrição do estado não pode estar vazia";
-
+    private static final Logger LOG = Logger.getLogger(EstadoService.class.getName());
     private final EstadoRepository estadoRepository;
 
     @Transactional(readOnly = true)
@@ -31,20 +32,16 @@ public class EstadoService {
         return estadoRepository.findAll();
     }
 
-
     @Transactional(readOnly = true)
     public List<Estado> findEstadoTipo(String tipo) {
         return estadoRepository.findByTipoEstado(tipo);
     }
 
-
     @Transactional(readOnly = true)
     public Estado findEstado(String estado) {
         return estadoRepository.findEstado(estado)
-        .orElseThrow(() -> new EntityNotFoundException(ESTADO_NOT_FOUND_MESSAGE));
+                .orElseThrow(() -> new EntityNotFoundException(ESTADO_NOT_FOUND_MESSAGE));
     }
-
-
 
     @Transactional
     public Estado create(Estado estado) {

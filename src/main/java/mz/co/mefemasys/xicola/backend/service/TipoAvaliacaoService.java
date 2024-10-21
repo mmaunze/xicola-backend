@@ -66,8 +66,8 @@ public class TipoAvaliacaoService {
 
     public TipoAvaliacao findTipoAvaliacao(String tipo) {
         return tipoAvaliacaoRepository.findTipoAvaliacao(tipo)
-        .orElseThrow(() -> new ResourceNotFoundException(TIPO_AVALIACAO_NOT_FOUND_MESSAGE + tipo));
+                .orElseThrow(() -> new ResourceNotFoundException(TIPO_AVALIACAO_NOT_FOUND_MESSAGE + tipo));
 
-      
+
     }
 }

@@ -1,5 +1,8 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
@@ -7,9 +10,6 @@ import mz.co.mefemasys.xicola.backend.models.Documento;
 import mz.co.mefemasys.xicola.backend.repository.DocumentoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -84,4 +84,5 @@ public class DocumentoService {
         documentoExistente.setTipoDocumento(documentoAtualizado.getTipoDocumento());
         
     }
+    private static final Logger LOG = Logger.getLogger(DocumentoService.class.getName());
 }

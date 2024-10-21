@@ -5,12 +5,12 @@ import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.AreaCientifica;
-import mz.co.mefemasys.xicola.backend.models.Estado;
 import mz.co.mefemasys.xicola.backend.repository.AreaCientificaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +19,7 @@ public class AreaCientificaService {
     private static final String AREA_CIENTIFICA_NOT_FOUND_MESSAGE = "Área científica não encontrada com o ID: ";
     private static final String DESCRICAO_VAZIA_MESSAGE = "A descrição não pode estar vazia";
     private static final String DESCRICAO_CURTA_MESSAGE = "Descrição curta demais";
-
+    private static final Logger LOG = Logger.getLogger(AreaCientificaService.class.getName());
     private final AreaCientificaRepository areaCientificaRepository;
 
     @Transactional(readOnly = true)
@@ -33,13 +33,11 @@ public class AreaCientificaService {
         return areaCientificaRepository.findAll();
     }
 
-
     @Transactional(readOnly = true)
     public AreaCientifica findArea(String estado) {
         return areaCientificaRepository.findArea(estado)
                 .orElseThrow(() -> new EntityNotFoundException(AREA_CIENTIFICA_NOT_FOUND_MESSAGE));
     }
-
 
     @Transactional
     public AreaCientifica create(AreaCientifica areaCientifica) {

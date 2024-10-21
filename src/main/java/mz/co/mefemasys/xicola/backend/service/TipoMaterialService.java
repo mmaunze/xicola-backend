@@ -1,5 +1,7 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.List;
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
@@ -7,8 +9,6 @@ import mz.co.mefemasys.xicola.backend.models.TipoMaterial;
 import mz.co.mefemasys.xicola.backend.repository.TipoMaterialRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -63,4 +63,5 @@ public class TipoMaterialService {
 
         // Adicione outras validações conforme necessário
     }
+    private static final Logger LOG = Logger.getLogger(TipoMaterialService.class.getName());
 }

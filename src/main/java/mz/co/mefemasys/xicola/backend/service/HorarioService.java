@@ -1,5 +1,7 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.List;
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
@@ -8,8 +10,6 @@ import mz.co.mefemasys.xicola.backend.repository.*;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -135,4 +135,5 @@ public class HorarioService implements MetodosGerais {
         return estadoRepository.findEstado("Activo")
                 .orElseThrow(() -> new ResourceNotFoundException(ESTADO_NOT_FOUND_MESSAGE));
     }
+    private static final Logger LOG = Logger.getLogger(HorarioService.class.getName());
 }

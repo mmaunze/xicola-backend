@@ -1,10 +1,6 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
 import jakarta.validation.Valid;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 import mz.co.mefemasys.xicola.backend.exceptions.ConflictException;
 import mz.co.mefemasys.xicola.backend.models.ERole;
 import mz.co.mefemasys.xicola.backend.models.Role;
@@ -28,23 +24,26 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/autenticacao")
 public class AuthController implements MetodosGerais {
 
+    private static final Logger LOG = Logger.getLogger(AuthController.class.getName());
     @Autowired
     AuthenticationManager authenticationManager;
-
     @Autowired
     UtilizadorRepository utilizadorRepository;
-
     @Autowired
     RoleRepository roleRepository;
-
     @Autowired
     PasswordEncoder encoder;
-
     @Autowired
     JwtUtils jwtUtils;
 

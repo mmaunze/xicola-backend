@@ -1,5 +1,6 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
+import java.util.logging.Logger;
 import lombok.Getter;
 import lombok.Setter;
 import mz.co.mefemasys.xicola.backend.models.Cargo;
@@ -14,4 +15,5 @@ public class CargoDTO {
         this.id = cargo.getId();
         this.nome = cargo.getDescricao();
     }
+    private static final Logger LOG = Logger.getLogger(CargoDTO.class.getName());
 }

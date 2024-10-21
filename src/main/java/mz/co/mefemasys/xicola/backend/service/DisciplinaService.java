@@ -1,5 +1,6 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
@@ -75,4 +76,5 @@ public class DisciplinaService {
         return disciplinaRepository.findDisciplina(disciplina)
                 .orElseThrow(() -> new ResourceNotFoundException(DISCIPLINA_NOT_FOUND_MESSAGE + disciplina));
     }
+    private static final Logger LOG = Logger.getLogger(DisciplinaService.class.getName());
 }

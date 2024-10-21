@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "provincia", schema = "public", uniqueConstraints = {
-        @UniqueConstraint(name = "provincia_nome_provincia_key", columnNames = { "nome_provincia" })
+        @UniqueConstraint(name = "provincia_nome_provincia_key", columnNames = {"nome_provincia"})
 })
 public class Provincia {
     @Id

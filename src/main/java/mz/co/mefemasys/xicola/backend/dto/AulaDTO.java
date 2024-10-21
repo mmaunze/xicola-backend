@@ -1,9 +1,9 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
+import java.time.Instant;
+import java.util.logging.Logger;
 import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.Aula;
-
-import java.time.Instant;
 
 @Data
 public class AulaDTO {
@@ -28,4 +28,5 @@ public class AulaDTO {
         this.conteudo = aula.getConteudo();
         this.estado = aula.getEstado().getDescricao();
     }
+    private static final Logger LOG = Logger.getLogger(AulaDTO.class.getName());
 }

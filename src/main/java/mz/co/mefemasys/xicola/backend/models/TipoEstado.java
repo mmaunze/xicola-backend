@@ -2,6 +2,7 @@ package mz.co.mefemasys.xicola.backend.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import java.util.logging.Logger;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,5 +20,6 @@ public class TipoEstado {
     @NotNull
     @Column(name = "descricao", nullable = false, length = Integer.MAX_VALUE)
     private String descricao;
+    private static final Logger LOG = Logger.getLogger(TipoEstado.class.getName());
 
 }

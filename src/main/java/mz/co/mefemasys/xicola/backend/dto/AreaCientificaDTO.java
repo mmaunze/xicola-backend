@@ -1,5 +1,6 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
+import java.util.logging.Logger;
 import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.AreaCientifica;
 
@@ -12,4 +13,5 @@ public class AreaCientificaDTO {
         this.id = areaCientifica.getId();
         this.nome = areaCientifica.getDescricao();
     }
+    private static final Logger LOG = Logger.getLogger(AreaCientificaDTO.class.getName());
 }

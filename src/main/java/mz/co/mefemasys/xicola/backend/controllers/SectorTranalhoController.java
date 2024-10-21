@@ -4,10 +4,8 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import mz.co.mefemasys.xicola.backend.dto.AreaCientificaDTO;
 import mz.co.mefemasys.xicola.backend.dto.SectorTrabalhoDTO;
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
-import mz.co.mefemasys.xicola.backend.models.AreaCientifica;
 import mz.co.mefemasys.xicola.backend.models.SectorTrabalho;
 import mz.co.mefemasys.xicola.backend.service.SectorTrabalhoService;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.logging.Logger;
 
 import static java.util.stream.Collectors.toList;
 import static org.springframework.http.HttpStatus.*;
@@ -31,6 +30,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @PreAuthorize("isFullyAuthenticated()")
 public class SectorTranalhoController {
 
+    private static final Logger LOG = Logger.getLogger(SectorTranalhoController.class.getName());
     private final SectorTrabalhoService sectorTrabalhoService;
 
     @GetMapping

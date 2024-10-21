@@ -1,5 +1,8 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.List;
+import java.util.Random;
+import java.util.logging.Logger;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
@@ -13,9 +16,6 @@ import mz.co.mefemasys.xicola.backend.repository.VeiculoRepository;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -116,4 +116,5 @@ public class VeiculoService implements MetodosGerais {
         veiculoExistente.setEstado(veiculoAtualizado.getEstado());
         veiculoExistente.setMotorista(veiculoAtualizado.getMotorista());
     }
+    private static final Logger LOG = Logger.getLogger(VeiculoService.class.getName());
 }

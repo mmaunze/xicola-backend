@@ -1,9 +1,9 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
+import java.math.BigDecimal;
+import java.util.logging.Logger;
 import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.DetalheRelatorioFinanceiro;
-
-import java.math.BigDecimal;
 
 @Data
 public class DetalheRelatorioFinanceiroDTO {
@@ -18,4 +18,5 @@ public class DetalheRelatorioFinanceiroDTO {
         this.descricao = detalhe.getDescricao();
         this.valor = detalhe.getValor();
     }
+    private static final Logger LOG = Logger.getLogger(DetalheRelatorioFinanceiroDTO.class.getName());
 }

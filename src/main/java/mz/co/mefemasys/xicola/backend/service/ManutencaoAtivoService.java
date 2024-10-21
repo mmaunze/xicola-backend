@@ -118,7 +118,7 @@ public class ManutencaoAtivoService {
     }
 
     private void atualizarManutencaoAtivo(ManutencaoAtivo manutencaoAtivoExistente,
-            ManutencaoAtivo manutencaoAtivoAtualizado) {
+                                          ManutencaoAtivo manutencaoAtivoAtualizado) {
         manutencaoAtivoExistente.setDescricao(manutencaoAtivoAtualizado.getDescricao());
         manutencaoAtivoExistente.setDataManutencao(manutencaoAtivoAtualizado.getDataManutencao());
         manutencaoAtivoExistente.setCusto(manutencaoAtivoAtualizado.getCusto());

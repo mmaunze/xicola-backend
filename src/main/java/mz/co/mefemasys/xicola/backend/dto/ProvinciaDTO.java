@@ -1,5 +1,6 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
+import java.util.logging.Logger;
 import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.Provincia;
 
@@ -14,4 +15,5 @@ public class ProvinciaDTO {
         this.nome = provincia.getNomeProvincia();
 
     }
+    private static final Logger LOG = Logger.getLogger(ProvinciaDTO.class.getName());
 }

@@ -9,13 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 @RequiredArgsConstructor
 public class SectorTrabalhoService {
 
     private static final String SECTOR_TRABALHO_NOT_FOUND_MESSAGE = "Setor de trabalho não encontrado com o ID: ";
-
+    private static final Logger LOG = Logger.getLogger(SectorTrabalhoService.class.getName());
     private final SectorTrabalhoRepository sectorTrabalhoRepository;
 
     @Transactional(readOnly = true)

@@ -1,25 +1,27 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
 import jakarta.persistence.EntityNotFoundException;
-import java.net.URI;
-import java.util.List;
-import static java.util.stream.Collectors.toList;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.dto.AulaDTO;
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
 import mz.co.mefemasys.xicola.backend.models.Aula;
-import mz.co.mefemasys.xicola.backend.dto.AulaDTO;
 import mz.co.mefemasys.xicola.backend.service.AulaService;
 import mz.co.mefemasys.xicola.backend.service.DisciplinaService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;
-import static org.springframework.http.HttpStatus.*;
 import org.springframework.http.ResponseEntity;
-import static org.springframework.http.ResponseEntity.created;
-import static org.springframework.http.ResponseEntity.ok;
-
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+import java.util.List;
+import java.util.logging.Logger;
+
+import static java.util.stream.Collectors.toList;
+import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.ResponseEntity.created;
+import static org.springframework.http.ResponseEntity.ok;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @Data
@@ -30,6 +32,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @PreAuthorize("isFullyAuthenticated()")
 public class AulaController {
 
+    private static final Logger LOG = Logger.getLogger(AulaController.class.getName());
     private final DisciplinaService disciplinaService;
     private final EstadoService estadoService;
     private final AulaService aulaService;

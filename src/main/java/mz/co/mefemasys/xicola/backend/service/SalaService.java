@@ -1,5 +1,7 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.List;
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
@@ -7,8 +9,6 @@ import mz.co.mefemasys.xicola.backend.models.Sala;
 import mz.co.mefemasys.xicola.backend.repository.SalaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -68,4 +68,5 @@ public class SalaService {
 
         // Adicione outras validações conforme necessário
     }
+    private static final Logger LOG = Logger.getLogger(SalaService.class.getName());
 }

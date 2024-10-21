@@ -77,7 +77,6 @@ public class ItemOrdemCompraService implements MetodosGerais {
     }
 
 
-
     private void validarItemOrdemCompra(ItemOrdemCompra itemOrdemCompra) {
         validarDadosObrigatorios(itemOrdemCompra);
         validarQuantidade(itemOrdemCompra);
@@ -120,7 +119,7 @@ public class ItemOrdemCompraService implements MetodosGerais {
     }
 
     private void atualizarItemOrdemCompra(ItemOrdemCompra itemOrdemCompraExistente,
-            ItemOrdemCompra itemOrdemCompraAtualizado) {
+                                          ItemOrdemCompra itemOrdemCompraAtualizado) {
         itemOrdemCompraExistente.setDescricao(itemOrdemCompraAtualizado.getDescricao());
         itemOrdemCompraExistente.setQuantidade(itemOrdemCompraAtualizado.getQuantidade());
         itemOrdemCompraExistente.setValorUnitario(itemOrdemCompraAtualizado.getValorUnitario());

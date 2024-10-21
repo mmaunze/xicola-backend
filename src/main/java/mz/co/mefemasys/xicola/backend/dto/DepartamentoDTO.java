@@ -1,5 +1,6 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
+import java.util.logging.Logger;
 import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.Departamento;
 
@@ -14,4 +15,5 @@ public class DepartamentoDTO {
         this.nome = departamento.getDescricao();
         this.sigla = departamento.getSigla();
     }
+    private static final Logger LOG = Logger.getLogger(DepartamentoDTO.class.getName());
 }

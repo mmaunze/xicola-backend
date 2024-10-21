@@ -26,7 +26,6 @@ public class UtilizadorService {
     private final EstadoRepository estadoRepository;
 
 
-
     @Transactional(readOnly = true)
     public Utilizador findById(Long id) {
         return utilizadorRepository.findById(id)
@@ -34,7 +33,7 @@ public class UtilizadorService {
     }
 
     @Transactional(readOnly = true)
-    public Long count(){
+    public Long count() {
         return utilizadorRepository.count();
     }
 
@@ -48,14 +47,12 @@ public class UtilizadorService {
         var estadoOptional = estadoRepository.findEstado("Activo");
         var estado = estadoOptional
                 .orElseThrow(() -> new ResourceNotFoundException(ESTADO_NOT_FOUND_MESSAGE));
-  //  utilizador.setSenha(securityConfiguration.passwordEncoder().encode(utilizador.getSenha())) ;
-  // Atribui ao usuário uma permissão específica
+        //  utilizador.setSenha(securityConfiguration.passwordEncoder().encode(utilizador.getSenha())) ;
+        // Atribui ao usuário uma permissão específica
 
 
-  
         validarDadosObrigatorios(utilizador);
         validarComprimentoMinimo(utilizador);
-
 
 
         return utilizadorRepository.save(utilizador);
@@ -75,8 +72,8 @@ public class UtilizadorService {
 
         utilizadorExistente.setUsername(utilizadorAtualizado.getUsername());
         utilizadorExistente.setPassword(utilizadorAtualizado.getPassword());
-      //  utilizadorExistente.setEstado(utilizadorAtualizado.getEstado());
-   //     utilizadorExistente.setTipoUtilizador(utilizadorAtualizado.getTipoUtilizador());
+        //  utilizadorExistente.setEstado(utilizadorAtualizado.getEstado());
+        //     utilizadorExistente.setTipoUtilizador(utilizadorAtualizado.getTipoUtilizador());
 
         return utilizadorRepository.save(utilizadorExistente);
     }

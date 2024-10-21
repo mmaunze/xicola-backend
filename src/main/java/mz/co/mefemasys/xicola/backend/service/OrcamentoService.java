@@ -1,5 +1,8 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
@@ -11,9 +14,6 @@ import mz.co.mefemasys.xicola.backend.repository.FuncionarioRepository;
 import mz.co.mefemasys.xicola.backend.repository.OrcamentoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -94,4 +94,5 @@ public class OrcamentoService {
                         FUNCIONARIO_NOT_FOUND_MESSAGE + orcamento.getResponsavel().getId()));
         orcamento.setResponsavel(responsavel);
     }
+    private static final Logger LOG = Logger.getLogger(OrcamentoService.class.getName());
 }

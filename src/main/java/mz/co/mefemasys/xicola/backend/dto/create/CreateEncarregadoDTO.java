@@ -5,11 +5,13 @@ import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
 import java.time.LocalDate;
+import java.util.logging.Logger;
 
 @Data
 @RequiredArgsConstructor
 public class CreateEncarregadoDTO implements MetodosGerais {
 
+    private static final Logger LOG = Logger.getLogger(CreateEncarregadoDTO.class.getName());
     private String nomeCompleto;
     private String email;
     private LocalDate dataNascimento;

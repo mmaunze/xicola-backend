@@ -1,5 +1,8 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.List;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
@@ -7,9 +10,6 @@ import mz.co.mefemasys.xicola.backend.models.Fornecedor;
 import mz.co.mefemasys.xicola.backend.repository.FornecedorRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -117,4 +117,5 @@ public class FornecedorService {
         }
         // Aqui você pode adicionar outras validações para o email
     }
+    private static final Logger LOG = Logger.getLogger(FornecedorService.class.getName());
 }

@@ -2,6 +2,7 @@ package mz.co.mefemasys.xicola.backend.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import java.util.logging.Logger;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
@@ -27,5 +28,6 @@ public class Estado {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "tipo_estado", nullable = false)
     private TipoEstado tipoEstado;
+    private static final Logger LOG = Logger.getLogger(Estado.class.getName());
 
 }

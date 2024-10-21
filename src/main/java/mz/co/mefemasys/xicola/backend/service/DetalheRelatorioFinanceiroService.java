@@ -82,7 +82,7 @@ public class DetalheRelatorioFinanceiroService {
     }
 
     private void mapearDetalheRelatorioAtualizado(DetalheRelatorioFinanceiro detalheRelatorioExistente,
-            DetalheRelatorioFinanceiro detalheRelatorioAtualizado) {
+                                                  DetalheRelatorioFinanceiro detalheRelatorioAtualizado) {
         detalheRelatorioExistente.setDescricao(detalheRelatorioAtualizado.getDescricao());
         detalheRelatorioExistente.setValor(detalheRelatorioAtualizado.getValor());
         detalheRelatorioExistente.setRelatorio(detalheRelatorioAtualizado.getRelatorio());

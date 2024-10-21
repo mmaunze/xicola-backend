@@ -27,40 +27,44 @@ SET default_table_access_method = heap;
 -- Name: aluno; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.aluno (
-    id bigint NOT NULL,
-    nome_completo character varying(100) NOT NULL,
-    data_nascimento date NOT NULL,
-    distrito_nascimento bigint,
-    sexo character varying(1) NOT NULL,
-    bilhete_identificacao character varying(13),
-    religiao character varying(78),
-    grupo_sanguineo character varying(3),
-    endereco character varying(255),
-    data_registo timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    estado bigint NOT NULL,
-    escola_anterior text,
-    nome_do_pai character varying(150),
-    nome_da_mae character varying(150),
+CREATE TABLE public.aluno
+(
+    id                        bigint                                                NOT NULL,
+    nome_completo             character varying(100)                                NOT NULL,
+    data_nascimento           date                                                  NOT NULL,
+    distrito_nascimento       bigint,
+    sexo                      character varying(1)                                  NOT NULL,
+    bilhete_identificacao     character varying(13),
+    religiao                  character varying(78),
+    grupo_sanguineo           character varying(3),
+    endereco                  character varying(255),
+    data_registo              timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    estado                    bigint                                                NOT NULL,
+    escola_anterior           text,
+    nome_do_pai               character varying(150),
+    nome_da_mae               character varying(150),
     numero_telefone_principal bigint,
-    username bigint NOT NULL
+    username                  bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.aluno OWNER TO postgres;
+ALTER TABLE public.aluno
+    OWNER TO postgres;
 
 --
 -- TOC entry 223 (class 1259 OID 24783)
 -- Name: area_cientifica; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.area_cientifica (
-    id bigint NOT NULL,
+CREATE TABLE public.area_cientifica
+(
+    id        bigint                 NOT NULL,
     descricao character varying(150) NOT NULL
 );
 
 
-ALTER TABLE public.area_cientifica OWNER TO postgres;
+ALTER TABLE public.area_cientifica
+    OWNER TO postgres;
 
 --
 -- TOC entry 222 (class 1259 OID 24782)
@@ -92,18 +96,20 @@ ALTER SEQUENCE public.area_cientifica_id_seq OWNED BY public.area_cientifica.id;
 -- Name: ativo; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.ativo (
-    id bigint NOT NULL,
-    descricao character varying(200) NOT NULL,
-    tipo character varying(100) NOT NULL,
-    data_aquisicao date NOT NULL,
-    valor_aquisicao numeric(10,2) NOT NULL,
-    localizacao character varying(255),
-    estado bigint NOT NULL
+CREATE TABLE public.ativo
+(
+    id              bigint                 NOT NULL,
+    descricao       character varying(200) NOT NULL,
+    tipo            character varying(100) NOT NULL,
+    data_aquisicao  date                   NOT NULL,
+    valor_aquisicao numeric(10, 2)         NOT NULL,
+    localizacao     character varying(255),
+    estado          bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.ativo OWNER TO postgres;
+ALTER TABLE public.ativo
+    OWNER TO postgres;
 
 --
 -- TOC entry 305 (class 1259 OID 25564)
@@ -135,20 +141,22 @@ ALTER SEQUENCE public.ativo_id_seq OWNED BY public.ativo.id;
 -- Name: aula; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.aula (
-    id bigint NOT NULL,
-    disciplina bigint NOT NULL,
-    titulo character varying(255),
-    ano_lectivo integer NOT NULL,
-    classe integer NOT NULL,
-    resumo text NOT NULL,
-    data_aula timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    conteudo text NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.aula
+(
+    id          bigint                                                NOT NULL,
+    disciplina  bigint                                                NOT NULL,
+    titulo      character varying(255),
+    ano_lectivo integer                                               NOT NULL,
+    classe      integer                                               NOT NULL,
+    resumo      text                                                  NOT NULL,
+    data_aula   timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    conteudo    text                                                  NOT NULL,
+    estado      bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.aula OWNER TO postgres;
+ALTER TABLE public.aula
+    OWNER TO postgres;
 
 --
 -- TOC entry 289 (class 1259 OID 25390)
@@ -180,38 +188,42 @@ ALTER SEQUENCE public.aula_id_seq OWNED BY public.aula.id;
 -- Name: avaliacao; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.avaliacao (
-    id bigint NOT NULL,
-    aluno bigint NOT NULL,
-    tipo_avaliacao bigint NOT NULL,
-    trimestre integer NOT NULL,
-    disciplina bigint NOT NULL,
-    observacao text NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.avaliacao
+(
+    id             bigint  NOT NULL,
+    aluno          bigint  NOT NULL,
+    tipo_avaliacao bigint  NOT NULL,
+    trimestre      integer NOT NULL,
+    disciplina     bigint  NOT NULL,
+    observacao     text    NOT NULL,
+    estado         bigint  NOT NULL
 );
 
 
-ALTER TABLE public.avaliacao OWNER TO postgres;
+ALTER TABLE public.avaliacao
+    OWNER TO postgres;
 
 --
 -- TOC entry 282 (class 1259 OID 25284)
 -- Name: avaliacao_aluno; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.avaliacao_aluno (
-    id bigint NOT NULL,
-    aluno bigint NOT NULL,
-    trimestre integer NOT NULL,
-    ano_lectivo integer NOT NULL,
+CREATE TABLE public.avaliacao_aluno
+(
+    id              bigint                                                NOT NULL,
+    aluno           bigint                                                NOT NULL,
+    trimestre       integer                                               NOT NULL,
+    ano_lectivo     integer                                               NOT NULL,
     data_lancamento timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    nota double precision DEFAULT 0 NOT NULL,
-    observacao text,
-    estado bigint NOT NULL,
-    avaliacao bigint NOT NULL
+    nota            double precision            DEFAULT 0                 NOT NULL,
+    observacao      text,
+    estado          bigint                                                NOT NULL,
+    avaliacao       bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.avaliacao_aluno OWNER TO postgres;
+ALTER TABLE public.avaliacao_aluno
+    OWNER TO postgres;
 
 --
 -- TOC entry 281 (class 1259 OID 25283)
@@ -268,13 +280,15 @@ ALTER SEQUENCE public.avaliacao_id_seq OWNED BY public.avaliacao.id;
 -- Name: cargo; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.cargo (
-    id bigint NOT NULL,
+CREATE TABLE public.cargo
+(
+    id        bigint                NOT NULL,
     descricao character varying(50) NOT NULL
 );
 
 
-ALTER TABLE public.cargo OWNER TO postgres;
+ALTER TABLE public.cargo
+    OWNER TO postgres;
 
 --
 -- TOC entry 230 (class 1259 OID 24823)
@@ -306,13 +320,15 @@ ALTER SEQUENCE public.cargo_id_seq OWNED BY public.cargo.id;
 -- Name: categoria_financeira; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.categoria_financeira (
-    id bigint NOT NULL,
+CREATE TABLE public.categoria_financeira
+(
+    id        bigint                 NOT NULL,
     descricao character varying(100) NOT NULL
 );
 
 
-ALTER TABLE public.categoria_financeira OWNER TO postgres;
+ALTER TABLE public.categoria_financeira
+    OWNER TO postgres;
 
 --
 -- TOC entry 242 (class 1259 OID 24881)
@@ -344,18 +360,20 @@ ALTER SEQUENCE public.categoria_financeira_id_seq OWNED BY public.categoria_fina
 -- Name: comunicados; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.comunicados (
-    id bigint NOT NULL,
-    titulo character varying(200) NOT NULL,
-    conteudo text NOT NULL,
+CREATE TABLE public.comunicados
+(
+    id              bigint                                                NOT NULL,
+    titulo          character varying(200)                                NOT NULL,
+    conteudo        text                                                  NOT NULL,
     data_publicacao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    responsavel bigint NOT NULL,
-    destinatario bigint NOT NULL,
-    estado bigint NOT NULL
+    responsavel     bigint                                                NOT NULL,
+    destinatario    bigint                                                NOT NULL,
+    estado          bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.comunicados OWNER TO postgres;
+ALTER TABLE public.comunicados
+    OWNER TO postgres;
 
 --
 -- TOC entry 274 (class 1259 OID 25187)
@@ -387,20 +405,22 @@ ALTER SEQUENCE public.comunicados_id_seq OWNED BY public.comunicados.id;
 -- Name: contrato; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.contrato (
-    id bigint NOT NULL,
-    descricao character varying(255) NOT NULL,
-    tipo character varying(100) NOT NULL,
-    data_inicio date NOT NULL,
-    data_fim date,
-    valor_total numeric(15,2) NOT NULL,
-    fornecedor character varying(255) NOT NULL,
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.contrato
+(
+    id          bigint                 NOT NULL,
+    descricao   character varying(255) NOT NULL,
+    tipo        character varying(100) NOT NULL,
+    data_inicio date                   NOT NULL,
+    data_fim    date,
+    valor_total numeric(15, 2)         NOT NULL,
+    fornecedor  character varying(255) NOT NULL,
+    responsavel bigint                 NOT NULL,
+    estado      bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.contrato OWNER TO postgres;
+ALTER TABLE public.contrato
+    OWNER TO postgres;
 
 --
 -- TOC entry 309 (class 1259 OID 25600)
@@ -432,14 +452,16 @@ ALTER SEQUENCE public.contrato_id_seq OWNED BY public.contrato.id;
 -- Name: departamento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.departamento (
-    id bigint NOT NULL,
+CREATE TABLE public.departamento
+(
+    id        bigint                 NOT NULL,
     descricao character varying(100) NOT NULL,
-    sigla character varying(10) NOT NULL
+    sigla     character varying(10)  NOT NULL
 );
 
 
-ALTER TABLE public.departamento OWNER TO postgres;
+ALTER TABLE public.departamento
+    OWNER TO postgres;
 
 --
 -- TOC entry 240 (class 1259 OID 24870)
@@ -471,18 +493,20 @@ ALTER SEQUENCE public.departamento_id_seq OWNED BY public.departamento.id;
 -- Name: despesa; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.despesa (
-    id bigint NOT NULL,
-    descricao character varying(200) NOT NULL,
-    valor numeric(10,2) NOT NULL,
+CREATE TABLE public.despesa
+(
+    id           bigint                                                NOT NULL,
+    descricao    character varying(200)                                NOT NULL,
+    valor        numeric(10, 2)                                        NOT NULL,
     data_despesa timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    categoria bigint NOT NULL,
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+    categoria    bigint                                                NOT NULL,
+    responsavel  bigint                                                NOT NULL,
+    estado       bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.despesa OWNER TO postgres;
+ALTER TABLE public.despesa
+    OWNER TO postgres;
 
 --
 -- TOC entry 297 (class 1259 OID 25475)
@@ -514,15 +538,17 @@ ALTER SEQUENCE public.despesa_id_seq OWNED BY public.despesa.id;
 -- Name: detalhe_relatorio_financeiro; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.detalhe_relatorio_financeiro (
-    id bigint NOT NULL,
-    relatorio bigint NOT NULL,
-    descricao text NOT NULL,
-    valor numeric(15,2) NOT NULL
+CREATE TABLE public.detalhe_relatorio_financeiro
+(
+    id        bigint         NOT NULL,
+    relatorio bigint         NOT NULL,
+    descricao text           NOT NULL,
+    valor     numeric(15, 2) NOT NULL
 );
 
 
-ALTER TABLE public.detalhe_relatorio_financeiro OWNER TO postgres;
+ALTER TABLE public.detalhe_relatorio_financeiro
+    OWNER TO postgres;
 
 --
 -- TOC entry 317 (class 1259 OID 25678)
@@ -554,29 +580,33 @@ ALTER SEQUENCE public.detalhe_relatorio_financeiro_id_seq OWNED BY public.detalh
 -- Name: disciplina; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.disciplina (
-    id bigint NOT NULL,
+CREATE TABLE public.disciplina
+(
+    id              bigint                 NOT NULL,
     nome_disciplina character varying(100) NOT NULL
 );
 
 
-ALTER TABLE public.disciplina OWNER TO postgres;
+ALTER TABLE public.disciplina
+    OWNER TO postgres;
 
 --
 -- TOC entry 267 (class 1259 OID 25106)
 -- Name: disciplina_aluno; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.disciplina_aluno (
-    disciplina integer NOT NULL,
+CREATE TABLE public.disciplina_aluno
+(
+    disciplina  integer                   NOT NULL,
     ano_lectivo integer,
-    aluno integer NOT NULL,
-    data_aula date NOT NULL,
-    hora_aula time(6) without time zone NOT NULL
+    aluno       integer                   NOT NULL,
+    data_aula   date                      NOT NULL,
+    hora_aula   time(6) without time zone NOT NULL
 );
 
 
-ALTER TABLE public.disciplina_aluno OWNER TO postgres;
+ALTER TABLE public.disciplina_aluno
+    OWNER TO postgres;
 
 --
 -- TOC entry 264 (class 1259 OID 25082)
@@ -608,14 +638,16 @@ ALTER SEQUENCE public.disciplina_id_seq OWNED BY public.disciplina.id;
 -- Name: distrito; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.distrito (
-    id bigint NOT NULL,
+CREATE TABLE public.distrito
+(
+    id            bigint                NOT NULL,
     nome_distrito character varying(50) NOT NULL,
-    provincia bigint NOT NULL
+    provincia     bigint                NOT NULL
 );
 
 
-ALTER TABLE public.distrito OWNER TO postgres;
+ALTER TABLE public.distrito
+    OWNER TO postgres;
 
 --
 -- TOC entry 252 (class 1259 OID 24926)
@@ -647,18 +679,20 @@ ALTER SEQUENCE public.distrito_id_seq OWNED BY public.distrito.id;
 -- Name: documento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.documento (
-    id bigint NOT NULL,
-    titulo character varying(200) NOT NULL,
-    tipo_documento bigint NOT NULL,
-    conteudo text NOT NULL,
-    data_criacao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    autor bigint NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.documento
+(
+    id             bigint                                                NOT NULL,
+    titulo         character varying(200)                                NOT NULL,
+    tipo_documento bigint                                                NOT NULL,
+    conteudo       text                                                  NOT NULL,
+    data_criacao   timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    autor          bigint                                                NOT NULL,
+    estado         bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.documento OWNER TO postgres;
+ALTER TABLE public.documento
+    OWNER TO postgres;
 
 --
 -- TOC entry 293 (class 1259 OID 25427)
@@ -690,39 +724,43 @@ ALTER SEQUENCE public.documento_id_seq OWNED BY public.documento.id;
 -- Name: encarregado_aluno; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.encarregado_aluno (
-    encarregado integer NOT NULL,
-    aluno integer NOT NULL,
+CREATE TABLE public.encarregado_aluno
+(
+    encarregado     integer                NOT NULL,
+    aluno           integer                NOT NULL,
     grau_parentesco character varying(100) NOT NULL
 );
 
 
-ALTER TABLE public.encarregado_aluno OWNER TO postgres;
+ALTER TABLE public.encarregado_aluno
+    OWNER TO postgres;
 
 --
 -- TOC entry 256 (class 1259 OID 24962)
 -- Name: encarregado_educacao; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.encarregado_educacao (
-    id bigint NOT NULL,
-    nome_completo character varying(150) NOT NULL,
-    data_nascimento date NOT NULL,
-    distrito_nascimento bigint,
-    sexo character varying(10) NOT NULL,
-    local_trabalho character varying(255),
-    sector_trabalho bigint,
-    endereco character varying(255),
-    email character varying(75),
-    grupo_sanguineo character varying(3),
-    numero_telefone_principal bigint NOT NULL,
+CREATE TABLE public.encarregado_educacao
+(
+    id                          bigint                 NOT NULL,
+    nome_completo               character varying(150) NOT NULL,
+    data_nascimento             date                   NOT NULL,
+    distrito_nascimento         bigint,
+    sexo                        character varying(10)  NOT NULL,
+    local_trabalho              character varying(255),
+    sector_trabalho             bigint,
+    endereco                    character varying(255),
+    email                       character varying(75),
+    grupo_sanguineo             character varying(3),
+    numero_telefone_principal   bigint                 NOT NULL,
     numero_telefone_alternativo bigint,
-    religiao character varying(78),
-    estado bigint NOT NULL
+    religiao                    character varying(78),
+    estado                      bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.encarregado_educacao OWNER TO postgres;
+ALTER TABLE public.encarregado_educacao
+    OWNER TO postgres;
 
 --
 -- TOC entry 255 (class 1259 OID 24961)
@@ -754,14 +792,16 @@ ALTER SEQUENCE public.encarregado_educacao_id_seq OWNED BY public.encarregado_ed
 -- Name: estado; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.estado (
-    id bigint NOT NULL,
-    descricao character varying NOT NULL,
-    tipo_estado bigint NOT NULL
+CREATE TABLE public.estado
+(
+    id          bigint            NOT NULL,
+    descricao   character varying NOT NULL,
+    tipo_estado bigint            NOT NULL
 );
 
 
-ALTER TABLE public.estado OWNER TO postgres;
+ALTER TABLE public.estado
+    OWNER TO postgres;
 
 --
 -- TOC entry 228 (class 1259 OID 24809)
@@ -793,19 +833,21 @@ ALTER SEQUENCE public.estado_id_seq OWNED BY public.estado.id;
 -- Name: evento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.evento (
-    id bigint NOT NULL,
-    nome character varying(200) NOT NULL,
-    descricao text,
+CREATE TABLE public.evento
+(
+    id          bigint                      NOT NULL,
+    nome        character varying(200)      NOT NULL,
+    descricao   text,
     data_inicio timestamp(6) with time zone NOT NULL,
-    data_fim timestamp(6) with time zone,
+    data_fim    timestamp(6) with time zone,
     localizacao character varying(255),
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+    responsavel bigint                      NOT NULL,
+    estado      bigint                      NOT NULL
 );
 
 
-ALTER TABLE public.evento OWNER TO postgres;
+ALTER TABLE public.evento
+    OWNER TO postgres;
 
 --
 -- TOC entry 311 (class 1259 OID 25619)
@@ -837,19 +879,21 @@ ALTER SEQUENCE public.evento_id_seq OWNED BY public.evento.id;
 -- Name: folha_pagamento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.folha_pagamento (
-    id bigint NOT NULL,
-    funcionario bigint NOT NULL,
-    salario_bruto numeric(10,2) NOT NULL,
-    descontos numeric(10,2),
-    salario_liquido numeric(10,2) NOT NULL,
-    mes_referencia date NOT NULL,
-    data_pagamento timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.folha_pagamento
+(
+    id              bigint                                                NOT NULL,
+    funcionario     bigint                                                NOT NULL,
+    salario_bruto   numeric(10, 2)                                        NOT NULL,
+    descontos       numeric(10, 2),
+    salario_liquido numeric(10, 2)                                        NOT NULL,
+    mes_referencia  date                                                  NOT NULL,
+    data_pagamento  timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    estado          bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.folha_pagamento OWNER TO postgres;
+ALTER TABLE public.folha_pagamento
+    OWNER TO postgres;
 
 --
 -- TOC entry 303 (class 1259 OID 25546)
@@ -881,18 +925,20 @@ ALTER SEQUENCE public.folha_pagamento_id_seq OWNED BY public.folha_pagamento.id;
 -- Name: fornecedor; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.fornecedor (
-    id bigint NOT NULL,
-    nome character varying(200) NOT NULL,
-    endereco character varying(255),
-    telefone character varying(15),
-    email character varying(100),
+CREATE TABLE public.fornecedor
+(
+    id        bigint                 NOT NULL,
+    nome      character varying(200) NOT NULL,
+    endereco  character varying(255),
+    telefone  character varying(15),
+    email     character varying(100),
     descricao text,
-    estado bigint NOT NULL
+    estado    bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.fornecedor OWNER TO postgres;
+ALTER TABLE public.fornecedor
+    OWNER TO postgres;
 
 --
 -- TOC entry 319 (class 1259 OID 25692)
@@ -924,30 +970,32 @@ ALTER SEQUENCE public.fornecedor_id_seq OWNED BY public.fornecedor.id;
 -- Name: funcionario; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.funcionario (
-    id bigint NOT NULL,
-    nome_completo character varying(100) NOT NULL,
-    data_nascimento date NOT NULL,
-    distrito_nascimento bigint,
-    sexo character varying(1) NOT NULL,
-    endereco character varying(255) NOT NULL,
-    email character varying(75) NOT NULL,
-    numero_telefone_principal bigint NOT NULL,
+CREATE TABLE public.funcionario
+(
+    id                          bigint                                                NOT NULL,
+    nome_completo               character varying(100)                                NOT NULL,
+    data_nascimento             date                                                  NOT NULL,
+    distrito_nascimento         bigint,
+    sexo                        character varying(1)                                  NOT NULL,
+    endereco                    character varying(255)                                NOT NULL,
+    email                       character varying(75)                                 NOT NULL,
+    numero_telefone_principal   bigint                                                NOT NULL,
     numero_telefone_alternativo bigint,
-    data_contracto timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    cargo bigint NOT NULL,
-    departamento bigint NOT NULL,
-    estado bigint NOT NULL,
-    estado_civil character varying(10),
-    bilhete_identificacao character varying(13),
-    religiao character varying(78),
-    grupo_sanguineo character varying(3),
-    area_formacao bigint NOT NULL,
-    tipo_funcionario bigint NOT NULL
+    data_contracto              timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    cargo                       bigint                                                NOT NULL,
+    departamento                bigint                                                NOT NULL,
+    estado                      bigint                                                NOT NULL,
+    estado_civil                character varying(10),
+    bilhete_identificacao       character varying(13),
+    religiao                    character varying(78),
+    grupo_sanguineo             character varying(3),
+    area_formacao               bigint                                                NOT NULL,
+    tipo_funcionario            bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.funcionario OWNER TO postgres;
+ALTER TABLE public.funcionario
+    OWNER TO postgres;
 
 --
 -- TOC entry 260 (class 1259 OID 25025)
@@ -979,20 +1027,22 @@ ALTER SEQUENCE public.funcionario_id_seq OWNED BY public.funcionario.id;
 -- Name: horario; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.horario (
-    id bigint NOT NULL,
-    sala bigint NOT NULL,
-    turma bigint NOT NULL,
-    disciplina bigint NOT NULL,
-    professor bigint NOT NULL,
-    dia_semana character varying(10) NOT NULL,
-    hora_inicio time(6) without time zone NOT NULL,
+CREATE TABLE public.horario
+(
+    id           bigint                    NOT NULL,
+    sala         bigint                    NOT NULL,
+    turma        bigint                    NOT NULL,
+    disciplina   bigint                    NOT NULL,
+    professor    bigint                    NOT NULL,
+    dia_semana   character varying(10)     NOT NULL,
+    hora_inicio  time(6) without time zone NOT NULL,
     hora_termino time(6) without time zone NOT NULL,
-    estado bigint NOT NULL
+    estado       bigint                    NOT NULL
 );
 
 
-ALTER TABLE public.horario OWNER TO postgres;
+ALTER TABLE public.horario
+    OWNER TO postgres;
 
 --
 -- TOC entry 277 (class 1259 OID 25227)
@@ -1024,18 +1074,20 @@ ALTER SEQUENCE public.horario_id_seq OWNED BY public.horario.id;
 -- Name: item_ordem_compra; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.item_ordem_compra (
-    id bigint NOT NULL,
-    ordem_compra bigint NOT NULL,
-    material bigint NOT NULL,
-    descricao character varying(200) NOT NULL,
-    quantidade integer NOT NULL,
-    valor_unitario numeric(10,2) NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.item_ordem_compra
+(
+    id             bigint                 NOT NULL,
+    ordem_compra   bigint                 NOT NULL,
+    material       bigint                 NOT NULL,
+    descricao      character varying(200) NOT NULL,
+    quantidade     integer                NOT NULL,
+    valor_unitario numeric(10, 2)         NOT NULL,
+    estado         bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.item_ordem_compra OWNER TO postgres;
+ALTER TABLE public.item_ordem_compra
+    OWNER TO postgres;
 
 --
 -- TOC entry 323 (class 1259 OID 25728)
@@ -1067,18 +1119,20 @@ ALTER SEQUENCE public.item_ordem_compra_id_seq OWNED BY public.item_ordem_compra
 -- Name: manutencao_ativo; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.manutencao_ativo (
-    id bigint NOT NULL,
-    ativo bigint NOT NULL,
-    descricao character varying(255) NOT NULL,
-    data_manutencao date NOT NULL,
-    custo numeric(10,2),
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.manutencao_ativo
+(
+    id              bigint                 NOT NULL,
+    ativo           bigint                 NOT NULL,
+    descricao       character varying(255) NOT NULL,
+    data_manutencao date                   NOT NULL,
+    custo           numeric(10, 2),
+    responsavel     bigint                 NOT NULL,
+    estado          bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.manutencao_ativo OWNER TO postgres;
+ALTER TABLE public.manutencao_ativo
+    OWNER TO postgres;
 
 --
 -- TOC entry 307 (class 1259 OID 25578)
@@ -1110,16 +1164,18 @@ ALTER SEQUENCE public.manutencao_ativo_id_seq OWNED BY public.manutencao_ativo.i
 -- Name: material; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.material (
-    id bigint NOT NULL,
-    tipo_material bigint NOT NULL,
+CREATE TABLE public.material
+(
+    id            bigint                 NOT NULL,
+    tipo_material bigint                 NOT NULL,
     nome_material character varying(100) NOT NULL,
-    quantidade integer,
-    estado bigint NOT NULL
+    quantidade    integer,
+    estado        bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.material OWNER TO postgres;
+ALTER TABLE public.material
+    OWNER TO postgres;
 
 --
 -- TOC entry 268 (class 1259 OID 25121)
@@ -1151,15 +1207,17 @@ ALTER SEQUENCE public.material_id_seq OWNED BY public.material.id;
 -- Name: matricula; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.matricula (
-    id bigint NOT NULL,
+CREATE TABLE public.matricula
+(
+    id          bigint  NOT NULL,
     ano_lectivo integer NOT NULL,
-    aluno bigint NOT NULL,
-    estado bigint NOT NULL
+    aluno       bigint  NOT NULL,
+    estado      bigint  NOT NULL
 );
 
 
-ALTER TABLE public.matricula OWNER TO postgres;
+ALTER TABLE public.matricula
+    OWNER TO postgres;
 
 --
 -- TOC entry 272 (class 1259 OID 25170)
@@ -1191,17 +1249,19 @@ ALTER SEQUENCE public.matricula_id_seq OWNED BY public.matricula.id;
 -- Name: orcamento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.orcamento (
-    id bigint NOT NULL,
-    ano integer NOT NULL,
-    valor_total numeric(15,2) NOT NULL,
+CREATE TABLE public.orcamento
+(
+    id           bigint                                                NOT NULL,
+    ano          integer                                               NOT NULL,
+    valor_total  numeric(15, 2)                                        NOT NULL,
     data_criacao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+    responsavel  bigint                                                NOT NULL,
+    estado       bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.orcamento OWNER TO postgres;
+ALTER TABLE public.orcamento
+    OWNER TO postgres;
 
 --
 -- TOC entry 299 (class 1259 OID 25498)
@@ -1233,18 +1293,20 @@ ALTER SEQUENCE public.orcamento_id_seq OWNED BY public.orcamento.id;
 -- Name: ordem_compra; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.ordem_compra (
-    id bigint NOT NULL,
-    fornecedor bigint NOT NULL,
-    data_ordem date NOT NULL,
+CREATE TABLE public.ordem_compra
+(
+    id           bigint         NOT NULL,
+    fornecedor   bigint         NOT NULL,
+    data_ordem   date           NOT NULL,
     data_entrega date,
-    valor_total numeric(15,2) NOT NULL,
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+    valor_total  numeric(15, 2) NOT NULL,
+    responsavel  bigint         NOT NULL,
+    estado       bigint         NOT NULL
 );
 
 
-ALTER TABLE public.ordem_compra OWNER TO postgres;
+ALTER TABLE public.ordem_compra
+    OWNER TO postgres;
 
 --
 -- TOC entry 321 (class 1259 OID 25706)
@@ -1276,20 +1338,22 @@ ALTER SEQUENCE public.ordem_compra_id_seq OWNED BY public.ordem_compra.id;
 -- Name: pagamento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.pagamento (
-    id bigint NOT NULL,
-    referencia character varying(100) NOT NULL,
-    aluno bigint NOT NULL,
-    valor numeric(10,2) NOT NULL,
-    tipo_pagamento bigint NOT NULL,
+CREATE TABLE public.pagamento
+(
+    id             bigint                                                NOT NULL,
+    referencia     character varying(100)                                NOT NULL,
+    aluno          bigint                                                NOT NULL,
+    valor          numeric(10, 2)                                        NOT NULL,
+    tipo_pagamento bigint                                                NOT NULL,
     data_pagamento timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    responsavel bigint NOT NULL,
-    observacao text,
-    estado bigint NOT NULL
+    responsavel    bigint                                                NOT NULL,
+    observacao     text,
+    estado         bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.pagamento OWNER TO postgres;
+ALTER TABLE public.pagamento
+    OWNER TO postgres;
 
 --
 -- TOC entry 270 (class 1259 OID 25140)
@@ -1321,15 +1385,17 @@ ALTER SEQUENCE public.pagamento_id_seq OWNED BY public.pagamento.id;
 -- Name: participante_evento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.participante_evento (
-    id bigint NOT NULL,
-    evento bigint NOT NULL,
+CREATE TABLE public.participante_evento
+(
+    id                bigint                 NOT NULL,
+    evento            bigint                 NOT NULL,
     nome_participante character varying(150) NOT NULL,
-    tipo_participante bigint NOT NULL
+    tipo_participante bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.participante_evento OWNER TO postgres;
+ALTER TABLE public.participante_evento
+    OWNER TO postgres;
 
 --
 -- TOC entry 313 (class 1259 OID 25638)
@@ -1361,20 +1427,22 @@ ALTER SEQUENCE public.participante_evento_id_seq OWNED BY public.participante_ev
 -- Name: pauta_final; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.pauta_final (
-    id bigint NOT NULL,
-    disciplina bigint NOT NULL,
-    aluno bigint NOT NULL,
-    ano_lectivo integer,
-    nota_final integer NOT NULL,
-    professor bigint NOT NULL,
+CREATE TABLE public.pauta_final
+(
+    id              bigint                NOT NULL,
+    disciplina      bigint                NOT NULL,
+    aluno           bigint                NOT NULL,
+    ano_lectivo     integer,
+    nota_final      integer               NOT NULL,
+    professor       bigint                NOT NULL,
     data_publicacao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP,
-    resultado character varying(30) NOT NULL,
-    estado_pauta bigint NOT NULL
+    resultado       character varying(30) NOT NULL,
+    estado_pauta    bigint                NOT NULL
 );
 
 
-ALTER TABLE public.pauta_final OWNER TO postgres;
+ALTER TABLE public.pauta_final
+    OWNER TO postgres;
 
 --
 -- TOC entry 287 (class 1259 OID 25362)
@@ -1406,21 +1474,23 @@ ALTER SEQUENCE public.pauta_final_id_seq OWNED BY public.pauta_final.id;
 -- Name: pauta_trimestral; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.pauta_trimestral (
-    id bigint NOT NULL,
-    disciplina bigint NOT NULL,
-    aluno bigint NOT NULL,
-    trimestre integer NOT NULL,
-    ano_lectivo integer,
-    nota_final integer NOT NULL,
-    professor bigint NOT NULL,
+CREATE TABLE public.pauta_trimestral
+(
+    id              bigint  NOT NULL,
+    disciplina      bigint  NOT NULL,
+    aluno           bigint  NOT NULL,
+    trimestre       integer NOT NULL,
+    ano_lectivo     integer,
+    nota_final      integer NOT NULL,
+    professor       bigint  NOT NULL,
     data_publicacao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP,
-    observacao text,
-    estado bigint NOT NULL
+    observacao      text,
+    estado          bigint  NOT NULL
 );
 
 
-ALTER TABLE public.pauta_trimestral OWNER TO postgres;
+ALTER TABLE public.pauta_trimestral
+    OWNER TO postgres;
 
 --
 -- TOC entry 285 (class 1259 OID 25332)
@@ -1452,17 +1522,19 @@ ALTER SEQUENCE public.pauta_trimestral_id_seq OWNED BY public.pauta_trimestral.i
 -- Name: presencas_aluno; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.presencas_aluno (
-    id bigint NOT NULL,
-    aluno bigint NOT NULL,
-    turma bigint NOT NULL,
-    disciplina bigint NOT NULL,
-    data timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.presencas_aluno
+(
+    id         bigint                                                NOT NULL,
+    aluno      bigint                                                NOT NULL,
+    turma      bigint                                                NOT NULL,
+    disciplina bigint                                                NOT NULL,
+    data       timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    estado     bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.presencas_aluno OWNER TO postgres;
+ALTER TABLE public.presencas_aluno
+    OWNER TO postgres;
 
 --
 -- TOC entry 283 (class 1259 OID 25304)
@@ -1494,42 +1566,46 @@ ALTER SEQUENCE public.presencas_aluno_id_seq OWNED BY public.presencas_aluno.id;
 -- Name: professor; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.professor (
-    id bigint NOT NULL,
-    nome_completo character varying(100) NOT NULL,
-    data_nascimento date NOT NULL,
-    distrito_nascimento bigint,
-    sexo character varying(1) NOT NULL,
-    endereco character varying(255) NOT NULL,
-    email character varying(75) NOT NULL,
-    numero_telefone_principal bigint NOT NULL,
+CREATE TABLE public.professor
+(
+    id                          bigint                                                NOT NULL,
+    nome_completo               character varying(100)                                NOT NULL,
+    data_nascimento             date                                                  NOT NULL,
+    distrito_nascimento         bigint,
+    sexo                        character varying(1)                                  NOT NULL,
+    endereco                    character varying(255)                                NOT NULL,
+    email                       character varying(75)                                 NOT NULL,
+    numero_telefone_principal   bigint                                                NOT NULL,
     numero_telefone_alternativo bigint,
-    data_contracto timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    estado bigint NOT NULL,
-    estado_civil character varying(10),
-    bilhete_identificacao character varying(13),
-    religiao character varying(78),
-    grupo_sanguineo character varying(3),
-    area_formacao bigint NOT NULL
+    data_contracto              timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    estado                      bigint                                                NOT NULL,
+    estado_civil                character varying(10),
+    bilhete_identificacao       character varying(13),
+    religiao                    character varying(78),
+    grupo_sanguineo             character varying(3),
+    area_formacao               bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.professor OWNER TO postgres;
+ALTER TABLE public.professor
+    OWNER TO postgres;
 
 --
 -- TOC entry 266 (class 1259 OID 25091)
 -- Name: professor_disciplina; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.professor_disciplina (
-    professor integer NOT NULL,
+CREATE TABLE public.professor_disciplina
+(
+    professor   integer NOT NULL,
     ano_lectivo integer,
-    disciplina integer NOT NULL,
-    classe integer NOT NULL
+    disciplina  integer NOT NULL,
+    classe      integer NOT NULL
 );
 
 
-ALTER TABLE public.professor_disciplina OWNER TO postgres;
+ALTER TABLE public.professor_disciplina
+    OWNER TO postgres;
 
 --
 -- TOC entry 258 (class 1259 OID 24995)
@@ -1561,13 +1637,15 @@ ALTER SEQUENCE public.professor_id_seq OWNED BY public.professor.id;
 -- Name: provincia; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.provincia (
-    id bigint NOT NULL,
+CREATE TABLE public.provincia
+(
+    id             bigint NOT NULL,
     nome_provincia character varying(30)
 );
 
 
-ALTER TABLE public.provincia OWNER TO postgres;
+ALTER TABLE public.provincia
+    OWNER TO postgres;
 
 --
 -- TOC entry 250 (class 1259 OID 24917)
@@ -1599,18 +1677,20 @@ ALTER SEQUENCE public.provincia_id_seq OWNED BY public.provincia.id;
 -- Name: receita; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.receita (
-    id bigint NOT NULL,
-    descricao character varying(200) NOT NULL,
-    valor numeric(10,2) NOT NULL,
+CREATE TABLE public.receita
+(
+    id           bigint                                                NOT NULL,
+    descricao    character varying(200)                                NOT NULL,
+    valor        numeric(10, 2)                                        NOT NULL,
     data_receita timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    categoria bigint NOT NULL,
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+    categoria    bigint                                                NOT NULL,
+    responsavel  bigint                                                NOT NULL,
+    estado       bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.receita OWNER TO postgres;
+ALTER TABLE public.receita
+    OWNER TO postgres;
 
 --
 -- TOC entry 295 (class 1259 OID 25452)
@@ -1642,18 +1722,20 @@ ALTER SEQUENCE public.receita_id_seq OWNED BY public.receita.id;
 -- Name: relatorio_financeiro; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.relatorio_financeiro (
-    id bigint NOT NULL,
-    tipo_relatorio bigint NOT NULL,
-    ano integer NOT NULL,
-    mes integer,
-    data_criacao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.relatorio_financeiro
+(
+    id             bigint                                                NOT NULL,
+    tipo_relatorio bigint                                                NOT NULL,
+    ano            integer                                               NOT NULL,
+    mes            integer,
+    data_criacao   timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    responsavel    bigint                                                NOT NULL,
+    estado         bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.relatorio_financeiro OWNER TO postgres;
+ALTER TABLE public.relatorio_financeiro
+    OWNER TO postgres;
 
 --
 -- TOC entry 315 (class 1259 OID 25655)
@@ -1685,18 +1767,20 @@ ALTER SEQUENCE public.relatorio_financeiro_id_seq OWNED BY public.relatorio_fina
 -- Name: requisicao_material; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.requisicao_material (
-    id bigint NOT NULL,
+CREATE TABLE public.requisicao_material
+(
+    id              bigint                                                NOT NULL,
     data_requisicao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    material bigint NOT NULL,
-    quantidade integer NOT NULL,
-    requisitor bigint NOT NULL,
-    observacao text,
-    estado bigint NOT NULL
+    material        bigint                                                NOT NULL,
+    quantidade      integer                                               NOT NULL,
+    requisitor      bigint                                                NOT NULL,
+    observacao      text,
+    estado          bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.requisicao_material OWNER TO postgres;
+ALTER TABLE public.requisicao_material
+    OWNER TO postgres;
 
 --
 -- TOC entry 325 (class 1259 OID 25745)
@@ -1728,14 +1812,17 @@ ALTER SEQUENCE public.requisicao_material_id_seq OWNED BY public.requisicao_mate
 -- Name: role; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.role (
-    id bigint NOT NULL,
+CREATE TABLE public.role
+(
+    id   bigint NOT NULL,
     name character varying(40),
-    CONSTRAINT role_name_check CHECK (((name)::text = ANY (ARRAY[('ROLE_USER'::character varying)::text, ('ROLE_MODERATOR'::character varying)::text, ('ROLE_ESTUDANTE'::character varying)::text, ('ROLE_PROFESSOR'::character varying)::text, ('ROLE_DIRECTOR'::character varying)::text, ('ROLE_PEDAGOGICO'::character varying)::text, ('ROLE_FINANCEIRO'::character varying)::text, ('ROLE_BIBLIOTECARIO'::character varying)::text, ('ROLE_AQUISICOES'::character varying)::text])))
+    CONSTRAINT role_name_check CHECK (((name)::text = ANY
+                                       (ARRAY [('ROLE_USER'::character varying)::text, ('ROLE_MODERATOR'::character varying)::text, ('ROLE_ESTUDANTE'::character varying)::text, ('ROLE_PROFESSOR'::character varying)::text, ('ROLE_DIRECTOR'::character varying)::text, ('ROLE_PEDAGOGICO'::character varying)::text, ('ROLE_FINANCEIRO'::character varying)::text, ('ROLE_BIBLIOTECARIO'::character varying)::text, ('ROLE_AQUISICOES'::character varying)::text])))
 );
 
 
-ALTER TABLE public.role OWNER TO postgres;
+ALTER TABLE public.role
+    OWNER TO postgres;
 
 --
 -- TOC entry 215 (class 1259 OID 24739)
@@ -1767,14 +1854,16 @@ ALTER SEQUENCE public.role_id_seq OWNED BY public.role.id;
 -- Name: sala; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.sala (
-    id bigint NOT NULL,
-    nome_sala character varying(100) NOT NULL,
-    capacidade integer NOT NULL
+CREATE TABLE public.sala
+(
+    id         bigint                 NOT NULL,
+    nome_sala  character varying(100) NOT NULL,
+    capacidade integer                NOT NULL
 );
 
 
-ALTER TABLE public.sala OWNER TO postgres;
+ALTER TABLE public.sala
+    OWNER TO postgres;
 
 --
 -- TOC entry 232 (class 1259 OID 24832)
@@ -1806,13 +1895,15 @@ ALTER SEQUENCE public.sala_id_seq OWNED BY public.sala.id;
 -- Name: sector_trabalho; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.sector_trabalho (
-    id bigint NOT NULL,
+CREATE TABLE public.sector_trabalho
+(
+    id        bigint                 NOT NULL,
     descricao character varying(150) NOT NULL
 );
 
 
-ALTER TABLE public.sector_trabalho OWNER TO postgres;
+ALTER TABLE public.sector_trabalho
+    OWNER TO postgres;
 
 --
 -- TOC entry 244 (class 1259 OID 24890)
@@ -1844,13 +1935,15 @@ ALTER SEQUENCE public.sector_trabalho_id_seq OWNED BY public.sector_trabalho.id;
 -- Name: tipo_avaliacao; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_avaliacao (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_avaliacao
+(
+    id        bigint            NOT NULL,
     descricao character varying NOT NULL
 );
 
 
-ALTER TABLE public.tipo_avaliacao OWNER TO postgres;
+ALTER TABLE public.tipo_avaliacao
+    OWNER TO postgres;
 
 --
 -- TOC entry 236 (class 1259 OID 24850)
@@ -1882,13 +1975,15 @@ ALTER SEQUENCE public.tipo_avaliacao_id_seq OWNED BY public.tipo_avaliacao.id;
 -- Name: tipo_documento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_documento (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_documento
+(
+    id        bigint                NOT NULL,
     descricao character varying(70) NOT NULL
 );
 
 
-ALTER TABLE public.tipo_documento OWNER TO postgres;
+ALTER TABLE public.tipo_documento
+    OWNER TO postgres;
 
 --
 -- TOC entry 234 (class 1259 OID 24841)
@@ -1920,13 +2015,15 @@ ALTER SEQUENCE public.tipo_documento_id_seq OWNED BY public.tipo_documento.id;
 -- Name: tipo_estado; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_estado (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_estado
+(
+    id        bigint            NOT NULL,
     descricao character varying NOT NULL
 );
 
 
-ALTER TABLE public.tipo_estado OWNER TO postgres;
+ALTER TABLE public.tipo_estado
+    OWNER TO postgres;
 
 --
 -- TOC entry 226 (class 1259 OID 24800)
@@ -1958,13 +2055,15 @@ ALTER SEQUENCE public.tipo_estado_id_seq OWNED BY public.tipo_estado.id;
 -- Name: tipo_funcionario; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_funcionario (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_funcionario
+(
+    id        bigint                NOT NULL,
     descricao character varying(70) NOT NULL
 );
 
 
-ALTER TABLE public.tipo_funcionario OWNER TO postgres;
+ALTER TABLE public.tipo_funcionario
+    OWNER TO postgres;
 
 --
 -- TOC entry 327 (class 1259 OID 34660)
@@ -1995,13 +2094,15 @@ ALTER SEQUENCE public.tipo_funcionario_id_seq OWNED BY public.tipo_funcionario.i
 -- Name: tipo_material; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_material (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_material
+(
+    id        bigint                 NOT NULL,
     descricao character varying(100) NOT NULL
 );
 
 
-ALTER TABLE public.tipo_material OWNER TO postgres;
+ALTER TABLE public.tipo_material
+    OWNER TO postgres;
 
 --
 -- TOC entry 246 (class 1259 OID 24899)
@@ -2033,13 +2134,15 @@ ALTER SEQUENCE public.tipo_material_id_seq OWNED BY public.tipo_material.id;
 -- Name: tipo_pagamento; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_pagamento (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_pagamento
+(
+    id        bigint NOT NULL,
     descricao character varying(80)
 );
 
 
-ALTER TABLE public.tipo_pagamento OWNER TO postgres;
+ALTER TABLE public.tipo_pagamento
+    OWNER TO postgres;
 
 --
 -- TOC entry 248 (class 1259 OID 24908)
@@ -2071,13 +2174,15 @@ ALTER SEQUENCE public.tipo_pagamento_id_seq OWNED BY public.tipo_pagamento.id;
 -- Name: tipo_pessoa; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_pessoa (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_pessoa
+(
+    id        bigint                NOT NULL,
     descricao character varying(70) NOT NULL
 );
 
 
-ALTER TABLE public.tipo_pessoa OWNER TO postgres;
+ALTER TABLE public.tipo_pessoa
+    OWNER TO postgres;
 
 --
 -- TOC entry 224 (class 1259 OID 24791)
@@ -2109,13 +2214,15 @@ ALTER SEQUENCE public.tipo_pessoa_id_seq OWNED BY public.tipo_pessoa.id;
 -- Name: tipo_relatorio; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_relatorio (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_relatorio
+(
+    id        bigint                 NOT NULL,
     descricao character varying(100) NOT NULL
 );
 
 
-ALTER TABLE public.tipo_relatorio OWNER TO postgres;
+ALTER TABLE public.tipo_relatorio
+    OWNER TO postgres;
 
 --
 -- TOC entry 220 (class 1259 OID 24773)
@@ -2147,13 +2254,15 @@ ALTER SEQUENCE public.tipo_relatorio_id_seq OWNED BY public.tipo_relatorio.id;
 -- Name: tipo_transacao; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipo_transacao (
-    id bigint NOT NULL,
+CREATE TABLE public.tipo_transacao
+(
+    id        bigint                 NOT NULL,
     descricao character varying(100) NOT NULL
 );
 
 
-ALTER TABLE public.tipo_transacao OWNER TO postgres;
+ALTER TABLE public.tipo_transacao
+    OWNER TO postgres;
 
 --
 -- TOC entry 238 (class 1259 OID 24861)
@@ -2185,19 +2294,21 @@ ALTER SEQUENCE public.tipo_transacao_id_seq OWNED BY public.tipo_transacao.id;
 -- Name: transacao; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.transacao (
-    id bigint NOT NULL,
-    tipo_transacao bigint NOT NULL,
-    valor numeric(10,2) NOT NULL,
+CREATE TABLE public.transacao
+(
+    id             bigint                                                NOT NULL,
+    tipo_transacao bigint                                                NOT NULL,
+    valor          numeric(10, 2)                                        NOT NULL,
     data_transacao timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    categoria bigint NOT NULL,
-    responsavel bigint NOT NULL,
-    descricao text NOT NULL,
-    estado bigint NOT NULL
+    categoria      bigint                                                NOT NULL,
+    responsavel    bigint                                                NOT NULL,
+    descricao      text                                                  NOT NULL,
+    estado         bigint                                                NOT NULL
 );
 
 
-ALTER TABLE public.transacao OWNER TO postgres;
+ALTER TABLE public.transacao
+    OWNER TO postgres;
 
 --
 -- TOC entry 301 (class 1259 OID 25516)
@@ -2229,30 +2340,34 @@ ALTER SEQUENCE public.transacao_id_seq OWNED BY public.transacao.id;
 -- Name: turma; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.turma (
-    id bigint NOT NULL,
-    nome_turma character varying(100) NOT NULL,
-    ano_lectivo integer NOT NULL,
-    professor_responsavel bigint NOT NULL,
-    estado bigint NOT NULL
+CREATE TABLE public.turma
+(
+    id                    bigint                 NOT NULL,
+    nome_turma            character varying(100) NOT NULL,
+    ano_lectivo           integer                NOT NULL,
+    professor_responsavel bigint                 NOT NULL,
+    estado                bigint                 NOT NULL
 );
 
 
-ALTER TABLE public.turma OWNER TO postgres;
+ALTER TABLE public.turma
+    OWNER TO postgres;
 
 --
 -- TOC entry 276 (class 1259 OID 25212)
 -- Name: turma_aluno; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.turma_aluno (
-    aluno integer NOT NULL,
+CREATE TABLE public.turma_aluno
+(
+    aluno       integer NOT NULL,
     ano_lectivo integer NOT NULL,
-    turma integer NOT NULL
+    turma       integer NOT NULL
 );
 
 
-ALTER TABLE public.turma_aluno OWNER TO postgres;
+ALTER TABLE public.turma_aluno
+    OWNER TO postgres;
 
 --
 -- TOC entry 262 (class 1259 OID 25065)
@@ -2284,16 +2399,18 @@ ALTER SEQUENCE public.turma_id_seq OWNED BY public.turma.id;
 -- Name: utilizador; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.utilizador (
-    id bigint NOT NULL,
-    email character varying(50),
+CREATE TABLE public.utilizador
+(
+    id       bigint                 NOT NULL,
+    email    character varying(50),
     password character varying(120),
     username character varying(20),
-    nome character varying(150) NOT NULL
+    nome     character varying(150) NOT NULL
 );
 
 
-ALTER TABLE public.utilizador OWNER TO postgres;
+ALTER TABLE public.utilizador
+    OWNER TO postgres;
 
 --
 -- TOC entry 217 (class 1259 OID 24747)
@@ -2324,29 +2441,33 @@ ALTER SEQUENCE public.utilizador_id_seq OWNED BY public.utilizador.id;
 -- Name: utilizador_role; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.utilizador_role (
+CREATE TABLE public.utilizador_role
+(
     utilizador bigint NOT NULL,
-    role bigint NOT NULL
+    role       bigint NOT NULL
 );
 
 
-ALTER TABLE public.utilizador_role OWNER TO postgres;
+ALTER TABLE public.utilizador_role
+    OWNER TO postgres;
 
 --
 -- TOC entry 292 (class 1259 OID 25411)
 -- Name: veiculo; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.veiculo (
-    id bigint NOT NULL,
+CREATE TABLE public.veiculo
+(
+    id             bigint NOT NULL,
     codigo_veiculo character varying(19),
-    marca_veiculo character varying(30),
-    motorista bigint NOT NULL,
-    estado bigint NOT NULL
+    marca_veiculo  character varying(30),
+    motorista      bigint NOT NULL,
+    estado         bigint NOT NULL
 );
 
 
-ALTER TABLE public.veiculo OWNER TO postgres;
+ALTER TABLE public.veiculo
+    OWNER TO postgres;
 
 --
 -- TOC entry 291 (class 1259 OID 25410)
@@ -2378,7 +2499,8 @@ ALTER SEQUENCE public.veiculo_id_seq OWNED BY public.veiculo.id;
 -- Name: area_cientifica id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.area_cientifica ALTER COLUMN id SET DEFAULT nextval('public.area_cientifica_id_seq'::regclass);
+ALTER TABLE ONLY public.area_cientifica
+    ALTER COLUMN id SET DEFAULT nextval('public.area_cientifica_id_seq'::regclass);
 
 
 --
@@ -2386,7 +2508,8 @@ ALTER TABLE ONLY public.area_cientifica ALTER COLUMN id SET DEFAULT nextval('pub
 -- Name: ativo id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.ativo ALTER COLUMN id SET DEFAULT nextval('public.ativo_id_seq'::regclass);
+ALTER TABLE ONLY public.ativo
+    ALTER COLUMN id SET DEFAULT nextval('public.ativo_id_seq'::regclass);
 
 
 --
@@ -2394,7 +2517,8 @@ ALTER TABLE ONLY public.ativo ALTER COLUMN id SET DEFAULT nextval('public.ativo_
 -- Name: aula id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.aula ALTER COLUMN id SET DEFAULT nextval('public.aula_id_seq'::regclass);
+ALTER TABLE ONLY public.aula
+    ALTER COLUMN id SET DEFAULT nextval('public.aula_id_seq'::regclass);
 
 
 --
@@ -2402,7 +2526,8 @@ ALTER TABLE ONLY public.aula ALTER COLUMN id SET DEFAULT nextval('public.aula_id
 -- Name: avaliacao id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.avaliacao ALTER COLUMN id SET DEFAULT nextval('public.avaliacao_id_seq'::regclass);
+ALTER TABLE ONLY public.avaliacao
+    ALTER COLUMN id SET DEFAULT nextval('public.avaliacao_id_seq'::regclass);
 
 
 --
@@ -2410,7 +2535,8 @@ ALTER TABLE ONLY public.avaliacao ALTER COLUMN id SET DEFAULT nextval('public.av
 -- Name: avaliacao_aluno id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.avaliacao_aluno ALTER COLUMN id SET DEFAULT nextval('public.avaliacao_aluno_id_seq'::regclass);
+ALTER TABLE ONLY public.avaliacao_aluno
+    ALTER COLUMN id SET DEFAULT nextval('public.avaliacao_aluno_id_seq'::regclass);
 
 
 --
@@ -2418,7 +2544,8 @@ ALTER TABLE ONLY public.avaliacao_aluno ALTER COLUMN id SET DEFAULT nextval('pub
 -- Name: cargo id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.cargo ALTER COLUMN id SET DEFAULT nextval('public.cargo_id_seq'::regclass);
+ALTER TABLE ONLY public.cargo
+    ALTER COLUMN id SET DEFAULT nextval('public.cargo_id_seq'::regclass);
 
 
 --
@@ -2426,7 +2553,8 @@ ALTER TABLE ONLY public.cargo ALTER COLUMN id SET DEFAULT nextval('public.cargo_
 -- Name: categoria_financeira id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.categoria_financeira ALTER COLUMN id SET DEFAULT nextval('public.categoria_financeira_id_seq'::regclass);
+ALTER TABLE ONLY public.categoria_financeira
+    ALTER COLUMN id SET DEFAULT nextval('public.categoria_financeira_id_seq'::regclass);
 
 
 --
@@ -2434,7 +2562,8 @@ ALTER TABLE ONLY public.categoria_financeira ALTER COLUMN id SET DEFAULT nextval
 -- Name: comunicados id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.comunicados ALTER COLUMN id SET DEFAULT nextval('public.comunicados_id_seq'::regclass);
+ALTER TABLE ONLY public.comunicados
+    ALTER COLUMN id SET DEFAULT nextval('public.comunicados_id_seq'::regclass);
 
 
 --
@@ -2442,7 +2571,8 @@ ALTER TABLE ONLY public.comunicados ALTER COLUMN id SET DEFAULT nextval('public.
 -- Name: contrato id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.contrato ALTER COLUMN id SET DEFAULT nextval('public.contrato_id_seq'::regclass);
+ALTER TABLE ONLY public.contrato
+    ALTER COLUMN id SET DEFAULT nextval('public.contrato_id_seq'::regclass);
 
 
 --
@@ -2450,7 +2580,8 @@ ALTER TABLE ONLY public.contrato ALTER COLUMN id SET DEFAULT nextval('public.con
 -- Name: departamento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.departamento ALTER COLUMN id SET DEFAULT nextval('public.departamento_id_seq'::regclass);
+ALTER TABLE ONLY public.departamento
+    ALTER COLUMN id SET DEFAULT nextval('public.departamento_id_seq'::regclass);
 
 
 --
@@ -2458,7 +2589,8 @@ ALTER TABLE ONLY public.departamento ALTER COLUMN id SET DEFAULT nextval('public
 -- Name: despesa id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.despesa ALTER COLUMN id SET DEFAULT nextval('public.despesa_id_seq'::regclass);
+ALTER TABLE ONLY public.despesa
+    ALTER COLUMN id SET DEFAULT nextval('public.despesa_id_seq'::regclass);
 
 
 --
@@ -2466,7 +2598,8 @@ ALTER TABLE ONLY public.despesa ALTER COLUMN id SET DEFAULT nextval('public.desp
 -- Name: detalhe_relatorio_financeiro id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.detalhe_relatorio_financeiro ALTER COLUMN id SET DEFAULT nextval('public.detalhe_relatorio_financeiro_id_seq'::regclass);
+ALTER TABLE ONLY public.detalhe_relatorio_financeiro
+    ALTER COLUMN id SET DEFAULT nextval('public.detalhe_relatorio_financeiro_id_seq'::regclass);
 
 
 --
@@ -2474,7 +2607,8 @@ ALTER TABLE ONLY public.detalhe_relatorio_financeiro ALTER COLUMN id SET DEFAULT
 -- Name: disciplina id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.disciplina ALTER COLUMN id SET DEFAULT nextval('public.disciplina_id_seq'::regclass);
+ALTER TABLE ONLY public.disciplina
+    ALTER COLUMN id SET DEFAULT nextval('public.disciplina_id_seq'::regclass);
 
 
 --
@@ -2482,7 +2616,8 @@ ALTER TABLE ONLY public.disciplina ALTER COLUMN id SET DEFAULT nextval('public.d
 -- Name: distrito id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.distrito ALTER COLUMN id SET DEFAULT nextval('public.distrito_id_seq'::regclass);
+ALTER TABLE ONLY public.distrito
+    ALTER COLUMN id SET DEFAULT nextval('public.distrito_id_seq'::regclass);
 
 
 --
@@ -2490,7 +2625,8 @@ ALTER TABLE ONLY public.distrito ALTER COLUMN id SET DEFAULT nextval('public.dis
 -- Name: documento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.documento ALTER COLUMN id SET DEFAULT nextval('public.documento_id_seq'::regclass);
+ALTER TABLE ONLY public.documento
+    ALTER COLUMN id SET DEFAULT nextval('public.documento_id_seq'::regclass);
 
 
 --
@@ -2498,7 +2634,8 @@ ALTER TABLE ONLY public.documento ALTER COLUMN id SET DEFAULT nextval('public.do
 -- Name: encarregado_educacao id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.encarregado_educacao ALTER COLUMN id SET DEFAULT nextval('public.encarregado_educacao_id_seq'::regclass);
+ALTER TABLE ONLY public.encarregado_educacao
+    ALTER COLUMN id SET DEFAULT nextval('public.encarregado_educacao_id_seq'::regclass);
 
 
 --
@@ -2506,7 +2643,8 @@ ALTER TABLE ONLY public.encarregado_educacao ALTER COLUMN id SET DEFAULT nextval
 -- Name: estado id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.estado ALTER COLUMN id SET DEFAULT nextval('public.estado_id_seq'::regclass);
+ALTER TABLE ONLY public.estado
+    ALTER COLUMN id SET DEFAULT nextval('public.estado_id_seq'::regclass);
 
 
 --
@@ -2514,7 +2652,8 @@ ALTER TABLE ONLY public.estado ALTER COLUMN id SET DEFAULT nextval('public.estad
 -- Name: evento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.evento ALTER COLUMN id SET DEFAULT nextval('public.evento_id_seq'::regclass);
+ALTER TABLE ONLY public.evento
+    ALTER COLUMN id SET DEFAULT nextval('public.evento_id_seq'::regclass);
 
 
 --
@@ -2522,7 +2661,8 @@ ALTER TABLE ONLY public.evento ALTER COLUMN id SET DEFAULT nextval('public.event
 -- Name: folha_pagamento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.folha_pagamento ALTER COLUMN id SET DEFAULT nextval('public.folha_pagamento_id_seq'::regclass);
+ALTER TABLE ONLY public.folha_pagamento
+    ALTER COLUMN id SET DEFAULT nextval('public.folha_pagamento_id_seq'::regclass);
 
 
 --
@@ -2530,7 +2670,8 @@ ALTER TABLE ONLY public.folha_pagamento ALTER COLUMN id SET DEFAULT nextval('pub
 -- Name: fornecedor id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.fornecedor ALTER COLUMN id SET DEFAULT nextval('public.fornecedor_id_seq'::regclass);
+ALTER TABLE ONLY public.fornecedor
+    ALTER COLUMN id SET DEFAULT nextval('public.fornecedor_id_seq'::regclass);
 
 
 --
@@ -2538,7 +2679,8 @@ ALTER TABLE ONLY public.fornecedor ALTER COLUMN id SET DEFAULT nextval('public.f
 -- Name: funcionario id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.funcionario ALTER COLUMN id SET DEFAULT nextval('public.funcionario_id_seq'::regclass);
+ALTER TABLE ONLY public.funcionario
+    ALTER COLUMN id SET DEFAULT nextval('public.funcionario_id_seq'::regclass);
 
 
 --
@@ -2546,7 +2688,8 @@ ALTER TABLE ONLY public.funcionario ALTER COLUMN id SET DEFAULT nextval('public.
 -- Name: horario id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.horario ALTER COLUMN id SET DEFAULT nextval('public.horario_id_seq'::regclass);
+ALTER TABLE ONLY public.horario
+    ALTER COLUMN id SET DEFAULT nextval('public.horario_id_seq'::regclass);
 
 
 --
@@ -2554,7 +2697,8 @@ ALTER TABLE ONLY public.horario ALTER COLUMN id SET DEFAULT nextval('public.hora
 -- Name: item_ordem_compra id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.item_ordem_compra ALTER COLUMN id SET DEFAULT nextval('public.item_ordem_compra_id_seq'::regclass);
+ALTER TABLE ONLY public.item_ordem_compra
+    ALTER COLUMN id SET DEFAULT nextval('public.item_ordem_compra_id_seq'::regclass);
 
 
 --
@@ -2562,7 +2706,8 @@ ALTER TABLE ONLY public.item_ordem_compra ALTER COLUMN id SET DEFAULT nextval('p
 -- Name: manutencao_ativo id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.manutencao_ativo ALTER COLUMN id SET DEFAULT nextval('public.manutencao_ativo_id_seq'::regclass);
+ALTER TABLE ONLY public.manutencao_ativo
+    ALTER COLUMN id SET DEFAULT nextval('public.manutencao_ativo_id_seq'::regclass);
 
 
 --
@@ -2570,7 +2715,8 @@ ALTER TABLE ONLY public.manutencao_ativo ALTER COLUMN id SET DEFAULT nextval('pu
 -- Name: material id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.material ALTER COLUMN id SET DEFAULT nextval('public.material_id_seq'::regclass);
+ALTER TABLE ONLY public.material
+    ALTER COLUMN id SET DEFAULT nextval('public.material_id_seq'::regclass);
 
 
 --
@@ -2578,7 +2724,8 @@ ALTER TABLE ONLY public.material ALTER COLUMN id SET DEFAULT nextval('public.mat
 -- Name: matricula id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.matricula ALTER COLUMN id SET DEFAULT nextval('public.matricula_id_seq'::regclass);
+ALTER TABLE ONLY public.matricula
+    ALTER COLUMN id SET DEFAULT nextval('public.matricula_id_seq'::regclass);
 
 
 --
@@ -2586,7 +2733,8 @@ ALTER TABLE ONLY public.matricula ALTER COLUMN id SET DEFAULT nextval('public.ma
 -- Name: orcamento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.orcamento ALTER COLUMN id SET DEFAULT nextval('public.orcamento_id_seq'::regclass);
+ALTER TABLE ONLY public.orcamento
+    ALTER COLUMN id SET DEFAULT nextval('public.orcamento_id_seq'::regclass);
 
 
 --
@@ -2594,7 +2742,8 @@ ALTER TABLE ONLY public.orcamento ALTER COLUMN id SET DEFAULT nextval('public.or
 -- Name: ordem_compra id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.ordem_compra ALTER COLUMN id SET DEFAULT nextval('public.ordem_compra_id_seq'::regclass);
+ALTER TABLE ONLY public.ordem_compra
+    ALTER COLUMN id SET DEFAULT nextval('public.ordem_compra_id_seq'::regclass);
 
 
 --
@@ -2602,7 +2751,8 @@ ALTER TABLE ONLY public.ordem_compra ALTER COLUMN id SET DEFAULT nextval('public
 -- Name: pagamento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.pagamento ALTER COLUMN id SET DEFAULT nextval('public.pagamento_id_seq'::regclass);
+ALTER TABLE ONLY public.pagamento
+    ALTER COLUMN id SET DEFAULT nextval('public.pagamento_id_seq'::regclass);
 
 
 --
@@ -2610,7 +2760,8 @@ ALTER TABLE ONLY public.pagamento ALTER COLUMN id SET DEFAULT nextval('public.pa
 -- Name: participante_evento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.participante_evento ALTER COLUMN id SET DEFAULT nextval('public.participante_evento_id_seq'::regclass);
+ALTER TABLE ONLY public.participante_evento
+    ALTER COLUMN id SET DEFAULT nextval('public.participante_evento_id_seq'::regclass);
 
 
 --
@@ -2618,7 +2769,8 @@ ALTER TABLE ONLY public.participante_evento ALTER COLUMN id SET DEFAULT nextval(
 -- Name: pauta_final id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.pauta_final ALTER COLUMN id SET DEFAULT nextval('public.pauta_final_id_seq'::regclass);
+ALTER TABLE ONLY public.pauta_final
+    ALTER COLUMN id SET DEFAULT nextval('public.pauta_final_id_seq'::regclass);
 
 
 --
@@ -2626,7 +2778,8 @@ ALTER TABLE ONLY public.pauta_final ALTER COLUMN id SET DEFAULT nextval('public.
 -- Name: pauta_trimestral id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.pauta_trimestral ALTER COLUMN id SET DEFAULT nextval('public.pauta_trimestral_id_seq'::regclass);
+ALTER TABLE ONLY public.pauta_trimestral
+    ALTER COLUMN id SET DEFAULT nextval('public.pauta_trimestral_id_seq'::regclass);
 
 
 --
@@ -2634,7 +2787,8 @@ ALTER TABLE ONLY public.pauta_trimestral ALTER COLUMN id SET DEFAULT nextval('pu
 -- Name: presencas_aluno id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.presencas_aluno ALTER COLUMN id SET DEFAULT nextval('public.presencas_aluno_id_seq'::regclass);
+ALTER TABLE ONLY public.presencas_aluno
+    ALTER COLUMN id SET DEFAULT nextval('public.presencas_aluno_id_seq'::regclass);
 
 
 --
@@ -2642,7 +2796,8 @@ ALTER TABLE ONLY public.presencas_aluno ALTER COLUMN id SET DEFAULT nextval('pub
 -- Name: professor id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.professor ALTER COLUMN id SET DEFAULT nextval('public.professor_id_seq'::regclass);
+ALTER TABLE ONLY public.professor
+    ALTER COLUMN id SET DEFAULT nextval('public.professor_id_seq'::regclass);
 
 
 --
@@ -2650,7 +2805,8 @@ ALTER TABLE ONLY public.professor ALTER COLUMN id SET DEFAULT nextval('public.pr
 -- Name: provincia id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.provincia ALTER COLUMN id SET DEFAULT nextval('public.provincia_id_seq'::regclass);
+ALTER TABLE ONLY public.provincia
+    ALTER COLUMN id SET DEFAULT nextval('public.provincia_id_seq'::regclass);
 
 
 --
@@ -2658,7 +2814,8 @@ ALTER TABLE ONLY public.provincia ALTER COLUMN id SET DEFAULT nextval('public.pr
 -- Name: receita id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.receita ALTER COLUMN id SET DEFAULT nextval('public.receita_id_seq'::regclass);
+ALTER TABLE ONLY public.receita
+    ALTER COLUMN id SET DEFAULT nextval('public.receita_id_seq'::regclass);
 
 
 --
@@ -2666,7 +2823,8 @@ ALTER TABLE ONLY public.receita ALTER COLUMN id SET DEFAULT nextval('public.rece
 -- Name: relatorio_financeiro id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.relatorio_financeiro ALTER COLUMN id SET DEFAULT nextval('public.relatorio_financeiro_id_seq'::regclass);
+ALTER TABLE ONLY public.relatorio_financeiro
+    ALTER COLUMN id SET DEFAULT nextval('public.relatorio_financeiro_id_seq'::regclass);
 
 
 --
@@ -2674,7 +2832,8 @@ ALTER TABLE ONLY public.relatorio_financeiro ALTER COLUMN id SET DEFAULT nextval
 -- Name: requisicao_material id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.requisicao_material ALTER COLUMN id SET DEFAULT nextval('public.requisicao_material_id_seq'::regclass);
+ALTER TABLE ONLY public.requisicao_material
+    ALTER COLUMN id SET DEFAULT nextval('public.requisicao_material_id_seq'::regclass);
 
 
 --
@@ -2682,7 +2841,8 @@ ALTER TABLE ONLY public.requisicao_material ALTER COLUMN id SET DEFAULT nextval(
 -- Name: role id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.role ALTER COLUMN id SET DEFAULT nextval('public.role_id_seq'::regclass);
+ALTER TABLE ONLY public.role
+    ALTER COLUMN id SET DEFAULT nextval('public.role_id_seq'::regclass);
 
 
 --
@@ -2690,7 +2850,8 @@ ALTER TABLE ONLY public.role ALTER COLUMN id SET DEFAULT nextval('public.role_id
 -- Name: sala id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.sala ALTER COLUMN id SET DEFAULT nextval('public.sala_id_seq'::regclass);
+ALTER TABLE ONLY public.sala
+    ALTER COLUMN id SET DEFAULT nextval('public.sala_id_seq'::regclass);
 
 
 --
@@ -2698,7 +2859,8 @@ ALTER TABLE ONLY public.sala ALTER COLUMN id SET DEFAULT nextval('public.sala_id
 -- Name: sector_trabalho id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.sector_trabalho ALTER COLUMN id SET DEFAULT nextval('public.sector_trabalho_id_seq'::regclass);
+ALTER TABLE ONLY public.sector_trabalho
+    ALTER COLUMN id SET DEFAULT nextval('public.sector_trabalho_id_seq'::regclass);
 
 
 --
@@ -2706,7 +2868,8 @@ ALTER TABLE ONLY public.sector_trabalho ALTER COLUMN id SET DEFAULT nextval('pub
 -- Name: tipo_avaliacao id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_avaliacao ALTER COLUMN id SET DEFAULT nextval('public.tipo_avaliacao_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_avaliacao
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_avaliacao_id_seq'::regclass);
 
 
 --
@@ -2714,7 +2877,8 @@ ALTER TABLE ONLY public.tipo_avaliacao ALTER COLUMN id SET DEFAULT nextval('publ
 -- Name: tipo_documento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_documento ALTER COLUMN id SET DEFAULT nextval('public.tipo_documento_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_documento
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_documento_id_seq'::regclass);
 
 
 --
@@ -2722,7 +2886,8 @@ ALTER TABLE ONLY public.tipo_documento ALTER COLUMN id SET DEFAULT nextval('publ
 -- Name: tipo_estado id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_estado ALTER COLUMN id SET DEFAULT nextval('public.tipo_estado_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_estado
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_estado_id_seq'::regclass);
 
 
 --
@@ -2730,7 +2895,8 @@ ALTER TABLE ONLY public.tipo_estado ALTER COLUMN id SET DEFAULT nextval('public.
 -- Name: tipo_funcionario id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_funcionario ALTER COLUMN id SET DEFAULT nextval('public.tipo_funcionario_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_funcionario
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_funcionario_id_seq'::regclass);
 
 
 --
@@ -2738,7 +2904,8 @@ ALTER TABLE ONLY public.tipo_funcionario ALTER COLUMN id SET DEFAULT nextval('pu
 -- Name: tipo_material id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_material ALTER COLUMN id SET DEFAULT nextval('public.tipo_material_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_material
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_material_id_seq'::regclass);
 
 
 --
@@ -2746,7 +2913,8 @@ ALTER TABLE ONLY public.tipo_material ALTER COLUMN id SET DEFAULT nextval('publi
 -- Name: tipo_pagamento id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_pagamento ALTER COLUMN id SET DEFAULT nextval('public.tipo_pagamento_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_pagamento
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_pagamento_id_seq'::regclass);
 
 
 --
@@ -2754,7 +2922,8 @@ ALTER TABLE ONLY public.tipo_pagamento ALTER COLUMN id SET DEFAULT nextval('publ
 -- Name: tipo_pessoa id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_pessoa ALTER COLUMN id SET DEFAULT nextval('public.tipo_pessoa_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_pessoa
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_pessoa_id_seq'::regclass);
 
 
 --
@@ -2762,7 +2931,8 @@ ALTER TABLE ONLY public.tipo_pessoa ALTER COLUMN id SET DEFAULT nextval('public.
 -- Name: tipo_relatorio id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_relatorio ALTER COLUMN id SET DEFAULT nextval('public.tipo_relatorio_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_relatorio
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_relatorio_id_seq'::regclass);
 
 
 --
@@ -2770,7 +2940,8 @@ ALTER TABLE ONLY public.tipo_relatorio ALTER COLUMN id SET DEFAULT nextval('publ
 -- Name: tipo_transacao id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.tipo_transacao ALTER COLUMN id SET DEFAULT nextval('public.tipo_transacao_id_seq'::regclass);
+ALTER TABLE ONLY public.tipo_transacao
+    ALTER COLUMN id SET DEFAULT nextval('public.tipo_transacao_id_seq'::regclass);
 
 
 --
@@ -2778,7 +2949,8 @@ ALTER TABLE ONLY public.tipo_transacao ALTER COLUMN id SET DEFAULT nextval('publ
 -- Name: transacao id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.transacao ALTER COLUMN id SET DEFAULT nextval('public.transacao_id_seq'::regclass);
+ALTER TABLE ONLY public.transacao
+    ALTER COLUMN id SET DEFAULT nextval('public.transacao_id_seq'::regclass);
 
 
 --
@@ -2786,7 +2958,8 @@ ALTER TABLE ONLY public.transacao ALTER COLUMN id SET DEFAULT nextval('public.tr
 -- Name: turma id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.turma ALTER COLUMN id SET DEFAULT nextval('public.turma_id_seq'::regclass);
+ALTER TABLE ONLY public.turma
+    ALTER COLUMN id SET DEFAULT nextval('public.turma_id_seq'::regclass);
 
 
 --
@@ -2794,7 +2967,8 @@ ALTER TABLE ONLY public.turma ALTER COLUMN id SET DEFAULT nextval('public.turma_
 -- Name: utilizador id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.utilizador ALTER COLUMN id SET DEFAULT nextval('public.utilizador_id_seq'::regclass);
+ALTER TABLE ONLY public.utilizador
+    ALTER COLUMN id SET DEFAULT nextval('public.utilizador_id_seq'::regclass);
 
 
 --
@@ -2802,7 +2976,8 @@ ALTER TABLE ONLY public.utilizador ALTER COLUMN id SET DEFAULT nextval('public.u
 -- Name: veiculo id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.veiculo ALTER COLUMN id SET DEFAULT nextval('public.veiculo_id_seq'::regclass);
+ALTER TABLE ONLY public.veiculo
+    ALTER COLUMN id SET DEFAULT nextval('public.veiculo_id_seq'::regclass);
 
 
 --
@@ -2811,7 +2986,9 @@ ALTER TABLE ONLY public.veiculo ALTER COLUMN id SET DEFAULT nextval('public.veic
 -- Data for Name: aluno; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.aluno (id, nome_completo, data_nascimento, distrito_nascimento, sexo, bilhete_identificacao, religiao, grupo_sanguineo, endereco, data_registo, estado, escola_anterior, nome_do_pai, nome_da_mae, numero_telefone_principal, username) FROM stdin;
+COPY public.aluno (id, nome_completo, data_nascimento, distrito_nascimento, sexo, bilhete_identificacao, religiao,
+                   grupo_sanguineo, endereco, data_registo, estado, escola_anterior, nome_do_pai, nome_da_mae,
+                   numero_telefone_principal, username) FROM stdin;
 \.
 
 
@@ -2861,7 +3038,8 @@ COPY public.avaliacao (id, aluno, tipo_avaliacao, trimestre, disciplina, observa
 -- Data for Name: avaliacao_aluno; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.avaliacao_aluno (id, aluno, trimestre, ano_lectivo, data_lancamento, nota, observacao, estado, avaliacao) FROM stdin;
+COPY public.avaliacao_aluno (id, aluno, trimestre, ano_lectivo, data_lancamento, nota, observacao, estado,
+                             avaliacao) FROM stdin;
 \.
 
 
@@ -2937,7 +3115,8 @@ COPY public.comunicados (id, titulo, conteudo, data_publicacao, responsavel, des
 -- Data for Name: contrato; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.contrato (id, descricao, tipo, data_inicio, data_fim, valor_total, fornecedor, responsavel, estado) FROM stdin;
+COPY public.contrato (id, descricao, tipo, data_inicio, data_fim, valor_total, fornecedor, responsavel,
+                      estado) FROM stdin;
 \.
 
 
@@ -3188,7 +3367,9 @@ COPY public.encarregado_aluno (encarregado, aluno, grau_parentesco) FROM stdin;
 -- Data for Name: encarregado_educacao; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.encarregado_educacao (id, nome_completo, data_nascimento, distrito_nascimento, sexo, local_trabalho, sector_trabalho, endereco, email, grupo_sanguineo, numero_telefone_principal, numero_telefone_alternativo, religiao, estado) FROM stdin;
+COPY public.encarregado_educacao (id, nome_completo, data_nascimento, distrito_nascimento, sexo, local_trabalho,
+                                  sector_trabalho, endereco, email, grupo_sanguineo, numero_telefone_principal,
+                                  numero_telefone_alternativo, religiao, estado) FROM stdin;
 \.
 
 
@@ -3218,7 +3399,8 @@ COPY public.evento (id, nome, descricao, data_inicio, data_fim, localizacao, res
 -- Data for Name: folha_pagamento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.folha_pagamento (id, funcionario, salario_bruto, descontos, salario_liquido, mes_referencia, data_pagamento, estado) FROM stdin;
+COPY public.folha_pagamento (id, funcionario, salario_bruto, descontos, salario_liquido, mes_referencia, data_pagamento,
+                             estado) FROM stdin;
 \.
 
 
@@ -3238,7 +3420,10 @@ COPY public.fornecedor (id, nome, endereco, telefone, email, descricao, estado) 
 -- Data for Name: funcionario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.funcionario (id, nome_completo, data_nascimento, distrito_nascimento, sexo, endereco, email, numero_telefone_principal, numero_telefone_alternativo, data_contracto, cargo, departamento, estado, estado_civil, bilhete_identificacao, religiao, grupo_sanguineo, area_formacao, tipo_funcionario) FROM stdin;
+COPY public.funcionario (id, nome_completo, data_nascimento, distrito_nascimento, sexo, endereco, email,
+                         numero_telefone_principal, numero_telefone_alternativo, data_contracto, cargo, departamento,
+                         estado, estado_civil, bilhete_identificacao, religiao, grupo_sanguineo, area_formacao,
+                         tipo_funcionario) FROM stdin;
 \.
 
 
@@ -3318,7 +3503,8 @@ COPY public.ordem_compra (id, fornecedor, data_ordem, data_entrega, valor_total,
 -- Data for Name: pagamento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.pagamento (id, referencia, aluno, valor, tipo_pagamento, data_pagamento, responsavel, observacao, estado) FROM stdin;
+COPY public.pagamento (id, referencia, aluno, valor, tipo_pagamento, data_pagamento, responsavel, observacao,
+                       estado) FROM stdin;
 \.
 
 
@@ -3338,7 +3524,8 @@ COPY public.participante_evento (id, evento, nome_participante, tipo_participant
 -- Data for Name: pauta_final; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.pauta_final (id, disciplina, aluno, ano_lectivo, nota_final, professor, data_publicacao, resultado, estado_pauta) FROM stdin;
+COPY public.pauta_final (id, disciplina, aluno, ano_lectivo, nota_final, professor, data_publicacao, resultado,
+                         estado_pauta) FROM stdin;
 \.
 
 
@@ -3348,7 +3535,8 @@ COPY public.pauta_final (id, disciplina, aluno, ano_lectivo, nota_final, profess
 -- Data for Name: pauta_trimestral; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.pauta_trimestral (id, disciplina, aluno, trimestre, ano_lectivo, nota_final, professor, data_publicacao, observacao, estado) FROM stdin;
+COPY public.pauta_trimestral (id, disciplina, aluno, trimestre, ano_lectivo, nota_final, professor, data_publicacao,
+                              observacao, estado) FROM stdin;
 \.
 
 
@@ -3368,7 +3556,9 @@ COPY public.presencas_aluno (id, aluno, turma, disciplina, data, estado) FROM st
 -- Data for Name: professor; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.professor (id, nome_completo, data_nascimento, distrito_nascimento, sexo, endereco, email, numero_telefone_principal, numero_telefone_alternativo, data_contracto, estado, estado_civil, bilhete_identificacao, religiao, grupo_sanguineo, area_formacao) FROM stdin;
+COPY public.professor (id, nome_completo, data_nascimento, distrito_nascimento, sexo, endereco, email,
+                       numero_telefone_principal, numero_telefone_alternativo, data_contracto, estado, estado_civil,
+                       bilhete_identificacao, religiao, grupo_sanguineo, area_formacao) FROM stdin;
 \.
 
 
@@ -4952,7 +5142,7 @@ ALTER TABLE ONLY public.veiculo
 --
 
 ALTER TABLE ONLY public.aluno
-    ADD CONSTRAINT aluno_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT aluno_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4961,7 +5151,7 @@ ALTER TABLE ONLY public.aluno
 --
 
 ALTER TABLE ONLY public.aluno
-    ADD CONSTRAINT aluno_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT aluno_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4970,7 +5160,7 @@ ALTER TABLE ONLY public.aluno
 --
 
 ALTER TABLE ONLY public.aluno
-    ADD CONSTRAINT aluno_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador(id);
+    ADD CONSTRAINT aluno_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador (id);
 
 
 --
@@ -4979,7 +5169,7 @@ ALTER TABLE ONLY public.aluno
 --
 
 ALTER TABLE ONLY public.ativo
-    ADD CONSTRAINT ativo_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT ativo_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4988,7 +5178,7 @@ ALTER TABLE ONLY public.ativo
 --
 
 ALTER TABLE ONLY public.aula
-    ADD CONSTRAINT aula_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT aula_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -4997,7 +5187,7 @@ ALTER TABLE ONLY public.aula
 --
 
 ALTER TABLE ONLY public.aula
-    ADD CONSTRAINT aula_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT aula_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5006,7 +5196,7 @@ ALTER TABLE ONLY public.aula
 --
 
 ALTER TABLE ONLY public.avaliacao_aluno
-    ADD CONSTRAINT avaliacao_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT avaliacao_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5015,7 +5205,7 @@ ALTER TABLE ONLY public.avaliacao_aluno
 --
 
 ALTER TABLE ONLY public.avaliacao_aluno
-    ADD CONSTRAINT avaliacao_aluno_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT avaliacao_aluno_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5024,7 +5214,7 @@ ALTER TABLE ONLY public.avaliacao_aluno
 --
 
 ALTER TABLE ONLY public.avaliacao
-    ADD CONSTRAINT avaliacao_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT avaliacao_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5033,7 +5223,7 @@ ALTER TABLE ONLY public.avaliacao
 --
 
 ALTER TABLE ONLY public.avaliacao
-    ADD CONSTRAINT avaliacao_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT avaliacao_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5042,7 +5232,7 @@ ALTER TABLE ONLY public.avaliacao
 --
 
 ALTER TABLE ONLY public.avaliacao
-    ADD CONSTRAINT avaliacao_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT avaliacao_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5051,7 +5241,7 @@ ALTER TABLE ONLY public.avaliacao
 --
 
 ALTER TABLE ONLY public.avaliacao
-    ADD CONSTRAINT avaliacao_tipo_avaliacao_fkey FOREIGN KEY (tipo_avaliacao) REFERENCES public.tipo_avaliacao(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT avaliacao_tipo_avaliacao_fkey FOREIGN KEY (tipo_avaliacao) REFERENCES public.tipo_avaliacao (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5060,7 +5250,7 @@ ALTER TABLE ONLY public.avaliacao
 --
 
 ALTER TABLE ONLY public.comunicados
-    ADD CONSTRAINT comunicados_destinatario_fkey FOREIGN KEY (destinatario) REFERENCES public.tipo_pessoa(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT comunicados_destinatario_fkey FOREIGN KEY (destinatario) REFERENCES public.tipo_pessoa (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5069,7 +5259,7 @@ ALTER TABLE ONLY public.comunicados
 --
 
 ALTER TABLE ONLY public.comunicados
-    ADD CONSTRAINT comunicados_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT comunicados_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5078,7 +5268,7 @@ ALTER TABLE ONLY public.comunicados
 --
 
 ALTER TABLE ONLY public.comunicados
-    ADD CONSTRAINT comunicados_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT comunicados_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5087,7 +5277,7 @@ ALTER TABLE ONLY public.comunicados
 --
 
 ALTER TABLE ONLY public.contrato
-    ADD CONSTRAINT contrato_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT contrato_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5096,7 +5286,7 @@ ALTER TABLE ONLY public.contrato
 --
 
 ALTER TABLE ONLY public.contrato
-    ADD CONSTRAINT contrato_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT contrato_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5105,7 +5295,7 @@ ALTER TABLE ONLY public.contrato
 --
 
 ALTER TABLE ONLY public.despesa
-    ADD CONSTRAINT despesa_categoria_fkey FOREIGN KEY (categoria) REFERENCES public.categoria_financeira(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT despesa_categoria_fkey FOREIGN KEY (categoria) REFERENCES public.categoria_financeira (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5114,7 +5304,7 @@ ALTER TABLE ONLY public.despesa
 --
 
 ALTER TABLE ONLY public.despesa
-    ADD CONSTRAINT despesa_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT despesa_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5123,7 +5313,7 @@ ALTER TABLE ONLY public.despesa
 --
 
 ALTER TABLE ONLY public.despesa
-    ADD CONSTRAINT despesa_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT despesa_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5132,7 +5322,7 @@ ALTER TABLE ONLY public.despesa
 --
 
 ALTER TABLE ONLY public.detalhe_relatorio_financeiro
-    ADD CONSTRAINT detalhe_relatorio_financeiro_relatorio_fkey FOREIGN KEY (relatorio) REFERENCES public.relatorio_financeiro(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT detalhe_relatorio_financeiro_relatorio_fkey FOREIGN KEY (relatorio) REFERENCES public.relatorio_financeiro (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5141,7 +5331,7 @@ ALTER TABLE ONLY public.detalhe_relatorio_financeiro
 --
 
 ALTER TABLE ONLY public.disciplina_aluno
-    ADD CONSTRAINT disciplina_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT disciplina_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5150,7 +5340,7 @@ ALTER TABLE ONLY public.disciplina_aluno
 --
 
 ALTER TABLE ONLY public.disciplina_aluno
-    ADD CONSTRAINT disciplina_aluno_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT disciplina_aluno_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5159,7 +5349,7 @@ ALTER TABLE ONLY public.disciplina_aluno
 --
 
 ALTER TABLE ONLY public.distrito
-    ADD CONSTRAINT distrito_provincia_fkey FOREIGN KEY (provincia) REFERENCES public.provincia(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT distrito_provincia_fkey FOREIGN KEY (provincia) REFERENCES public.provincia (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5168,7 +5358,7 @@ ALTER TABLE ONLY public.distrito
 --
 
 ALTER TABLE ONLY public.documento
-    ADD CONSTRAINT documento_autor_fkey FOREIGN KEY (autor) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT documento_autor_fkey FOREIGN KEY (autor) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5177,7 +5367,7 @@ ALTER TABLE ONLY public.documento
 --
 
 ALTER TABLE ONLY public.documento
-    ADD CONSTRAINT documento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT documento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5186,7 +5376,7 @@ ALTER TABLE ONLY public.documento
 --
 
 ALTER TABLE ONLY public.documento
-    ADD CONSTRAINT documento_tipo_documento_fkey FOREIGN KEY (tipo_documento) REFERENCES public.tipo_documento(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT documento_tipo_documento_fkey FOREIGN KEY (tipo_documento) REFERENCES public.tipo_documento (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5195,7 +5385,7 @@ ALTER TABLE ONLY public.documento
 --
 
 ALTER TABLE ONLY public.encarregado_aluno
-    ADD CONSTRAINT encarregado_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id);
+    ADD CONSTRAINT encarregado_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id);
 
 
 --
@@ -5204,7 +5394,7 @@ ALTER TABLE ONLY public.encarregado_aluno
 --
 
 ALTER TABLE ONLY public.encarregado_aluno
-    ADD CONSTRAINT encarregado_aluno_encarregado_fkey FOREIGN KEY (encarregado) REFERENCES public.encarregado_educacao(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT encarregado_aluno_encarregado_fkey FOREIGN KEY (encarregado) REFERENCES public.encarregado_educacao (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5213,7 +5403,7 @@ ALTER TABLE ONLY public.encarregado_aluno
 --
 
 ALTER TABLE ONLY public.encarregado_educacao
-    ADD CONSTRAINT encarregado_educacao_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT encarregado_educacao_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5222,7 +5412,7 @@ ALTER TABLE ONLY public.encarregado_educacao
 --
 
 ALTER TABLE ONLY public.encarregado_educacao
-    ADD CONSTRAINT encarregado_educacao_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador(id);
+    ADD CONSTRAINT encarregado_educacao_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador (id);
 
 
 --
@@ -5231,7 +5421,7 @@ ALTER TABLE ONLY public.encarregado_educacao
 --
 
 ALTER TABLE ONLY public.estado
-    ADD CONSTRAINT estado_tipo_estado_fkey FOREIGN KEY (tipo_estado) REFERENCES public.tipo_estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT estado_tipo_estado_fkey FOREIGN KEY (tipo_estado) REFERENCES public.tipo_estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5240,7 +5430,7 @@ ALTER TABLE ONLY public.estado
 --
 
 ALTER TABLE ONLY public.evento
-    ADD CONSTRAINT evento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT evento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5249,7 +5439,7 @@ ALTER TABLE ONLY public.evento
 --
 
 ALTER TABLE ONLY public.evento
-    ADD CONSTRAINT evento_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT evento_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5258,7 +5448,7 @@ ALTER TABLE ONLY public.evento
 --
 
 ALTER TABLE ONLY public.avaliacao_aluno
-    ADD CONSTRAINT fk37xrlgvf8p0kl8tajttbt9mh8 FOREIGN KEY (avaliacao) REFERENCES public.avaliacao(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk37xrlgvf8p0kl8tajttbt9mh8 FOREIGN KEY (avaliacao) REFERENCES public.avaliacao (id) ON DELETE CASCADE;
 
 
 --
@@ -5267,7 +5457,7 @@ ALTER TABLE ONLY public.avaliacao_aluno
 --
 
 ALTER TABLE ONLY public.utilizador_role
-    ADD CONSTRAINT fk47b6nduvkj7lmjinhlv8s6bto FOREIGN KEY (utilizador) REFERENCES public.utilizador(id);
+    ADD CONSTRAINT fk47b6nduvkj7lmjinhlv8s6bto FOREIGN KEY (utilizador) REFERENCES public.utilizador (id);
 
 
 --
@@ -5276,7 +5466,7 @@ ALTER TABLE ONLY public.utilizador_role
 --
 
 ALTER TABLE ONLY public.item_ordem_compra
-    ADD CONSTRAINT fk7woghxkgm4nqiq1kw1o1avecf FOREIGN KEY (estado) REFERENCES public.estado(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk7woghxkgm4nqiq1kw1o1avecf FOREIGN KEY (estado) REFERENCES public.estado (id) ON DELETE CASCADE;
 
 
 --
@@ -5285,7 +5475,7 @@ ALTER TABLE ONLY public.item_ordem_compra
 --
 
 ALTER TABLE ONLY public.aluno
-    ADD CONSTRAINT fkbq5nt66xcxxrb7xbujb2ouqjc FOREIGN KEY (username) REFERENCES public.utilizador(id);
+    ADD CONSTRAINT fkbq5nt66xcxxrb7xbujb2ouqjc FOREIGN KEY (username) REFERENCES public.utilizador (id);
 
 
 --
@@ -5294,7 +5484,7 @@ ALTER TABLE ONLY public.aluno
 --
 
 ALTER TABLE ONLY public.encarregado_educacao
-    ADD CONSTRAINT fknhfbxdjf0455kxn9j95r8h4k1 FOREIGN KEY (sector_trabalho) REFERENCES public.sector_trabalho(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fknhfbxdjf0455kxn9j95r8h4k1 FOREIGN KEY (sector_trabalho) REFERENCES public.sector_trabalho (id) ON DELETE CASCADE;
 
 
 --
@@ -5303,7 +5493,7 @@ ALTER TABLE ONLY public.encarregado_educacao
 --
 
 ALTER TABLE ONLY public.encarregado_educacao
-    ADD CONSTRAINT fko6s10ywoe774dkkjwv4v8hrye FOREIGN KEY (estado) REFERENCES public.estado(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fko6s10ywoe774dkkjwv4v8hrye FOREIGN KEY (estado) REFERENCES public.estado (id) ON DELETE CASCADE;
 
 
 --
@@ -5312,7 +5502,7 @@ ALTER TABLE ONLY public.encarregado_educacao
 --
 
 ALTER TABLE ONLY public.utilizador_role
-    ADD CONSTRAINT fkphtwi61sw0744d9fswd2ehnat FOREIGN KEY (role) REFERENCES public.role(id);
+    ADD CONSTRAINT fkphtwi61sw0744d9fswd2ehnat FOREIGN KEY (role) REFERENCES public.role (id);
 
 
 --
@@ -5321,7 +5511,7 @@ ALTER TABLE ONLY public.utilizador_role
 --
 
 ALTER TABLE ONLY public.funcionario
-    ADD CONSTRAINT fkpsyut9lh7x4v2m2ssd9ypyna FOREIGN KEY (tipo_funcionario) REFERENCES public.tipo_funcionario(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fkpsyut9lh7x4v2m2ssd9ypyna FOREIGN KEY (tipo_funcionario) REFERENCES public.tipo_funcionario (id) ON DELETE CASCADE;
 
 
 --
@@ -5330,7 +5520,7 @@ ALTER TABLE ONLY public.funcionario
 --
 
 ALTER TABLE ONLY public.horario
-    ADD CONSTRAINT fks5plgjbovrcju2vmdt2ptb0fn FOREIGN KEY (estado) REFERENCES public.estado(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fks5plgjbovrcju2vmdt2ptb0fn FOREIGN KEY (estado) REFERENCES public.estado (id) ON DELETE CASCADE;
 
 
 --
@@ -5339,7 +5529,7 @@ ALTER TABLE ONLY public.horario
 --
 
 ALTER TABLE ONLY public.folha_pagamento
-    ADD CONSTRAINT folha_pagamento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT folha_pagamento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5348,7 +5538,7 @@ ALTER TABLE ONLY public.folha_pagamento
 --
 
 ALTER TABLE ONLY public.folha_pagamento
-    ADD CONSTRAINT folha_pagamento_funcionario_fkey FOREIGN KEY (funcionario) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT folha_pagamento_funcionario_fkey FOREIGN KEY (funcionario) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5357,7 +5547,7 @@ ALTER TABLE ONLY public.folha_pagamento
 --
 
 ALTER TABLE ONLY public.fornecedor
-    ADD CONSTRAINT fornecedor_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT fornecedor_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5366,7 +5556,7 @@ ALTER TABLE ONLY public.fornecedor
 --
 
 ALTER TABLE ONLY public.funcionario
-    ADD CONSTRAINT funcionario_area_formacao_fkey FOREIGN KEY (area_formacao) REFERENCES public.area_cientifica(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT funcionario_area_formacao_fkey FOREIGN KEY (area_formacao) REFERENCES public.area_cientifica (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5375,7 +5565,7 @@ ALTER TABLE ONLY public.funcionario
 --
 
 ALTER TABLE ONLY public.funcionario
-    ADD CONSTRAINT funcionario_cargo_fkey FOREIGN KEY (cargo) REFERENCES public.cargo(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT funcionario_cargo_fkey FOREIGN KEY (cargo) REFERENCES public.cargo (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5384,7 +5574,7 @@ ALTER TABLE ONLY public.funcionario
 --
 
 ALTER TABLE ONLY public.funcionario
-    ADD CONSTRAINT funcionario_departamento_fkey FOREIGN KEY (departamento) REFERENCES public.departamento(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT funcionario_departamento_fkey FOREIGN KEY (departamento) REFERENCES public.departamento (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5393,7 +5583,7 @@ ALTER TABLE ONLY public.funcionario
 --
 
 ALTER TABLE ONLY public.funcionario
-    ADD CONSTRAINT funcionario_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT funcionario_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5402,7 +5592,7 @@ ALTER TABLE ONLY public.funcionario
 --
 
 ALTER TABLE ONLY public.funcionario
-    ADD CONSTRAINT funcionario_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT funcionario_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5411,7 +5601,7 @@ ALTER TABLE ONLY public.funcionario
 --
 
 ALTER TABLE ONLY public.funcionario
-    ADD CONSTRAINT funcionario_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador(id);
+    ADD CONSTRAINT funcionario_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador (id);
 
 
 --
@@ -5420,7 +5610,7 @@ ALTER TABLE ONLY public.funcionario
 --
 
 ALTER TABLE ONLY public.horario
-    ADD CONSTRAINT horario_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT horario_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5429,7 +5619,7 @@ ALTER TABLE ONLY public.horario
 --
 
 ALTER TABLE ONLY public.horario
-    ADD CONSTRAINT horario_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT horario_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5438,7 +5628,7 @@ ALTER TABLE ONLY public.horario
 --
 
 ALTER TABLE ONLY public.horario
-    ADD CONSTRAINT horario_sala_fkey FOREIGN KEY (sala) REFERENCES public.sala(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT horario_sala_fkey FOREIGN KEY (sala) REFERENCES public.sala (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5447,7 +5637,7 @@ ALTER TABLE ONLY public.horario
 --
 
 ALTER TABLE ONLY public.horario
-    ADD CONSTRAINT horario_turma_fkey FOREIGN KEY (turma) REFERENCES public.turma(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT horario_turma_fkey FOREIGN KEY (turma) REFERENCES public.turma (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5456,7 +5646,7 @@ ALTER TABLE ONLY public.horario
 --
 
 ALTER TABLE ONLY public.item_ordem_compra
-    ADD CONSTRAINT item_ordem_compra_material_fkey FOREIGN KEY (material) REFERENCES public.material(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT item_ordem_compra_material_fkey FOREIGN KEY (material) REFERENCES public.material (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5465,7 +5655,7 @@ ALTER TABLE ONLY public.item_ordem_compra
 --
 
 ALTER TABLE ONLY public.item_ordem_compra
-    ADD CONSTRAINT item_ordem_compra_ordem_compra_fkey FOREIGN KEY (ordem_compra) REFERENCES public.ordem_compra(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT item_ordem_compra_ordem_compra_fkey FOREIGN KEY (ordem_compra) REFERENCES public.ordem_compra (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5474,7 +5664,7 @@ ALTER TABLE ONLY public.item_ordem_compra
 --
 
 ALTER TABLE ONLY public.manutencao_ativo
-    ADD CONSTRAINT manutencao_ativo_ativo_fkey FOREIGN KEY (ativo) REFERENCES public.ativo(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT manutencao_ativo_ativo_fkey FOREIGN KEY (ativo) REFERENCES public.ativo (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5483,7 +5673,7 @@ ALTER TABLE ONLY public.manutencao_ativo
 --
 
 ALTER TABLE ONLY public.manutencao_ativo
-    ADD CONSTRAINT manutencao_ativo_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT manutencao_ativo_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5492,7 +5682,7 @@ ALTER TABLE ONLY public.manutencao_ativo
 --
 
 ALTER TABLE ONLY public.manutencao_ativo
-    ADD CONSTRAINT manutencao_ativo_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT manutencao_ativo_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5501,7 +5691,7 @@ ALTER TABLE ONLY public.manutencao_ativo
 --
 
 ALTER TABLE ONLY public.material
-    ADD CONSTRAINT material_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT material_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5510,7 +5700,7 @@ ALTER TABLE ONLY public.material
 --
 
 ALTER TABLE ONLY public.material
-    ADD CONSTRAINT material_tipo_material_fkey FOREIGN KEY (tipo_material) REFERENCES public.tipo_material(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT material_tipo_material_fkey FOREIGN KEY (tipo_material) REFERENCES public.tipo_material (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5519,7 +5709,7 @@ ALTER TABLE ONLY public.material
 --
 
 ALTER TABLE ONLY public.matricula
-    ADD CONSTRAINT matricula_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT matricula_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5528,7 +5718,7 @@ ALTER TABLE ONLY public.matricula
 --
 
 ALTER TABLE ONLY public.matricula
-    ADD CONSTRAINT matricula_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT matricula_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5537,7 +5727,7 @@ ALTER TABLE ONLY public.matricula
 --
 
 ALTER TABLE ONLY public.orcamento
-    ADD CONSTRAINT orcamento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT orcamento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5546,7 +5736,7 @@ ALTER TABLE ONLY public.orcamento
 --
 
 ALTER TABLE ONLY public.orcamento
-    ADD CONSTRAINT orcamento_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT orcamento_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5555,7 +5745,7 @@ ALTER TABLE ONLY public.orcamento
 --
 
 ALTER TABLE ONLY public.ordem_compra
-    ADD CONSTRAINT ordem_compra_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT ordem_compra_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5564,7 +5754,7 @@ ALTER TABLE ONLY public.ordem_compra
 --
 
 ALTER TABLE ONLY public.ordem_compra
-    ADD CONSTRAINT ordem_compra_fornecedor_fkey FOREIGN KEY (fornecedor) REFERENCES public.fornecedor(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT ordem_compra_fornecedor_fkey FOREIGN KEY (fornecedor) REFERENCES public.fornecedor (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5573,7 +5763,7 @@ ALTER TABLE ONLY public.ordem_compra
 --
 
 ALTER TABLE ONLY public.ordem_compra
-    ADD CONSTRAINT ordem_compra_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT ordem_compra_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5582,7 +5772,7 @@ ALTER TABLE ONLY public.ordem_compra
 --
 
 ALTER TABLE ONLY public.pagamento
-    ADD CONSTRAINT pagamento_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pagamento_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5591,7 +5781,7 @@ ALTER TABLE ONLY public.pagamento
 --
 
 ALTER TABLE ONLY public.pagamento
-    ADD CONSTRAINT pagamento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pagamento_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5600,7 +5790,7 @@ ALTER TABLE ONLY public.pagamento
 --
 
 ALTER TABLE ONLY public.pagamento
-    ADD CONSTRAINT pagamento_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pagamento_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5609,7 +5799,7 @@ ALTER TABLE ONLY public.pagamento
 --
 
 ALTER TABLE ONLY public.pagamento
-    ADD CONSTRAINT pagamento_tipo_pagamento_fkey FOREIGN KEY (tipo_pagamento) REFERENCES public.tipo_pagamento(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pagamento_tipo_pagamento_fkey FOREIGN KEY (tipo_pagamento) REFERENCES public.tipo_pagamento (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5618,7 +5808,7 @@ ALTER TABLE ONLY public.pagamento
 --
 
 ALTER TABLE ONLY public.participante_evento
-    ADD CONSTRAINT participante_evento_evento_fkey FOREIGN KEY (evento) REFERENCES public.evento(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT participante_evento_evento_fkey FOREIGN KEY (evento) REFERENCES public.evento (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5627,7 +5817,7 @@ ALTER TABLE ONLY public.participante_evento
 --
 
 ALTER TABLE ONLY public.participante_evento
-    ADD CONSTRAINT participante_evento_tipo_participante_fkey FOREIGN KEY (tipo_participante) REFERENCES public.tipo_pessoa(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT participante_evento_tipo_participante_fkey FOREIGN KEY (tipo_participante) REFERENCES public.tipo_pessoa (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5636,7 +5826,7 @@ ALTER TABLE ONLY public.participante_evento
 --
 
 ALTER TABLE ONLY public.pauta_final
-    ADD CONSTRAINT pauta_final_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_final_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5645,7 +5835,7 @@ ALTER TABLE ONLY public.pauta_final
 --
 
 ALTER TABLE ONLY public.pauta_final
-    ADD CONSTRAINT pauta_final_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_final_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5654,7 +5844,7 @@ ALTER TABLE ONLY public.pauta_final
 --
 
 ALTER TABLE ONLY public.pauta_final
-    ADD CONSTRAINT pauta_final_estado_pauta_fkey FOREIGN KEY (estado_pauta) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_final_estado_pauta_fkey FOREIGN KEY (estado_pauta) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5663,7 +5853,7 @@ ALTER TABLE ONLY public.pauta_final
 --
 
 ALTER TABLE ONLY public.pauta_final
-    ADD CONSTRAINT pauta_final_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_final_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5672,7 +5862,7 @@ ALTER TABLE ONLY public.pauta_final
 --
 
 ALTER TABLE ONLY public.pauta_trimestral
-    ADD CONSTRAINT pauta_trimestral_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_trimestral_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5681,7 +5871,7 @@ ALTER TABLE ONLY public.pauta_trimestral
 --
 
 ALTER TABLE ONLY public.pauta_trimestral
-    ADD CONSTRAINT pauta_trimestral_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_trimestral_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5690,7 +5880,7 @@ ALTER TABLE ONLY public.pauta_trimestral
 --
 
 ALTER TABLE ONLY public.pauta_trimestral
-    ADD CONSTRAINT pauta_trimestral_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_trimestral_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5699,7 +5889,7 @@ ALTER TABLE ONLY public.pauta_trimestral
 --
 
 ALTER TABLE ONLY public.pauta_trimestral
-    ADD CONSTRAINT pauta_trimestral_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT pauta_trimestral_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5708,7 +5898,7 @@ ALTER TABLE ONLY public.pauta_trimestral
 --
 
 ALTER TABLE ONLY public.presencas_aluno
-    ADD CONSTRAINT presencas_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT presencas_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5717,7 +5907,7 @@ ALTER TABLE ONLY public.presencas_aluno
 --
 
 ALTER TABLE ONLY public.presencas_aluno
-    ADD CONSTRAINT presencas_aluno_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT presencas_aluno_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5726,7 +5916,7 @@ ALTER TABLE ONLY public.presencas_aluno
 --
 
 ALTER TABLE ONLY public.presencas_aluno
-    ADD CONSTRAINT presencas_aluno_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT presencas_aluno_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5735,7 +5925,7 @@ ALTER TABLE ONLY public.presencas_aluno
 --
 
 ALTER TABLE ONLY public.presencas_aluno
-    ADD CONSTRAINT presencas_aluno_turma_fkey FOREIGN KEY (turma) REFERENCES public.turma(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT presencas_aluno_turma_fkey FOREIGN KEY (turma) REFERENCES public.turma (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5744,7 +5934,7 @@ ALTER TABLE ONLY public.presencas_aluno
 --
 
 ALTER TABLE ONLY public.professor
-    ADD CONSTRAINT professor_area_formacao_fkey FOREIGN KEY (area_formacao) REFERENCES public.area_cientifica(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT professor_area_formacao_fkey FOREIGN KEY (area_formacao) REFERENCES public.area_cientifica (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5753,7 +5943,7 @@ ALTER TABLE ONLY public.professor
 --
 
 ALTER TABLE ONLY public.professor_disciplina
-    ADD CONSTRAINT professor_disciplina_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT professor_disciplina_disciplina_fkey FOREIGN KEY (disciplina) REFERENCES public.disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5762,7 +5952,7 @@ ALTER TABLE ONLY public.professor_disciplina
 --
 
 ALTER TABLE ONLY public.professor_disciplina
-    ADD CONSTRAINT professor_disciplina_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT professor_disciplina_professor_fkey FOREIGN KEY (professor) REFERENCES public.professor (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5771,7 +5961,7 @@ ALTER TABLE ONLY public.professor_disciplina
 --
 
 ALTER TABLE ONLY public.professor
-    ADD CONSTRAINT professor_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT professor_distrito_nascimento_fkey FOREIGN KEY (distrito_nascimento) REFERENCES public.distrito (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5780,7 +5970,7 @@ ALTER TABLE ONLY public.professor
 --
 
 ALTER TABLE ONLY public.professor
-    ADD CONSTRAINT professor_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT professor_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5789,7 +5979,7 @@ ALTER TABLE ONLY public.professor
 --
 
 ALTER TABLE ONLY public.professor
-    ADD CONSTRAINT professor_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador(id);
+    ADD CONSTRAINT professor_id_fkey FOREIGN KEY (id) REFERENCES public.utilizador (id);
 
 
 --
@@ -5798,7 +5988,7 @@ ALTER TABLE ONLY public.professor
 --
 
 ALTER TABLE ONLY public.receita
-    ADD CONSTRAINT receita_categoria_fkey FOREIGN KEY (categoria) REFERENCES public.categoria_financeira(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT receita_categoria_fkey FOREIGN KEY (categoria) REFERENCES public.categoria_financeira (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5807,7 +5997,7 @@ ALTER TABLE ONLY public.receita
 --
 
 ALTER TABLE ONLY public.receita
-    ADD CONSTRAINT receita_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT receita_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5816,7 +6006,7 @@ ALTER TABLE ONLY public.receita
 --
 
 ALTER TABLE ONLY public.receita
-    ADD CONSTRAINT receita_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT receita_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5825,7 +6015,7 @@ ALTER TABLE ONLY public.receita
 --
 
 ALTER TABLE ONLY public.relatorio_financeiro
-    ADD CONSTRAINT relatorio_financeiro_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT relatorio_financeiro_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5834,7 +6024,7 @@ ALTER TABLE ONLY public.relatorio_financeiro
 --
 
 ALTER TABLE ONLY public.relatorio_financeiro
-    ADD CONSTRAINT relatorio_financeiro_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT relatorio_financeiro_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5843,7 +6033,7 @@ ALTER TABLE ONLY public.relatorio_financeiro
 --
 
 ALTER TABLE ONLY public.relatorio_financeiro
-    ADD CONSTRAINT relatorio_financeiro_tipo_relatorio_fkey FOREIGN KEY (tipo_relatorio) REFERENCES public.tipo_relatorio(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT relatorio_financeiro_tipo_relatorio_fkey FOREIGN KEY (tipo_relatorio) REFERENCES public.tipo_relatorio (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5852,7 +6042,7 @@ ALTER TABLE ONLY public.relatorio_financeiro
 --
 
 ALTER TABLE ONLY public.requisicao_material
-    ADD CONSTRAINT requisicao_material_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT requisicao_material_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5861,7 +6051,7 @@ ALTER TABLE ONLY public.requisicao_material
 --
 
 ALTER TABLE ONLY public.requisicao_material
-    ADD CONSTRAINT requisicao_material_material_fkey FOREIGN KEY (material) REFERENCES public.material(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT requisicao_material_material_fkey FOREIGN KEY (material) REFERENCES public.material (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5870,7 +6060,7 @@ ALTER TABLE ONLY public.requisicao_material
 --
 
 ALTER TABLE ONLY public.requisicao_material
-    ADD CONSTRAINT requisicao_material_requisitor_fkey FOREIGN KEY (requisitor) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT requisicao_material_requisitor_fkey FOREIGN KEY (requisitor) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5879,7 +6069,7 @@ ALTER TABLE ONLY public.requisicao_material
 --
 
 ALTER TABLE ONLY public.transacao
-    ADD CONSTRAINT transacao_categoria_fkey FOREIGN KEY (categoria) REFERENCES public.categoria_financeira(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT transacao_categoria_fkey FOREIGN KEY (categoria) REFERENCES public.categoria_financeira (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5888,7 +6078,7 @@ ALTER TABLE ONLY public.transacao
 --
 
 ALTER TABLE ONLY public.transacao
-    ADD CONSTRAINT transacao_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT transacao_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5897,7 +6087,7 @@ ALTER TABLE ONLY public.transacao
 --
 
 ALTER TABLE ONLY public.transacao
-    ADD CONSTRAINT transacao_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT transacao_responsavel_fkey FOREIGN KEY (responsavel) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5906,7 +6096,7 @@ ALTER TABLE ONLY public.transacao
 --
 
 ALTER TABLE ONLY public.transacao
-    ADD CONSTRAINT transacao_tipo_transacao_fkey FOREIGN KEY (tipo_transacao) REFERENCES public.tipo_transacao(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT transacao_tipo_transacao_fkey FOREIGN KEY (tipo_transacao) REFERENCES public.tipo_transacao (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5915,7 +6105,7 @@ ALTER TABLE ONLY public.transacao
 --
 
 ALTER TABLE ONLY public.turma_aluno
-    ADD CONSTRAINT turma_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT turma_aluno_aluno_fkey FOREIGN KEY (aluno) REFERENCES public.aluno (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5924,7 +6114,7 @@ ALTER TABLE ONLY public.turma_aluno
 --
 
 ALTER TABLE ONLY public.turma_aluno
-    ADD CONSTRAINT turma_aluno_turma_fkey FOREIGN KEY (turma) REFERENCES public.turma(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT turma_aluno_turma_fkey FOREIGN KEY (turma) REFERENCES public.turma (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5933,7 +6123,7 @@ ALTER TABLE ONLY public.turma_aluno
 --
 
 ALTER TABLE ONLY public.turma
-    ADD CONSTRAINT turma_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT turma_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5942,7 +6132,7 @@ ALTER TABLE ONLY public.turma
 --
 
 ALTER TABLE ONLY public.turma
-    ADD CONSTRAINT turma_professor_responsavel_fkey FOREIGN KEY (professor_responsavel) REFERENCES public.professor(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT turma_professor_responsavel_fkey FOREIGN KEY (professor_responsavel) REFERENCES public.professor (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5951,7 +6141,7 @@ ALTER TABLE ONLY public.turma
 --
 
 ALTER TABLE ONLY public.veiculo
-    ADD CONSTRAINT veiculo_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT veiculo_estado_fkey FOREIGN KEY (estado) REFERENCES public.estado (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -5960,7 +6150,7 @@ ALTER TABLE ONLY public.veiculo
 --
 
 ALTER TABLE ONLY public.veiculo
-    ADD CONSTRAINT veiculo_motorista_fkey FOREIGN KEY (motorista) REFERENCES public.funcionario(id) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT veiculo_motorista_fkey FOREIGN KEY (motorista) REFERENCES public.funcionario (id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 -- Completed on 2024-10-02 20:21:43

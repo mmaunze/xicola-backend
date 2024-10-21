@@ -1,5 +1,9 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
@@ -7,10 +11,6 @@ import mz.co.mefemasys.xicola.backend.models.RelatorioFinanceiro;
 import mz.co.mefemasys.xicola.backend.repository.RelatorioFinanceiroRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -74,4 +74,5 @@ public class RelatorioFinanceiroService {
 
         // Adicione outras validações conforme necessário
     }
+    private static final Logger LOG = Logger.getLogger(RelatorioFinanceiroService.class.getName());
 }

@@ -3,6 +3,7 @@ package mz.co.mefemasys.xicola.backend.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.util.logging.Logger;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
@@ -35,5 +36,6 @@ public class ParticipanteEvento {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "tipo_participante", nullable = false)
     private TipoPessoa tipoParticipante;
+    private static final Logger LOG = Logger.getLogger(ParticipanteEvento.class.getName());
 
 }

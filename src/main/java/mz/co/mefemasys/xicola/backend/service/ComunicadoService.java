@@ -1,13 +1,13 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.Date;
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.Comunicado;
 import mz.co.mefemasys.xicola.backend.repository.ComunicadoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -69,4 +69,5 @@ public class ComunicadoService {
             throw new ResourceNotFoundException(CONTEUDO_VAZIO_MESSAGE);
         }
     }
+    private static final Logger LOG = Logger.getLogger(ComunicadoService.class.getName());
 }

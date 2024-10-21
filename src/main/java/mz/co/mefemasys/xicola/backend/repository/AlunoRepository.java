@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
     @Query("SELECT count(a) FROM Aluno a WHERE a.estado.descricao = :descricao")
-    Long findAlunosByEstado (@Param("descricao") String descricao);
+    Long findAlunosByEstado(@Param("descricao") String descricao);
 }

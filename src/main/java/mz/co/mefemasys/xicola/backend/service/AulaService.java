@@ -1,5 +1,8 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
@@ -10,9 +13,6 @@ import mz.co.mefemasys.xicola.backend.repository.DisciplinaRepository;
 import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -119,4 +119,5 @@ public class AulaService {
             throw new BadRequestException("Data da aula " + DATA_AULA_VAZIA_MESSAGE);
         }
     }
+    private static final Logger LOG = Logger.getLogger(AulaService.class.getName());
 }

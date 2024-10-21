@@ -7,7 +7,10 @@ import mz.co.mefemasys.xicola.backend.dto.create.CreateProfessorDTO;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.*;
-import mz.co.mefemasys.xicola.backend.repository.*;
+import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
+import mz.co.mefemasys.xicola.backend.repository.ProfessorRepository;
+import mz.co.mefemasys.xicola.backend.repository.RoleRepository;
+import mz.co.mefemasys.xicola.backend.repository.UtilizadorRepository;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 @Service
 @RequiredArgsConstructor
@@ -34,12 +38,11 @@ public class ProfessorService implements MetodosGerais {
     private static final String DATA_NASCIMENTO_VAZIA_MESSAGE = "A data de nascimento do professor não pode estar vazia";
     private static final String DATA_INVALIDA_MESSAGE = "Data Inválida";
     private static final String ESTADO_NOT_FOUND_MESSAGE = "Estado não encontrado com o nome: ";
-
-
+    private static final Logger LOG = Logger.getLogger(ProfessorService.class.getName());
     private final ProfessorRepository professorRepository;
     private final EstadoRepository estadoRepository;
     private final UtilizadorRepository utilizadorRepository;
-    private  final PasswordEncoder encoder;
+    private final PasswordEncoder encoder;
     private final RoleRepository roleRepository;
     private final EstadoService estadoService;
     private final DistritoService distritoService;
@@ -58,7 +61,7 @@ public class ProfessorService implements MetodosGerais {
     }
 
     @Transactional(readOnly = true)
-    public Long count(){
+    public Long count() {
         return professorRepository.count();
     }
 
@@ -125,11 +128,10 @@ public class ProfessorService implements MetodosGerais {
         log.info("Utilizador salvo com sucesso.");
 
 
-
         Utilizador cadastrado = utilizadorRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(PROFESSOR_NOT_FOUND_MESSAGE + id));
 
-        log.info("Usuario Encontrado {}",cadastrado.getId());
+        log.info("Usuario Encontrado {}", cadastrado.getId());
 
         /*
          * Cadastrar o professor
@@ -151,8 +153,9 @@ public class ProfessorService implements MetodosGerais {
         newProfessor.setDistritoNascimento(distrito);
         newProfessor.setEstado(estado);
 
-        if (professor.getNumeroTelefoneAlternativo() == null)
-        { professor.setNumeroTelefoneAlternativo(professor.getNumeroTelefonePrincipal());}
+        if (professor.getNumeroTelefoneAlternativo() == null) {
+            professor.setNumeroTelefoneAlternativo(professor.getNumeroTelefonePrincipal());
+        }
 
         newProfessor.setNumeroTelefonePrincipal(professor.getNumeroTelefonePrincipal());
         newProfessor.setNumeroTelefoneAlternativo(professor.getNumeroTelefoneAlternativo());
@@ -162,14 +165,13 @@ public class ProfessorService implements MetodosGerais {
         newProfessor.setEscolaAnterior(professor.getEscolaAnterior());
         newProfessor.setGrupoSanguineo(professor.getGrupoSanguineo());
 
-        log.info("Professor criado: {} {}" , newProfessor.getDataContracto() , newProfessor.getDataNascimento());
+        log.info("Professor criado: {} {}", newProfessor.getDataContracto(), newProfessor.getDataNascimento());
         log.info("Salvando o professor...");
         professorRepository.save(newProfessor);
         log.info("Professor salvo com sucesso: {}", newProfessor);
 
         return newProfessor;
     }
-
 
     @Transactional
     public Professor update(Long id, Professor professorAtualizado) {
@@ -320,11 +322,11 @@ public class ProfessorService implements MetodosGerais {
     }
 
     private Estado fectchEstado(String estado) {
-        return estadoService.findEstado(estado) ;
+        return estadoService.findEstado(estado);
     }
 
     private AreaCientifica fectchAreaCientifica(String areaCientifica) {
-        return areaCientificaService.findArea(areaCientifica) ;
+        return areaCientificaService.findArea(areaCientifica);
     }
 
 

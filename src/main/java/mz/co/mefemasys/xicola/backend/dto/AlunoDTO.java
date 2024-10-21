@@ -5,10 +5,12 @@ import mz.co.mefemasys.xicola.backend.models.Aluno;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
 import java.time.Instant;
+import java.util.logging.Logger;
 
 @Data
 public class AlunoDTO implements MetodosGerais {
 
+    private static final Logger LOG = Logger.getLogger(AlunoDTO.class.getName());
     private Long id;
     private String nomeCompleto;
     private String dataNascimento;
@@ -25,7 +27,6 @@ public class AlunoDTO implements MetodosGerais {
     private String nomeDoPai;
     private String nomeDaMae;
     private Long numeroTelefonePrincipal;
-
 
     public AlunoDTO(Aluno aluno) {
         this.id = aluno.getId();

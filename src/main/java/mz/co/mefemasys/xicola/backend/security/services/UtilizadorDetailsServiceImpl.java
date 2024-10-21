@@ -11,16 +11,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UtilizadorDetailsServiceImpl implements UserDetailsService {
-  @Autowired
-  UtilizadorRepository utilizadorRepository;
+    @Autowired
+    UtilizadorRepository utilizadorRepository;
 
-  @Override
-  @Transactional
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    Utilizador utilizador = utilizadorRepository.findByUsername(username)
-        .orElseThrow(() -> new UsernameNotFoundException("Utilizador inexistente: " + username));
+    @Override
+    @Transactional
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Utilizador utilizador = utilizadorRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Utilizador inexistente: " + username));
 
-    return UtilizadorDetailsImpl.build(utilizador);
-  }
+        return UtilizadorDetailsImpl.build(utilizador);
+    }
 
 }

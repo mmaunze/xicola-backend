@@ -1,5 +1,8 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
@@ -7,9 +10,6 @@ import mz.co.mefemasys.xicola.backend.models.RequisicaoMaterial;
 import mz.co.mefemasys.xicola.backend.repository.RequisicaoMaterialRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -75,4 +75,5 @@ public class RequisicaoMaterialService {
 
         // Adicione outras validações conforme necessário
     }
+    private static final Logger LOG = Logger.getLogger(RequisicaoMaterialService.class.getName());
 }

@@ -53,8 +53,8 @@ public class DistritoService {
         validarDistritoExistente(id);
         validarCamposObrigatorios(distritoAtualizado);
 
-        var distritoExistente = distritoRepository.findById(id)               
-         .orElseThrow(() -> new ResourceNotFoundException(String.format(DISTRICT_NOT_FOUND_MESSAGE, id)));
+        var distritoExistente = distritoRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(DISTRICT_NOT_FOUND_MESSAGE, id)));
         mapearDistritoAtualizado(distritoExistente, distritoAtualizado);
 
         return distritoRepository.save(distritoExistente);
@@ -80,6 +80,6 @@ public class DistritoService {
 
     private void mapearDistritoAtualizado(Distrito distritoExistente, Distrito distritoAtualizado) {
         distritoExistente.setNomeDistrito(distritoAtualizado.getNomeDistrito());
-        
+
     }
 }

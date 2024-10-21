@@ -1,24 +1,27 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import mz.co.mefemasys.xicola.backend.dto.DespesaDTO;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.CategoriaFinanceira;
 import mz.co.mefemasys.xicola.backend.models.Despesa;
 import mz.co.mefemasys.xicola.backend.models.Estado;
 import mz.co.mefemasys.xicola.backend.models.Funcionario;
-import mz.co.mefemasys.xicola.backend.dto.DespesaDTO;
 import mz.co.mefemasys.xicola.backend.service.CategoriaFinanceiraService;
 import mz.co.mefemasys.xicola.backend.service.DespesaService;
 import mz.co.mefemasys.xicola.backend.service.EstadoService;
 import mz.co.mefemasys.xicola.backend.service.FuncionarioService;
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,6 +30,7 @@ import org.springframework.web.bind.annotation.*;
 @PreAuthorize("isFullyAuthenticated()")
 public class DespesaController {
 
+    private static final Logger LOG = Logger.getLogger(DespesaController.class.getName());
     private final DespesaService despesaService;
     private final CategoriaFinanceiraService categoriaFinanceiraService;
     private final FuncionarioService funcionarioService;

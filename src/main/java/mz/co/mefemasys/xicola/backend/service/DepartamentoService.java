@@ -1,5 +1,7 @@
 package mz.co.mefemasys.xicola.backend.service;
 
+import java.util.Optional;
+import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
@@ -7,8 +9,6 @@ import mz.co.mefemasys.xicola.backend.models.Departamento;
 import mz.co.mefemasys.xicola.backend.repository.DepartamentoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -107,4 +107,5 @@ public class DepartamentoService {
         }
 
     }
+    private static final Logger LOG = Logger.getLogger(DepartamentoService.class.getName());
 }
