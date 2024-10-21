@@ -47,8 +47,6 @@ public class FuncionarioDTO implements MetodosGerais {
 
     private String areaFormacao;
 
-    private String tipoFuncionario;
-
     private String nomeDoPai;
 
     private String nomeDaMae;
@@ -89,8 +87,6 @@ public class FuncionarioDTO implements MetodosGerais {
         this.grupoSanguineo = funcionario.getGrupoSanguineo();
 
         this.areaFormacao = funcionario.getAreaFormacao().getDescricao();
-
-        this.tipoFuncionario = funcionario.getTipoFuncionario().getDescricao();
 
         this.nomeDaMae = funcionario.getNomeDaMae();
 

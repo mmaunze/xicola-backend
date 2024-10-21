@@ -128,10 +128,5 @@ public class Funcionario {
     @JoinColumn(name = "area_formacao", nullable = false)
     private AreaCientifica areaFormacao;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "tipo_funcionario", nullable = false)
-    private TipoFuncionario tipoFuncionario;
 
 }

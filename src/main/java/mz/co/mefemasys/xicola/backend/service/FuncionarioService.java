@@ -86,8 +86,6 @@ public class FuncionarioService implements MetodosGerais {
 
     private final CargoService cargoService;
 
-    private final TipoFuncionarioService tipoFuncionarioService;
-
     private final DepartamentoService departamentoService;
 
     @Transactional(readOnly = true)
@@ -323,7 +321,7 @@ public class FuncionarioService implements MetodosGerais {
 
         newFuncionario.setGrupoSanguineo(funcionario.getGrupoSanguineo());
 
-        newFuncionario.setTipoFuncionario(fetchTipoFuncionario(funcionario.getTipoFuncionario()));
+
 
         log.info("Funcionario criado: {} {}", newFuncionario.getDataContracto(), newFuncionario.getDataNascimento());
 
@@ -399,7 +397,6 @@ public class FuncionarioService implements MetodosGerais {
 
         funcionarioExistente.setNumeroTelefoneAlternativo(funcionarioAtualizado.getNumeroTelefoneAlternativo());
 
-        funcionarioExistente.setTipoFuncionario(funcionarioAtualizado.getTipoFuncionario());
 
         funcionarioExistente.setCargo(funcionarioAtualizado.getCargo());
 
@@ -557,9 +554,6 @@ public class FuncionarioService implements MetodosGerais {
 
     }
 
-    private TipoFuncionario fetchTipoFuncionario(String tipoFuncionario) {
-        return tipoFuncionarioService.findTipoFuncionario(tipoFuncionario);
 
-    }
 
 }

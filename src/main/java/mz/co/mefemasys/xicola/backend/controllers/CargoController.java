@@ -38,7 +38,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/geral/cargos")
+@RequestMapping("/cargos")
 @Slf4j
 @PreAuthorize("isFullyAuthenticated()")
 public class CargoController {

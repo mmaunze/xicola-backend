@@ -39,8 +39,6 @@ public class CreateFuncionarioDTO implements MetodosGerais {
 
     private String areaFormacao;
 
-    private String tipoFuncionario;
-
     private String nomeDoPai;
 
     private String nomeDaMae;

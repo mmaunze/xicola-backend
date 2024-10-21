@@ -36,7 +36,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/geral/departamentos")
+@RequestMapping("/departamentos")
 @Slf4j
 @PreAuthorize("isFullyAuthenticated()")
 public class DepartamentoController {
