@@ -12,5 +12,6 @@ public enum ERole {
     ROLE_AQUISICOES,
     ROLE_DIRECTOR,
     ROLE_ENCARREGADO,
+    ROLE_SECRETARIA,
 
 }

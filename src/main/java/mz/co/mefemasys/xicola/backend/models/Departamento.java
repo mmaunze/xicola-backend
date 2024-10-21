@@ -1,19 +1,24 @@
 package mz.co.mefemasys.xicola.backend.models;
 
 import jakarta.persistence.*;
+
 import jakarta.validation.constraints.NotNull;
+
 import jakarta.validation.constraints.Size;
+
 import lombok.Getter;
+
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "departamento", schema = "public", uniqueConstraints = {
-        @UniqueConstraint(name = "departamento_descricao_key", columnNames = {"descricao"}),
-        @UniqueConstraint(name = "departamento_sigla_key", columnNames = {"sigla"})
+    @UniqueConstraint(name = "departamento_descricao_key", columnNames = {"descricao"}),
+    @UniqueConstraint(name = "departamento_sigla_key", columnNames = {"sigla"})
 })
 public class Departamento {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 

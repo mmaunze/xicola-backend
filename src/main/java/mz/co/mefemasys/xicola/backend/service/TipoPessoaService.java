@@ -1,11 +1,17 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
+
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
+
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
+
 import mz.co.mefemasys.xicola.backend.models.TipoPessoa;
+
 import mz.co.mefemasys.xicola.backend.repository.TipoPessoaRepository;
+
 import org.springframework.stereotype.Service;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -22,11 +28,13 @@ public class TipoPessoaService {
     public TipoPessoa findById(Long id) {
         return tipoPessoaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_PESSOA_NOT_FOUND_MESSAGE + id));
+
     }
 
     @Transactional(readOnly = true)
     public List<TipoPessoa> findAll() {
         return tipoPessoaRepository.findAll();
+
     }
 
     @Transactional
@@ -34,6 +42,7 @@ public class TipoPessoaService {
         validarTipoPessoa(tipoPessoa);
 
         return tipoPessoaRepository.save(tipoPessoa);
+
     }
 
     @Transactional
@@ -46,6 +55,7 @@ public class TipoPessoaService {
         tipoPessoaExistente.setDescricao(tipoPessoaAtualizado.getDescricao());
 
         return tipoPessoaRepository.save(tipoPessoaExistente);
+
     }
 
     @Transactional
@@ -54,11 +64,13 @@ public class TipoPessoaService {
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_PESSOA_NOT_FOUND_MESSAGE + id));
 
         tipoPessoaRepository.delete(tipoPessoa);
+
     }
 
     private void validarTipoPessoa(TipoPessoa tipoPessoa) {
         if (tipoPessoa.getDescricao() == null || tipoPessoa.getDescricao().isEmpty()) {
             throw new BadRequestException("A descrição do tipo de pessoa não pode ser nula ou vazia.");
+
         }
 
         // Adicione outras validações conforme necessário
@@ -67,5 +79,6 @@ public class TipoPessoaService {
     public TipoPessoa findDestinatario(String destinatario) {
         return tipoPessoaRepository.findTipoPessoa(destinatario)
                 .orElseThrow(() -> new ResourceNotFoundException(TIPO_PESSOA_NOT_FOUND_MESSAGE + destinatario));
+
     }
 }

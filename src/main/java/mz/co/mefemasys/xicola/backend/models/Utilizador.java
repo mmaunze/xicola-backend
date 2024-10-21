@@ -1,20 +1,25 @@
 package mz.co.mefemasys.xicola.backend.models;
 
 import jakarta.persistence.*;
+
 import jakarta.validation.constraints.Email;
+
 import jakarta.validation.constraints.NotBlank;
+
 import jakarta.validation.constraints.Size;
+
 import lombok.Data;
 
 import java.util.HashSet;
+
 import java.util.Set;
 
 @Entity
 @Data
 @Table(name = "utilizador",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = "username"),
-                @UniqueConstraint(columnNames = "email")
+            @UniqueConstraint(columnNames = "username"),
+            @UniqueConstraint(columnNames = "email")
         })
 public class Utilizador {
 
@@ -47,9 +52,13 @@ public class Utilizador {
 
     public Utilizador(String username, String nome, String email, String password) {
         this.username = username;
+
         this.email = email;
+
         this.password = password;
+
         this.nome = nome;
+
     }
 
 }

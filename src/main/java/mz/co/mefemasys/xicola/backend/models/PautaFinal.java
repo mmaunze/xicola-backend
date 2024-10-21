@@ -1,21 +1,33 @@
 package mz.co.mefemasys.xicola.backend.models;
 
 import jakarta.persistence.*;
+
 import jakarta.validation.constraints.NotNull;
+
 import jakarta.validation.constraints.Size;
-import java.time.Instant;
-import java.util.logging.Logger;
+
 import lombok.Getter;
+
 import lombok.Setter;
+
 import org.hibernate.annotations.ColumnDefault;
+
 import org.hibernate.annotations.OnDelete;
+
 import org.hibernate.annotations.OnDeleteAction;
+
+import java.time.Instant;
+
+import java.util.logging.Logger;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "pauta_final", schema = "public")
 public class PautaFinal {
+
+    private static final Logger LOG = Logger.getLogger(PautaFinal.class.getName());
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -61,6 +73,5 @@ public class PautaFinal {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "estado_pauta", nullable = false)
     private Estado estadoPauta;
-    private static final Logger LOG = Logger.getLogger(PautaFinal.class.getName());
 
 }

@@ -1,6 +1,7 @@
 package mz.co.mefemasys.xicola.backend;
 
 import org.springframework.boot.SpringApplication;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.logging.Logger;
@@ -12,6 +13,7 @@ public class XicolaBackend {
 
     public static void main(String[] args) {
         SpringApplication.run(XicolaBackend.class, args);
+
     }
 
 }

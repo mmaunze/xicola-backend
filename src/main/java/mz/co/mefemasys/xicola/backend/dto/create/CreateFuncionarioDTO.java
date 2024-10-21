@@ -2,23 +2,14 @@ package mz.co.mefemasys.xicola.backend.dto.create;
 
 import lombok.Data;
 
-import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
 import java.time.LocalDate;
 
-import java.util.logging.Logger;
-
 @Data
-@RequiredArgsConstructor
-public class CreateEncarregadoDTO implements MetodosGerais {
-
-    private static final Logger LOG = Logger.getLogger(CreateEncarregadoDTO.class.getName());
+public class CreateFuncionarioDTO implements MetodosGerais {
 
     private String nomeCompleto;
-
-    private String email;
 
     private LocalDate dataNascimento;
 
@@ -26,24 +17,32 @@ public class CreateEncarregadoDTO implements MetodosGerais {
 
     private String sexo;
 
+    private String endereco;
+
+    private String email;
+
+    private Long numeroTelefonePrincipal;
+
+    private Long numeroTelefoneAlternativo;
+
+    private String cargo;
+
+    private String departamento;
+
+    private String estadoCivil;
+
     private String bilheteIdentificacao;
 
     private String religiao;
 
     private String grupoSanguineo;
 
-    private String endereco;
+    private String areaFormacao;
 
-    private String sectorTrabalho;
-
-    private String localTrabalho;
+    private String tipoFuncionario;
 
     private String nomeDoPai;
 
     private String nomeDaMae;
-
-    private Long numeroTelefonePrincipal;
-
-    private Long numeroTelefoneAlternativo;
 
 }

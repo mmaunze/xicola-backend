@@ -1,31 +1,41 @@
 package mz.co.mefemasys.xicola.backend.models;
 
 import jakarta.persistence.*;
+
 import jakarta.validation.constraints.NotNull;
+
 import jakarta.validation.constraints.Size;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.logging.Logger;
+
 import lombok.Getter;
+
 import lombok.Setter;
+
 import org.hibernate.annotations.ColumnDefault;
+
 import org.hibernate.annotations.OnDelete;
+
 import org.hibernate.annotations.OnDeleteAction;
+
+import java.time.Instant;
+
+import java.time.LocalDate;
+
+import java.util.logging.Logger;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "funcionario", schema = "public")
 public class Funcionario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
+    private static final Logger LOG = Logger.getLogger(Funcionario.class.getName());
+
+    @Id
     @Column(name = "id", nullable = false)
     private Long id;
 
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @ColumnDefault("nextval('funcionario_id_seq'::regclass)")
     @JoinColumn(name = "id", nullable = false)
     private Utilizador utilizador;
 
@@ -43,10 +53,22 @@ public class Funcionario {
     @JoinColumn(name = "distrito_nascimento")
     private Distrito distritoNascimento;
 
-    @Size(max = 1)
+    @Size(max = 150)
+    @Column(name = "nome_do_pai", length = 150)
+    private String nomeDoPai;
+
+    @Size(max = 150)
+    @Column(name = "nome_da_mae", length = 150)
+    private String nomeDaMae;
+
+    @Size(max = 12)
     @NotNull
-    @Column(name = "sexo", nullable = false, length = 1)
+    @Column(name = "sexo", nullable = false, length = 12)
     private String sexo;
+
+    @Size(max = 10)
+    @Column(name = "estado_civil", length = 10)
+    private String estadoCivil;
 
     @Size(max = 255)
     @NotNull
@@ -88,10 +110,6 @@ public class Funcionario {
     @JoinColumn(name = "estado", nullable = false)
     private Estado estado;
 
-    @Size(max = 10)
-    @Column(name = "estado_civil", length = 10)
-    private String estadoCivil;
-
     @Size(max = 13)
     @Column(name = "bilhete_identificacao", length = 13)
     private String bilheteIdentificacao;
@@ -115,6 +133,5 @@ public class Funcionario {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "tipo_funcionario", nullable = false)
     private TipoFuncionario tipoFuncionario;
-    private static final Logger LOG = Logger.getLogger(Funcionario.class.getName());
 
 }
