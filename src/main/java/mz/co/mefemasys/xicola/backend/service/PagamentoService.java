@@ -60,6 +60,29 @@ public class PagamentoService implements MetodosGerais {
 
     }
 
+
+    @Transactional(readOnly = true)
+    public Long count() {
+        return pagamentoRepository.count();
+
+    }
+
+    @Transactional(readOnly = true)
+    public Long totalEstado(String estado) {
+        if (estado == null || estado.trim().isEmpty()) {
+            return 0L;
+        }
+        return pagamentoRepository.totalEstado(estado);
+    }
+
+    @Transactional(readOnly = true)
+    public Long totalTipo(String tipo) {
+        if (tipo == null || tipo.trim().isEmpty()) {
+            return 0L;
+        }
+        return pagamentoRepository.totalTipo(tipo);
+    }
+
     @Transactional
     public Pagamento create(CreatePagamentoDTO pagamento) {
         var newPagamento = new Pagamento();

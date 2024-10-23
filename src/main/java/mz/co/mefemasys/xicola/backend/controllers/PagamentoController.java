@@ -70,6 +70,27 @@ public class PagamentoController implements MetodosGerais {
         }
     }
 
+    @GetMapping("/totais")
+    public ResponseEntity<Long> totais() {
+        var total = pagamentoService.count();
+        return new ResponseEntity<>(total, OK);
+
+    }
+
+    @GetMapping("/estado/{estado}")
+    public ResponseEntity<Long> totalEstado(@PathVariable String estado) {
+        var total = pagamentoService.totalEstado(estado);
+
+        return new ResponseEntity<>(total, OK);
+
+    }
+
+    @GetMapping("/tipo/{tipo}")
+    public ResponseEntity<Long> totalTipo(@PathVariable String tipo) {
+        var total = pagamentoService.totalTipo(tipo);
+        return new ResponseEntity<>(total, OK);
+    }
+
 
     @PostMapping("/registar")
     @PreAuthorize("hasRole('ADMIN') or hasRole('FINANCEIRO')")

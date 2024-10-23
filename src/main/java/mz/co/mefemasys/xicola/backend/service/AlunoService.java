@@ -86,13 +86,11 @@ public class AlunoService implements MetodosGerais {
     }
 
     @Transactional(readOnly = true)
-    public Long totalAlunosEstado(String estado) {
-
+    public Long totalEstado(String estado) {
         if (estado == null || estado.trim().isEmpty()) {
             return 0L;
 
         }
-
         return alunoRepository.totalEstado(estado);
 
     }

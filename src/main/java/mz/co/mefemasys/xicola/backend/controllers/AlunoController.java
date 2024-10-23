@@ -99,7 +99,7 @@ public class AlunoController implements MetodosGerais {
 
     @GetMapping("/estado/{estado}")
     public ResponseEntity<Long> totalEstado(@PathVariable String estado) {
-        var total = alunoService.totalAlunosEstado(estado);
+        var total = alunoService.totalEstado(estado);
 
         return new ResponseEntity<>(total, OK);
 
