@@ -139,7 +139,7 @@ public class PagamentoService implements MetodosGerais {
             throw new BadRequestException("A referência do pagamento não pode estar vazia.");
 
         }
-        // Aqui podem ser adicionadas outras validações específicas para a referência
+
     }
 
     private void validarValor(BigDecimal valor) {
@@ -147,7 +147,7 @@ public class PagamentoService implements MetodosGerais {
             throw new BadRequestException("O valor do pagamento deve ser maior que zero.");
 
         }
-        // Aqui podem ser adicionadas outras validações específicas para o valor
+
     }
 
     private void validarDataPagamento(LocalDate dataPagamento) {
@@ -159,9 +159,6 @@ public class PagamentoService implements MetodosGerais {
             throw new BadRequestException("A data do pagamento não pode estar vazia.");
 
         }
-
-        // Aqui podem ser adicionadas outras validações específicas para a data de
-        // pagamento
     }
 
     private void validarAluno(Pagamento pagamento) {
