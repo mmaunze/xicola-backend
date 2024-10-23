@@ -1,8 +1,6 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.Avaliacao;
 import mz.co.mefemasys.xicola.backend.models.Disciplina;
 import mz.co.mefemasys.xicola.backend.models.TipoAvaliacao;
@@ -10,6 +8,8 @@ import mz.co.mefemasys.xicola.backend.repository.AvaliacaoRepository;
 import mz.co.mefemasys.xicola.backend.repository.DisciplinaRepository;
 import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
 import mz.co.mefemasys.xicola.backend.repository.TipoAvaliacaoRepository;
+import mz.co.mefemasys.xicola.backend.utils.exceptions.ResourceNotFoundException;
+import mz.co.mefemasys.xicola.backend.utils.exceptions.BadRequestException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

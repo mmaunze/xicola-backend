@@ -2,14 +2,15 @@ package mz.co.mefemasys.xicola.backend.utils;
 
 import jakarta.validation.constraints.NotNull;
 
-import javax.swing.*;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.format.TextStyle;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.*;
+import java.time.temporal.ChronoField;
 import java.util.*;
 
 import static java.util.Calendar.*;
@@ -251,6 +252,20 @@ public interface MetodosGerais {
 
         return assunto;
     }
+
+    default String converterInstatParaString(Instant dataExata) {
+
+        ZoneId zonaAfricaCentral = ZoneId.of("Africa/Harare");
+        ZonedDateTime zonedDateTime = dataExata.atZone(zonaAfricaCentral);
+        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                .appendPattern("dd 'de' MMM 'de' uuuu HH:mm:ss")
+                .parseDefaulting(ChronoField.MONTH_OF_YEAR, 1)
+                .toFormatter(Locale.forLanguageTag("pt-BR"))
+                .withResolverStyle(ResolverStyle.STRICT);
+
+        return zonedDateTime.format(formatter);
+    }
+
 
     private String getCurrentTimestamp() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");

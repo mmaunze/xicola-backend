@@ -5,8 +5,11 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mz.co.mefemasys.xicola.backend.dto.AreaCientificaDTO;
+import mz.co.mefemasys.xicola.backend.dto.TipoPagamentoDTO;
 import mz.co.mefemasys.xicola.backend.models.AreaCientifica;
+import mz.co.mefemasys.xicola.backend.models.TipoPagamento;
 import mz.co.mefemasys.xicola.backend.service.AreaCientificaService;
+import mz.co.mefemasys.xicola.backend.service.TipoPagamentoService;
 import mz.co.mefemasys.xicola.backend.utils.exceptions.InternalServerErrorException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,28 +28,26 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @Data
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/areas-cientificas")
+@RequestMapping("/tipos_pagamento")
 @Slf4j
 @PreAuthorize("isFullyAuthenticated()")
-public class AreaCientificaController {
+public class TipoPagamentoController {
 
-    private static final Logger LOG = Logger.getLogger(AreaCientificaController.class.getName());
+    private static final Logger LOG = Logger.getLogger(TipoPagamentoController.class.getName());
+    private final TipoPagamentoService tipoPagamentoService;
 
-    private final AreaCientificaService areaCientificaService;
 
     @GetMapping
-    public ResponseEntity<List<AreaCientificaDTO>> findAll() {
+    public ResponseEntity<List<TipoPagamentoDTO>> findAll() {
         try {
-            var areas = areaCientificaService.findAll();
-
-            var areasDTO = areas.stream()
+            var tipoPagamentos = tipoPagamentoService.findAll();
+            var tipoPagamentoDTOS = tipoPagamentos.stream()
                     .map(this::convertToDTO)
                     .collect(toList());
-
-            return new ResponseEntity<>(areasDTO, OK);
+            return new ResponseEntity<>(tipoPagamentoDTOS, OK);
 
         } catch (Exception e) {
-            log.error("Erro ao buscar todas as áreas científicas", e);
+            log.error("Erro ao buscar todos tipos de pagamentos", e);
 
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
 
@@ -54,61 +55,51 @@ public class AreaCientificaController {
     }
 
     @GetMapping("/area/{id}")
-    public ResponseEntity<AreaCientificaDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<TipoPagamentoDTO> findById(@PathVariable Long id) {
         try {
-            var area = areaCientificaService.findById(id);
-
-            return ResponseEntity.ok(new AreaCientificaDTO(area));
+            var area = tipoPagamentoService.findById(id);
+            return ResponseEntity.ok(new TipoPagamentoDTO(area));
 
         } catch (EntityNotFoundException e) {
-            log.error("Área científica não encontrada com o ID: " + id, e);
-
+            log.error("Tipo de Pagamento não encontrado com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-
         } catch (InternalServerErrorException e) {
-            log.error("Erro ao buscar área científica com o ID: " + id, e);
-
+            log.error("Erro ao buscar  tipo de pagamento com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
 
         }
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody AreaCientificaDTO areaCientificaDTO) {
+    public ResponseEntity<Void> create(@RequestBody TipoPagamento tipoPagamento) {
         try {
-            var newArea = areaCientificaService.create(convertToEntity(areaCientificaDTO));
-
-            var newAreaDTO = convertToDTO(newArea);
-
+            var newTipoPagamento = tipoPagamentoService.create(tipoPagamento);
+            var tipoPagamentoDTO = convertToDTO(newTipoPagamento);
             URI location = fromCurrentRequest()
                     .path("/{id}")
-                    .buildAndExpand(newAreaDTO.getId())
+                    .buildAndExpand(tipoPagamentoDTO.getId())
                     .toUri();
-
             return created(location).build();
-
         } catch (Exception e) {
-            log.error("Erro ao criar nova área científica", e);
-
+            log.error("Erro ao criar novo tipo de pagamento", e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
-
         }
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody AreaCientificaDTO areaCientificaDTO) {
+    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody TipoPagamento tipoPagamento) {
         try {
-            areaCientificaService.update(id, convertToEntity(areaCientificaDTO));
+            tipoPagamentoService.update(id, tipoPagamento);
 
             return ok().build();
 
         } catch (EntityNotFoundException e) {
-            log.error("Área científica não encontrada para o ID: " + id, e);
+            log.error("Tipo de Pagamento não encontrado para o ID: " + id, e);
 
             return new ResponseEntity<>(NOT_FOUND);
 
         } catch (InternalServerErrorException e) {
-            log.error("Erro ao atualizar área científica com o ID: " + id, e);
+            log.error("Erro ao atualizar tipo de pagamento com o ID: " + id, e);
 
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
 
@@ -118,36 +109,24 @@ public class AreaCientificaController {
     @DeleteMapping("/remover/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         try {
-            areaCientificaService.delete(id);
+            tipoPagamentoService.delete(id);
 
             return ok().build();
 
         } catch (EntityNotFoundException e) {
-            log.error("Área científica não encontrada para remoção com o ID: " + id, e);
-
+            log.error("Tipo de pagamento não encontrada para remoção com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
-
         } catch (InternalServerErrorException e) {
-            log.error("Erro ao remover área científica com o ID: " + id, e);
+            log.error("Erro ao remover tipo de pagamento com o ID: " + id, e);
 
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
 
         }
     }
 
-    private AreaCientifica convertToEntity(AreaCientificaDTO areaCientificaDTO) {
-        var area = new AreaCientifica();
 
-        area.setId(areaCientificaDTO.getId());
-
-        area.setDescricao(areaCientificaDTO.getNome());
-
-        return area;
-
-    }
-
-    private AreaCientificaDTO convertToDTO(AreaCientifica area) {
-        return new AreaCientificaDTO(area);
+    private TipoPagamentoDTO convertToDTO(TipoPagamento tipoPagamento) {
+        return new TipoPagamentoDTO(tipoPagamento);
 
     }
 }

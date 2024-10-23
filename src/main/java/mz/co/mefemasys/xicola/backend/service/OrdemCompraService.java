@@ -2,10 +2,10 @@ package mz.co.mefemasys.xicola.backend.service;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
-import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.*;
 import mz.co.mefemasys.xicola.backend.repository.*;
+import mz.co.mefemasys.xicola.backend.utils.exceptions.ResourceNotFoundException;
+import mz.co.mefemasys.xicola.backend.utils.exceptions.BadRequestException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

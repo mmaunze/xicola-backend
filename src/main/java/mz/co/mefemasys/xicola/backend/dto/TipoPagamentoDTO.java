@@ -1,7 +1,6 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
 import lombok.Data;
-import mz.co.mefemasys.xicola.backend.models.MetodoPagamento;
 import mz.co.mefemasys.xicola.backend.models.TipoPagamento;
 
 import java.util.logging.Logger;

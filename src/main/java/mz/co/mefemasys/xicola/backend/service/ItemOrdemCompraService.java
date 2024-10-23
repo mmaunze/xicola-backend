@@ -1,8 +1,6 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.Estado;
 import mz.co.mefemasys.xicola.backend.models.ItemOrdemCompra;
 import mz.co.mefemasys.xicola.backend.models.Material;
@@ -12,6 +10,8 @@ import mz.co.mefemasys.xicola.backend.repository.ItemOrdemCompraRepository;
 import mz.co.mefemasys.xicola.backend.repository.MaterialRepository;
 import mz.co.mefemasys.xicola.backend.repository.OrdemCompraRepository;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
+import mz.co.mefemasys.xicola.backend.utils.exceptions.ResourceNotFoundException;
+import mz.co.mefemasys.xicola.backend.utils.exceptions.BadRequestException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

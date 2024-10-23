@@ -1,14 +1,14 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.Evento;
 import mz.co.mefemasys.xicola.backend.models.ParticipanteEvento;
 import mz.co.mefemasys.xicola.backend.models.TipoPessoa;
 import mz.co.mefemasys.xicola.backend.repository.EventoRepository;
 import mz.co.mefemasys.xicola.backend.repository.ParticipanteEventoRepository;
 import mz.co.mefemasys.xicola.backend.repository.TipoPessoaRepository;
+import mz.co.mefemasys.xicola.backend.utils.exceptions.ResourceNotFoundException;
+import mz.co.mefemasys.xicola.backend.utils.exceptions.BadRequestException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -3,12 +3,10 @@ package mz.co.mefemasys.xicola.backend.service;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import mz.co.mefemasys.xicola.backend.dto.MetodoPagamentoDTO;
-import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-import mz.co.mefemasys.xicola.backend.models.AreaCientifica;
 import mz.co.mefemasys.xicola.backend.models.MetodoPagamento;
 import mz.co.mefemasys.xicola.backend.repository.AreaCientificaRepository;
 import mz.co.mefemasys.xicola.backend.repository.MetodoPagamentoRepository;
+import mz.co.mefemasys.xicola.backend.utils.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

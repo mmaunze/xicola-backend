@@ -1,14 +1,14 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
 import mz.co.mefemasys.xicola.backend.models.Estado;
 import mz.co.mefemasys.xicola.backend.models.Funcionario;
 import mz.co.mefemasys.xicola.backend.models.Orcamento;
 import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
 import mz.co.mefemasys.xicola.backend.repository.FuncionarioRepository;
 import mz.co.mefemasys.xicola.backend.repository.OrcamentoRepository;
+import mz.co.mefemasys.xicola.backend.utils.exceptions.ResourceNotFoundException;
+import mz.co.mefemasys.xicola.backend.utils.exceptions.BadRequestException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

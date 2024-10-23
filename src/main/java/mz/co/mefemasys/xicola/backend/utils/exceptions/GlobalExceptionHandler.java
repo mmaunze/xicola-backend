@@ -1,4 +1,4 @@
-package mz.co.mefemasys.xicola.backend.exceptions;
+package mz.co.mefemasys.xicola.backend.utils.exceptions;
 
 import mz.co.mefemasys.xicola.backend.utils.ErrorDetails;
 import org.springframework.http.HttpStatus;

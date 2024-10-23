@@ -1,7 +1,6 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
 import jakarta.validation.Valid;
-import mz.co.mefemasys.xicola.backend.exceptions.ConflictException;
 import mz.co.mefemasys.xicola.backend.models.ERole;
 import mz.co.mefemasys.xicola.backend.models.Role;
 import mz.co.mefemasys.xicola.backend.models.Utilizador;
@@ -14,6 +13,7 @@ import mz.co.mefemasys.xicola.backend.repository.UtilizadorRepository;
 import mz.co.mefemasys.xicola.backend.security.jwt.JwtUtils;
 import mz.co.mefemasys.xicola.backend.security.services.UtilizadorDetailsImpl;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
+import mz.co.mefemasys.xicola.backend.utils.exceptions.ConflictException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

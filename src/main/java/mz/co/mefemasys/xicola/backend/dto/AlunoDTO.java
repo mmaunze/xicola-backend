@@ -4,7 +4,6 @@ import lombok.Data;
 import mz.co.mefemasys.xicola.backend.models.Aluno;
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
-import java.time.Instant;
 import java.util.logging.Logger;
 
 @Data
@@ -32,7 +31,7 @@ public class AlunoDTO implements MetodosGerais {
 
     private String endereco;
 
-    private Instant dataRegisto;
+    private String dataRegisto;
 
     private String estado;
 
@@ -67,7 +66,7 @@ public class AlunoDTO implements MetodosGerais {
 
         this.endereco = aluno.getEndereco();
 
-        this.dataRegisto = aluno.getDataRegisto();
+        this.dataRegisto = converterInstatParaString(aluno.getDataRegisto());
 
         this.estado = aluno.getEstado().getDescricao();
 
