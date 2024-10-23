@@ -4,11 +4,11 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import mz.co.mefemasys.xicola.backend.dto.AreaCientificaDTO;
+import mz.co.mefemasys.xicola.backend.dto.MetodoPagamentoDTO;
 import mz.co.mefemasys.xicola.backend.dto.TipoPagamentoDTO;
-import mz.co.mefemasys.xicola.backend.models.AreaCientifica;
+import mz.co.mefemasys.xicola.backend.models.MetodoPagamento;
 import mz.co.mefemasys.xicola.backend.models.TipoPagamento;
-import mz.co.mefemasys.xicola.backend.service.AreaCientificaService;
+import mz.co.mefemasys.xicola.backend.service.MetodoPagamentoService;
 import mz.co.mefemasys.xicola.backend.service.TipoPagamentoService;
 import mz.co.mefemasys.xicola.backend.utils.exceptions.InternalServerErrorException;
 import org.springframework.http.ResponseEntity;
@@ -28,78 +28,77 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @Data
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/tipos_pagamento")
+@RequestMapping("/metodos_pagamento")
 @Slf4j
 @PreAuthorize("isFullyAuthenticated()")
-public class TipoPagamentoController {
+public class MetodoPagamentoController {
 
-    private static final Logger LOG = Logger.getLogger(TipoPagamentoController.class.getName());
-    private final TipoPagamentoService tipoPagamentoService;
+    private static final Logger LOG = Logger.getLogger(MetodoPagamentoController.class.getName());
+    private final MetodoPagamentoService metodoPagamentoService;
 
 
     @GetMapping
-    public ResponseEntity<List<TipoPagamentoDTO>> findAll() {
+    public ResponseEntity<List<MetodoPagamentoDTO>> findAll() {
         try {
-            var tipoPagamentos = tipoPagamentoService.findAll();
-            var tipoPagamentoDTOS = tipoPagamentos.stream()
+            var metodoPagamentos = metodoPagamentoService.findAll();
+            var metodoPagamentoDTOS = metodoPagamentos.stream()
                     .map(this::convertToDTO)
                     .collect(toList());
-            return new ResponseEntity<>(tipoPagamentoDTOS, OK);
+            return new ResponseEntity<>(metodoPagamentoDTOS, OK);
 
         } catch (Exception e) {
-            log.error("Erro ao buscar todos tipos de pagamentos", e);
+            log.error("Erro ao buscar todos metodos de pagamentos", e);
 
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
 
         }
     }
 
-    @GetMapping("/tipo/{id}")
-    public ResponseEntity<TipoPagamentoDTO> findById(@PathVariable Long id) {
+    @GetMapping("/metodo/{id}")
+    public ResponseEntity<MetodoPagamentoDTO> findById(@PathVariable Long id) {
         try {
-            var area = tipoPagamentoService.findById(id);
-            return ResponseEntity.ok(new TipoPagamentoDTO(area));
+            var metodoPagamento = metodoPagamentoService.findById(id);
+            return ResponseEntity.ok(new MetodoPagamentoDTO(metodoPagamento));
 
         } catch (EntityNotFoundException e) {
-            log.error("Tipo de Pagamento não encontrado com o ID: " + id, e);
+            log.error("Metodo de Pagamento não encontrado com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
         } catch (InternalServerErrorException e) {
-            log.error("Erro ao buscar  tipo de pagamento com o ID: " + id, e);
+            log.error("Erro ao buscar  Metodo de pagamento com o ID: " + id, e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
 
         }
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody TipoPagamento tipoPagamento) {
+    public ResponseEntity<Void> create(@RequestBody MetodoPagamentoDTO metodoPagamento) {
         try {
-            var newTipoPagamento = tipoPagamentoService.create(tipoPagamento);
-            var tipoPagamentoDTO = convertToDTO(newTipoPagamento);
+            var newMetodoPagamento = metodoPagamentoService.create(metodoPagamento);
+            var metodoPagamentoDTO = convertToDTO(newMetodoPagamento);
             URI location = fromCurrentRequest()
                     .path("/{id}")
-                    .buildAndExpand(tipoPagamentoDTO.getId())
+                    .buildAndExpand(metodoPagamentoDTO.getId())
                     .toUri();
             return created(location).build();
         } catch (Exception e) {
-            log.error("Erro ao criar novo tipo de pagamento", e);
+            log.error("Erro ao criar novo metodo de pagamento", e);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody TipoPagamento tipoPagamento) {
+    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody MetodoPagamentoDTO tipoPagamento) {
         try {
-            tipoPagamentoService.update(id, tipoPagamento);
-
+            metodoPagamentoService.update(id, tipoPagamento);
             return ok().build();
 
         } catch (EntityNotFoundException e) {
-            log.error("Tipo de Pagamento não encontrado para o ID: " + id, e);
+            log.error("Metodo de Pagamento não encontrado para o ID: " + id, e);
 
             return new ResponseEntity<>(NOT_FOUND);
 
         } catch (InternalServerErrorException e) {
-            log.error("Erro ao atualizar tipo de pagamento com o ID: " + id, e);
+            log.error("Erro ao atualizar metodo de pagamento com o ID: " + id, e);
 
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
 
@@ -109,15 +108,15 @@ public class TipoPagamentoController {
     @DeleteMapping("/remover/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         try {
-            tipoPagamentoService.delete(id);
+            metodoPagamentoService.delete(id);
 
             return ok().build();
 
         } catch (EntityNotFoundException e) {
-            log.error("Tipo de pagamento não encontrada para remoção com o ID: " + id, e);
+            log.error("Metodo de pagamento não encontrada para remoção com o ID: " + id, e);
             return new ResponseEntity<>(NOT_FOUND);
         } catch (InternalServerErrorException e) {
-            log.error("Erro ao remover tipo de pagamento com o ID: " + id, e);
+            log.error("Erro ao remover metdo de pagamento com o ID: " + id, e);
 
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
 
@@ -125,8 +124,8 @@ public class TipoPagamentoController {
     }
 
 
-    private TipoPagamentoDTO convertToDTO(TipoPagamento tipoPagamento) {
-        return new TipoPagamentoDTO(tipoPagamento);
+    private MetodoPagamentoDTO convertToDTO(MetodoPagamento metodoPagamento) {
+        return new MetodoPagamentoDTO(metodoPagamento);
 
     }
 }
