@@ -1,11 +1,9 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
 import lombok.Data;
-
 import mz.co.mefemasys.xicola.backend.models.DetalheRelatorioFinanceiro;
 
 import java.math.BigDecimal;
-
 import java.util.logging.Logger;
 
 @Data

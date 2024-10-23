@@ -1,29 +1,18 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.Evento;
-
 import mz.co.mefemasys.xicola.backend.models.ParticipanteEvento;
-
 import mz.co.mefemasys.xicola.backend.models.TipoPessoa;
-
 import mz.co.mefemasys.xicola.backend.repository.EventoRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.ParticipanteEventoRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.TipoPessoaRepository;
-
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 import java.util.logging.Logger;
 
 @Service
@@ -113,7 +102,7 @@ public class ParticipanteEventoService {
     private void validarEvento(ParticipanteEvento participanteEvento) {
         Evento evento = eventoRepository.findById(participanteEvento.getEvento().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                EVENTO_NOT_FOUND_MESSAGE + participanteEvento.getEvento().getId()));
+                        EVENTO_NOT_FOUND_MESSAGE + participanteEvento.getEvento().getId()));
 
         participanteEvento.setEvento(evento);
 
@@ -122,7 +111,7 @@ public class ParticipanteEventoService {
     private void validarTipoParticipante(ParticipanteEvento participanteEvento) {
         TipoPessoa tipoPessoa = tipoPessoaRepository.findById(participanteEvento.getTipoParticipante().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                TIPO_PESSOA_NOT_FOUND_MESSAGE + participanteEvento.getTipoParticipante().getId()));
+                        TIPO_PESSOA_NOT_FOUND_MESSAGE + participanteEvento.getTipoParticipante().getId()));
 
         participanteEvento.setTipoParticipante(tipoPessoa);
 

@@ -1,27 +1,17 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import jakarta.validation.constraints.NotNull;
-
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.*;
-
 import mz.co.mefemasys.xicola.backend.repository.*;
-
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-
 import java.time.LocalDate;
-
 import java.util.List;
-
 import java.util.logging.Logger;
 
 @Service
@@ -167,7 +157,7 @@ public class OrdemCompraService {
     private void validarEstado(OrdemCompra ordemCompra) {
         Estado estado = estadoRepository.findById(ordemCompra.getEstado().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                ESTADO_NOT_FOUND_MESSAGE + ordemCompra.getEstado().getId()));
+                        ESTADO_NOT_FOUND_MESSAGE + ordemCompra.getEstado().getId()));
 
         ordemCompra.setEstado(estado);
 
@@ -176,7 +166,7 @@ public class OrdemCompraService {
     private void validarFornecedor(OrdemCompra ordemCompra) {
         Fornecedor fornecedor = fornecedorRepository.findById(ordemCompra.getFornecedor().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                FORNECEDOR_NOT_FOUND_MESSAGE + ordemCompra.getFornecedor().getId()));
+                        FORNECEDOR_NOT_FOUND_MESSAGE + ordemCompra.getFornecedor().getId()));
 
         ordemCompra.setFornecedor(fornecedor);
 
@@ -185,7 +175,7 @@ public class OrdemCompraService {
     private void validarResponsavel(OrdemCompra ordemCompra) {
         Funcionario responsavel = funcionarioRepository.findById(ordemCompra.getResponsavel().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                FUNCIONARIO_NOT_FOUND_MESSAGE + ordemCompra.getResponsavel().getId()));
+                        FUNCIONARIO_NOT_FOUND_MESSAGE + ordemCompra.getResponsavel().getId()));
 
         ordemCompra.setResponsavel(responsavel);
 

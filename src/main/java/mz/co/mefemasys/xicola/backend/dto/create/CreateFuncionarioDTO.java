@@ -1,7 +1,6 @@
 package mz.co.mefemasys.xicola.backend.dto.create;
 
 import lombok.Data;
-
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
 import java.time.LocalDate;

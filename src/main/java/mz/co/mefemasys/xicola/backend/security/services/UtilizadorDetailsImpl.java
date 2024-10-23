@@ -1,25 +1,16 @@
 package mz.co.mefemasys.xicola.backend.security.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.Getter;
-
 import lombok.Setter;
-
 import mz.co.mefemasys.xicola.backend.models.Utilizador;
-
 import org.springframework.security.core.GrantedAuthority;
-
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-
 import java.util.List;
-
 import java.util.Objects;
-
 import java.util.stream.Collectors;
 
 public class UtilizadorDetailsImpl implements UserDetails {
@@ -44,7 +35,7 @@ public class UtilizadorDetailsImpl implements UserDetails {
     private String nome;
 
     public UtilizadorDetailsImpl(Long id, String nome, String username, String email, String password,
-            Collection<? extends GrantedAuthority> authorities) {
+                                 Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
 
         this.nome = nome;

@@ -1,7 +1,6 @@
 package mz.co.mefemasys.xicola.backend.payload.response;
 
 import java.util.List;
-
 import java.util.logging.Logger;
 
 public class JwtResponse {

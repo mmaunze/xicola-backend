@@ -1,37 +1,23 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
 import jakarta.persistence.EntityNotFoundException;
-
 import lombok.RequiredArgsConstructor;
-
 import lombok.extern.slf4j.Slf4j;
-
 import mz.co.mefemasys.xicola.backend.dto.CategoriaFinanceiraDTO;
-
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
-
 import mz.co.mefemasys.xicola.backend.models.CategoriaFinanceira;
-
 import mz.co.mefemasys.xicola.backend.service.CategoriaFinanceiraService;
-
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.security.access.prepost.PreAuthorize;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-
 import java.util.ArrayList;
-
 import java.util.List;
-
 import java.util.logging.Logger;
 
 import static java.util.stream.Collectors.toList;
-
 import static org.springframework.http.HttpStatus.*;
-
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
@@ -111,7 +97,7 @@ public class CategoriaFinanceiraController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> update(@PathVariable Long id,
-            @RequestBody CategoriaFinanceiraDTO categoriaFinanceiraDTO) {
+                                       @RequestBody CategoriaFinanceiraDTO categoriaFinanceiraDTO) {
         try {
             categoriaFinanceiraService.update(id, convertToEntity(categoriaFinanceiraDTO));
 

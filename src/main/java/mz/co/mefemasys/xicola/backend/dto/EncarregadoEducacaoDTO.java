@@ -1,15 +1,11 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
 import lombok.Data;
-
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.models.EncarregadoEducacao;
-
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
 import java.time.Instant;
-
 import java.util.logging.Logger;
 
 @Data
@@ -58,44 +54,47 @@ public class EncarregadoEducacaoDTO implements MetodosGerais {
 
     private Long numeroTelefoneAlternativo;
 
-    public EncarregadoEducacaoDTO(EncarregadoEducacao professor) {
-        this.id = professor.getId();
 
-        this.nomeCompleto = professor.getNomeCompleto();
+    public EncarregadoEducacaoDTO(EncarregadoEducacao encarregadoEducacao) {
+        this.id = encarregadoEducacao.getId();
 
-        this.dataNascimento = converterDataParaString(professor.getDataNascimento());
+        this.nomeCompleto = encarregadoEducacao.getNomeCompleto();
 
-        this.distritoNascimento = professor.getDistritoNascimento().getNomeDistrito();
+        this.dataNascimento = converterDataParaString(encarregadoEducacao.getDataNascimento());
 
-        this.provinciaNascimento = professor.getDistritoNascimento().getProvincia().getNomeProvincia();
+        this.distritoNascimento = encarregadoEducacao.getDistritoNascimento().getNomeDistrito();
 
-        this.sexo = professor.getSexo();
+        this.provinciaNascimento = encarregadoEducacao.getDistritoNascimento().getProvincia().getNomeProvincia();
 
-        this.email = professor.getEmail();
+        this.sexo = encarregadoEducacao.getSexo();
 
-        this.bilheteIdentificacao = professor.getBilheteIdentificacao();
+        this.email = encarregadoEducacao.getEmail();
 
-        this.religiao = professor.getReligiao();
+        this.bilheteIdentificacao = encarregadoEducacao.getBilheteIdentificacao();
 
-        this.grupoSanguineo = professor.getGrupoSanguineo();
+        this.religiao = encarregadoEducacao.getReligiao();
 
-        this.endereco = professor.getEndereco();
+        this.grupoSanguineo = encarregadoEducacao.getGrupoSanguineo();
 
-        this.dataRegisto = professor.getDataRegisto();
+        this.endereco = encarregadoEducacao.getEndereco();
 
-        this.estado = professor.getEstado().getDescricao();
+        this.dataRegisto = encarregadoEducacao.getDataRegisto();
 
-        this.localTrabalho = professor.getLocalTrabalho();
+        this.estado = encarregadoEducacao.getEstado().getDescricao();
 
-        this.nomeDoPai = professor.getNomeDoPai();
+        this.localTrabalho = encarregadoEducacao.getLocalTrabalho();
 
-        this.nomeDaMae = professor.getNomeDaMae();
+        this.nomeDoPai = encarregadoEducacao.getNomeDoPai();
 
-        this.sectorTrabalho = professor.getSectorTrabalho().getDescricao();
+        this.nomeDaMae = encarregadoEducacao.getNomeDaMae();
 
-        this.numeroTelefonePrincipal = professor.getNumeroTelefonePrincipal();
+        this.sectorTrabalho = encarregadoEducacao.getSectorTrabalho().getDescricao();
 
-        this.numeroTelefoneAlternativo = professor.getNumeroTelefoneAlternativo();
+        this.numeroTelefonePrincipal = encarregadoEducacao.getNumeroTelefonePrincipal();
+
+        this.numeroTelefoneAlternativo = encarregadoEducacao.getNumeroTelefoneAlternativo();
+
+        this.estadoCivil = encarregadoEducacao.getEstadoCivil();
 
     }
 }

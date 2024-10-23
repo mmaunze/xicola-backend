@@ -159,7 +159,6 @@ VALUES ('Bioquímica')
 ;
 
 
-
 /********************
 Provincias
 ******************/
@@ -839,7 +838,6 @@ VALUES ('Sanga', (SELECT id FROM provincia WHERE nome_provincia = 'Niassa'))
 ;
 
 
-
 /********************
 tipos de estado
 ******************/
@@ -904,6 +902,16 @@ values ('Activo', (select id from tipo_estado where descricao = 'Estado Geral'))
 ;
 
 
+insert into estado (descricao, tipo_estado)
+values ('Concluido', (select id from tipo_estado where descricao = 'Estado de Pagamento'));
+
+insert into estado (descricao, tipo_estado)
+values ('Em processamento', (select id from tipo_estado where descricao = 'Estado de Pagamento'));
+
+insert into estado (descricao, tipo_estado)
+values ('Pendente', (select id from tipo_estado where descricao = 'Estado de Pagamento'));
+
+
 /********************
 Tipos de Pessoas
 ******************/
@@ -930,7 +938,6 @@ VALUES ('Encarregado de Educação')
 INSERT INTO tipo_pessoa (descricao)
 VALUES ('Director')
 ;
-
 
 
 /********************
@@ -1178,7 +1185,6 @@ VALUES ('Relatórios de Inspeção de Segurança')
 ;
 
 
-
 /********************
 cargos
 ******************/
@@ -1329,14 +1335,12 @@ VALUES ('Designer Gráfico')
 ;
 
 
-
 /********************
 tipos de avaliacao
 ******************/
 INSERT INTO tipo_avaliacao (descricao)
 VALUES ('Exame Final')
 ;
-
 
 
 /********************
@@ -1349,7 +1353,6 @@ VALUES ('Receita')
 INSERT INTO tipo_transacao (descricao)
 VALUES ('Despesa')
 ;
-
 
 
 /********************
@@ -1371,7 +1374,6 @@ values ('Departamento de Recursos Humanos', 'DRH')
 INSERT INTO departamento (descricao, sigla)
 values ('Departamento Desportivos', 'DDP')
 ;
-
 
 
 /********************
@@ -1407,7 +1409,6 @@ VALUES ('Saúde'),
 ;
 
 
-
 /********************
 tipos de material
 ******************/
@@ -1426,7 +1427,6 @@ VALUES ('Material didactico')
 insert into tipo_material (descricao)
 VALUES ('Material de Escritorio')
 ;
-
 
 
 /********************
@@ -1477,7 +1477,6 @@ VALUES ('Outros')
 ;
 
 
-
 /********************
 disciplinas
 ******************/
@@ -1508,7 +1507,6 @@ values ('Geografia')
 insert into disciplina (nome_disciplina)
 values ('Ingles')
 ;
-
 
 
 

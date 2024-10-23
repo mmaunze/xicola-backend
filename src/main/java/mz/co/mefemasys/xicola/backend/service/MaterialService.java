@@ -1,29 +1,18 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.Estado;
-
 import mz.co.mefemasys.xicola.backend.models.Material;
-
 import mz.co.mefemasys.xicola.backend.models.TipoMaterial;
-
 import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.MaterialRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.TipoMaterialRepository;
-
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 import java.util.logging.Logger;
 
 @Service
@@ -144,7 +133,7 @@ public class MaterialService {
     private void validarTipoMaterial(Material material) {
         TipoMaterial tipoMaterial = tipoMaterialRepository.findById(material.getTipoMaterial().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                TIPO_MATERIAL_NOT_FOUND_MESSAGE + material.getTipoMaterial().getId()));
+                        TIPO_MATERIAL_NOT_FOUND_MESSAGE + material.getTipoMaterial().getId()));
 
         material.setTipoMaterial(tipoMaterial);
 

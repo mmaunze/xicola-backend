@@ -1,9 +1,7 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
 import lombok.Data;
-
 import mz.co.mefemasys.xicola.backend.models.Funcionario;
-
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
 import java.time.Instant;
@@ -18,6 +16,8 @@ public class FuncionarioDTO implements MetodosGerais {
     private String dataNascimento;
 
     private String distritoNascimento;
+
+    private String provinciaNascimento;
 
     private String sexo;
 
@@ -91,6 +91,8 @@ public class FuncionarioDTO implements MetodosGerais {
         this.nomeDaMae = funcionario.getNomeDaMae();
 
         this.nomeDoPai = funcionario.getNomeDoPai();
+
+        this.provinciaNascimento = funcionario.getDistritoNascimento().getProvincia().getNomeProvincia();
 
     }
 

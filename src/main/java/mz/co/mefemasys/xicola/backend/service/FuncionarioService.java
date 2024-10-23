@@ -1,47 +1,27 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.Data;
-
 import lombok.RequiredArgsConstructor;
-
 import lombok.extern.slf4j.Slf4j;
-
 import mz.co.mefemasys.xicola.backend.dto.create.CreateFuncionarioDTO;
-
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.*;
-
 import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.FuncionarioRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.RoleRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.UtilizadorRepository;
-
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
-
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.time.Instant;
-
 import java.time.LocalDate;
-
 import java.util.HashSet;
-
 import java.util.List;
-
 import java.util.Set;
-
 import java.util.logging.Logger;
 
 @Service
@@ -87,6 +67,7 @@ public class FuncionarioService implements MetodosGerais {
     private final CargoService cargoService;
 
     private final DepartamentoService departamentoService;
+    private final AreaCientificaService areaCientificaService;
 
     @Transactional(readOnly = true)
     public Funcionario findById(Long id) {
@@ -281,47 +262,29 @@ public class FuncionarioService implements MetodosGerais {
         log.info("Instância do Funcionario criada.");
 
         newFuncionario.setUtilizador(cadastrado);
-
         newFuncionario.setEmail(cadastrado.getEmail());
-
         newFuncionario.setNomeCompleto(funcionario.getNomeCompleto());
-
         newFuncionario.setDataNascimento(funcionario.getDataNascimento());
-
         newFuncionario.setEndereco(funcionario.getEndereco());
-
         newFuncionario.setReligiao(funcionario.getReligiao());
-
         newFuncionario.setNomeDaMae(funcionario.getNomeDaMae());
-
         newFuncionario.setNomeDoPai(funcionario.getNomeDoPai());
-
         newFuncionario.setSexo(funcionario.getSexo());
-
         newFuncionario.setDistritoNascimento(distrito);
-
         newFuncionario.setEstado(estado);
-
         newFuncionario.setDataContracto(Instant.now());
-
         if (funcionario.getNumeroTelefoneAlternativo() == null) {
             funcionario.setNumeroTelefoneAlternativo(funcionario.getNumeroTelefonePrincipal());
 
         }
-
+        newFuncionario.setEstadoCivil(funcionario.getEstadoCivil());
         newFuncionario.setNumeroTelefonePrincipal(funcionario.getNumeroTelefonePrincipal());
-
         newFuncionario.setNumeroTelefoneAlternativo(funcionario.getNumeroTelefoneAlternativo());
-
         newFuncionario.setCargo(fectchCargo(funcionario.getCargo()));
-
         newFuncionario.setBilheteIdentificacao(funcionario.getBilheteIdentificacao());
-
         newFuncionario.setDepartamento(fectchDepartamento(funcionario.getDepartamento()));
-
         newFuncionario.setGrupoSanguineo(funcionario.getGrupoSanguineo());
-
-
+        newFuncionario.setAreaFormacao(fectchAreaCientifica(funcionario.getAreaFormacao()));
 
         log.info("Funcionario criado: {} {}", newFuncionario.getDataContracto(), newFuncionario.getDataNascimento());
 
@@ -554,6 +517,8 @@ public class FuncionarioService implements MetodosGerais {
 
     }
 
-
+    private AreaCientifica fectchAreaCientifica(String areaCientifica) {
+        return areaCientificaService.findArea(areaCientifica);
+    }
 
 }

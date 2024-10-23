@@ -1,13 +1,10 @@
 package mz.co.mefemasys.xicola.backend.dto.create;
 
 import lombok.Data;
-
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
 import java.time.LocalDate;
-
 import java.util.logging.Logger;
 
 @Data

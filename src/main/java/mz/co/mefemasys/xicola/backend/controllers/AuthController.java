@@ -1,59 +1,33 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
 import jakarta.validation.Valid;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ConflictException;
-
 import mz.co.mefemasys.xicola.backend.models.ERole;
-
 import mz.co.mefemasys.xicola.backend.models.Role;
-
 import mz.co.mefemasys.xicola.backend.models.Utilizador;
-
 import mz.co.mefemasys.xicola.backend.payload.request.LoginRequest;
-
 import mz.co.mefemasys.xicola.backend.payload.request.SignupRequest;
-
 import mz.co.mefemasys.xicola.backend.payload.response.JwtResponse;
-
 import mz.co.mefemasys.xicola.backend.payload.response.MessageResponse;
-
 import mz.co.mefemasys.xicola.backend.repository.RoleRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.UtilizadorRepository;
-
 import mz.co.mefemasys.xicola.backend.security.jwt.JwtUtils;
-
 import mz.co.mefemasys.xicola.backend.security.services.UtilizadorDetailsImpl;
-
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.security.authentication.AuthenticationManager;
-
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-
 import org.springframework.security.core.Authentication;
-
 import org.springframework.security.core.GrantedAuthority;
-
 import org.springframework.security.core.context.SecurityContextHolder;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
-
 import java.util.List;
-
 import java.util.Set;
-
 import java.util.logging.Logger;
-
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)

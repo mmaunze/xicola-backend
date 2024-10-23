@@ -1,29 +1,18 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.Aula;
-
 import mz.co.mefemasys.xicola.backend.models.Disciplina;
-
 import mz.co.mefemasys.xicola.backend.repository.AulaRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.DisciplinaRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
-
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 import java.util.Optional;
-
 import java.util.logging.Logger;
 
 @Service
@@ -79,7 +68,7 @@ public class AulaService {
 
         var disciplina = disciplinaOptional
                 .orElseThrow(() -> new ResourceNotFoundException(
-                DISCIPLINA_NOT_FOUND_MESSAGE + aula.getDisciplina().getId()));
+                        DISCIPLINA_NOT_FOUND_MESSAGE + aula.getDisciplina().getId()));
 
         // Realiza as validações necessárias
         validarDadosObrigatorios(aula);
@@ -125,7 +114,7 @@ public class AulaService {
 
         var disciplina = disciplinaOptional
                 .orElseThrow(() -> new ResourceNotFoundException(
-                DISCIPLINA_NOT_FOUND_MESSAGE + aulaAtualizada.getDisciplina().getId()));
+                        DISCIPLINA_NOT_FOUND_MESSAGE + aulaAtualizada.getDisciplina().getId()));
 
         aulaExistente.setDisciplina(disciplina);
 

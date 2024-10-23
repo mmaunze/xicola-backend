@@ -1,7 +1,6 @@
 package mz.co.mefemasys.xicola.backend.models;
 
 import jakarta.persistence.*;
-
 import lombok.Getter;
 
 @Getter

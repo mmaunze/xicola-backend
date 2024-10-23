@@ -1,25 +1,16 @@
 package mz.co.mefemasys.xicola.backend.models;
 
 import jakarta.persistence.*;
-
 import jakarta.validation.constraints.NotNull;
-
 import jakarta.validation.constraints.Size;
-
 import lombok.Getter;
-
 import lombok.Setter;
-
 import org.hibernate.annotations.ColumnDefault;
-
 import org.hibernate.annotations.OnDelete;
-
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.Instant;
-
 import java.time.LocalDate;
-
 import java.util.logging.Logger;
 
 @Getter
@@ -66,8 +57,8 @@ public class Funcionario {
     @Column(name = "sexo", nullable = false, length = 12)
     private String sexo;
 
-    @Size(max = 10)
-    @Column(name = "estado_civil", length = 10)
+    @Size(max = 12)
+    @Column(name = "estado_civil", length = 12)
     private String estadoCivil;
 
     @Size(max = 255)

@@ -3,21 +3,13 @@ package mz.co.mefemasys.xicola.backend.utils;
 import jakarta.validation.constraints.NotNull;
 
 import javax.swing.*;
-
 import java.text.DateFormatSymbols;
-
 import java.text.ParseException;
-
 import java.text.SimpleDateFormat;
-
 import java.time.LocalDate;
-
 import java.time.format.DateTimeFormatter;
-
 import java.time.format.DateTimeParseException;
-
 import java.time.format.TextStyle;
-
 import java.util.*;
 
 import static java.util.Calendar.*;
@@ -117,16 +109,6 @@ public interface MetodosGerais {
 
     }
 
-    default void habilitarCampo(JTextField campo) {
-        campo.setEnabled(true);
-
-        campo.setEditable(true);
-
-        campo.setFocusable(true);
-
-        campo.requestFocus();
-
-    }
 
     default int obterNumeroMes(String nomeMes) {
         var symbols = new DateFormatSymbols(new Locale("pt", "BR"));
@@ -134,8 +116,8 @@ public interface MetodosGerais {
         var meses = symbols.getMonths();
 
         for (var i = 0;
-                i < meses.length;
-                i++) {
+             i < meses.length;
+             i++) {
             if (meses[i].equalsIgnoreCase(nomeMes)) {
                 return i + 1;
 
@@ -159,10 +141,10 @@ public interface MetodosGerais {
         String ultimoNome = partesNome[partesNome.length - 1].toLowerCase();
 
         String[] opcoesUsername = new String[]{
-            primeiroNome + "." + ultimoNome,
-            ultimoNome + "." + primeiroNome,
-            primeiroNome + "." + primeiroNome,
-            nomeCompleto.replace(" ", ".").toLowerCase()
+                primeiroNome + "." + ultimoNome,
+                ultimoNome + "." + primeiroNome,
+                primeiroNome + "." + primeiroNome,
+                nomeCompleto.replace(" ", ".").toLowerCase()
         };
 
         return opcoesUsername[0];
@@ -222,8 +204,8 @@ public interface MetodosGerais {
 
         }
         for (int i = start;
-                i <= end && end - i + 1 >= combinationSize - index;
-                i++) {
+             i <= end && end - i + 1 >= combinationSize - index;
+             i++) {
             indices[index] = i;
 
             combine(partesNome, usernames, indices, i + 1, end, index + 1, combinationSize);
@@ -237,8 +219,8 @@ public interface MetodosGerais {
         var sbWithDots = new StringBuilder();
 
         for (int i = 0;
-                i < combinationSize;
-                i++) {
+             i < combinationSize;
+             i++) {
             sb.append(partesNome[indices[i]]);
 
             sbWithDots.append(partesNome[indices[i]]);
@@ -256,37 +238,24 @@ public interface MetodosGerais {
 
     default Long gerarId() {
         String dataHora = getCurrentTimestamp();
-
         return Long.valueOf(dataHora);
 
+    }
+
+    default String gerarReferencia (String assunto){
+
+        return assunto;
+    }
+
+    default String gerarReferencia (String assunto, long id){
+
+        return assunto;
     }
 
     private String getCurrentTimestamp() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 
         return sdf.format(new Date());
-
-    }
-
-    private String generateRandomNumber(int digits) {
-        int upperBound = (int) Math.pow(10, digits);
-
-        int randomNumber = random.nextInt(upperBound);
-
-        return String.format("%0" + digits + "d", randomNumber);
-
-    }
-
-    default Date converterParaData(int ano, int mes, int dia) {
-        var calendar = getInstance();
-
-        calendar.set(YEAR, ano);
-
-        calendar.set(MONTH, mes - 1);
-
-        calendar.set(DAY_OF_MONTH, dia);
-
-        return calendar.getTime();
 
     }
 

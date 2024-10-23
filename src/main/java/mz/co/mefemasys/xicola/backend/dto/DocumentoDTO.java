@@ -1,11 +1,9 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
 import lombok.Data;
-
 import mz.co.mefemasys.xicola.backend.models.Documento;
 
 import java.time.Instant;
-
 import java.util.logging.Logger;
 
 @Data

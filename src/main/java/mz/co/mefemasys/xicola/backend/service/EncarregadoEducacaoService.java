@@ -1,49 +1,28 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.Data;
-
 import lombok.RequiredArgsConstructor;
-
 import lombok.extern.slf4j.Slf4j;
-
 import mz.co.mefemasys.xicola.backend.dto.create.CreateEncarregadoDTO;
-
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.*;
-
 import mz.co.mefemasys.xicola.backend.repository.EncarregadoEducacaoRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.RoleRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.UtilizadorRepository;
-
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
-
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.time.Instant;
-
 import java.time.LocalDate;
-
 import java.util.HashSet;
-
 import java.util.List;
-
 import java.util.Random;
-
 import java.util.Set;
-
 import java.util.logging.Logger;
 
 @Service
@@ -127,25 +106,19 @@ public class EncarregadoEducacaoService implements MetodosGerais {
     public EncarregadoEducacao create(CreateEncarregadoDTO encarregado) {
 
         log.info("Iniciando o processo de criação de encarregado...");
-
         log.info(encarregado.toString());
-
         long id = gerarId();
-
         log.info("ID gerado para o encarregado: {}", id);
 
         var username = gerarUsernameUnico(gerarUsernames(encarregado.getNomeCompleto()));
-
         log.info("Nome de utilizador gerado: {}", username);
 
         var email = encarregado.getEmail();
 
         var estado = fectchEstado("Activo");
-
         log.info("Estado do encarregado obtido: {}", estado.getDescricao());
 
         var distrito = fectchDistrito(encarregado.getDistritoNascimento());
-
         log.info("Distrito de nascimento obtido: {}", distrito.getNomeDistrito());
 
 
@@ -201,54 +174,32 @@ public class EncarregadoEducacaoService implements MetodosGerais {
         log.info("Instância do Encarregado criada.");
 
         newEncarregado.setUtilizador(cadastrado);
-
         newEncarregado.setEmail(cadastrado.getEmail());
-
         newEncarregado.setNomeCompleto(encarregado.getNomeCompleto());
-
         newEncarregado.setDataNascimento(encarregado.getDataNascimento());
-
         newEncarregado.setEndereco(encarregado.getEndereco());
-
         newEncarregado.setReligiao(encarregado.getReligiao());
-
         newEncarregado.setNomeDaMae(encarregado.getNomeDaMae());
-
         newEncarregado.setNomeDoPai(encarregado.getNomeDoPai());
-
         newEncarregado.setSexo(encarregado.getSexo());
-
         newEncarregado.setDistritoNascimento(distrito);
-
         newEncarregado.setEstado(estado);
-
+        newEncarregado.setEstadoCivil(encarregado.getEstadoCivil());
         newEncarregado.setDataRegisto(Instant.now());
-
         if (encarregado.getNumeroTelefoneAlternativo() == null) {
             encarregado.setNumeroTelefoneAlternativo(encarregado.getNumeroTelefonePrincipal());
-
         }
-
         newEncarregado.setNumeroTelefonePrincipal(encarregado.getNumeroTelefonePrincipal());
-
         newEncarregado.setNumeroTelefoneAlternativo(encarregado.getNumeroTelefoneAlternativo());
-
         newEncarregado.setSectorTrabalho(fectchSectorTrabalho(encarregado.getSectorTrabalho()));
-
         newEncarregado.setBilheteIdentificacao(encarregado.getBilheteIdentificacao());
-
         newEncarregado.setLocalTrabalho(encarregado.getLocalTrabalho());
-
         newEncarregado.setGrupoSanguineo(encarregado.getGrupoSanguineo());
 
         log.info("Encarregado criado: {} {}", newEncarregado.getDataRegisto(), newEncarregado.getDataNascimento());
-
         log.info("Salvando o encarregado...");
-
         encarregadoEducacaoRepository.save(newEncarregado);
-
         log.info("Encarregado salvo com sucesso: {}", newEncarregado);
-
         return newEncarregado;
 
     }
@@ -374,7 +325,7 @@ public class EncarregadoEducacaoService implements MetodosGerais {
     }
 
     private void atualizarEncarregado(EncarregadoEducacao encarregadoExistente,
-            EncarregadoEducacao encarregadoAtualizado) {
+                                      EncarregadoEducacao encarregadoAtualizado) {
         encarregadoExistente.setNomeCompleto(encarregadoAtualizado.getNomeCompleto());
 
         encarregadoExistente.setDataNascimento(encarregadoAtualizado.getDataNascimento());

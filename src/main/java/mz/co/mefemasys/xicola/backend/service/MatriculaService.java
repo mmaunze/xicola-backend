@@ -1,27 +1,17 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.Aluno;
-
 import mz.co.mefemasys.xicola.backend.models.Estado;
-
 import mz.co.mefemasys.xicola.backend.models.Matricula;
-
 import mz.co.mefemasys.xicola.backend.repository.AlunoRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.MatriculaRepository;
-
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 import java.util.logging.Logger;
 
 @Service

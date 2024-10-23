@@ -1,11 +1,9 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
 import lombok.Data;
-
 import mz.co.mefemasys.xicola.backend.models.Avaliacao;
 
 import java.io.Serializable;
-
 import java.util.logging.Logger;
 
 @Data

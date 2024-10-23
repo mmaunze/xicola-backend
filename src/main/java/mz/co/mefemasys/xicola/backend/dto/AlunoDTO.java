@@ -1,13 +1,10 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
 import lombok.Data;
-
 import mz.co.mefemasys.xicola.backend.models.Aluno;
-
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
 import java.time.Instant;
-
 import java.util.logging.Logger;
 
 @Data
@@ -47,6 +44,8 @@ public class AlunoDTO implements MetodosGerais {
 
     private Long numeroTelefonePrincipal;
 
+    private String email;
+
     public AlunoDTO(Aluno aluno) {
         this.id = aluno.getId();
 
@@ -79,6 +78,8 @@ public class AlunoDTO implements MetodosGerais {
         this.nomeDaMae = aluno.getNomeDaMae();
 
         this.numeroTelefonePrincipal = aluno.getNumeroTelefonePrincipal();
+
+        this.email = aluno.getUtilizador().getEmail();
 
     }
 }

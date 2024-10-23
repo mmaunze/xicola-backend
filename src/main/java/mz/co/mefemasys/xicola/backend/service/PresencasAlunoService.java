@@ -1,23 +1,15 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.*;
-
 import mz.co.mefemasys.xicola.backend.repository.*;
-
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
-
 import java.util.List;
-
 import java.util.logging.Logger;
 
 @Service
@@ -121,7 +113,7 @@ public class PresencasAlunoService {
     private void validarAluno(PresencasAluno presencasAluno) {
         Aluno aluno = alunoRepository.findById(presencasAluno.getAluno().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                ALUNO_NOT_FOUND_MESSAGE + presencasAluno.getAluno().getId()));
+                        ALUNO_NOT_FOUND_MESSAGE + presencasAluno.getAluno().getId()));
 
         presencasAluno.setAluno(aluno);
 
@@ -130,7 +122,7 @@ public class PresencasAlunoService {
     private void validarDisciplina(PresencasAluno presencasAluno) {
         Disciplina disciplina = disciplinaRepository.findById(presencasAluno.getDisciplina().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                DISCIPLINA_NOT_FOUND_MESSAGE + presencasAluno.getDisciplina().getId()));
+                        DISCIPLINA_NOT_FOUND_MESSAGE + presencasAluno.getDisciplina().getId()));
 
         presencasAluno.setDisciplina(disciplina);
 
@@ -139,7 +131,7 @@ public class PresencasAlunoService {
     private void validarEstado(PresencasAluno presencasAluno) {
         Estado estado = estadoRepository.findById(presencasAluno.getEstado().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                ESTADO_NOT_FOUND_MESSAGE + presencasAluno.getEstado().getId()));
+                        ESTADO_NOT_FOUND_MESSAGE + presencasAluno.getEstado().getId()));
 
         presencasAluno.setEstado(estado);
 
@@ -148,7 +140,7 @@ public class PresencasAlunoService {
     private void validarTurma(PresencasAluno presencasAluno) {
         Turma turma = turmaRepository.findById(presencasAluno.getTurma().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                TURMA_NOT_FOUND_MESSAGE + presencasAluno.getTurma().getId()));
+                        TURMA_NOT_FOUND_MESSAGE + presencasAluno.getTurma().getId()));
 
         presencasAluno.setTurma(turma);
 

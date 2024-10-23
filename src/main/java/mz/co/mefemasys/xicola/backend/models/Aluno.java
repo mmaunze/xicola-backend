@@ -1,25 +1,17 @@
 package mz.co.mefemasys.xicola.backend.models;
 
 import jakarta.persistence.*;
-
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-
 import jakarta.validation.constraints.Size;
-
 import lombok.Getter;
-
 import lombok.Setter;
-
 import org.hibernate.annotations.ColumnDefault;
-
 import org.hibernate.annotations.OnDelete;
-
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.Instant;
-
 import java.time.LocalDate;
-
 import java.util.logging.Logger;
 
 @Getter
@@ -61,12 +53,14 @@ public class Aluno {
     @Column(name = "sexo", nullable = false, length = 12)
     private String sexo;
 
+    @NotBlank
     @Size(max = 13)
-    @Column(name = "bilhete_identificacao")
+    @Column(name = "bilhete_identificacao", nullable = false, length = 13)
     private String bilheteIdentificacao;
 
     @Size(max = 78)
-    @Column(name = "religiao", length = 78)
+    @NotBlank
+    @Column(name = "religiao", length = 78, nullable = false)
     private String religiao;
 
     @Size(max = 5)
@@ -74,6 +68,7 @@ public class Aluno {
     private String grupoSanguineo;
 
     @Size(max = 255)
+    @NotBlank
     @Column(name = "endereco")
     private String endereco;
 
@@ -92,11 +87,13 @@ public class Aluno {
     private String escolaAnterior;
 
     @Size(max = 150)
-    @Column(name = "nome_do_pai", length = 150)
+    @NotBlank
+    @Column(name = "nome_do_pai", length = 150, nullable = false)
     private String nomeDoPai;
 
     @Size(max = 150)
-    @Column(name = "nome_da_mae", length = 150)
+    @NotBlank
+    @Column(name = "nome_da_mae", length = 150, nullable = false)
     private String nomeDaMae;
 
     @Column(name = "numero_telefone_principal")

@@ -1,15 +1,12 @@
 package mz.co.mefemasys.xicola.backend.dto.create;
 
 import lombok.Data;
-
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
-
 import java.util.logging.Logger;
 
 @Data
-@RequiredArgsConstructor
 public class CreateAlunoDTO {
 
     private static final Logger LOG = Logger.getLogger(CreateAlunoDTO.class.getName());

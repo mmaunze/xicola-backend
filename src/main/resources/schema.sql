@@ -50,11 +50,11 @@ SET default_table_access_method = heap
 -- TOC entry 254 (class 1259 OID 24938)
 -- Name: aluno
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.aluno
@@ -89,11 +89,11 @@ ALTER TABLE public.aluno
 -- TOC entry 223 (class 1259 OID 24783)
 -- Name: area_cientifica
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.area_cientifica
@@ -114,11 +114,11 @@ ALTER TABLE public.area_cientifica
 -- TOC entry 222 (class 1259 OID 24782)
 -- Name: area_cientifica_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.area_cientifica_id_seq
@@ -141,11 +141,11 @@ ALTER SEQUENCE public.area_cientifica_id_seq OWNER TO postgres
 -- Dependencies: 222
 -- Name: area_cientifica_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.area_cientifica_id_seq OWNED BY public.area_cientifica.id
@@ -157,11 +157,11 @@ ALTER SEQUENCE public.area_cientifica_id_seq OWNED BY public.area_cientifica.id
 -- TOC entry 306 (class 1259 OID 25565)
 -- Name: ativo
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.ativo
@@ -187,11 +187,11 @@ ALTER TABLE public.ativo
 -- TOC entry 305 (class 1259 OID 25564)
 -- Name: ativo_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.ativo_id_seq
@@ -214,11 +214,11 @@ ALTER SEQUENCE public.ativo_id_seq OWNER TO postgres
 -- Dependencies: 305
 -- Name: ativo_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.ativo_id_seq OWNED BY public.ativo.id
@@ -230,11 +230,11 @@ ALTER SEQUENCE public.ativo_id_seq OWNED BY public.ativo.id
 -- TOC entry 290 (class 1259 OID 25391)
 -- Name: aula
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.aula
@@ -262,11 +262,11 @@ ALTER TABLE public.aula
 -- TOC entry 289 (class 1259 OID 25390)
 -- Name: aula_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.aula_id_seq
@@ -289,11 +289,11 @@ ALTER SEQUENCE public.aula_id_seq OWNER TO postgres
 -- Dependencies: 289
 -- Name: aula_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.aula_id_seq OWNED BY public.aula.id
@@ -305,11 +305,11 @@ ALTER SEQUENCE public.aula_id_seq OWNED BY public.aula.id
 -- TOC entry 280 (class 1259 OID 25255)
 -- Name: avaliacao
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.avaliacao
@@ -335,11 +335,11 @@ ALTER TABLE public.avaliacao
 -- TOC entry 282 (class 1259 OID 25284)
 -- Name: avaliacao_aluno
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.avaliacao_aluno
@@ -367,11 +367,11 @@ ALTER TABLE public.avaliacao_aluno
 -- TOC entry 281 (class 1259 OID 25283)
 -- Name: avaliacao_aluno_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.avaliacao_aluno_id_seq
@@ -394,11 +394,11 @@ ALTER SEQUENCE public.avaliacao_aluno_id_seq OWNER TO postgres
 -- Dependencies: 281
 -- Name: avaliacao_aluno_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.avaliacao_aluno_id_seq OWNED BY public.avaliacao_aluno.id
@@ -410,11 +410,11 @@ ALTER SEQUENCE public.avaliacao_aluno_id_seq OWNED BY public.avaliacao_aluno.id
 -- TOC entry 279 (class 1259 OID 25254)
 -- Name: avaliacao_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.avaliacao_id_seq
@@ -437,11 +437,11 @@ ALTER SEQUENCE public.avaliacao_id_seq OWNER TO postgres
 -- Dependencies: 279
 -- Name: avaliacao_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.avaliacao_id_seq OWNED BY public.avaliacao.id
@@ -453,11 +453,11 @@ ALTER SEQUENCE public.avaliacao_id_seq OWNED BY public.avaliacao.id
 -- TOC entry 231 (class 1259 OID 24824)
 -- Name: cargo
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.cargo
@@ -478,11 +478,11 @@ ALTER TABLE public.cargo
 -- TOC entry 230 (class 1259 OID 24823)
 -- Name: cargo_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.cargo_id_seq
@@ -505,11 +505,11 @@ ALTER SEQUENCE public.cargo_id_seq OWNER TO postgres
 -- Dependencies: 230
 -- Name: cargo_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.cargo_id_seq OWNED BY public.cargo.id
@@ -521,11 +521,11 @@ ALTER SEQUENCE public.cargo_id_seq OWNED BY public.cargo.id
 -- TOC entry 243 (class 1259 OID 24882)
 -- Name: categoria_financeira
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.categoria_financeira
@@ -546,11 +546,11 @@ ALTER TABLE public.categoria_financeira
 -- TOC entry 242 (class 1259 OID 24881)
 -- Name: categoria_financeira_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.categoria_financeira_id_seq
@@ -573,11 +573,11 @@ ALTER SEQUENCE public.categoria_financeira_id_seq OWNER TO postgres
 -- Dependencies: 242
 -- Name: categoria_financeira_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.categoria_financeira_id_seq OWNED BY public.categoria_financeira.id
@@ -589,11 +589,11 @@ ALTER SEQUENCE public.categoria_financeira_id_seq OWNED BY public.categoria_fina
 -- TOC entry 275 (class 1259 OID 25188)
 -- Name: comunicados
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.comunicados
@@ -619,11 +619,11 @@ ALTER TABLE public.comunicados
 -- TOC entry 274 (class 1259 OID 25187)
 -- Name: comunicados_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.comunicados_id_seq
@@ -646,11 +646,11 @@ ALTER SEQUENCE public.comunicados_id_seq OWNER TO postgres
 -- Dependencies: 274
 -- Name: comunicados_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.comunicados_id_seq OWNED BY public.comunicados.id
@@ -662,11 +662,11 @@ ALTER SEQUENCE public.comunicados_id_seq OWNED BY public.comunicados.id
 -- TOC entry 310 (class 1259 OID 25601)
 -- Name: contrato
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.contrato
@@ -694,11 +694,11 @@ ALTER TABLE public.contrato
 -- TOC entry 309 (class 1259 OID 25600)
 -- Name: contrato_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.contrato_id_seq
@@ -721,11 +721,11 @@ ALTER SEQUENCE public.contrato_id_seq OWNER TO postgres
 -- Dependencies: 309
 -- Name: contrato_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.contrato_id_seq OWNED BY public.contrato.id
@@ -737,11 +737,11 @@ ALTER SEQUENCE public.contrato_id_seq OWNED BY public.contrato.id
 -- TOC entry 241 (class 1259 OID 24871)
 -- Name: departamento
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.departamento
@@ -763,11 +763,11 @@ ALTER TABLE public.departamento
 -- TOC entry 240 (class 1259 OID 24870)
 -- Name: departamento_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.departamento_id_seq
@@ -790,11 +790,11 @@ ALTER SEQUENCE public.departamento_id_seq OWNER TO postgres
 -- Dependencies: 240
 -- Name: departamento_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.departamento_id_seq OWNED BY public.departamento.id
@@ -806,11 +806,11 @@ ALTER SEQUENCE public.departamento_id_seq OWNED BY public.departamento.id
 -- TOC entry 298 (class 1259 OID 25476)
 -- Name: despesa
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.despesa
@@ -836,11 +836,11 @@ ALTER TABLE public.despesa
 -- TOC entry 297 (class 1259 OID 25475)
 -- Name: despesa_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.despesa_id_seq
@@ -863,11 +863,11 @@ ALTER SEQUENCE public.despesa_id_seq OWNER TO postgres
 -- Dependencies: 297
 -- Name: despesa_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.despesa_id_seq OWNED BY public.despesa.id
@@ -879,11 +879,11 @@ ALTER SEQUENCE public.despesa_id_seq OWNED BY public.despesa.id
 -- TOC entry 318 (class 1259 OID 25679)
 -- Name: detalhe_relatorio_financeiro
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.detalhe_relatorio_financeiro
@@ -906,11 +906,11 @@ ALTER TABLE public.detalhe_relatorio_financeiro
 -- TOC entry 317 (class 1259 OID 25678)
 -- Name: detalhe_relatorio_financeiro_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.detalhe_relatorio_financeiro_id_seq
@@ -933,11 +933,11 @@ ALTER SEQUENCE public.detalhe_relatorio_financeiro_id_seq OWNER TO postgres
 -- Dependencies: 317
 -- Name: detalhe_relatorio_financeiro_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.detalhe_relatorio_financeiro_id_seq OWNED BY public.detalhe_relatorio_financeiro.id
@@ -949,11 +949,11 @@ ALTER SEQUENCE public.detalhe_relatorio_financeiro_id_seq OWNED BY public.detalh
 -- TOC entry 265 (class 1259 OID 25083)
 -- Name: disciplina
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.disciplina
@@ -974,11 +974,11 @@ ALTER TABLE public.disciplina
 -- TOC entry 267 (class 1259 OID 25106)
 -- Name: disciplina_aluno
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.disciplina_aluno
@@ -1002,11 +1002,11 @@ ALTER TABLE public.disciplina_aluno
 -- TOC entry 264 (class 1259 OID 25082)
 -- Name: disciplina_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.disciplina_id_seq
@@ -1029,11 +1029,11 @@ ALTER SEQUENCE public.disciplina_id_seq OWNER TO postgres
 -- Dependencies: 264
 -- Name: disciplina_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.disciplina_id_seq OWNED BY public.disciplina.id
@@ -1045,11 +1045,11 @@ ALTER SEQUENCE public.disciplina_id_seq OWNED BY public.disciplina.id
 -- TOC entry 253 (class 1259 OID 24927)
 -- Name: distrito
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.distrito
@@ -1071,11 +1071,11 @@ ALTER TABLE public.distrito
 -- TOC entry 252 (class 1259 OID 24926)
 -- Name: distrito_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.distrito_id_seq
@@ -1098,11 +1098,11 @@ ALTER SEQUENCE public.distrito_id_seq OWNER TO postgres
 -- Dependencies: 252
 -- Name: distrito_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.distrito_id_seq OWNED BY public.distrito.id
@@ -1114,11 +1114,11 @@ ALTER SEQUENCE public.distrito_id_seq OWNED BY public.distrito.id
 -- TOC entry 294 (class 1259 OID 25428)
 -- Name: documento
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.documento
@@ -1144,11 +1144,11 @@ ALTER TABLE public.documento
 -- TOC entry 293 (class 1259 OID 25427)
 -- Name: documento_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.documento_id_seq
@@ -1171,11 +1171,11 @@ ALTER SEQUENCE public.documento_id_seq OWNER TO postgres
 -- Dependencies: 293
 -- Name: documento_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.documento_id_seq OWNED BY public.documento.id
@@ -1187,11 +1187,11 @@ ALTER SEQUENCE public.documento_id_seq OWNED BY public.documento.id
 -- TOC entry 257 (class 1259 OID 24980)
 -- Name: encarregado_aluno
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.encarregado_aluno
@@ -1213,11 +1213,11 @@ ALTER TABLE public.encarregado_aluno
 -- TOC entry 256 (class 1259 OID 24962)
 -- Name: encarregado_educacao
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.encarregado_educacao
@@ -1250,11 +1250,11 @@ ALTER TABLE public.encarregado_educacao
 -- TOC entry 255 (class 1259 OID 24961)
 -- Name: encarregado_educacao_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.encarregado_educacao_id_seq
@@ -1277,11 +1277,11 @@ ALTER SEQUENCE public.encarregado_educacao_id_seq OWNER TO postgres
 -- Dependencies: 255
 -- Name: encarregado_educacao_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.encarregado_educacao_id_seq OWNED BY public.encarregado_educacao.id
@@ -1293,11 +1293,11 @@ ALTER SEQUENCE public.encarregado_educacao_id_seq OWNED BY public.encarregado_ed
 -- TOC entry 229 (class 1259 OID 24810)
 -- Name: estado
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.estado
@@ -1319,11 +1319,11 @@ ALTER TABLE public.estado
 -- TOC entry 228 (class 1259 OID 24809)
 -- Name: estado_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.estado_id_seq
@@ -1346,11 +1346,11 @@ ALTER SEQUENCE public.estado_id_seq OWNER TO postgres
 -- Dependencies: 228
 -- Name: estado_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.estado_id_seq OWNED BY public.estado.id
@@ -1362,11 +1362,11 @@ ALTER SEQUENCE public.estado_id_seq OWNED BY public.estado.id
 -- TOC entry 312 (class 1259 OID 25620)
 -- Name: evento
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.evento
@@ -1393,11 +1393,11 @@ ALTER TABLE public.evento
 -- TOC entry 311 (class 1259 OID 25619)
 -- Name: evento_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.evento_id_seq
@@ -1420,11 +1420,11 @@ ALTER SEQUENCE public.evento_id_seq OWNER TO postgres
 -- Dependencies: 311
 -- Name: evento_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.evento_id_seq OWNED BY public.evento.id
@@ -1436,11 +1436,11 @@ ALTER SEQUENCE public.evento_id_seq OWNED BY public.evento.id
 -- TOC entry 304 (class 1259 OID 25547)
 -- Name: folha_pagamento
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.folha_pagamento
@@ -1467,11 +1467,11 @@ ALTER TABLE public.folha_pagamento
 -- TOC entry 303 (class 1259 OID 25546)
 -- Name: folha_pagamento_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.folha_pagamento_id_seq
@@ -1494,11 +1494,11 @@ ALTER SEQUENCE public.folha_pagamento_id_seq OWNER TO postgres
 -- Dependencies: 303
 -- Name: folha_pagamento_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.folha_pagamento_id_seq OWNED BY public.folha_pagamento.id
@@ -1510,11 +1510,11 @@ ALTER SEQUENCE public.folha_pagamento_id_seq OWNED BY public.folha_pagamento.id
 -- TOC entry 320 (class 1259 OID 25693)
 -- Name: fornecedor
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.fornecedor
@@ -1540,11 +1540,11 @@ ALTER TABLE public.fornecedor
 -- TOC entry 319 (class 1259 OID 25692)
 -- Name: fornecedor_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.fornecedor_id_seq
@@ -1567,11 +1567,11 @@ ALTER SEQUENCE public.fornecedor_id_seq OWNER TO postgres
 -- Dependencies: 319
 -- Name: fornecedor_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.fornecedor_id_seq OWNED BY public.fornecedor.id
@@ -1583,11 +1583,11 @@ ALTER SEQUENCE public.fornecedor_id_seq OWNED BY public.fornecedor.id
 -- TOC entry 261 (class 1259 OID 25026)
 -- Name: funcionario
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.funcionario
@@ -1625,11 +1625,11 @@ ALTER TABLE public.funcionario
 -- TOC entry 260 (class 1259 OID 25025)
 -- Name: funcionario_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.funcionario_id_seq
@@ -1652,11 +1652,11 @@ ALTER SEQUENCE public.funcionario_id_seq OWNER TO postgres
 -- Dependencies: 260
 -- Name: funcionario_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.funcionario_id_seq OWNED BY public.funcionario.id
@@ -1668,11 +1668,11 @@ ALTER SEQUENCE public.funcionario_id_seq OWNED BY public.funcionario.id
 -- TOC entry 278 (class 1259 OID 25228)
 -- Name: horario
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.horario
@@ -1700,11 +1700,11 @@ ALTER TABLE public.horario
 -- TOC entry 277 (class 1259 OID 25227)
 -- Name: horario_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.horario_id_seq
@@ -1727,11 +1727,11 @@ ALTER SEQUENCE public.horario_id_seq OWNER TO postgres
 -- Dependencies: 277
 -- Name: horario_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.horario_id_seq OWNED BY public.horario.id
@@ -1743,11 +1743,11 @@ ALTER SEQUENCE public.horario_id_seq OWNED BY public.horario.id
 -- TOC entry 324 (class 1259 OID 25729)
 -- Name: item_ordem_compra
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.item_ordem_compra
@@ -1773,11 +1773,11 @@ ALTER TABLE public.item_ordem_compra
 -- TOC entry 323 (class 1259 OID 25728)
 -- Name: item_ordem_compra_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.item_ordem_compra_id_seq
@@ -1800,11 +1800,11 @@ ALTER SEQUENCE public.item_ordem_compra_id_seq OWNER TO postgres
 -- Dependencies: 323
 -- Name: item_ordem_compra_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.item_ordem_compra_id_seq OWNED BY public.item_ordem_compra.id
@@ -1816,11 +1816,11 @@ ALTER SEQUENCE public.item_ordem_compra_id_seq OWNED BY public.item_ordem_compra
 -- TOC entry 308 (class 1259 OID 25579)
 -- Name: manutencao_ativo
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.manutencao_ativo
@@ -1846,11 +1846,11 @@ ALTER TABLE public.manutencao_ativo
 -- TOC entry 307 (class 1259 OID 25578)
 -- Name: manutencao_ativo_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.manutencao_ativo_id_seq
@@ -1873,11 +1873,11 @@ ALTER SEQUENCE public.manutencao_ativo_id_seq OWNER TO postgres
 -- Dependencies: 307
 -- Name: manutencao_ativo_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.manutencao_ativo_id_seq OWNED BY public.manutencao_ativo.id
@@ -1889,11 +1889,11 @@ ALTER SEQUENCE public.manutencao_ativo_id_seq OWNED BY public.manutencao_ativo.i
 -- TOC entry 269 (class 1259 OID 25122)
 -- Name: material
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.material
@@ -1917,11 +1917,11 @@ ALTER TABLE public.material
 -- TOC entry 268 (class 1259 OID 25121)
 -- Name: material_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.material_id_seq
@@ -1944,11 +1944,11 @@ ALTER SEQUENCE public.material_id_seq OWNER TO postgres
 -- Dependencies: 268
 -- Name: material_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.material_id_seq OWNED BY public.material.id
@@ -1960,11 +1960,11 @@ ALTER SEQUENCE public.material_id_seq OWNED BY public.material.id
 -- TOC entry 273 (class 1259 OID 25171)
 -- Name: matricula
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.matricula
@@ -1987,11 +1987,11 @@ ALTER TABLE public.matricula
 -- TOC entry 272 (class 1259 OID 25170)
 -- Name: matricula_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.matricula_id_seq
@@ -2014,11 +2014,11 @@ ALTER SEQUENCE public.matricula_id_seq OWNER TO postgres
 -- Dependencies: 272
 -- Name: matricula_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.matricula_id_seq OWNED BY public.matricula.id
@@ -2030,11 +2030,11 @@ ALTER SEQUENCE public.matricula_id_seq OWNED BY public.matricula.id
 -- TOC entry 300 (class 1259 OID 25499)
 -- Name: orcamento
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.orcamento
@@ -2059,11 +2059,11 @@ ALTER TABLE public.orcamento
 -- TOC entry 299 (class 1259 OID 25498)
 -- Name: orcamento_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.orcamento_id_seq
@@ -2086,11 +2086,11 @@ ALTER SEQUENCE public.orcamento_id_seq OWNER TO postgres
 -- Dependencies: 299
 -- Name: orcamento_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.orcamento_id_seq OWNED BY public.orcamento.id
@@ -2102,11 +2102,11 @@ ALTER SEQUENCE public.orcamento_id_seq OWNED BY public.orcamento.id
 -- TOC entry 322 (class 1259 OID 25707)
 -- Name: ordem_compra
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.ordem_compra
@@ -2132,11 +2132,11 @@ ALTER TABLE public.ordem_compra
 -- TOC entry 321 (class 1259 OID 25706)
 -- Name: ordem_compra_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.ordem_compra_id_seq
@@ -2159,11 +2159,11 @@ ALTER SEQUENCE public.ordem_compra_id_seq OWNER TO postgres
 -- Dependencies: 321
 -- Name: ordem_compra_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.ordem_compra_id_seq OWNED BY public.ordem_compra.id
@@ -2175,11 +2175,11 @@ ALTER SEQUENCE public.ordem_compra_id_seq OWNED BY public.ordem_compra.id
 -- TOC entry 271 (class 1259 OID 25141)
 -- Name: pagamento
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.pagamento
@@ -2207,11 +2207,11 @@ ALTER TABLE public.pagamento
 -- TOC entry 270 (class 1259 OID 25140)
 -- Name: pagamento_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.pagamento_id_seq
@@ -2234,11 +2234,11 @@ ALTER SEQUENCE public.pagamento_id_seq OWNER TO postgres
 -- Dependencies: 270
 -- Name: pagamento_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.pagamento_id_seq OWNED BY public.pagamento.id
@@ -2250,11 +2250,11 @@ ALTER SEQUENCE public.pagamento_id_seq OWNED BY public.pagamento.id
 -- TOC entry 314 (class 1259 OID 25639)
 -- Name: participante_evento
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.participante_evento
@@ -2277,11 +2277,11 @@ ALTER TABLE public.participante_evento
 -- TOC entry 313 (class 1259 OID 25638)
 -- Name: participante_evento_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.participante_evento_id_seq
@@ -2304,11 +2304,11 @@ ALTER SEQUENCE public.participante_evento_id_seq OWNER TO postgres
 -- Dependencies: 313
 -- Name: participante_evento_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.participante_evento_id_seq OWNED BY public.participante_evento.id
@@ -2320,11 +2320,11 @@ ALTER SEQUENCE public.participante_evento_id_seq OWNED BY public.participante_ev
 -- TOC entry 288 (class 1259 OID 25363)
 -- Name: pauta_final
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.pauta_final
@@ -2352,11 +2352,11 @@ ALTER TABLE public.pauta_final
 -- TOC entry 287 (class 1259 OID 25362)
 -- Name: pauta_final_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.pauta_final_id_seq
@@ -2379,11 +2379,11 @@ ALTER SEQUENCE public.pauta_final_id_seq OWNER TO postgres
 -- Dependencies: 287
 -- Name: pauta_final_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.pauta_final_id_seq OWNED BY public.pauta_final.id
@@ -2395,11 +2395,11 @@ ALTER SEQUENCE public.pauta_final_id_seq OWNED BY public.pauta_final.id
 -- TOC entry 286 (class 1259 OID 25333)
 -- Name: pauta_trimestral
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.pauta_trimestral
@@ -2428,11 +2428,11 @@ ALTER TABLE public.pauta_trimestral
 -- TOC entry 285 (class 1259 OID 25332)
 -- Name: pauta_trimestral_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.pauta_trimestral_id_seq
@@ -2455,11 +2455,11 @@ ALTER SEQUENCE public.pauta_trimestral_id_seq OWNER TO postgres
 -- Dependencies: 285
 -- Name: pauta_trimestral_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.pauta_trimestral_id_seq OWNED BY public.pauta_trimestral.id
@@ -2471,11 +2471,11 @@ ALTER SEQUENCE public.pauta_trimestral_id_seq OWNED BY public.pauta_trimestral.i
 -- TOC entry 284 (class 1259 OID 25305)
 -- Name: presencas_aluno
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.presencas_aluno
@@ -2500,11 +2500,11 @@ ALTER TABLE public.presencas_aluno
 -- TOC entry 283 (class 1259 OID 25304)
 -- Name: presencas_aluno_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.presencas_aluno_id_seq
@@ -2527,11 +2527,11 @@ ALTER SEQUENCE public.presencas_aluno_id_seq OWNER TO postgres
 -- Dependencies: 283
 -- Name: presencas_aluno_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.presencas_aluno_id_seq OWNED BY public.presencas_aluno.id
@@ -2543,11 +2543,11 @@ ALTER SEQUENCE public.presencas_aluno_id_seq OWNED BY public.presencas_aluno.id
 -- TOC entry 259 (class 1259 OID 24996)
 -- Name: professor
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.professor
@@ -2582,11 +2582,11 @@ ALTER TABLE public.professor
 -- TOC entry 266 (class 1259 OID 25091)
 -- Name: professor_disciplina
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.professor_disciplina
@@ -2609,11 +2609,11 @@ ALTER TABLE public.professor_disciplina
 -- TOC entry 258 (class 1259 OID 24995)
 -- Name: professor_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.professor_id_seq
@@ -2636,11 +2636,11 @@ ALTER SEQUENCE public.professor_id_seq OWNER TO postgres
 -- Dependencies: 258
 -- Name: professor_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.professor_id_seq OWNED BY public.professor.id
@@ -2652,11 +2652,11 @@ ALTER SEQUENCE public.professor_id_seq OWNED BY public.professor.id
 -- TOC entry 251 (class 1259 OID 24918)
 -- Name: provincia
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.provincia
@@ -2677,11 +2677,11 @@ ALTER TABLE public.provincia
 -- TOC entry 250 (class 1259 OID 24917)
 -- Name: provincia_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.provincia_id_seq
@@ -2704,11 +2704,11 @@ ALTER SEQUENCE public.provincia_id_seq OWNER TO postgres
 -- Dependencies: 250
 -- Name: provincia_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.provincia_id_seq OWNED BY public.provincia.id
@@ -2720,11 +2720,11 @@ ALTER SEQUENCE public.provincia_id_seq OWNED BY public.provincia.id
 -- TOC entry 296 (class 1259 OID 25453)
 -- Name: receita
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.receita
@@ -2750,11 +2750,11 @@ ALTER TABLE public.receita
 -- TOC entry 295 (class 1259 OID 25452)
 -- Name: receita_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.receita_id_seq
@@ -2777,11 +2777,11 @@ ALTER SEQUENCE public.receita_id_seq OWNER TO postgres
 -- Dependencies: 295
 -- Name: receita_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.receita_id_seq OWNED BY public.receita.id
@@ -2793,11 +2793,11 @@ ALTER SEQUENCE public.receita_id_seq OWNED BY public.receita.id
 -- TOC entry 316 (class 1259 OID 25656)
 -- Name: relatorio_financeiro
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.relatorio_financeiro
@@ -2823,11 +2823,11 @@ ALTER TABLE public.relatorio_financeiro
 -- TOC entry 315 (class 1259 OID 25655)
 -- Name: relatorio_financeiro_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.relatorio_financeiro_id_seq
@@ -2850,11 +2850,11 @@ ALTER SEQUENCE public.relatorio_financeiro_id_seq OWNER TO postgres
 -- Dependencies: 315
 -- Name: relatorio_financeiro_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.relatorio_financeiro_id_seq OWNED BY public.relatorio_financeiro.id
@@ -2866,11 +2866,11 @@ ALTER SEQUENCE public.relatorio_financeiro_id_seq OWNED BY public.relatorio_fina
 -- TOC entry 326 (class 1259 OID 25746)
 -- Name: requisicao_material
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.requisicao_material
@@ -2896,11 +2896,11 @@ ALTER TABLE public.requisicao_material
 -- TOC entry 325 (class 1259 OID 25745)
 -- Name: requisicao_material_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.requisicao_material_id_seq
@@ -2923,11 +2923,11 @@ ALTER SEQUENCE public.requisicao_material_id_seq OWNER TO postgres
 -- Dependencies: 325
 -- Name: requisicao_material_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.requisicao_material_id_seq OWNED BY public.requisicao_material.id
@@ -2939,11 +2939,11 @@ ALTER SEQUENCE public.requisicao_material_id_seq OWNED BY public.requisicao_mate
 -- TOC entry 216 (class 1259 OID 24740)
 -- Name: role
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.role
@@ -2966,11 +2966,11 @@ ALTER TABLE public.role
 -- TOC entry 215 (class 1259 OID 24739)
 -- Name: role_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.role_id_seq
@@ -2993,11 +2993,11 @@ ALTER SEQUENCE public.role_id_seq OWNER TO postgres
 -- Dependencies: 215
 -- Name: role_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.role_id_seq OWNED BY public.role.id
@@ -3009,11 +3009,11 @@ ALTER SEQUENCE public.role_id_seq OWNED BY public.role.id
 -- TOC entry 233 (class 1259 OID 24833)
 -- Name: sala
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.sala
@@ -3035,11 +3035,11 @@ ALTER TABLE public.sala
 -- TOC entry 232 (class 1259 OID 24832)
 -- Name: sala_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.sala_id_seq
@@ -3062,11 +3062,11 @@ ALTER SEQUENCE public.sala_id_seq OWNER TO postgres
 -- Dependencies: 232
 -- Name: sala_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.sala_id_seq OWNED BY public.sala.id
@@ -3078,11 +3078,11 @@ ALTER SEQUENCE public.sala_id_seq OWNED BY public.sala.id
 -- TOC entry 245 (class 1259 OID 24891)
 -- Name: sector_trabalho
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.sector_trabalho
@@ -3103,11 +3103,11 @@ ALTER TABLE public.sector_trabalho
 -- TOC entry 244 (class 1259 OID 24890)
 -- Name: sector_trabalho_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.sector_trabalho_id_seq
@@ -3130,11 +3130,11 @@ ALTER SEQUENCE public.sector_trabalho_id_seq OWNER TO postgres
 -- Dependencies: 244
 -- Name: sector_trabalho_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.sector_trabalho_id_seq OWNED BY public.sector_trabalho.id
@@ -3146,11 +3146,11 @@ ALTER SEQUENCE public.sector_trabalho_id_seq OWNED BY public.sector_trabalho.id
 -- TOC entry 237 (class 1259 OID 24851)
 -- Name: tipo_avaliacao
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.tipo_avaliacao
@@ -3171,11 +3171,11 @@ ALTER TABLE public.tipo_avaliacao
 -- TOC entry 236 (class 1259 OID 24850)
 -- Name: tipo_avaliacao_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.tipo_avaliacao_id_seq
@@ -3198,11 +3198,11 @@ ALTER SEQUENCE public.tipo_avaliacao_id_seq OWNER TO postgres
 -- Dependencies: 236
 -- Name: tipo_avaliacao_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.tipo_avaliacao_id_seq OWNED BY public.tipo_avaliacao.id
@@ -3214,11 +3214,11 @@ ALTER SEQUENCE public.tipo_avaliacao_id_seq OWNED BY public.tipo_avaliacao.id
 -- TOC entry 235 (class 1259 OID 24842)
 -- Name: tipo_documento
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.tipo_documento
@@ -3239,11 +3239,11 @@ ALTER TABLE public.tipo_documento
 -- TOC entry 234 (class 1259 OID 24841)
 -- Name: tipo_documento_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.tipo_documento_id_seq
@@ -3266,11 +3266,11 @@ ALTER SEQUENCE public.tipo_documento_id_seq OWNER TO postgres
 -- Dependencies: 234
 -- Name: tipo_documento_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.tipo_documento_id_seq OWNED BY public.tipo_documento.id
@@ -3282,11 +3282,11 @@ ALTER SEQUENCE public.tipo_documento_id_seq OWNED BY public.tipo_documento.id
 -- TOC entry 227 (class 1259 OID 24801)
 -- Name: tipo_estado
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.tipo_estado
@@ -3307,11 +3307,11 @@ ALTER TABLE public.tipo_estado
 -- TOC entry 226 (class 1259 OID 24800)
 -- Name: tipo_estado_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.tipo_estado_id_seq
@@ -3334,11 +3334,11 @@ ALTER SEQUENCE public.tipo_estado_id_seq OWNER TO postgres
 -- Dependencies: 226
 -- Name: tipo_estado_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.tipo_estado_id_seq OWNED BY public.tipo_estado.id
@@ -3350,11 +3350,11 @@ ALTER SEQUENCE public.tipo_estado_id_seq OWNED BY public.tipo_estado.id
 -- TOC entry 328 (class 1259 OID 34661)
 -- Name: tipo_funcionario
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.tipo_funcionario
@@ -3375,11 +3375,11 @@ ALTER TABLE public.tipo_funcionario
 -- TOC entry 327 (class 1259 OID 34660)
 -- Name: tipo_funcionario_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.tipo_funcionario_id_seq
@@ -3401,11 +3401,11 @@ ALTER SEQUENCE public.tipo_funcionario_id_seq OWNER TO postgres
 -- Dependencies: 327
 -- Name: tipo_funcionario_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.tipo_funcionario_id_seq OWNED BY public.tipo_funcionario.id
@@ -3417,11 +3417,11 @@ ALTER SEQUENCE public.tipo_funcionario_id_seq OWNED BY public.tipo_funcionario.i
 -- TOC entry 247 (class 1259 OID 24900)
 -- Name: tipo_material
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.tipo_material
@@ -3442,11 +3442,11 @@ ALTER TABLE public.tipo_material
 -- TOC entry 246 (class 1259 OID 24899)
 -- Name: tipo_material_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.tipo_material_id_seq
@@ -3469,11 +3469,11 @@ ALTER SEQUENCE public.tipo_material_id_seq OWNER TO postgres
 -- Dependencies: 246
 -- Name: tipo_material_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.tipo_material_id_seq OWNED BY public.tipo_material.id
@@ -3485,11 +3485,11 @@ ALTER SEQUENCE public.tipo_material_id_seq OWNED BY public.tipo_material.id
 -- TOC entry 249 (class 1259 OID 24909)
 -- Name: tipo_pagamento
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.tipo_pagamento
@@ -3510,11 +3510,11 @@ ALTER TABLE public.tipo_pagamento
 -- TOC entry 248 (class 1259 OID 24908)
 -- Name: tipo_pagamento_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.tipo_pagamento_id_seq
@@ -3537,11 +3537,11 @@ ALTER SEQUENCE public.tipo_pagamento_id_seq OWNER TO postgres
 -- Dependencies: 248
 -- Name: tipo_pagamento_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.tipo_pagamento_id_seq OWNED BY public.tipo_pagamento.id
@@ -3553,11 +3553,11 @@ ALTER SEQUENCE public.tipo_pagamento_id_seq OWNED BY public.tipo_pagamento.id
 -- TOC entry 225 (class 1259 OID 24792)
 -- Name: tipo_pessoa
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.tipo_pessoa
@@ -3578,11 +3578,11 @@ ALTER TABLE public.tipo_pessoa
 -- TOC entry 224 (class 1259 OID 24791)
 -- Name: tipo_pessoa_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.tipo_pessoa_id_seq
@@ -3605,11 +3605,11 @@ ALTER SEQUENCE public.tipo_pessoa_id_seq OWNER TO postgres
 -- Dependencies: 224
 -- Name: tipo_pessoa_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.tipo_pessoa_id_seq OWNED BY public.tipo_pessoa.id
@@ -3621,11 +3621,11 @@ ALTER SEQUENCE public.tipo_pessoa_id_seq OWNED BY public.tipo_pessoa.id
 -- TOC entry 221 (class 1259 OID 24774)
 -- Name: tipo_relatorio
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.tipo_relatorio
@@ -3646,11 +3646,11 @@ ALTER TABLE public.tipo_relatorio
 -- TOC entry 220 (class 1259 OID 24773)
 -- Name: tipo_relatorio_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.tipo_relatorio_id_seq
@@ -3673,11 +3673,11 @@ ALTER SEQUENCE public.tipo_relatorio_id_seq OWNER TO postgres
 -- Dependencies: 220
 -- Name: tipo_relatorio_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.tipo_relatorio_id_seq OWNED BY public.tipo_relatorio.id
@@ -3689,11 +3689,11 @@ ALTER SEQUENCE public.tipo_relatorio_id_seq OWNED BY public.tipo_relatorio.id
 -- TOC entry 239 (class 1259 OID 24862)
 -- Name: tipo_transacao
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.tipo_transacao
@@ -3714,11 +3714,11 @@ ALTER TABLE public.tipo_transacao
 -- TOC entry 238 (class 1259 OID 24861)
 -- Name: tipo_transacao_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.tipo_transacao_id_seq
@@ -3741,11 +3741,11 @@ ALTER SEQUENCE public.tipo_transacao_id_seq OWNER TO postgres
 -- Dependencies: 238
 -- Name: tipo_transacao_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.tipo_transacao_id_seq OWNED BY public.tipo_transacao.id
@@ -3757,11 +3757,11 @@ ALTER SEQUENCE public.tipo_transacao_id_seq OWNED BY public.tipo_transacao.id
 -- TOC entry 302 (class 1259 OID 25517)
 -- Name: transacao
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.transacao
@@ -3788,11 +3788,11 @@ ALTER TABLE public.transacao
 -- TOC entry 301 (class 1259 OID 25516)
 -- Name: transacao_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.transacao_id_seq
@@ -3815,11 +3815,11 @@ ALTER SEQUENCE public.transacao_id_seq OWNER TO postgres
 -- Dependencies: 301
 -- Name: transacao_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.transacao_id_seq OWNED BY public.transacao.id
@@ -3831,11 +3831,11 @@ ALTER SEQUENCE public.transacao_id_seq OWNED BY public.transacao.id
 -- TOC entry 263 (class 1259 OID 25066)
 -- Name: turma
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.turma
@@ -3859,11 +3859,11 @@ ALTER TABLE public.turma
 -- TOC entry 276 (class 1259 OID 25212)
 -- Name: turma_aluno
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.turma_aluno
@@ -3885,11 +3885,11 @@ ALTER TABLE public.turma_aluno
 -- TOC entry 262 (class 1259 OID 25065)
 -- Name: turma_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.turma_id_seq
@@ -3912,11 +3912,11 @@ ALTER SEQUENCE public.turma_id_seq OWNER TO postgres
 -- Dependencies: 262
 -- Name: turma_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.turma_id_seq OWNED BY public.turma.id
@@ -3928,11 +3928,11 @@ ALTER SEQUENCE public.turma_id_seq OWNED BY public.turma.id
 -- TOC entry 218 (class 1259 OID 24748)
 -- Name: utilizador
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.utilizador
@@ -3956,11 +3956,11 @@ ALTER TABLE public.utilizador
 -- TOC entry 217 (class 1259 OID 24747)
 -- Name: utilizador_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.utilizador_id_seq
@@ -3982,11 +3982,11 @@ ALTER SEQUENCE public.utilizador_id_seq OWNER TO postgres
 -- Dependencies: 217
 -- Name: utilizador_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.utilizador_id_seq OWNED BY public.utilizador.id
@@ -3998,11 +3998,11 @@ ALTER SEQUENCE public.utilizador_id_seq OWNED BY public.utilizador.id
 -- TOC entry 219 (class 1259 OID 24754)
 -- Name: utilizador_role
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.utilizador_role
@@ -4023,11 +4023,11 @@ ALTER TABLE public.utilizador_role
 -- TOC entry 292 (class 1259 OID 25411)
 -- Name: veiculo
 ;
- Type: TABLE
+Type: TABLE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE TABLE public.veiculo
@@ -4051,11 +4051,11 @@ ALTER TABLE public.veiculo
 -- TOC entry 291 (class 1259 OID 25410)
 -- Name: veiculo_id_seq
 ;
- Type: SEQUENCE
+Type: SEQUENCE
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 CREATE SEQUENCE public.veiculo_id_seq
@@ -4078,11 +4078,11 @@ ALTER SEQUENCE public.veiculo_id_seq OWNER TO postgres
 -- Dependencies: 291
 -- Name: veiculo_id_seq
 ;
- Type: SEQUENCE OWNED BY
+Type: SEQUENCE OWNED BY
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER SEQUENCE public.veiculo_id_seq OWNED BY public.veiculo.id
@@ -4094,11 +4094,11 @@ ALTER SEQUENCE public.veiculo_id_seq OWNED BY public.veiculo.id
 -- TOC entry 4980 (class 2604 OID 36512)
 -- Name: area_cientifica id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.area_cientifica
@@ -4111,11 +4111,11 @@ ALTER TABLE ONLY public.area_cientifica
 -- TOC entry 5036 (class 2604 OID 36530)
 -- Name: ativo id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.ativo
@@ -4128,11 +4128,11 @@ ALTER TABLE ONLY public.ativo
 -- TOC entry 5021 (class 2604 OID 36555)
 -- Name: aula id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.aula
@@ -4145,11 +4145,11 @@ ALTER TABLE ONLY public.aula
 -- TOC entry 5011 (class 2604 OID 36587)
 -- Name: avaliacao id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.avaliacao
@@ -4162,11 +4162,11 @@ ALTER TABLE ONLY public.avaliacao
 -- TOC entry 5012 (class 2604 OID 36634)
 -- Name: avaliacao_aluno id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.avaliacao_aluno
@@ -4179,11 +4179,11 @@ ALTER TABLE ONLY public.avaliacao_aluno
 -- TOC entry 4984 (class 2604 OID 36656)
 -- Name: cargo id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.cargo
@@ -4196,11 +4196,11 @@ ALTER TABLE ONLY public.cargo
 -- TOC entry 4990 (class 2604 OID 36669)
 -- Name: categoria_financeira id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.categoria_financeira
@@ -4213,11 +4213,11 @@ ALTER TABLE ONLY public.categoria_financeira
 -- TOC entry 5008 (class 2604 OID 36692)
 -- Name: comunicados id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.comunicados
@@ -4230,11 +4230,11 @@ ALTER TABLE ONLY public.comunicados
 -- TOC entry 5038 (class 2604 OID 36724)
 -- Name: contrato id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.contrato
@@ -4247,11 +4247,11 @@ ALTER TABLE ONLY public.contrato
 -- TOC entry 4989 (class 2604 OID 36744)
 -- Name: departamento id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.departamento
@@ -4264,11 +4264,11 @@ ALTER TABLE ONLY public.departamento
 -- TOC entry 5028 (class 2604 OID 36758)
 -- Name: despesa id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.despesa
@@ -4281,11 +4281,11 @@ ALTER TABLE ONLY public.despesa
 -- TOC entry 5043 (class 2604 OID 36784)
 -- Name: detalhe_relatorio_financeiro id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.detalhe_relatorio_financeiro
@@ -4298,11 +4298,11 @@ ALTER TABLE ONLY public.detalhe_relatorio_financeiro
 -- TOC entry 5003 (class 2604 OID 36804)
 -- Name: disciplina id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.disciplina
@@ -4315,11 +4315,11 @@ ALTER TABLE ONLY public.disciplina
 -- TOC entry 4995 (class 2604 OID 36852)
 -- Name: distrito id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.distrito
@@ -4332,11 +4332,11 @@ ALTER TABLE ONLY public.distrito
 -- TOC entry 5024 (class 2604 OID 36888)
 -- Name: documento id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.documento
@@ -4349,11 +4349,11 @@ ALTER TABLE ONLY public.documento
 -- TOC entry 4997 (class 2604 OID 33443)
 -- Name: encarregado_educacao id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.encarregado_educacao
@@ -4366,11 +4366,11 @@ ALTER TABLE ONLY public.encarregado_educacao
 -- TOC entry 4983 (class 2604 OID 36942)
 -- Name: estado id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.estado
@@ -4383,11 +4383,11 @@ ALTER TABLE ONLY public.estado
 -- TOC entry 5039 (class 2604 OID 37122)
 -- Name: evento id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.evento
@@ -4400,11 +4400,11 @@ ALTER TABLE ONLY public.evento
 -- TOC entry 5034 (class 2604 OID 37147)
 -- Name: folha_pagamento id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.folha_pagamento
@@ -4417,11 +4417,11 @@ ALTER TABLE ONLY public.folha_pagamento
 -- TOC entry 5044 (class 2604 OID 37164)
 -- Name: fornecedor id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.fornecedor
@@ -4434,11 +4434,11 @@ ALTER TABLE ONLY public.fornecedor
 -- TOC entry 5000 (class 2604 OID 33747)
 -- Name: funcionario id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.funcionario
@@ -4451,11 +4451,11 @@ ALTER TABLE ONLY public.funcionario
 -- TOC entry 5010 (class 2604 OID 37245)
 -- Name: horario id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.horario
@@ -4468,11 +4468,11 @@ ALTER TABLE ONLY public.horario
 -- TOC entry 5046 (class 2604 OID 37279)
 -- Name: item_ordem_compra id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.item_ordem_compra
@@ -4485,11 +4485,11 @@ ALTER TABLE ONLY public.item_ordem_compra
 -- TOC entry 5037 (class 2604 OID 37304)
 -- Name: manutencao_ativo id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.manutencao_ativo
@@ -4502,11 +4502,11 @@ ALTER TABLE ONLY public.manutencao_ativo
 -- TOC entry 5004 (class 2604 OID 37329)
 -- Name: material id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.material
@@ -4519,11 +4519,11 @@ ALTER TABLE ONLY public.material
 -- TOC entry 5007 (class 2604 OID 37367)
 -- Name: matricula id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.matricula
@@ -4536,11 +4536,11 @@ ALTER TABLE ONLY public.matricula
 -- TOC entry 5030 (class 2604 OID 37383)
 -- Name: orcamento id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.orcamento
@@ -4553,11 +4553,11 @@ ALTER TABLE ONLY public.orcamento
 -- TOC entry 5045 (class 2604 OID 37400)
 -- Name: ordem_compra id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.ordem_compra
@@ -4570,11 +4570,11 @@ ALTER TABLE ONLY public.ordem_compra
 -- TOC entry 5005 (class 2604 OID 37430)
 -- Name: pagamento id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.pagamento
@@ -4587,11 +4587,11 @@ ALTER TABLE ONLY public.pagamento
 -- TOC entry 5040 (class 2604 OID 37462)
 -- Name: participante_evento id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.participante_evento
@@ -4604,11 +4604,11 @@ ALTER TABLE ONLY public.participante_evento
 -- TOC entry 5019 (class 2604 OID 37487)
 -- Name: pauta_final id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.pauta_final
@@ -4621,11 +4621,11 @@ ALTER TABLE ONLY public.pauta_final
 -- TOC entry 5017 (class 2604 OID 37513)
 -- Name: pauta_trimestral id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.pauta_trimestral
@@ -4638,11 +4638,11 @@ ALTER TABLE ONLY public.pauta_trimestral
 -- TOC entry 5015 (class 2604 OID 37545)
 -- Name: presencas_aluno id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.presencas_aluno
@@ -4655,11 +4655,11 @@ ALTER TABLE ONLY public.presencas_aluno
 -- TOC entry 4998 (class 2604 OID 34373)
 -- Name: professor id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.professor
@@ -4672,11 +4672,11 @@ ALTER TABLE ONLY public.professor
 -- TOC entry 4994 (class 2604 OID 37614)
 -- Name: provincia id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.provincia
@@ -4689,11 +4689,11 @@ ALTER TABLE ONLY public.provincia
 -- TOC entry 5026 (class 2604 OID 37627)
 -- Name: receita id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.receita
@@ -4706,11 +4706,11 @@ ALTER TABLE ONLY public.receita
 -- TOC entry 5041 (class 2604 OID 37653)
 -- Name: relatorio_financeiro id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.relatorio_financeiro
@@ -4723,11 +4723,11 @@ ALTER TABLE ONLY public.relatorio_financeiro
 -- TOC entry 5047 (class 2604 OID 37684)
 -- Name: requisicao_material id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.requisicao_material
@@ -4740,11 +4740,11 @@ ALTER TABLE ONLY public.requisicao_material
 -- TOC entry 4977 (class 2604 OID 37944)
 -- Name: role id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.role
@@ -4757,11 +4757,11 @@ ALTER TABLE ONLY public.role
 -- TOC entry 4985 (class 2604 OID 37716)
 -- Name: sala id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.sala
@@ -4774,11 +4774,11 @@ ALTER TABLE ONLY public.sala
 -- TOC entry 4991 (class 2604 OID 37729)
 -- Name: sector_trabalho id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.sector_trabalho
@@ -4791,11 +4791,11 @@ ALTER TABLE ONLY public.sector_trabalho
 -- TOC entry 4987 (class 2604 OID 37742)
 -- Name: tipo_avaliacao id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.tipo_avaliacao
@@ -4808,11 +4808,11 @@ ALTER TABLE ONLY public.tipo_avaliacao
 -- TOC entry 4986 (class 2604 OID 37757)
 -- Name: tipo_documento id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.tipo_documento
@@ -4825,11 +4825,11 @@ ALTER TABLE ONLY public.tipo_documento
 -- TOC entry 4982 (class 2604 OID 37770)
 -- Name: tipo_estado id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.tipo_estado
@@ -4842,11 +4842,11 @@ ALTER TABLE ONLY public.tipo_estado
 -- TOC entry 5049 (class 2604 OID 34664)
 -- Name: tipo_funcionario id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.tipo_funcionario
@@ -4859,11 +4859,11 @@ ALTER TABLE ONLY public.tipo_funcionario
 -- TOC entry 4992 (class 2604 OID 37784)
 -- Name: tipo_material id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.tipo_material
@@ -4876,11 +4876,11 @@ ALTER TABLE ONLY public.tipo_material
 -- TOC entry 4993 (class 2604 OID 37797)
 -- Name: tipo_pagamento id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.tipo_pagamento
@@ -4893,11 +4893,11 @@ ALTER TABLE ONLY public.tipo_pagamento
 -- TOC entry 4981 (class 2604 OID 37810)
 -- Name: tipo_pessoa id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.tipo_pessoa
@@ -4910,11 +4910,11 @@ ALTER TABLE ONLY public.tipo_pessoa
 -- TOC entry 4979 (class 2604 OID 37828)
 -- Name: tipo_relatorio id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.tipo_relatorio
@@ -4927,11 +4927,11 @@ ALTER TABLE ONLY public.tipo_relatorio
 -- TOC entry 4988 (class 2604 OID 37841)
 -- Name: tipo_transacao id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.tipo_transacao
@@ -4944,11 +4944,11 @@ ALTER TABLE ONLY public.tipo_transacao
 -- TOC entry 5032 (class 2604 OID 37854)
 -- Name: transacao id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.transacao
@@ -4961,11 +4961,11 @@ ALTER TABLE ONLY public.transacao
 -- TOC entry 5002 (class 2604 OID 37897)
 -- Name: turma id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.turma
@@ -4978,11 +4978,11 @@ ALTER TABLE ONLY public.turma
 -- TOC entry 4978 (class 2604 OID 24751)
 -- Name: utilizador id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.utilizador
@@ -4995,11 +4995,11 @@ ALTER TABLE ONLY public.utilizador
 -- TOC entry 5023 (class 2604 OID 37928)
 -- Name: veiculo id
 ;
- Type: DEFAULT
+Type: DEFAULT
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 ALTER TABLE ONLY public.veiculo
@@ -5013,11 +5013,12 @@ ALTER TABLE ONLY public.veiculo
 -- Dependencies: 254
 -- Data for Name: aluno
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.aluno (id, nome_completo, data_nascimento, distrito_nascimento, sexo, bilhete_identificacao, religiao,
@@ -5033,11 +5034,12 @@ COPY public.aluno (id, nome_completo, data_nascimento, distrito_nascimento, sexo
 -- Dependencies: 223
 -- Data for Name: area_cientifica
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.area_cientifica (id, descricao) FROM stdin
@@ -5051,11 +5053,12 @@ COPY public.area_cientifica (id, descricao) FROM stdin
 -- Dependencies: 306
 -- Data for Name: ativo
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.ativo (id, descricao, tipo, data_aquisicao, valor_aquisicao, localizacao, estado) FROM stdin
@@ -5069,11 +5072,12 @@ COPY public.ativo (id, descricao, tipo, data_aquisicao, valor_aquisicao, localiz
 -- Dependencies: 290
 -- Data for Name: aula
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.aula (id, disciplina, titulo, ano_lectivo, classe, resumo, data_aula, conteudo, estado) FROM stdin
@@ -5087,11 +5091,12 @@ COPY public.aula (id, disciplina, titulo, ano_lectivo, classe, resumo, data_aula
 -- Dependencies: 280
 -- Data for Name: avaliacao
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.avaliacao (id, aluno, tipo_avaliacao, trimestre, disciplina, observacao, estado) FROM stdin
@@ -5105,11 +5110,12 @@ COPY public.avaliacao (id, aluno, tipo_avaliacao, trimestre, disciplina, observa
 -- Dependencies: 282
 -- Data for Name: avaliacao_aluno
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.avaliacao_aluno (id, aluno, trimestre, ano_lectivo, data_lancamento, nota, observacao, estado,
@@ -5124,11 +5130,12 @@ COPY public.avaliacao_aluno (id, aluno, trimestre, ano_lectivo, data_lancamento,
 -- Dependencies: 231
 -- Data for Name: cargo
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.cargo (id, descricao) FROM stdin
@@ -5178,11 +5185,12 @@ COPY public.cargo (id, descricao) FROM stdin
 -- Dependencies: 243
 -- Data for Name: categoria_financeira
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.categoria_financeira (id, descricao) FROM stdin
@@ -5196,11 +5204,12 @@ COPY public.categoria_financeira (id, descricao) FROM stdin
 -- Dependencies: 275
 -- Data for Name: comunicados
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.comunicados (id, titulo, conteudo, data_publicacao, responsavel, destinatario, estado) FROM stdin
@@ -5214,11 +5223,12 @@ COPY public.comunicados (id, titulo, conteudo, data_publicacao, responsavel, des
 -- Dependencies: 310
 -- Data for Name: contrato
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.contrato (id, descricao, tipo, data_inicio, data_fim, valor_total, fornecedor, responsavel,
@@ -5233,11 +5243,12 @@ COPY public.contrato (id, descricao, tipo, data_inicio, data_fim, valor_total, f
 -- Dependencies: 241
 -- Data for Name: departamento
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.departamento (id, descricao, sigla) FROM stdin
@@ -5256,11 +5267,12 @@ COPY public.departamento (id, descricao, sigla) FROM stdin
 -- Dependencies: 298
 -- Data for Name: despesa
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.despesa (id, descricao, valor, data_despesa, categoria, responsavel, estado) FROM stdin
@@ -5274,11 +5286,12 @@ COPY public.despesa (id, descricao, valor, data_despesa, categoria, responsavel,
 -- Dependencies: 318
 -- Data for Name: detalhe_relatorio_financeiro
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.detalhe_relatorio_financeiro (id, relatorio, descricao, valor) FROM stdin
@@ -5292,11 +5305,12 @@ COPY public.detalhe_relatorio_financeiro (id, relatorio, descricao, valor) FROM 
 -- Dependencies: 265
 -- Data for Name: disciplina
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.disciplina (id, nome_disciplina) FROM stdin
@@ -5317,11 +5331,12 @@ COPY public.disciplina (id, nome_disciplina) FROM stdin
 -- Dependencies: 267
 -- Data for Name: disciplina_aluno
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.disciplina_aluno (disciplina, ano_lectivo, aluno, data_aula, hora_aula) FROM stdin
@@ -5335,11 +5350,12 @@ COPY public.disciplina_aluno (disciplina, ano_lectivo, aluno, data_aula, hora_au
 -- Dependencies: 253
 -- Data for Name: distrito
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.distrito (id, nome_distrito, provincia) FROM stdin
@@ -5502,11 +5518,12 @@ COPY public.distrito (id, nome_distrito, provincia) FROM stdin
 -- Dependencies: 294
 -- Data for Name: documento
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.documento (id, titulo, tipo_documento, conteudo, data_criacao, autor, estado) FROM stdin
@@ -5520,11 +5537,12 @@ COPY public.documento (id, titulo, tipo_documento, conteudo, data_criacao, autor
 -- Dependencies: 257
 -- Data for Name: encarregado_aluno
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.encarregado_aluno (encarregado, aluno, grau_parentesco) FROM stdin
@@ -5538,11 +5556,12 @@ COPY public.encarregado_aluno (encarregado, aluno, grau_parentesco) FROM stdin
 -- Dependencies: 256
 -- Data for Name: encarregado_educacao
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.encarregado_educacao (id, nome_completo, data_nascimento, distrito_nascimento, sexo, local_trabalho,
@@ -5558,11 +5577,12 @@ COPY public.encarregado_educacao (id, nome_completo, data_nascimento, distrito_n
 -- Dependencies: 229
 -- Data for Name: estado
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.estado (id, descricao, tipo_estado) FROM stdin
@@ -5576,11 +5596,12 @@ COPY public.estado (id, descricao, tipo_estado) FROM stdin
 -- Dependencies: 312
 -- Data for Name: evento
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.evento (id, nome, descricao, data_inicio, data_fim, localizacao, responsavel, estado) FROM stdin
@@ -5594,11 +5615,12 @@ COPY public.evento (id, nome, descricao, data_inicio, data_fim, localizacao, res
 -- Dependencies: 304
 -- Data for Name: folha_pagamento
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.folha_pagamento (id, funcionario, salario_bruto, descontos, salario_liquido, mes_referencia, data_pagamento,
@@ -5613,11 +5635,12 @@ COPY public.folha_pagamento (id, funcionario, salario_bruto, descontos, salario_
 -- Dependencies: 320
 -- Data for Name: fornecedor
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.fornecedor (id, nome, endereco, telefone, email, descricao, estado) FROM stdin
@@ -5631,11 +5654,12 @@ COPY public.fornecedor (id, nome, endereco, telefone, email, descricao, estado) 
 -- Dependencies: 261
 -- Data for Name: funcionario
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.funcionario (id, nome_completo, data_nascimento, distrito_nascimento, sexo, endereco, email,
@@ -5652,11 +5676,12 @@ COPY public.funcionario (id, nome_completo, data_nascimento, distrito_nascimento
 -- Dependencies: 278
 -- Data for Name: horario
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.horario (id, sala, turma, disciplina, professor, dia_semana, hora_inicio, hora_termino, estado) FROM stdin
@@ -5670,11 +5695,12 @@ COPY public.horario (id, sala, turma, disciplina, professor, dia_semana, hora_in
 -- Dependencies: 324
 -- Data for Name: item_ordem_compra
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.item_ordem_compra (id, ordem_compra, material, descricao, quantidade, valor_unitario, estado) FROM stdin
@@ -5688,11 +5714,12 @@ COPY public.item_ordem_compra (id, ordem_compra, material, descricao, quantidade
 -- Dependencies: 308
 -- Data for Name: manutencao_ativo
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.manutencao_ativo (id, ativo, descricao, data_manutencao, custo, responsavel, estado) FROM stdin
@@ -5706,11 +5733,12 @@ COPY public.manutencao_ativo (id, ativo, descricao, data_manutencao, custo, resp
 -- Dependencies: 269
 -- Data for Name: material
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.material (id, tipo_material, nome_material, quantidade, estado) FROM stdin
@@ -5724,11 +5752,12 @@ COPY public.material (id, tipo_material, nome_material, quantidade, estado) FROM
 -- Dependencies: 273
 -- Data for Name: matricula
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.matricula (id, ano_lectivo, aluno, estado) FROM stdin
@@ -5742,11 +5771,12 @@ COPY public.matricula (id, ano_lectivo, aluno, estado) FROM stdin
 -- Dependencies: 300
 -- Data for Name: orcamento
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.orcamento (id, ano, valor_total, data_criacao, responsavel, estado) FROM stdin
@@ -5760,11 +5790,12 @@ COPY public.orcamento (id, ano, valor_total, data_criacao, responsavel, estado) 
 -- Dependencies: 322
 -- Data for Name: ordem_compra
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.ordem_compra (id, fornecedor, data_ordem, data_entrega, valor_total, responsavel, estado) FROM stdin
@@ -5778,11 +5809,12 @@ COPY public.ordem_compra (id, fornecedor, data_ordem, data_entrega, valor_total,
 -- Dependencies: 271
 -- Data for Name: pagamento
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.pagamento (id, referencia, aluno, valor, tipo_pagamento, data_pagamento, responsavel, observacao,
@@ -5797,11 +5829,12 @@ COPY public.pagamento (id, referencia, aluno, valor, tipo_pagamento, data_pagame
 -- Dependencies: 314
 -- Data for Name: participante_evento
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.participante_evento (id, evento, nome_participante, tipo_participante) FROM stdin
@@ -5815,11 +5848,12 @@ COPY public.participante_evento (id, evento, nome_participante, tipo_participant
 -- Dependencies: 288
 -- Data for Name: pauta_final
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.pauta_final (id, disciplina, aluno, ano_lectivo, nota_final, professor, data_publicacao, resultado,
@@ -5834,11 +5868,12 @@ COPY public.pauta_final (id, disciplina, aluno, ano_lectivo, nota_final, profess
 -- Dependencies: 286
 -- Data for Name: pauta_trimestral
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.pauta_trimestral (id, disciplina, aluno, trimestre, ano_lectivo, nota_final, professor, data_publicacao,
@@ -5853,11 +5888,12 @@ COPY public.pauta_trimestral (id, disciplina, aluno, trimestre, ano_lectivo, not
 -- Dependencies: 284
 -- Data for Name: presencas_aluno
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.presencas_aluno (id, aluno, turma, disciplina, data, estado) FROM stdin
@@ -5871,11 +5907,12 @@ COPY public.presencas_aluno (id, aluno, turma, disciplina, data, estado) FROM st
 -- Dependencies: 259
 -- Data for Name: professor
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.professor (id, nome_completo, data_nascimento, distrito_nascimento, sexo, endereco, email,
@@ -5891,11 +5928,12 @@ COPY public.professor (id, nome_completo, data_nascimento, distrito_nascimento, 
 -- Dependencies: 266
 -- Data for Name: professor_disciplina
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.professor_disciplina (professor, ano_lectivo, disciplina, classe) FROM stdin
@@ -5909,11 +5947,12 @@ COPY public.professor_disciplina (professor, ano_lectivo, disciplina, classe) FR
 -- Dependencies: 251
 -- Data for Name: provincia
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.provincia (id, nome_provincia) FROM stdin
@@ -5938,11 +5977,12 @@ COPY public.provincia (id, nome_provincia) FROM stdin
 -- Dependencies: 296
 -- Data for Name: receita
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.receita (id, descricao, valor, data_receita, categoria, responsavel, estado) FROM stdin
@@ -5956,11 +5996,12 @@ COPY public.receita (id, descricao, valor, data_receita, categoria, responsavel,
 -- Dependencies: 316
 -- Data for Name: relatorio_financeiro
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.relatorio_financeiro (id, tipo_relatorio, ano, mes, data_criacao, responsavel, estado) FROM stdin
@@ -5974,11 +6015,12 @@ COPY public.relatorio_financeiro (id, tipo_relatorio, ano, mes, data_criacao, re
 -- Dependencies: 326
 -- Data for Name: requisicao_material
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.requisicao_material (id, data_requisicao, material, quantidade, requisitor, observacao, estado) FROM stdin
@@ -5992,11 +6034,12 @@ COPY public.requisicao_material (id, data_requisicao, material, quantidade, requ
 -- Dependencies: 216
 -- Data for Name: role
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.role (id, name) FROM stdin
@@ -6019,11 +6062,12 @@ COPY public.role (id, name) FROM stdin
 -- Dependencies: 233
 -- Data for Name: sala
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.sala (id, nome_sala, capacidade) FROM stdin
@@ -6037,11 +6081,12 @@ COPY public.sala (id, nome_sala, capacidade) FROM stdin
 -- Dependencies: 245
 -- Data for Name: sector_trabalho
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.sector_trabalho (id, descricao) FROM stdin
@@ -6080,11 +6125,12 @@ COPY public.sector_trabalho (id, descricao) FROM stdin
 -- Dependencies: 237
 -- Data for Name: tipo_avaliacao
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.tipo_avaliacao (id, descricao) FROM stdin
@@ -6099,11 +6145,12 @@ COPY public.tipo_avaliacao (id, descricao) FROM stdin
 -- Dependencies: 235
 -- Data for Name: tipo_documento
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.tipo_documento (id, descricao) FROM stdin
@@ -6149,26 +6196,27 @@ COPY public.tipo_documento (id, descricao) FROM stdin
 38	Cartas e Memorandos
 39	E-mails Institucionais
 40	Licenças de Funcionamento
-41	Regulamentos do Ministério da Educação
-42	Acordos e Convênios
-43	Termos de Ajuste de Conduta
-44	Registros de Processos Judiciais
-45	Projetos Pedagógicos
-46	Plano de Curso
-47	Material Didático
-48	Provas e Avaliações
-49	Trabalhos de Alunos
-50	Projetos de Pesquisa
-51	Registros de Atividades Extracurriculares
-52	Plantas e Projetos Arquitetônicos
-53	Relatórios de Manutenção
-54	Registros de Inventário de Equipamentos
-55	Contratos de Serviço de Manutenção
-56	Fichas Médicas dos Alunos
-57	Registros de Vacinação
-58	Relatórios de Acidentes
-59	Planos de Evacuação
-60	Relatórios de Inspeção de Segurança
+41	Regulamentos
+do Ministério da Educação
+42 Acordos e Convênios
+43 Termos de Ajuste de Conduta
+44 Registros de Processos Judiciais
+45 Projetos Pedagógicos
+46 Plano de Curso
+47 Material Didático
+48 Provas e Avaliações
+49 Trabalhos de Alunos
+50 Projetos de Pesquisa
+51 Registros de Atividades Extracurriculares
+52 Plantas e Projetos Arquitetônicos
+53 Relatórios de Manutenção
+54 Registros de Inventário de Equipamentos
+55 Contratos de Serviço de Manutenção
+56 Fichas Médicas dos Alunos
+57 Registros de Vacinação
+58 Relatórios de Acidentes
+59 Planos de Evacuação
+60 Relatórios de Inspeção de Segurança
 \.
 
 
@@ -6177,11 +6225,12 @@ COPY public.tipo_documento (id, descricao) FROM stdin
 -- Dependencies: 227
 -- Data for Name: tipo_estado
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.tipo_estado (id, descricao) FROM stdin
@@ -6202,11 +6251,12 @@ COPY public.tipo_estado (id, descricao) FROM stdin
 -- Dependencies: 328
 -- Data for Name: tipo_funcionario
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.tipo_funcionario (id, descricao) FROM stdin
@@ -6220,11 +6270,12 @@ COPY public.tipo_funcionario (id, descricao) FROM stdin
 -- Dependencies: 247
 -- Data for Name: tipo_material
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.tipo_material (id, descricao) FROM stdin
@@ -6242,11 +6293,12 @@ COPY public.tipo_material (id, descricao) FROM stdin
 -- Dependencies: 249
 -- Data for Name: tipo_pagamento
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.tipo_pagamento (id, descricao) FROM stdin
@@ -6271,11 +6323,12 @@ COPY public.tipo_pagamento (id, descricao) FROM stdin
 -- Dependencies: 225
 -- Data for Name: tipo_pessoa
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.tipo_pessoa (id, descricao) FROM stdin
@@ -6295,11 +6348,12 @@ COPY public.tipo_pessoa (id, descricao) FROM stdin
 -- Dependencies: 221
 -- Data for Name: tipo_relatorio
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.tipo_relatorio (id, descricao) FROM stdin
@@ -6313,11 +6367,12 @@ COPY public.tipo_relatorio (id, descricao) FROM stdin
 -- Dependencies: 239
 -- Data for Name: tipo_transacao
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.tipo_transacao (id, descricao) FROM stdin
@@ -6333,11 +6388,12 @@ COPY public.tipo_transacao (id, descricao) FROM stdin
 -- Dependencies: 302
 -- Data for Name: transacao
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.transacao (id, tipo_transacao, valor, data_transacao, categoria, responsavel, descricao, estado) FROM stdin
@@ -6351,11 +6407,12 @@ COPY public.transacao (id, tipo_transacao, valor, data_transacao, categoria, res
 -- Dependencies: 263
 -- Data for Name: turma
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.turma (id, nome_turma, ano_lectivo, professor_responsavel, estado) FROM stdin
@@ -6369,11 +6426,12 @@ COPY public.turma (id, nome_turma, ano_lectivo, professor_responsavel, estado) F
 -- Dependencies: 276
 -- Data for Name: turma_aluno
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.turma_aluno (aluno, ano_lectivo, turma) FROM stdin
@@ -6387,11 +6445,12 @@ COPY public.turma_aluno (aluno, ano_lectivo, turma) FROM stdin
 -- Dependencies: 218
 -- Data for Name: utilizador
 ;
- Type: TABLE DATA
+Type:
+TABLE DATA
 ;
- Schema: public
+Schema: public
 ;
- Owner: postgres
+Owner: postgres
 --
 
 COPY public.utilizador (id, email, password, username, nome) FROM stdin

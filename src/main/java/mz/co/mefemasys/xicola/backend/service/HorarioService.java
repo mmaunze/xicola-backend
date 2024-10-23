@@ -1,23 +1,15 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.*;
-
 import mz.co.mefemasys.xicola.backend.repository.*;
-
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
-
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 import java.util.logging.Logger;
 
 @Service
@@ -135,7 +127,7 @@ public class HorarioService implements MetodosGerais {
     private void validarDisciplina(Horario horario) {
         Disciplina disciplina = disciplinaRepository.findById(horario.getDisciplina().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                DISCIPLINA_NOT_FOUND_MESSAGE + horario.getDisciplina().getId()));
+                        DISCIPLINA_NOT_FOUND_MESSAGE + horario.getDisciplina().getId()));
 
         horario.setDisciplina(disciplina);
 
@@ -144,7 +136,7 @@ public class HorarioService implements MetodosGerais {
     private void validarProfessor(Horario horario) {
         Professor professor = professorRepository.findById(horario.getProfessor().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                PROFESSOR_NOT_FOUND_MESSAGE + horario.getProfessor().getId()));
+                        PROFESSOR_NOT_FOUND_MESSAGE + horario.getProfessor().getId()));
 
         horario.setProfessor(professor);
 

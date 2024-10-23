@@ -1,35 +1,21 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.Estado;
-
 import mz.co.mefemasys.xicola.backend.models.ItemOrdemCompra;
-
 import mz.co.mefemasys.xicola.backend.models.Material;
-
 import mz.co.mefemasys.xicola.backend.models.OrdemCompra;
-
 import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.ItemOrdemCompraRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.MaterialRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.OrdemCompraRepository;
-
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
-
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-
 import java.util.List;
 
 @Service
@@ -144,7 +130,7 @@ public class ItemOrdemCompraService implements MetodosGerais {
     private void validarMaterial(ItemOrdemCompra itemOrdemCompra) {
         Material material = materialRepository.findById(itemOrdemCompra.getMaterial().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                MATERIAL_NOT_FOUND_MESSAGE + itemOrdemCompra.getMaterial().getId()));
+                        MATERIAL_NOT_FOUND_MESSAGE + itemOrdemCompra.getMaterial().getId()));
 
         itemOrdemCompra.setMaterial(material);
 
@@ -153,14 +139,14 @@ public class ItemOrdemCompraService implements MetodosGerais {
     private void validarOrdemCompra(ItemOrdemCompra itemOrdemCompra) {
         OrdemCompra ordemCompra = ordemCompraRepository.findById(itemOrdemCompra.getOrdemCompra().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                ORDEM_COMPRA_NOT_FOUND_MESSAGE + itemOrdemCompra.getOrdemCompra().getId()));
+                        ORDEM_COMPRA_NOT_FOUND_MESSAGE + itemOrdemCompra.getOrdemCompra().getId()));
 
         itemOrdemCompra.setOrdemCompra(ordemCompra);
 
     }
 
     private void atualizarItemOrdemCompra(ItemOrdemCompra itemOrdemCompraExistente,
-            ItemOrdemCompra itemOrdemCompraAtualizado) {
+                                          ItemOrdemCompra itemOrdemCompraAtualizado) {
         itemOrdemCompraExistente.setDescricao(itemOrdemCompraAtualizado.getDescricao());
 
         itemOrdemCompraExistente.setQuantidade(itemOrdemCompraAtualizado.getQuantidade());

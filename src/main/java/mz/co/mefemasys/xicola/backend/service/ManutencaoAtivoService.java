@@ -1,35 +1,21 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.Ativo;
-
 import mz.co.mefemasys.xicola.backend.models.Estado;
-
 import mz.co.mefemasys.xicola.backend.models.Funcionario;
-
 import mz.co.mefemasys.xicola.backend.models.ManutencaoAtivo;
-
 import mz.co.mefemasys.xicola.backend.repository.AtivoRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.FuncionarioRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.ManutencaoAtivoRepository;
-
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-
 import java.time.LocalDate;
-
 import java.util.List;
 
 @Service
@@ -144,7 +130,7 @@ public class ManutencaoAtivoService {
     private void validarAtivo(ManutencaoAtivo manutencaoAtivo) {
         Ativo ativo = ativoRepository.findById(manutencaoAtivo.getAtivo().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                ATIVO_NOT_FOUND_MESSAGE + manutencaoAtivo.getAtivo().getId()));
+                        ATIVO_NOT_FOUND_MESSAGE + manutencaoAtivo.getAtivo().getId()));
 
         manutencaoAtivo.setAtivo(ativo);
 
@@ -153,14 +139,14 @@ public class ManutencaoAtivoService {
     private void validarResponsavel(ManutencaoAtivo manutencaoAtivo) {
         Funcionario responsavel = funcionarioRepository.findById(manutencaoAtivo.getResponsavel().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                FUNCIONARIO_NOT_FOUND_MESSAGE + manutencaoAtivo.getResponsavel().getId()));
+                        FUNCIONARIO_NOT_FOUND_MESSAGE + manutencaoAtivo.getResponsavel().getId()));
 
         manutencaoAtivo.setResponsavel(responsavel);
 
     }
 
     private void atualizarManutencaoAtivo(ManutencaoAtivo manutencaoAtivoExistente,
-            ManutencaoAtivo manutencaoAtivoAtualizado) {
+                                          ManutencaoAtivo manutencaoAtivoAtualizado) {
         manutencaoAtivoExistente.setDescricao(manutencaoAtivoAtualizado.getDescricao());
 
         manutencaoAtivoExistente.setDataManutencao(manutencaoAtivoAtualizado.getDataManutencao());

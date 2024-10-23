@@ -1,33 +1,20 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.Avaliacao;
-
 import mz.co.mefemasys.xicola.backend.models.Disciplina;
-
 import mz.co.mefemasys.xicola.backend.models.TipoAvaliacao;
-
 import mz.co.mefemasys.xicola.backend.repository.AvaliacaoRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.DisciplinaRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.TipoAvaliacaoRepository;
-
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 import java.util.Optional;
-
 import java.util.logging.Logger;
 
 @Service
@@ -81,7 +68,7 @@ public class AvaliacaoService {
 
         var disciplina = disciplinaOptional
                 .orElseThrow(() -> new ResourceNotFoundException(
-                DISCIPLINA_NOT_FOUND_MESSAGE + avaliacao.getDisciplina().getId()));
+                        DISCIPLINA_NOT_FOUND_MESSAGE + avaliacao.getDisciplina().getId()));
 
         // Verifica se o tipo de avaliação foi encontrado
         Optional<TipoAvaliacao> tipoAvaliacaoOptional = tipoAvaliacaoRepository
@@ -89,7 +76,7 @@ public class AvaliacaoService {
 
         var tipoAvaliacao = tipoAvaliacaoOptional
                 .orElseThrow(() -> new ResourceNotFoundException(
-                TIPO_AVALIACAO_NOT_FOUND_MESSAGE + avaliacao.getTipoAvaliacao().getId()));
+                        TIPO_AVALIACAO_NOT_FOUND_MESSAGE + avaliacao.getTipoAvaliacao().getId()));
 
         // Realiza as validações necessárias
         validarDadosObrigatorios(avaliacao);
@@ -130,7 +117,7 @@ public class AvaliacaoService {
 
         var disciplina = disciplinaOptional
                 .orElseThrow(() -> new ResourceNotFoundException(
-                DISCIPLINA_NOT_FOUND_MESSAGE + avaliacaoAtualizada.getDisciplina().getId()));
+                        DISCIPLINA_NOT_FOUND_MESSAGE + avaliacaoAtualizada.getDisciplina().getId()));
 
         avaliacaoExistente.setDisciplina(disciplina);
 
@@ -140,7 +127,7 @@ public class AvaliacaoService {
 
         var tipoAvaliacao = tipoAvaliacaoOptional
                 .orElseThrow(() -> new ResourceNotFoundException(
-                TIPO_AVALIACAO_NOT_FOUND_MESSAGE + avaliacaoAtualizada.getTipoAvaliacao().getId()));
+                        TIPO_AVALIACAO_NOT_FOUND_MESSAGE + avaliacaoAtualizada.getTipoAvaliacao().getId()));
 
         avaliacaoExistente.setTipoAvaliacao(tipoAvaliacao);
 

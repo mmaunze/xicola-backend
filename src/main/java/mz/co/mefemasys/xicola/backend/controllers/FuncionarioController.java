@@ -1,49 +1,29 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
 import jakarta.persistence.EntityNotFoundException;
-
 import lombok.Data;
-
 import lombok.RequiredArgsConstructor;
-
 import lombok.extern.slf4j.Slf4j;
-
 import mz.co.mefemasys.xicola.backend.dto.FuncionarioDTO;
-
 import mz.co.mefemasys.xicola.backend.dto.create.CreateFuncionarioDTO;
-
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.AreaCientifica;
-
 import mz.co.mefemasys.xicola.backend.models.Funcionario;
-
 import mz.co.mefemasys.xicola.backend.models.SectorTrabalho;
-
 import mz.co.mefemasys.xicola.backend.service.*;
-
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
-
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.security.access.prepost.PreAuthorize;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-
 import java.util.List;
-
 import java.util.logging.Logger;
-
 import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.*;
-
 import static org.springframework.http.ResponseEntity.created;
-
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @Data
@@ -152,19 +132,19 @@ public class FuncionarioController implements MetodosGerais {
     @PutMapping("/actualizar/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> update(@PathVariable Long id,
-            @RequestBody FuncionarioDTO funcionarioDTO) {
+                                       @RequestBody FuncionarioDTO funcionarioDTO) {
         try {
             funcionarioService.update(id, convertToEntity(funcionarioDTO));
 
             return ResponseEntity.ok().build();
 
         } catch (EntityNotFoundException e) {
-            log.error("Encarregado de educação ou estado não encontrado para o ID: " + id, e);
+            log.error("Funcionario não encontrado para o ID: {}", id, e);
 
             return new ResponseEntity<>(NOT_FOUND);
 
         } catch (InternalServerErrorException e) {
-            log.error("Erro ao atualizar encarregado de educação com o ID: " + id, e);
+            log.error("Erro ao atualizar funcionario com o ID: {}", id, e);
 
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
 
@@ -180,12 +160,12 @@ public class FuncionarioController implements MetodosGerais {
             return ResponseEntity.ok().build();
 
         } catch (EntityNotFoundException e) {
-            log.error("Encarregado de educação não encontrado para remoção com o ID: {}", id, e);
+            log.error("Funcionario não encontrado para remoção com o ID: {}", id, e);
 
             return new ResponseEntity<>(NOT_FOUND);
 
         } catch (InternalServerErrorException e) {
-            log.error("Erro ao remover encarregado de educação com o ID: {}", id, e);
+            log.error("Erro ao remover funcionario com o ID: {}", id, e);
 
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
 
@@ -203,14 +183,5 @@ public class FuncionarioController implements MetodosGerais {
 
     }
 
-    private SectorTrabalho fetchSector(String sector) {
-        return sectorTrabalhoService.findSector(sector);
-
-    }
-
-    private AreaCientifica fetchArea(String area) {
-        return areaCientificaService.findArea(area);
-
-    }
 
 }

@@ -1,25 +1,16 @@
 package mz.co.mefemasys.xicola.backend.models;
 
 import jakarta.persistence.*;
-
 import jakarta.validation.constraints.NotNull;
-
 import jakarta.validation.constraints.Size;
-
 import lombok.Getter;
-
 import lombok.Setter;
-
 import org.hibernate.annotations.ColumnDefault;
-
 import org.hibernate.annotations.OnDelete;
-
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.math.BigDecimal;
-
 import java.time.Instant;
-
 import java.util.logging.Logger;
 
 @Getter
@@ -56,6 +47,12 @@ public class Pagamento {
     private TipoPagamento tipoPagamento;
 
     @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "metodo_pagamento", nullable = false)
+    private MetodoPagamento metodoPagamento;
+
+    @NotNull
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "data_pagamento", nullable = false)
     private Instant dataPagamento;
@@ -65,6 +62,7 @@ public class Pagamento {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "responsavel", nullable = false)
     private Funcionario responsavel;
+
 
     @Column(name = "observacao", length = Integer.MAX_VALUE)
     private String observacao;

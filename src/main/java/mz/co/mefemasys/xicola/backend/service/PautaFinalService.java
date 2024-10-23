@@ -1,21 +1,14 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.*;
-
 import mz.co.mefemasys.xicola.backend.repository.*;
-
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 import java.util.logging.Logger;
 
 @Service
@@ -158,7 +151,7 @@ public class PautaFinalService {
     private void validarDisciplina(PautaFinal pautaFinal) {
         Disciplina disciplina = disciplinaRepository.findById(pautaFinal.getDisciplina().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                DISCIPLINA_NOT_FOUND_MESSAGE + pautaFinal.getDisciplina().getId()));
+                        DISCIPLINA_NOT_FOUND_MESSAGE + pautaFinal.getDisciplina().getId()));
 
         pautaFinal.setDisciplina(disciplina);
 
@@ -167,7 +160,7 @@ public class PautaFinalService {
     private void validarEstadoPauta(PautaFinal pautaFinal) {
         Estado estado = estadoRepository.findById(pautaFinal.getEstadoPauta().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                ESTADO_NOT_FOUND_MESSAGE + pautaFinal.getEstadoPauta().getId()));
+                        ESTADO_NOT_FOUND_MESSAGE + pautaFinal.getEstadoPauta().getId()));
 
         pautaFinal.setEstadoPauta(estado);
 
@@ -176,7 +169,7 @@ public class PautaFinalService {
     private void validarProfessor(PautaFinal pautaFinal) {
         Professor professor = professorRepository.findById(pautaFinal.getProfessor().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                PROFESSOR_NOT_FOUND_MESSAGE + pautaFinal.getProfessor().getId()));
+                        PROFESSOR_NOT_FOUND_MESSAGE + pautaFinal.getProfessor().getId()));
 
         pautaFinal.setProfessor(professor);
 

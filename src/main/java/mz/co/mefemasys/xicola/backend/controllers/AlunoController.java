@@ -1,55 +1,32 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
 import lombok.Data;
-
 import lombok.RequiredArgsConstructor;
-
 import lombok.extern.slf4j.Slf4j;
-
 import mz.co.mefemasys.xicola.backend.dto.AlunoDTO;
-
 import mz.co.mefemasys.xicola.backend.dto.create.CreateAlunoDTO;
-
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.Aluno;
-
 import mz.co.mefemasys.xicola.backend.models.Distrito;
-
 import mz.co.mefemasys.xicola.backend.models.Estado;
-
 import mz.co.mefemasys.xicola.backend.service.AlunoService;
-
 import mz.co.mefemasys.xicola.backend.service.DistritoService;
-
 import mz.co.mefemasys.xicola.backend.service.EstadoService;
-
 import mz.co.mefemasys.xicola.backend.service.ProvinciaService;
-
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
-
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.security.access.prepost.PreAuthorize;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-
 import java.util.List;
-
 import java.util.logging.Logger;
 
 import static java.util.stream.Collectors.toList;
-
 import static org.springframework.http.HttpStatus.*;
-
 import static org.springframework.http.ResponseEntity.created;
-
 import static org.springframework.http.ResponseEntity.ok;
-
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @CrossOrigin(origins = "*", maxAge = 3600)

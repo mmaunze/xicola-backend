@@ -1,9 +1,7 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
 import lombok.Getter;
-
 import lombok.Setter;
-
 import mz.co.mefemasys.xicola.backend.models.Cargo;
 
 import java.util.logging.Logger;

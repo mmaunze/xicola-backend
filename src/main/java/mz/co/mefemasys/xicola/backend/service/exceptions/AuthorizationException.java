@@ -1,7 +1,6 @@
 package mz.co.mefemasys.xicola.backend.service.exceptions;
 
 import org.springframework.security.access.AccessDeniedException;
-
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.logging.Logger;

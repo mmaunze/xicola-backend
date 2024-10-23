@@ -1,15 +1,11 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
 import lombok.Data;
-
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.models.Professor;
-
 import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 
 import java.time.Instant;
-
 import java.util.logging.Logger;
 
 @Data

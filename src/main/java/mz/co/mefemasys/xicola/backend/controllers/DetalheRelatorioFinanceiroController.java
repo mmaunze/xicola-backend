@@ -1,39 +1,24 @@
 package mz.co.mefemasys.xicola.backend.controllers;
 
 import jakarta.persistence.EntityNotFoundException;
-
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.dto.DetalheRelatorioFinanceiroDTO;
-
 import mz.co.mefemasys.xicola.backend.exceptions.InternalServerErrorException;
-
 import mz.co.mefemasys.xicola.backend.models.DetalheRelatorioFinanceiro;
-
 import mz.co.mefemasys.xicola.backend.models.RelatorioFinanceiro;
-
 import mz.co.mefemasys.xicola.backend.service.DetalheRelatorioFinanceiroService;
-
 import mz.co.mefemasys.xicola.backend.service.RelatorioFinanceiroService;
-
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.security.access.prepost.PreAuthorize;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-
 import java.util.ArrayList;
-
 import java.util.List;
-
 import java.util.logging.Logger;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
-
 import static org.springframework.http.HttpStatus.NOT_FOUND;
-
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
@@ -101,7 +86,7 @@ public class DetalheRelatorioFinanceiroController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> update(@PathVariable Long id,
-            @RequestBody DetalheRelatorioFinanceiroDTO detalheDTO) {
+                                       @RequestBody DetalheRelatorioFinanceiroDTO detalheDTO) {
         try {
             detalheRelatorioFinanceiroService.update(id, convertToEntity(detalheDTO));
 

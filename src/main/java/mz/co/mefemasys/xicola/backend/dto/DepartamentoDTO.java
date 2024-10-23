@@ -1,7 +1,6 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
 import lombok.Data;
-
 import mz.co.mefemasys.xicola.backend.models.Departamento;
 
 import java.util.logging.Logger;

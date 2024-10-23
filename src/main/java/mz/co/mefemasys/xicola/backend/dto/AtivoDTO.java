@@ -1,13 +1,10 @@
 package mz.co.mefemasys.xicola.backend.dto;
 
 import lombok.Data;
-
 import mz.co.mefemasys.xicola.backend.models.Ativo;
 
 import java.math.BigDecimal;
-
 import java.time.LocalDate;
-
 import java.util.logging.Logger;
 
 @Data

@@ -1,27 +1,17 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.Aluno;
-
 import mz.co.mefemasys.xicola.backend.models.AvaliacaoAluno;
-
 import mz.co.mefemasys.xicola.backend.repository.AlunoRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.AvaliacaoAlunoRepository;
-
 import mz.co.mefemasys.xicola.backend.repository.EstadoRepository;
-
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
-
 import java.util.logging.Logger;
 
 @Service
@@ -71,7 +61,7 @@ public class AvaliacaoAlunoService {
 
         var aluno = alunoOptional
                 .orElseThrow(() -> new ResourceNotFoundException(
-                ALUNO_NOT_FOUND_MESSAGE + avaliacaoAluno.getAluno().getId()));
+                        ALUNO_NOT_FOUND_MESSAGE + avaliacaoAluno.getAluno().getId()));
 
         // Realiza as validações necessárias
         validarDadosObrigatorios(avaliacaoAluno);
@@ -115,7 +105,7 @@ public class AvaliacaoAlunoService {
 
         var aluno = alunoOptional
                 .orElseThrow(() -> new ResourceNotFoundException(
-                ALUNO_NOT_FOUND_MESSAGE + avaliacaoAlunoAtualizada.getAluno().getId()));
+                        ALUNO_NOT_FOUND_MESSAGE + avaliacaoAlunoAtualizada.getAluno().getId()));
 
         avaliacaoAlunoExistente.setAluno(aluno);
 

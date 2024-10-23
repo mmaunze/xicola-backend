@@ -1,21 +1,14 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.*;
-
 import mz.co.mefemasys.xicola.backend.repository.*;
-
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 import java.util.logging.Logger;
 
 @Service
@@ -151,7 +144,7 @@ public class PautaTrimestralService {
     private void validarAluno(PautaTrimestral pautaTrimestral) {
         Aluno aluno = alunoRepository.findById(pautaTrimestral.getAluno().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                ALUNO_NOT_FOUND_MESSAGE + pautaTrimestral.getAluno().getId()));
+                        ALUNO_NOT_FOUND_MESSAGE + pautaTrimestral.getAluno().getId()));
 
         pautaTrimestral.setAluno(aluno);
 
@@ -160,7 +153,7 @@ public class PautaTrimestralService {
     private void validarDisciplina(PautaTrimestral pautaTrimestral) {
         Disciplina disciplina = disciplinaRepository.findById(pautaTrimestral.getDisciplina().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                DISCIPLINA_NOT_FOUND_MESSAGE + pautaTrimestral.getDisciplina().getId()));
+                        DISCIPLINA_NOT_FOUND_MESSAGE + pautaTrimestral.getDisciplina().getId()));
 
         pautaTrimestral.setDisciplina(disciplina);
 
@@ -169,7 +162,7 @@ public class PautaTrimestralService {
     private void validarEstado(PautaTrimestral pautaTrimestral) {
         Estado estado = estadoRepository.findById(pautaTrimestral.getEstado().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                ESTADO_NOT_FOUND_MESSAGE + pautaTrimestral.getEstado().getId()));
+                        ESTADO_NOT_FOUND_MESSAGE + pautaTrimestral.getEstado().getId()));
 
         pautaTrimestral.setEstado(estado);
 
@@ -178,7 +171,7 @@ public class PautaTrimestralService {
     private void validarProfessor(PautaTrimestral pautaTrimestral) {
         Professor professor = professorRepository.findById(pautaTrimestral.getProfessor().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                PROFESSOR_NOT_FOUND_MESSAGE + pautaTrimestral.getProfessor().getId()));
+                        PROFESSOR_NOT_FOUND_MESSAGE + pautaTrimestral.getProfessor().getId()));
 
         pautaTrimestral.setProfessor(professor);
 

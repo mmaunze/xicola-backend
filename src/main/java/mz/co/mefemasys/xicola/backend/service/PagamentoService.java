@@ -1,30 +1,24 @@
 package mz.co.mefemasys.xicola.backend.service;
 
 import lombok.RequiredArgsConstructor;
-
+import mz.co.mefemasys.xicola.backend.dto.create.CreatePagamentoDTO;
 import mz.co.mefemasys.xicola.backend.exceptions.BadRequestException;
-
 import mz.co.mefemasys.xicola.backend.exceptions.ResourceNotFoundException;
-
 import mz.co.mefemasys.xicola.backend.models.*;
-
 import mz.co.mefemasys.xicola.backend.repository.*;
-
+import mz.co.mefemasys.xicola.backend.utils.MetodosGerais;
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-
+import java.time.Instant;
 import java.time.LocalDate;
-
 import java.util.List;
-
 import java.util.logging.Logger;
 
 @Service
 @RequiredArgsConstructor
-public class PagamentoService {
+public class PagamentoService implements MetodosGerais {
 
     private static final String PAGAMENTO_NOT_FOUND_MESSAGE = "Pagamento não encontrado com o ID: ";
 
@@ -47,6 +41,11 @@ public class PagamentoService {
     private final FuncionarioRepository funcionarioRepository;
 
     private final TipoPagamentoRepository tipoPagamentoRepository;
+    private final FuncionarioService funcionarioService;
+    private final AlunoService alunoService;
+    private final TipoPagamentoService tipoPagamentoService;
+    private final EstadoService estadoService;
+    private final MetodoPagamentoService metodoPagamentoService;
 
     @Transactional(readOnly = true)
     public Pagamento findById(Long id) {
@@ -62,10 +61,31 @@ public class PagamentoService {
     }
 
     @Transactional
-    public Pagamento create(Pagamento pagamento) {
-        validarPagamento(pagamento);
+    public Pagamento create(CreatePagamentoDTO pagamento) {
+        var newPagamento = new Pagamento();
+        var responsavel = funcionarioService.findById(pagamento.getResponsavel());
+        var aluno = alunoService.findById(pagamento.getAluno());
+        var tipoPagamento = tipoPagamentoService.findTipo(pagamento.getTipoPagamento());
+        var metodoPagamento = metodoPagamentoService.findMetodo(pagamento.getMetodoPagamento());
+        var estado = estadoService.findEstado("Em processamento");
+        var id = gerarId();
 
-        return pagamentoRepository.save(pagamento);
+        newPagamento.setId (id);
+        newPagamento.setAluno(aluno);
+        newPagamento.setResponsavel(responsavel);
+        newPagamento.setTipoPagamento(tipoPagamento);
+        newPagamento.setDataPagamento(Instant.now());
+        newPagamento.setValor(BigDecimal.valueOf(pagamento.getValor()));
+        newPagamento.setEstado(estado);
+        newPagamento.setReferencia(gerarReferencia(pagamento.getTipoPagamento()));
+
+        if (pagamento.getObservacao() == null || pagamento.getObservacao().isBlank())
+            newPagamento.setObservacao(tipoPagamento.getDescricao()+" Via "+metodoPagamento.getDescricao());
+        else newPagamento.setObservacao(pagamento.getObservacao());
+
+        newPagamento.setMetodoPagamento(metodoPagamento);
+
+        return pagamentoRepository.save(newPagamento);
 
     }
 
@@ -75,23 +95,14 @@ public class PagamentoService {
                 .orElseThrow(() -> new ResourceNotFoundException(PAGAMENTO_NOT_FOUND_MESSAGE + id));
 
         validarPagamento(pagamentoAtualizado);
-
         pagamentoExistente.setReferencia(pagamentoAtualizado.getReferencia());
-
         pagamentoExistente.setValor(pagamentoAtualizado.getValor());
-
         pagamentoExistente.setDataPagamento(pagamentoAtualizado.getDataPagamento());
-
         pagamentoExistente.setObservacao(pagamentoAtualizado.getObservacao());
-
         pagamentoExistente.setAluno(pagamentoAtualizado.getAluno());
-
         pagamentoExistente.setEstado(pagamentoAtualizado.getEstado());
-
         pagamentoExistente.setResponsavel(pagamentoAtualizado.getResponsavel());
-
         pagamentoExistente.setTipoPagamento(pagamentoAtualizado.getTipoPagamento());
-
         return pagamentoRepository.save(pagamentoExistente);
 
     }
@@ -174,7 +185,7 @@ public class PagamentoService {
     private void validarResponsavel(Pagamento pagamento) {
         Funcionario responsavel = funcionarioRepository.findById(pagamento.getResponsavel().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                FUNCIONARIO_NOT_FOUND_MESSAGE + pagamento.getResponsavel().getId()));
+                        FUNCIONARIO_NOT_FOUND_MESSAGE + pagamento.getResponsavel().getId()));
 
         pagamento.setResponsavel(responsavel);
 
@@ -183,7 +194,7 @@ public class PagamentoService {
     private void validarTipoPagamento(Pagamento pagamento) {
         TipoPagamento tipoPagamento = tipoPagamentoRepository.findById(pagamento.getTipoPagamento().getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                TIPO_PAGAMENTO_NOT_FOUND_MESSAGE + pagamento.getTipoPagamento().getId()));
+                        TIPO_PAGAMENTO_NOT_FOUND_MESSAGE + pagamento.getTipoPagamento().getId()));
 
         pagamento.setTipoPagamento(tipoPagamento);
 
